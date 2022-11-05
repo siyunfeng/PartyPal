@@ -1,24 +1,13 @@
 const authRouter = require("express").Router();
 const { User } = require("../db/models/User");
 
-const requireToken = async (req, res, next) => {
+authRouter.get('/me', async (req, res, next) => {
   try {
-    const token = req.headers.authorization;
-    const user = await User.findByToken(token);
-    req.user = user;
-    next();
-  } catch (error) {
-    next(error);
+    res.send(await User.findByToken(req.headers.authorization))
+  } catch (ex) {
+    next(ex)
   }
-};
-
-authRouter.get("/me", requireToken, async (req, res, next) => {
-  if (req.user) {
-    res.send(req.user);
-  } else {
-    res.sendStatus(404);
-  }
-});
+})
 
 authRouter.post(`/login`, async (req, res, next) => {
   try {
@@ -28,9 +17,14 @@ authRouter.post(`/login`, async (req, res, next) => {
   }
 });
 
+
 authRouter.post("/signup", async (req, res, next) => {
   try {
-    const user = await User.create(req.body);
+    const { username, password } = req.body; 
+    // only getting username and password off req.body
+    // so we only add to those fields in database
+    // any routes recieving front end data
+    const user = await User.create({ username, password });
     res.send({ token: await user.generateToken() });
   } catch (err) {
     if (err.name === "SequelizeUniqueConstraintError") {

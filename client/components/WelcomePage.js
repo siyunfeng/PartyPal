@@ -1,9 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
 import { Login, Signup } from "./Auth";
+// import { Navbar } from "./NavBar";
 
 const WelcomePage = (props) => {
-  return <div>Welcome Page Contents!</div>;
+  return (
+    <div>
+      {/* <Navbar /> */}
+      <p>Welcome Page Contents!</p>
+    </div>
+  );
 };
 
 export const AllRoutes = () => {
@@ -11,19 +17,46 @@ export const AllRoutes = () => {
     <Router>
       <div>
         <nav>
-          Welcome!
-          <ul style={{ listStyle: "none" }}>
+          <Link style={{ textDecoration: "none" }} to="/">
+            <h1>Cool Website name</h1>
+          </Link>
+          <ul style={{ listStyle: "none", textDecoration: "none" }}>
             <li>
-              <Link to="/">Welcome Page</Link>
+              <Link style={{ textDecoration: "none", color: "white" }} to="/">
+                Main Page
+              </Link>
             </li>
             <li>
-              <Link to="/login">Login</Link>
+              <Link
+                style={{
+                  textDecoration: "none",
+                  color: "white",
+                  backgroundColor: "green",
+                  padding: "8px",
+                  borderRadius: "30px",
+                }}
+                to="/login"
+              >
+                Login
+              </Link>
             </li>
             <li>
               {" "}
-              <Link to="/signup">Signup </Link>
+              <Link
+                style={{
+                  textDecoration: "none",
+                  color: "white",
+                  backgroundColor: "blue",
+                  padding: "8px",
+                  borderRadius: "30px",
+                }}
+                to="/signup"
+              >
+                Signup{" "}
+              </Link>
             </li>
           </ul>
+          <div className=".hr"></div>
         </nav>
         <main>
           <Routes>

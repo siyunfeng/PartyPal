@@ -1,3 +1,33 @@
+:root {
+  --sans: "Bree Serif", serif;
+}
+
 body {
-    background-color: pink;
+    background-color: palevioletred;
+}
+
+nav {
+  height: 100px;
+  padding: 10px;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  font-family: var(--sans)
+
+}
+
+nav ul {
+  display: flex;
+  margin-top: 1.2rem;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+ 
+}
+
+nav h1 {
+  color: black
+}
+
+.hr {
+  background-color: orange;
 }

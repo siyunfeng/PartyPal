@@ -6,6 +6,7 @@ const TOKEN = 'token'
 /**
  * ACTION TYPES
  */
+
 const SET_AUTH = 'SET_AUTH'
 
 /**

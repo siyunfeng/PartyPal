@@ -7,7 +7,7 @@ import {authenticate} from '../redux/auth'
  */
 export const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
-
+  
   return (
     <div>
       <form onSubmit={handleSubmit} name={name}>
@@ -40,7 +40,7 @@ export const AuthForm = props => {
  *   can stay DRY with interfaces that are very similar to each other!
  */
 const mapLogin = state => {
-  console.log("state",state)
+  console.log("state", state)
   return {
     name: 'login',
     displayName: 'Login',
@@ -63,6 +63,7 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const username = evt.target.username.value
       const password = evt.target.password.value
+      console.log("userName", username)
       dispatch(authenticate(username, password, formName))
     }
   }

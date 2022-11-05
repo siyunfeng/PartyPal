@@ -6,6 +6,8 @@ const {syncAndSeed} = require("./seed")
 //added this to seed and then in in here require it from 
 
 module.exports = {
-    db
+    db, 
+    syncAndSeed, 
+    User
     //other models
 }

@@ -2,7 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 const bodyParser = require("body-parser");
-const {syncAndSeed} = require("./db/seed")
+const { syncAndSeed } = require("./db/seed");
 const app = express();
 
 app.use(morgan("dev"));
@@ -12,6 +12,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/api", require("./apiRoutes"));
 app.use("/auth", require("./apiRoutes/auth"));
+
+if (process.env.NODE_ENV !== "production") require("../secrets")
+const SECRET = process.env.SECRET
 
 app.get("/", (req, res, next) => {
   try {
@@ -37,7 +40,7 @@ app.use((error, req, res, next) => {
     .send(error.message || "Internal Server error");
 });
 
-syncAndSeed()
+syncAndSeed();
 
 app.listen(3019, () => console.log("listening on port 3019"));
 

@@ -2,11 +2,7 @@ const { db } = require("../database");
 const { DataTypes } = require("sequelize");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
-const {syncAndSeed} = require("../seed")
 const SALT_ROUNDS = 5;
-
-const SECRET = "This is a secret";
-process.env.JWT = SECRET;
 
 
 const User = db.define("user", {
@@ -19,6 +15,10 @@ const User = db.define("user", {
   },
   password: {
     type: DataTypes.STRING,
+  }, 
+  isAdmin: {
+    type: DataTypes.BOOLEAN, 
+    defaultValue: false,
   }
 });
 
@@ -33,7 +33,8 @@ User.prototype.correctPassword =  async function (candidatePwd) {
 };
 
 User.prototype.generateToken =  function () {
-  const token = jwt.sign({ id: this.id }, process.env.JWT)
+  // chaned process.env.JWT to SECRET
+  const token = jwt.sign({ id: this.id }, process.env.SECRET)
   return token;
 };
 
@@ -51,7 +52,7 @@ User.authenticate = async function ({ username, password }) {
 
 User.findByToken = async function (token) {
   try {
-    const { id } = jwt.verify(token, process.env.JWT);
+    const { id } = jwt.verify(token, process.env.SECRET);
     const user = User.findByPk(id);
     if (!user) {
       throw "nooo";
