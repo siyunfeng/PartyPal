@@ -20,6 +20,7 @@ export const dummyThunk = () => {
   };
 };
 
-export default function dummyReducer(state = {}, actionObj) {
+const intitialState = []
+export default function dummyReducer(state = intitialState, actionObj) {
   return state;
 }

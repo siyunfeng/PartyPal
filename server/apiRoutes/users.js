@@ -16,6 +16,34 @@ userRouter.get("/", requireToken, isAdmin,  async (req, res, next) => {
   }
 })
 
+userRouter.post("/", async (req, res, next) => {
+  try {
+    const createUser = await User.create("some info")
+    res.send(createUser).status(200)
+  } catch (error) {
+    next(error)
+  }
+})
+
+userRouter.put("/", async (req, res, next) => {
+  try {
+    const updateInfo = await User.update("some info")
+    res.send(updateInfo).status(200)
+  } catch (error) {
+    next(error)
+  }
+})
+
+userRouter.delete("/", async (req, res, next) => {
+  try {
+    const deleteUser = await User.destroy("some info")
+    res.send(deleteUser).status(200)
+  } catch (error) {
+    next(error)
+  }
+})
+
+
 module.exports = {
   userRouter,
 };
