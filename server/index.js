@@ -17,8 +17,8 @@ const { syncAndSeed } = require("./db/seed");
 app.use("/api", require("./apiRoutes"));
 app.use("/auth", require("./apiRoutes/auth"));
 
-if (process.env.NODE_ENV !== "production") require("../secrets")
-const SECRET = process.env.SECRET
+// if (process.env.NODE_ENV !== "production") require("../secrets")
+// const SECRET = process.env.SECRET
 
 app.get("*", (req, res, next) => {
   try {
