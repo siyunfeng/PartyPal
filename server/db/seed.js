@@ -1,6 +1,7 @@
 const { db } = require("./database");
-const { User } = require("./models/User");
-const Event = require("./models/events");
+const {User, Event,} = require("./index")
+
+
 
 const syncAndSeed = async () => {
   try {
@@ -38,7 +39,7 @@ const syncAndSeed = async () => {
         notes: "Birthday party for Kirk in Bay Ridge, hooray!",
       }),
     ]);
-    
+
     const [iraisv, yuri] = await Promise.all(
       users.map((user) => {
         User.create(user);
