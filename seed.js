@@ -1,7 +1,4 @@
-
-const { db } = require("./database");
-const {User, Event,} = require("./index")
-
+const { db, User, Favorite, Event } = require('./server/db/');
 
 const syncAndSeed = async () => {
   try {
@@ -71,11 +68,25 @@ const syncAndSeed = async () => {
         User.create(user);
       })
     );
+    const favorite = [
+      {
+        name: 'Happy Pony Bakery',
+        category: 'caterer',
+        yelp_reference_id: 'ABC123',
+      },
+      {
+        name: 'Ballroom',
+        category: 'venue',
+        yelp_reference_id: 'XYZ123',
+      },
+    ];
+
+    await Favorite.bulkCreate(favorite);
   } catch (error) {
     console.log(error);
   }
 };
-
+syncAndSeed();
 module.exports = {
   syncAndSeed,
 };
