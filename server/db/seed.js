@@ -1,5 +1,6 @@
 const { db } = require('./database');
 const { User } = require('./models/User');
+const { Favorite } = require('./models/Favorite');
 const Event = require('./models/events');
 
 const syncAndSeed = async () => {
@@ -70,6 +71,22 @@ const syncAndSeed = async () => {
         User.create(user);
       })
     );
+    const favorite = [
+      {
+        name: 'Happy Pony Bakery',
+        category: 'caterer',
+        yelp_reference_id: 'ABC123',
+        userId: 1,
+      },
+      {
+        name: 'Ballroom',
+        category: 'venue',
+        yelp_reference_id: 'XYZ123',
+        userId: 1,
+      },
+    ];
+
+    await Favorite.bulkCreate(favorite);
   } catch (error) {
     console.log(error);
   }
