@@ -58,7 +58,7 @@ userRouter.put('/:userId', requireToken, async (req, res, next) => {
 });
 
 // DELETE (QUESTION: only admin can delete user or user can cancel their account?)
-userRouter.delete('/userId', requireToken, isAdmin, async (req, res, next) => {
+userRouter.delete('/:userId', requireToken, isAdmin, async (req, res, next) => {
   try {
     const deleteUser = await User.destroy(req.params.userId);
     res.send(deleteUser).status(200);
