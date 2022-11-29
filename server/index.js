@@ -11,14 +11,12 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const { syncAndSeed } = require('./db/seed');
+
+const { syncAndSeed } = require('../seed');
 
 app.use('/api', require('./apiRoutes'));
 app.use('/auth', require('./apiRoutes/auth'));
 
-// QUESTION: do we still need to keep this?
-// if (process.env.NODE_ENV !== "production") require("../secrets")
-// const SECRET = process.env.SECRET
 
 app.get('*', (req, res, next) => {
   try {
@@ -36,7 +34,7 @@ app.use((error, req, res, next) => {
     .send(error.message || 'Internal Server error');
 });
 
-syncAndSeed();
+// syncAndSeed();
 
 const port = process.env.PORT || 3019;
 

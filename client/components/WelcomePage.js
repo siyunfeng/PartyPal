@@ -1,6 +1,8 @@
-import React from "react";
-import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
-import { Login, Signup } from "./Auth";
+import AllCaterer from './AllCaterer';
+import React from 'react';
+import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom';
+import { Login, Signup } from './Auth';
+import EventSummary from './EventSummary';
 // import { Navbar } from "./NavBar";
 
 const WelcomePage = (props) => {
@@ -17,23 +19,23 @@ export const AllRoutes = () => {
     <Router>
       <div>
         <nav>
-          <Link style={{ textDecoration: "none" }} to="/">
+          <Link style={{ textDecoration: 'none' }} to="/">
             <h1>Cool Website name</h1>
           </Link>
-          <ul style={{ listStyle: "none", textDecoration: "none" }}>
+          <ul style={{ listStyle: 'none', textDecoration: 'none' }}>
             <li>
-              <Link style={{ textDecoration: "none", color: "white" }} to="/">
+              <Link style={{ textDecoration: 'none', color: 'white' }} to="/">
                 Main Page
               </Link>
             </li>
             <li>
               <Link
                 style={{
-                  textDecoration: "none",
-                  color: "white",
-                  backgroundColor: "green",
-                  padding: "8px",
-                  borderRadius: "30px",
+                  textDecoration: 'none',
+                  color: 'white',
+                  backgroundColor: 'green',
+                  padding: '8px',
+                  borderRadius: '30px',
                 }}
                 to="/login"
               >
@@ -41,18 +43,18 @@ export const AllRoutes = () => {
               </Link>
             </li>
             <li>
-              {" "}
+              {' '}
               <Link
                 style={{
-                  textDecoration: "none",
-                  color: "white",
-                  backgroundColor: "blue",
-                  padding: "8px",
-                  borderRadius: "30px",
+                  textDecoration: 'none',
+                  color: 'white',
+                  backgroundColor: 'blue',
+                  padding: '8px',
+                  borderRadius: '30px',
                 }}
                 to="/signup"
               >
-                Signup{" "}
+                Signup{' '}
               </Link>
             </li>
           </ul>
@@ -63,6 +65,8 @@ export const AllRoutes = () => {
             <Route path="/" element={<WelcomePage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/caterer" element={<AllCaterer />} />
+            <Route path="/eventSummary" element={<EventSummary />} />
           </Routes>
         </main>
       </div>
