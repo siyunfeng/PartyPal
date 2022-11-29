@@ -9,7 +9,7 @@ const WelcomePage = (props) => {
   return (
     <div>
       {/* <Navbar /> */}
-      <p>Welcome Page Contents!</p>
+      <p>Hello!</p>
     </div>
   );
 };

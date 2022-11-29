@@ -9,7 +9,7 @@
     "seed": "node seed.js",
     "test": "mocha ./tests/*.spec.js --compilers js:babel-register",
     "start": "node server",
-    "start-dev": "webpack -w & nodemon server",
+    "start-dev": "webpack -w & JWT=shh nodemon server -e html,js,scss --ignore public --ignore client",
     "start:dev:logger": "LOGGING=true npm run start:dev",
     "start:dev:seed": "SEED=true npm run start:dev",
     "start-server": "JWT=shh nodemon server -e html,js,scss --ignore public --ignore client",
