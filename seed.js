@@ -46,28 +46,25 @@ const syncAndSeed = async () => {
         notes: 'Sweet 16 party for Yuri in Palm Springs, hooray!',
       }),
       Event.create({
-        name: "Jacob's Grad Party",
+        name: "Siyun's Grad Party",
         date: '2022-11-29',
         time: '7:00pm',
         venue: 2,
         catering: 2,
-        notes: 'Grad party for Jacob in Coachella, hooray!',
+        notes: 'Grad party for Siyun in Buffalo, hooray!',
       }),
       Event.create({
-        name: "Kirk's Birthday Party",
+        name: "Jane's Birthday Party",
         date: '2022-11-30',
         time: '7:00pm',
         venue: 3,
         catering: 3,
-        notes: 'Birthday party for Kirk in Bay Ridge, hooray!',
+        notes: 'Birthday party for Jane in NYC, hooray!',
       }),
     ]);
 
-    const [iraisv, yuri, siyun, jane] = await Promise.all(
-      users.map((user) => {
-        User.create(user);
-      })
-    );
+    const [iraisv, yuri, siyun, jane] = await User.bulkCreate(users, { validate: true })
+      
     const favorite = [
       {
         name: 'Happy Pony Bakery',
@@ -81,12 +78,22 @@ const syncAndSeed = async () => {
       },
     ];
 
-    await Favorite.bulkCreate(favorite);
+    const [HappyPonyBakery, Ballroom] = await Favorite.bulkCreate(favorite, { validate: true })
+
+    await events[0].setUser(yuri)
+    await events[1].setUser(siyun)
+    await events[2].setUser(jane)
+    await HappyPonyBakery.setUser(jane)
+    await Ballroom.setUser(siyun)
+
+
   } catch (error) {
     console.log(error);
   }
 };
+
 syncAndSeed();
+
 module.exports = {
   syncAndSeed,
 };
