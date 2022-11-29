@@ -1,7 +1,8 @@
+import AllCaterer from './AllCaterer';
 import React from 'react';
 import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom';
-import AllCaterer from './AllCaterer';
 import { Login, Signup } from './Auth';
+import EventSummary from './EventSummary';
 // import { Navbar } from "./NavBar";
 
 const WelcomePage = (props) => {
@@ -65,6 +66,7 @@ export const AllRoutes = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/caterer" element={<AllCaterer />} />
+            <Route path="/eventSummary" element={<EventSummary />} />
           </Routes>
         </main>
       </div>
