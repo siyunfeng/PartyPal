@@ -1,17 +1,12 @@
-// const Sequelize = require('sequelize')
-
-// // change database name to a more specific one later
-// const db = new Sequelize(process.env.DATABASE_URL || `postgres://localhost:5432/boilerplate`, {
-//   logging: false,
-// })
-
-// module.exports = {db}
-
 const { Sequelize } = require("sequelize");
+
 const dbUrl =
-  process.env.DATABASE_URL || `postgres://localhost:5432/boilerplate`;
+  process.env.DATABASE_URL || `postgres://localhost:5432/partypal`;
+
+require('dotenv').config();
 
 let config;
+
 if (process.env.DATABASE_URL) {
   config = {
     logging: false,

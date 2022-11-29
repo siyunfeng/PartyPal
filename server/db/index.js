@@ -1,13 +1,15 @@
 const {db} = require('./database.js')
 const {User} = require("./models/User")
-const {syncAndSeed} = require("./seed")
+const Event = require("./models/events")
 // // make models associations here!
 
 //added this to seed and then in in here require it from 
 
+User.hasMany(Event)
+Event.belongsTo(User)
+
 module.exports = {
     db, 
-    syncAndSeed, 
-    User
-    //other models
+    User, 
+    Event
 }
