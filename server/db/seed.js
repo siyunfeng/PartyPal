@@ -1,6 +1,7 @@
-const { db } = require('./database');
-const { User } = require('./models/User');
-const Event = require('./models/events');
+
+const { db } = require("./database");
+const {User, Event,} = require("./index")
+
 
 const syncAndSeed = async () => {
   try {
