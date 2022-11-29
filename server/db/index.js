@@ -1,7 +1,7 @@
 const { db } = require('./database.js');
 const { User } = require('./models/User');
 const { Favorite } = require('./models/Favorite');
-const Event = require('./models/events');
+const Event = require('./models/Events');
 // // make models associations here!
 
 //added this to seed and then in in here require it from
