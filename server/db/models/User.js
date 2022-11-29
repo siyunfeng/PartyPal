@@ -7,6 +7,10 @@ const SALT_ROUNDS = 5;
 const User = db.define('user', {
   username: {
     type: DataTypes.STRING,
+    unique: {
+      args: true,
+      msg: 'existing username',
+    },
     allowNull: false,
     validate: {
       notEmpty: true,

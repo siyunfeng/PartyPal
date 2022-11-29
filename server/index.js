@@ -11,13 +11,12 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 const { syncAndSeed } = require('../seed');
 
 app.use('/api', require('./apiRoutes'));
 app.use('/auth', require('./apiRoutes/auth'));
 
-// if (process.env.NODE_ENV !== "production") require("../secrets")
-// const SECRET = process.env.SECRET
 
 app.get('*', (req, res, next) => {
   try {
@@ -26,14 +25,6 @@ app.get('*', (req, res, next) => {
     next(error);
   }
 });
-
-// app.use("*", (req, res, next) => {
-//   try {
-//     res.sendFile(path.join(__dirname, "../public/index.html"));
-//   } catch (error) {
-//     next(error);
-//   }
-// });
 
 app.use((error, req, res, next) => {
   console.error(error);
