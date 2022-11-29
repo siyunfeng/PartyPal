@@ -11,7 +11,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const { syncAndSeed } = require('./db/seed');
+const { syncAndSeed } = require('../seed');
 
 app.use('/api', require('./apiRoutes'));
 app.use('/auth', require('./apiRoutes/auth'));
@@ -43,7 +43,7 @@ app.use((error, req, res, next) => {
     .send(error.message || 'Internal Server error');
 });
 
-syncAndSeed();
+// syncAndSeed();
 
 const port = process.env.PORT || 3019;
 

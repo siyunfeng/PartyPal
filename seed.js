@@ -1,7 +1,4 @@
-const { db } = require('./database');
-const { User } = require('./models/User');
-const { Favorite } = require('./models/Favorite');
-const Event = require('./models/events');
+const { db, User, Favorite, Event } = require('./server/db/');
 
 const syncAndSeed = async () => {
   try {
@@ -76,13 +73,11 @@ const syncAndSeed = async () => {
         name: 'Happy Pony Bakery',
         category: 'caterer',
         yelp_reference_id: 'ABC123',
-        userId: 1,
       },
       {
         name: 'Ballroom',
         category: 'venue',
         yelp_reference_id: 'XYZ123',
-        userId: 1,
       },
     ];
 
@@ -91,7 +86,7 @@ const syncAndSeed = async () => {
     console.log(error);
   }
 };
-
+syncAndSeed();
 module.exports = {
   syncAndSeed,
 };
