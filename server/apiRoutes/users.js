@@ -42,18 +42,13 @@ userRouter.post('/', requireToken, async (req, res, next) => {
 // PUT change existing user's info
 userRouter.put('/:userId', requireToken, async (req, res, next) => {
   try {
-    const { password, email } = req.body;
+    const { password } = req.body;
     /* only allow user to update their password and email? (because username & name should not be changed?) */
     const existingUser = await User.findByPk(req.params.userId);
     let updateInfo;
     if (password) {
       updateInfo = await existingUser.update({
         password: password,
-      });
-    }
-    if (email) {
-      updateInfo = await existingUser.update({
-        email: email,
       });
     }
     res.send(updateInfo).status(200);
