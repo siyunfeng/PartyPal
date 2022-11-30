@@ -5,9 +5,11 @@ import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import auth from './auth';
+import allCatererReducer from './caterer';
 
 export const reducer = combineReducers({
   auth,
+  allCatererReducer,
   // other subreducers
 });
 
