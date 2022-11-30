@@ -11,7 +11,8 @@ authRouter.get('/me', async (req, res, next) => {
 
 authRouter.post(`/login`, async (req, res, next) => {
   try {
-    res.send({ token: await User.authenticate(req.body) });
+    const { username, password } = req.body;
+    res.send({ token: await User.authenticate({ username, password }) });
   } catch (error) {
     next(error);
   }
@@ -19,11 +20,7 @@ authRouter.post(`/login`, async (req, res, next) => {
 
 authRouter.post('/signup', async (req, res, next) => {
   try {
-    const { username, password } = req.body;
-    // only getting username and password off req.body
-    // so we only add to those fields in database
-    // any routes recieving front end data
-    const user = await User.create({ username, password });
+    const user = await User.create(req.body);
     res.send({ token: await user.generateToken() });
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {
