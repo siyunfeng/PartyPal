@@ -1,8 +1,6 @@
+const express = require('express');
+const userRouter = express.Router();
 const axios = require('axios');
-// const { YELP_TOKEN } = process.env;
-
-console.log('here is the yelp token =====', process.env.YELP_TOKEN);
-const TOKEN = process.env.YELP_TOKEN;
 
 require('dotenv').config();
 
@@ -53,4 +51,14 @@ const getCaterers = async () => {
     });
 };
 
+caterersRouter.post('/', async (req, res, next) => {
+  try {
+    // users will select the params
+    // const {} = req.body
+    getCaterers();
+  } catch (error) {}
+});
+
 getCaterers();
+
+module.exports = { caterersRouter };
