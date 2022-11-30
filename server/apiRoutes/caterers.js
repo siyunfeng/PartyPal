@@ -1,7 +1,7 @@
 const express = require('express');
 const caterersRouter = express.Router();
 const axios = require('axios');
-const { GraphQLClient } = require('graphql-request');
+// const { GraphQLClient } = require('graphql-request');
 
 require('dotenv').config();
 
@@ -30,25 +30,26 @@ const query = `{
     }
   }`;
 
-const yelpAPIUrl = 'https://api.yelp.com/v3/graphql';
-const client = new GraphQLClient(yelpAPIUrl, {
-  headers: {
-    'content-type': 'application/graphql',
-    Authorization: `Bearer ${process.env.YELP_TOKEN}`,
-  },
-});
-
+// const yelpAPIUrl = 'https://api.yelp.com/v3/graphql';
+// const client = new GraphQLClient(yelpAPIUrl, {
+//   headers: {
+//     'content-type': 'application/graphql',
+//     Authorization: `Bearer ${process.env.YELP_TOKEN}`,
+//   },
+// });
+const YELP_TOKEN =
+  'RanbOY5NRwsj61NTbTSYC5PusHxCsBee1r0iIBdwGueYurwZ_yIlZL1PD_H5zmaz59Uv8vQAE2rEQQY_wxUbHgjeCvXxfCwNhJS0UY6gDHzP6raJhQ9wGYnWnlN9Y3Yx';
 const getCaterers = async () => {
   const options = {
     method: 'POST',
     url: 'https://api.yelp.com/v3/graphql',
     headers: {
       'content-type': 'application/graphql',
-      Authorization: `Bearer ${process.env.YELP_TOKEN}`,
+      Authorization: `Bearer ${YELP_TOKEN}`,
     },
     data: query,
   };
-  axios
+  return axios
     .request(options)
     .then(function (response) {
       const res = response.data;
@@ -63,7 +64,7 @@ const getCaterers = async () => {
 
 caterersRouter.post('/', async (req, res, next) => {
   try {
-    const { data } = await getCaterers();
+    const data = await getCaterers();
     console.log('this is the data======', data);
     res.send(data).status(200);
   } catch (error) {
