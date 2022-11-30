@@ -65,7 +65,6 @@ const getCaterers = async () => {
 caterersRouter.post('/', async (req, res, next) => {
   try {
     const data = await getCaterers();
-    console.log('this is the data======', data);
     res.send(data).status(200);
   } catch (error) {
     next(error);
