@@ -113,7 +113,6 @@ const getVenues = async (queryType) => {
     .request(options)
     .then(function (response) {
       const res = response.data;
-      console.log('venue', res.data);
       return res;
     })
 
