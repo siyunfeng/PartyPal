@@ -15,6 +15,7 @@ function AllCaterer() {
     // }
     // fetchCaterData()
   });
+
   return <>This is all caterers</>;
 }
 
