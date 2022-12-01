@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { fetchAllCaterers } from '../redux/caterer';
 
 function AllCaterer() {
-  const [data, setData] = useState({ caterers: [] });
+  const [allCaterers, fetchAllCaterers] = useState({ caterers: [] });
 
   useEffect(() => {
-    //call GraphQL API
-    // const fetchCaterData = async ()=>{
-    //   const queryResult = await axios.get(
-    //   )
-    //   const result = queryResult.data
-    //   setData()
-    // }
-    // fetchCaterData()
-  });
+    fetchAllCaterers();
+  }, [allCaterers, fetchAllCaterers]);
+
   return <>This is all caterers</>;
 }
-
-export default AllCaterer;
+const mapState = (state) => ({
+  caterers: state.allCatererReducer,
+});
+export default connect(mapState, null)(AllCaterer);

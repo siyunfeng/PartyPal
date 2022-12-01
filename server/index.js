@@ -11,12 +11,10 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 const { syncAndSeed } = require('../seed');
 
 app.use('/api', require('./apiRoutes'));
 app.use('/auth', require('./apiRoutes/auth'));
-
 
 app.get('*', (req, res, next) => {
   try {
