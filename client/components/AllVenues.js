@@ -24,8 +24,8 @@ const AllVenues = (props) => {
       {allVenues.map((venue) => {
         return (
           <div key={venue.id}>
-            <Card className='mb-4' style={{ width: '18rem' }}>
-              <Card.Img variant='top' src={venue.photos[0]} />
+            <Card className="mb-4" style={{ width: '18rem' }}>
+              <Card.Img variant="top" src={venue.photos[0]} />
               <Card.Body>
                 <Card.Title>{venue.name}</Card.Title>
                 <Card.Text>{venue.location.address1}</Card.Text>
@@ -44,8 +44,8 @@ const AllVenues = (props) => {
                 <Card.Text>
                   Closes: {convert(venue.hours[0].open[0].end)}
                 </Card.Text>
-                <Link to='/singleVenue/:id'>
-                  <Button variant='primary'>See More</Button>
+                <Link to="/singleVenue/:id">
+                  <Button variant="primary">See More</Button>
                 </Link>
               </Card.Body>
             </Card>

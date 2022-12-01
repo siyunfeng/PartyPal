@@ -9,6 +9,7 @@ const query = `{
     search(term: "restaurant mexican", location: "11209", categories: "catering", attributes: "Offers Catering") {
       total
       business {
+        id
         name
         phone
         price
