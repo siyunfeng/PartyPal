@@ -1,12 +1,6 @@
 import AllCaterers from './AllCaterers';
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Link,
-  Route,
-  Switch,
-  Redirect,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import history from '../history';
 import { Login, Signup } from './Auth';
 import EventSummary from './EventSummary';
@@ -28,12 +22,12 @@ export const AllRoutes = () => {
     <Router history={history}>
       <div>
         <nav>
-          <Link style={{ textDecoration: 'none' }} to="/">
+          <Link style={{ textDecoration: 'none' }} to='/'>
             <h1>Cool Website name</h1>
           </Link>
           <ul style={{ listStyle: 'none', textDecoration: 'none' }}>
             <li>
-              <Link style={{ textDecoration: 'none', color: 'white' }} to="/">
+              <Link style={{ textDecoration: 'none', color: 'white' }} to='/'>
                 Main Page
               </Link>
             </li>
@@ -46,7 +40,7 @@ export const AllRoutes = () => {
                   padding: '8px',
                   borderRadius: '30px',
                 }}
-                to="/login"
+                to='/login'
               >
                 Login
               </Link>
@@ -61,24 +55,24 @@ export const AllRoutes = () => {
                   padding: '8px',
                   borderRadius: '30px',
                 }}
-                to="/signup"
+                to='/signup'
               >
                 Signup{' '}
               </Link>
             </li>
           </ul>
-          <div className=".hr"></div>
+          <div className='.hr'></div>
         </nav>
         <main>
-          <Switch>
-            <Route exact path="/" component={WelcomePage} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/allCaterers" component={AllCaterers} />
-            <Route path="/eventSummary" component={EventSummary} />
-            <Route path="/allVenues" component={AllVenues} />
-            <Route path="/venue/:id" component={SingleVenue} />
-          </Switch>
+            <Switch>
+              <Route exact path='/' component={WelcomePage} />
+              <Route path='/login' component={Login} />
+              <Route path='/signup' component={Signup} />
+              <Route path='/allCaterers' component={AllCaterers} />
+              <Route path='/eventSummary' component={EventSummary} />
+              <Route path='/allVenues' component={AllVenues} />
+              <Route path='/singleVenue/:id' component={SingleVenue} />
+            </Switch>
         </main>
       </div>
     </Router>
