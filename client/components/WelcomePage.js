@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom';
 import { Login, Signup } from './Auth';
 import EventSummary from './EventSummary';
+import AllVenues from './AllVenues';
 // import { Navbar } from "./NavBar";
 
 const WelcomePage = (props) => {
@@ -67,6 +68,7 @@ export const AllRoutes = () => {
             <Route path="/signup" element={<Signup />} />
             <Route path="/caterer" element={<AllCaterer />} />
             <Route path="/eventSummary" element={<EventSummary />} />
+            <Route path="/allVenues" element={<AllVenues />} />
           </Routes>
         </main>
       </div>
