@@ -99,7 +99,7 @@ caterersRouter.post('/', async (req, res, next) => {
 caterersRouter.post('/:id', async (req, res, next) => {
   try {
     const queryType = 'single';
-    const data = await getSingleCaterer(queryType);
+    const data = await getCaterers(queryType);
     res.send(data).status(200);
   } catch (error) {
     next(error);

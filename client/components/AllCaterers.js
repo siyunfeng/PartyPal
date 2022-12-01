@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { fetchAllCaterers } from '../redux/caterer';
+import { useHistory } from 'react-router-dom';
+import { fetchAllCaterers, fetchSingleCaterer } from '../redux/caterer';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
@@ -14,12 +15,16 @@ function AllCaterers(props) {
     return props.fetchAllCaterers();
   }, [catererName, address, price, rating]);
 
-  const allCaterers = props.caterers;
+  const handleClick = (e) => {
+    const yelpId = e.target.name;
+    props.fetchSingleCaterer(yelpId);
+    console.log('hi');
+  };
 
   return (
     <>
       <p>This is all caterers</p>
-      {allCaterers.map((caterer) => {
+      {props.caterers.map((caterer) => {
         return (
           <div key={caterer.id}>
             <Card className="mb-4" style={{ width: '18rem' }}>
@@ -28,7 +33,13 @@ function AllCaterers(props) {
                 <Card.Title>{caterer.name}</Card.Title>
                 <Card.Text>{caterer.price}</Card.Text>
                 <Card.Text>Overall Rating: {caterer.rating}</Card.Text>
-                <Button variant="primary">See More</Button>
+                <Button
+                  variant="primary"
+                  name={caterer.id}
+                  onClick={(e) => handleClick(e)}
+                >
+                  See More
+                </Button>
               </Card.Body>
             </Card>
           </div>
@@ -39,12 +50,16 @@ function AllCaterers(props) {
 }
 const mapState = (state) => ({
   caterers: state.caterers,
+  caterer: state.caterer,
 });
 
 const mapDispatch = (dispatch) => {
   return {
     fetchAllCaterers: () => {
       dispatch(fetchAllCaterers());
+    },
+    fetchSingleCaterer: (yelpId) => {
+      dispatch(fetchSingleCaterer(yelpId));
     },
   };
 };
