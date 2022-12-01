@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { userRouter } = require('./users');
+const { singleCatererRouter } = require('./singleCaterer');
 const venuesRouter = require('./venues');
 const { caterersRouter } = require('./caterers');
 
