@@ -13,8 +13,8 @@ const AllVenues = (props) => {
   useEffect(() => {
     console.log('in use effect');
     return props.getVenues();
-  }, []);
-  
+  }, [venueName, address, price, rating, hoursOfOperation]);
+
   return (
     <div>
       <img></img>
@@ -36,7 +36,6 @@ const mapStateToProps = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     getVenues: () => {
-      console.log('in map dispatch');
       dispatch(getVenuesThunk());
     },
   };
