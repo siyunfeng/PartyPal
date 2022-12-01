@@ -61,7 +61,6 @@ export const logout = () => {
  * REDUCER
  */
 export default function reducer(state = {}, action) {
-  console.log('action', action);
   switch (action.type) {
     case SET_AUTH:
       return action.auth;

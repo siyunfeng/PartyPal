@@ -1,29 +1,30 @@
-import axios from 'axios';
-// potentially add combine reducer later
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { createLogger } from 'redux-logger';
-import thunkMiddleware from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import auth from './auth';
-import allCatererReducer from './caterer';
-import venues from './venues';
+// import { createStore, combineReducers, applyMiddleware } from 'redux';
+// import { createLogger } from 'redux-logger';
+// import thunkMiddleware from 'redux-thunk';
+// import { composeWithDevTools } from 'redux-devtools-extension';
+// import auth from './auth';
+// import allCatererReducer from './caterer';
+// import venues from './venues';
 
-export const reducer = combineReducers({
-  auth,
-  venues,
-  allCatererReducer,
-  // other subreducers
-});
+// console.log("VEUNUES", venues)
 
-const middleware = composeWithDevTools(
-  applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
-);
+// export const reducer = combineReducers({
+//   auth,
+//   venues,
+//   allCatererReducer,
+//   // other subreducers
+// });
 
-const store = createStore(reducer, middleware);
+// const middleware = composeWithDevTools(
+//   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
+// );
 
-export default store;
-// export other sub redux file
-export * from './auth';
+// const store = createStore(reducer, middleware);
+
+// export default store;
+// // export other sub redux file
+// export * from './auth';
+// export * from "./venues"
 
 /* code from boilerplate */
 // const DUMMY = 'DUMMY';
