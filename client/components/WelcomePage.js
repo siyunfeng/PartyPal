@@ -1,6 +1,12 @@
 import AllCaterers from './AllCaterers';
 import React from 'react';
-import { BrowserRouter as Router, Link, Route, Switch, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 import history from '../history';
 import { Login, Signup } from './Auth';
 import EventSummary from './EventSummary';
@@ -65,13 +71,13 @@ export const AllRoutes = () => {
         </nav>
         <main>
           <Switch>
-            <Route exact path='/' component={WelcomePage} />
-            <Route path='/login' component={Login} />
-            <Route path='/signup' component={Signup} />
-            <Route path='/caterer' component={AllCaterer} />
-            <Route path='/eventSummary' component={EventSummary} />
-            <Route path='/allVenues' component={AllVenues} />
-            <Route path='/singleVenue/:id' component={SingleVenue} />
+            <Route exact path="/" component={WelcomePage} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/allCaterers" component={AllCaterers} />
+            <Route path="/eventSummary" component={EventSummary} />
+            <Route path="/allVenues" component={AllVenues} />
+            <Route path="/venue/:id" component={SingleVenue} />
           </Switch>
         </main>
       </div>
