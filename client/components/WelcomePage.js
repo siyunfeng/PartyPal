@@ -1,6 +1,12 @@
 import AllCaterers from './AllCaterers';
 import React from 'react';
-import { Router, Link, Route, Switch, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 import history from '../history';
 import { Login, Signup } from './Auth';
 import EventSummary from './EventSummary';
