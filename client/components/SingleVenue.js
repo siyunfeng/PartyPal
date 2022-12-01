@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-const SingleVenue = () => {
+const SingleVenue = (props) => {
   return (
     <div>
-      <h1>HI I AM SINGLE VENUE</h1>
+      <h1>I AM SINGLE VENUE</h1>
     </div>
-  )
-}
+  );
+};
 
-export default SingleVenue
+export default SingleVenue;

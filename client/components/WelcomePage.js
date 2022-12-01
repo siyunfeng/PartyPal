@@ -70,7 +70,7 @@ export const AllRoutes = () => {
             <Route path='/caterer' element={<AllCaterer />} />
             <Route path='/eventSummary' element={<EventSummary />} />
             <Route path='/allVenues' element={<AllVenues />} />
-            <Route path='/singleVenue' element={<SingleVenue />}></Route>
+            <Route path='/singleVenue/:id' element={<SingleVenue />} />
           </Routes>
         </main>
       </div>

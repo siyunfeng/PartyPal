@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getVenuesThunk } from '../redux/venues';
 import Button from 'react-bootstrap/Button';
@@ -13,8 +13,6 @@ const AllVenues = (props) => {
   const [rating, setRating] = useState('');
   const [hoursOfOperation, setHoursOfOperation] = useState('');
 
-  console.log('props in all venues', props);
-
   useEffect(() => {
     return props.getVenues();
   }, [venueName, address, price, rating, hoursOfOperation]);
@@ -26,7 +24,7 @@ const AllVenues = (props) => {
       {allVenues.map((venue) => {
         return (
           <div key={venue.id}>
-            <Card className='mb-4' style={{ width: '18rem'}}>
+            <Card className='mb-4' style={{ width: '18rem' }}>
               <Card.Img variant='top' src={venue.photos[0]} />
               <Card.Body>
                 <Card.Title>{venue.name}</Card.Title>
@@ -46,7 +44,9 @@ const AllVenues = (props) => {
                 <Card.Text>
                   Closes: {convert(venue.hours[0].open[0].end)}
                 </Card.Text>
-                <Link to='/singleVenue'><Button variant='primary'>See More</Button></Link>
+                <Link to='/singleVenue/:id'>
+                  <Button variant='primary'>See More</Button>
+                </Link>
               </Card.Body>
             </Card>
           </div>
