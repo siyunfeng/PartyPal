@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom';
 import { Login, Signup } from './Auth';
 import EventSummary from './EventSummary';
 import AllVenues from './AllVenues';
+import SingleVenue from './SingleVenue';
 // import { Navbar } from "./NavBar";
 
 const WelcomePage = (props) => {
@@ -20,12 +21,12 @@ export const AllRoutes = () => {
     <Router>
       <div>
         <nav>
-          <Link style={{ textDecoration: 'none' }} to="/">
+          <Link style={{ textDecoration: 'none' }} to='/'>
             <h1>Cool Website name</h1>
           </Link>
           <ul style={{ listStyle: 'none', textDecoration: 'none' }}>
             <li>
-              <Link style={{ textDecoration: 'none', color: 'white' }} to="/">
+              <Link style={{ textDecoration: 'none', color: 'white' }} to='/'>
                 Main Page
               </Link>
             </li>
@@ -38,7 +39,7 @@ export const AllRoutes = () => {
                   padding: '8px',
                   borderRadius: '30px',
                 }}
-                to="/login"
+                to='/login'
               >
                 Login
               </Link>
@@ -53,22 +54,23 @@ export const AllRoutes = () => {
                   padding: '8px',
                   borderRadius: '30px',
                 }}
-                to="/signup"
+                to='/signup'
               >
                 Signup{' '}
               </Link>
             </li>
           </ul>
-          <div className=".hr"></div>
+          <div className='.hr'></div>
         </nav>
         <main>
           <Routes>
-            <Route path="/" element={<WelcomePage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/caterer" element={<AllCaterer />} />
-            <Route path="/eventSummary" element={<EventSummary />} />
-            <Route path="/allVenues" element={<AllVenues />} />
+            <Route path='/' element={<WelcomePage />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<Signup />} />
+            <Route path='/caterer' element={<AllCaterer />} />
+            <Route path='/eventSummary' element={<EventSummary />} />
+            <Route path='/allVenues' element={<AllVenues />} />
+            <Route path='/singleVenue/:id' element={<SingleVenue />} />
           </Routes>
         </main>
       </div>
