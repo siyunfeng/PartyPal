@@ -5,8 +5,10 @@ const axios = require('axios');
 
 require('dotenv').config();
 
-const queryForAllCaterers = `{
-    search(term: "restaurant mexican", location: "11209", categories: "catering", attributes: "Offers Catering") {
+const inputFromState = (location, type) => {
+  if (type === 'all') {
+    return `{
+    search(term: "restaurant mexican", location: "${location}", categories: "catering", attributes: "Offers Catering") {
       total
       business {
         id
@@ -30,7 +32,8 @@ const queryForAllCaterers = `{
       }
     }
   }`;
-const queryForSingleCaterer = `{
+  } else {
+    return `{
     business(id: "2kkjzgLwKHFmLAfR86kE3Q") {
         name
         id
@@ -54,6 +57,8 @@ const queryForSingleCaterer = `{
  
     }
   }`;
+  }
+};
 // const yelpAPIUrl = 'https://api.yelp.com/v3/graphql';
 // const client = new GraphQLClient(yelpAPIUrl, {
 //   headers: {
@@ -63,7 +68,7 @@ const queryForSingleCaterer = `{
 // });
 const YELP_TOKEN =
   'RanbOY5NRwsj61NTbTSYC5PusHxCsBee1r0iIBdwGueYurwZ_yIlZL1PD_H5zmaz59Uv8vQAE2rEQQY_wxUbHgjeCvXxfCwNhJS0UY6gDHzP6raJhQ9wGYnWnlN9Y3Yx';
-const getCaterers = async (queryType) => {
+const getCaterers = async (location, queryType) => {
   const options = {
     method: 'POST',
     url: 'https://api.yelp.com/v3/graphql',
@@ -71,7 +76,7 @@ const getCaterers = async (queryType) => {
       'content-type': 'application/graphql',
       Authorization: `Bearer ${YELP_TOKEN}`,
     },
-    data: queryType === 'single' ? queryForSingleCaterer : queryForAllCaterers,
+    data: inputFromState(location, queryType),
   };
   return axios
     .request(options)
@@ -89,7 +94,8 @@ const getCaterers = async (queryType) => {
 caterersRouter.post('/', async (req, res, next) => {
   try {
     const queryType = 'all';
-    const data = await getCaterers(queryType);
+    const { location } = req.body;
+    const data = await getCaterers(location, queryType);
     res.send(data).status(200);
   } catch (error) {
     next(error);
@@ -99,7 +105,7 @@ caterersRouter.post('/', async (req, res, next) => {
 caterersRouter.post('/:id', async (req, res, next) => {
   try {
     const queryType = 'single';
-    const data = await getCaterers(queryType);
+    const data = await getCaterers(location, queryType);
     res.send(data).status(200);
   } catch (error) {
     next(error);

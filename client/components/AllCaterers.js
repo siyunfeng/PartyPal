@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { fetchAllCaterers, fetchSingleCaterer } from '../redux/caterer';
+import { fetchAllCaterers } from '../redux/caterer';
+import { fetchSingleCaterer } from '../redux/singleCaterer';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
@@ -12,13 +12,12 @@ function AllCaterers(props) {
   const [rating, setRating] = useState('');
 
   useEffect(() => {
-    return props.fetchAllCaterers();
+    return props.fetchAllCaterers({ location: 10014 });
   }, [catererName, address, price, rating]);
 
   const handleClick = (e) => {
     const yelpId = e.target.name;
     props.fetchSingleCaterer(yelpId);
-    console.log('hi');
   };
 
   return (
@@ -55,8 +54,8 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => {
   return {
-    fetchAllCaterers: () => {
-      dispatch(fetchAllCaterers());
+    fetchAllCaterers: (location) => {
+      dispatch(fetchAllCaterers(location));
     },
     fetchSingleCaterer: (yelpId) => {
       dispatch(fetchSingleCaterer(yelpId));
