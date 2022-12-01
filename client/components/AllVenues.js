@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getVenuesThunk } from '../redux/venues';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { findDayOfWeek, convert } from '../../helperFunctions';
 
-const AllVenues = (props) => {
+export const AllVenues = (props) => {
   const [venueName, setVenueName] = useState('');
   const [address, setAddress] = useState('');
   const [price, setPrice] = useState('');

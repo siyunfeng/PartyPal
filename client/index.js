@@ -1,14 +1,13 @@
+import React from 'react';
+import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import '../public/style.css';
 import AllRoutes from './components/WelcomePage';
-const container = document.getElementById('app');
-const root = createRoot(container);
+import '../public/style.css';
 
-root.render(
+render(
   <Provider store={store}>
     <AllRoutes />
-  </Provider>
+  </Provider>,
+  document.getElementById('app')
 );
