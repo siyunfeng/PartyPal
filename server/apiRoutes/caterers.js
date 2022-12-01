@@ -5,10 +5,11 @@ const axios = require('axios');
 
 require('dotenv').config();
 
-const query = `{
+const queryForAllCaterers = `{
     search(term: "restaurant mexican", location: "11209", categories: "catering", attributes: "Offers Catering") {
       total
       business {
+        id
         name
         phone
         price
@@ -29,7 +30,30 @@ const query = `{
       }
     }
   }`;
-
+const queryForSingleCaterer = `{
+    business(id: "2kkjzgLwKHFmLAfR86kE3Q") {
+        name
+        id
+      alias
+      phone
+      price
+      photos
+      url     
+      rating
+      reviews {
+        id
+        text
+        rating
+      }
+      location {
+        address1
+        city
+        state
+        country
+      }
+ 
+    }
+  }`;
 // const yelpAPIUrl = 'https://api.yelp.com/v3/graphql';
 // const client = new GraphQLClient(yelpAPIUrl, {
 //   headers: {
@@ -39,7 +63,7 @@ const query = `{
 // });
 const YELP_TOKEN =
   'RanbOY5NRwsj61NTbTSYC5PusHxCsBee1r0iIBdwGueYurwZ_yIlZL1PD_H5zmaz59Uv8vQAE2rEQQY_wxUbHgjeCvXxfCwNhJS0UY6gDHzP6raJhQ9wGYnWnlN9Y3Yx';
-const getCaterers = async () => {
+const getCaterers = async (queryType) => {
   const options = {
     method: 'POST',
     url: 'https://api.yelp.com/v3/graphql',
@@ -47,7 +71,7 @@ const getCaterers = async () => {
       'content-type': 'application/graphql',
       Authorization: `Bearer ${YELP_TOKEN}`,
     },
-    data: query,
+    data: queryType === 'single' ? queryForSingleCaterer : queryForAllCaterers,
   };
   return axios
     .request(options)
@@ -64,7 +88,18 @@ const getCaterers = async () => {
 
 caterersRouter.post('/', async (req, res, next) => {
   try {
-    const data = await getCaterers();
+    const queryType = 'all';
+    const data = await getCaterers(queryType);
+    res.send(data).status(200);
+  } catch (error) {
+    next(error);
+  }
+});
+
+caterersRouter.post('/:id', async (req, res, next) => {
+  try {
+    const queryType = 'single';
+    const data = await getSingleCaterer(queryType);
     res.send(data).status(200);
   } catch (error) {
     next(error);
@@ -111,7 +146,5 @@ caterersRouter.post('/', async (req, res, next) => {
 //     throw error;
 //   }
 // });
-
-// getCaterers();
 
 module.exports = { caterersRouter };

@@ -2,10 +2,10 @@ import axios from 'axios';
 
 const GET_CATERERS = 'GET_CATERERS';
 
-const setCaterers = (products) => {
+const setCaterers = (caterers) => {
   return {
     type: GET_CATERERS,
-    products,
+    caterers,
   };
 };
 
@@ -13,20 +13,21 @@ export const fetchAllCaterers = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post('/api/caterers');
-      dispatch(setCaterers(data));
+      const businessArray = data.data.search.business;
+      dispatch(setCaterers(businessArray));
     } catch (error) {
       console.error(error);
     }
   };
 };
 
-const allCatererReducer = (state = [], action) => {
+const caterers = (state = [], action) => {
   switch (action.type) {
     case GET_CATERERS:
-      return action.products;
+      return action.caterers;
     default:
       return state;
   }
 };
 
-export default allCatererReducer;
+export default caterers;
