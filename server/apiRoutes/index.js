@@ -1,13 +1,11 @@
 const router = require('express').Router();
 const { userRouter } = require('./users');
-const { singleCatererRouter } = require('./singleCaterer');
 const venuesRouter = require('./venues');
 const { caterersRouter } = require('./caterers');
 
 router.use('/users', userRouter);
 router.use('/venues', venuesRouter);
 router.use('/caterers', caterersRouter);
-
 
 router.use((req, res, next) => {
   const error = new Error('Not Found');
