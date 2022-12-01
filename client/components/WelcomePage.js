@@ -1,17 +1,12 @@
 import AllCaterers from './AllCaterers';
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Link,
-  Route,
-  Switch,
-  Redirect,
-} from 'react-router-dom';
+import { Router, Link, Route, Switch, Redirect } from 'react-router-dom';
 import history from '../history';
 import { Login, Signup } from './Auth';
 import EventSummary from './EventSummary';
 import AllVenues from './AllVenues';
 import SingleVenue from './SingleVenue';
+import StartForm from './StartForm';
 // import { Navbar } from "./NavBar";
 
 const WelcomePage = (props) => {
@@ -78,6 +73,7 @@ export const AllRoutes = () => {
             <Route path="/eventSummary" component={EventSummary} />
             <Route path="/allVenues" component={AllVenues} />
             <Route path="/venue/:id" component={SingleVenue} />
+            <Route path="/start" component={StartForm} />
           </Switch>
         </main>
       </div>

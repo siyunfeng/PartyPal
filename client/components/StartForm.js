@@ -1,0 +1,60 @@
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+
+const StartForm = ({ getRecommendations }) => {
+  return (
+    <div>
+      {/* <Navbar /> */}
+      {/* Carousel */}
+      <div className="start-form">
+        <div>
+          <h3>What can we help you find?</h3>
+        </div>
+        <form onSubmit={getRecommendations} name="start-form">
+          <div>
+            <label htmlFor="serviceOptions">
+              Step 1. What service you need
+            </label>
+          </div>
+          <select id="serviceOption">
+            <option value="catering">Caterer</option>
+            <option value="venue">Venue</option>
+          </select>
+          <div>
+            <label htmlFor="partyLocation">
+              Step 2. Where will your party be held?
+            </label>
+          </div>
+          <input
+            type="text"
+            id="location"
+            name="location"
+            placeholder="Enter location or zipcode"
+          />
+          <div>
+            <button type="submit">Get Recommendations</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+const mapState = (state) => {
+  return {};
+};
+
+const mapDispatch = (dispatch, { history }) => {
+  return {
+    getRecommendations(event) {
+      event.preventDefault();
+      const service = document.getElementById('serviceOption').value;
+      const location = event.target.location.value;
+      console.log('service =', service, 'location =', location);
+      // if (service === 'venue')
+      //   dispatch(initialSearch(service, location, history));
+    },
+  };
+};
+
+export default connect(mapState, mapDispatch)(StartForm);
