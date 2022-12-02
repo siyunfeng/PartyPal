@@ -14,6 +14,7 @@ export const getVenuesThunk = () => {
     try {
       const { data } = await axios.post('/api/venues');
       const businessArray = data.data.search.business;
+      console.log('businessArray', businessArray)
       dispatch(getVenuesCreator(businessArray));
     } catch (error) {
       console.error(error);
