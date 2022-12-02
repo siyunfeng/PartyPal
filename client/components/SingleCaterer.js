@@ -1,22 +1,39 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchSingleCaterer } from '../redux/singleCaterer';
+import { convert, findDayOfWeek } from '../../helperFunctions';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 const SingleCaterer = (props) => {
-  //   const business = props.business
-  console.log('heree======', props.business);
-
+  const business = props?.caterer?.business;
+  console.log('this is the buesiness', props);
   useEffect(() => {
     const yelpId = props.match.params;
     props.fetchSingleCaterer(yelpId);
   }, []);
-  //   const { name, rating, photos, phone, price } = props.business;
 
+  if (!business) return null;
+  const open = convert(business.hours[0].open[0].start);
+  const close = convert(business.hours[0].open[0].end);
+  const daysOpen = business.hours[0].open.map((day) => {
+    return `${findDayOfWeek(day.day)} `;
+  });
+
+  let counter = 0;
+
+  const reviews = business.reviews.map((review) => {
+    counter += 1;
+    return ` ${counter}.  ${review.text} `;
+  });
+
+  const { name, rating, photos, phone, price } = business;
   return (
     <div>
       <h1>{name}</h1>
-      {/* <Card className="text-center">
-        <Card.Header>Caterer</Card.Header>
+      <Card className="text-center">
+        <Card.Header>Venue</Card.Header>
         <Card.Body>
           <Card.Title>{name}</Card.Title>
           <Card.Img className="img" variant="top" src={photos} />
@@ -25,6 +42,15 @@ const SingleCaterer = (props) => {
           </Card.Text>
           <Card.Text>
             <strong>Price:</strong> {price}
+          </Card.Text>
+          <Card.Text>
+            <strong>Open:</strong> {open}
+          </Card.Text>
+          <Card.Text>
+            <strong>Closes:</strong> {close}
+          </Card.Text>
+          <Card.Text>
+            <strong>Days Open:</strong> {daysOpen}
           </Card.Text>
           <Card.Text>
             <strong>Overall rating:</strong> {rating}
@@ -36,12 +62,13 @@ const SingleCaterer = (props) => {
             <Button variant="primary">Go Back</Button>
           </Link>
         </Card.Body>
-      </Card> */}
+      </Card>
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
+  console.log('this is state', state);
   return {
     caterer: state.singleCaterer,
   };

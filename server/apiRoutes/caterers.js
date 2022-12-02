@@ -43,6 +43,14 @@ const userSearch = (userSearchInput, type) => {
       photos
       url     
       rating
+      hours {
+        open {
+          is_overnight
+          end
+          start
+          day
+        }
+      }
       reviews {
         id
         text
