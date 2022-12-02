@@ -8,13 +8,14 @@ import AllVenues from './AllVenues';
 import SingleVenue from './SingleVenue';
 import StartForm from './StartForm';
 import UserHome from './UserHome';
+import Home from './Home';
 // import { Navbar } from "./NavBar";
 
 const WelcomePage = (props) => {
   return (
     <div>
       {/* <Navbar /> */}
-      <p>Welcome to Party Pal!</p>
+      <Home />
     </div>
   );
 };
