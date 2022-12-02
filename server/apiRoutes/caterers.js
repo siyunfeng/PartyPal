@@ -5,8 +5,8 @@ const axios = require('axios');
 require('dotenv').config();
 
 const userSearch = (userSearchInput, type) => {
-  const { location, term } = userSearchInput;
   if (type === 'all') {
+    const { location, term } = userSearchInput;
     return `{
     search(term: "restaurant ${term}", location: "${location}", categories: "catering", attributes: "Offers Catering") {
       total
@@ -33,8 +33,9 @@ const userSearch = (userSearchInput, type) => {
     }
   }`;
   } else {
+    const { yelpId } = userSearchInput;
     return `{
-    business(id: "2kkjzgLwKHFmLAfR86kE3Q") {
+    business(id: "${yelpId}") {
         name
         id
       alias
@@ -105,7 +106,8 @@ caterersRouter.post('/', async (req, res, next) => {
 caterersRouter.post('/:id', async (req, res, next) => {
   try {
     const queryType = 'single';
-    const data = await getCaterers(location, queryType);
+    const yelpId = req.body;
+    const data = await getCaterers(yelpId, queryType);
     res.send(data).status(200);
   } catch (error) {
     next(error);
