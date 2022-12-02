@@ -6,6 +6,7 @@ import { Login, Signup } from './Auth';
 import EventSummary from './EventSummary';
 import AllVenues from './AllVenues';
 import SingleVenue from './SingleVenue';
+import StartForm from './StartForm';
 // import { Navbar } from "./NavBar";
 
 const WelcomePage = (props) => {
@@ -64,15 +65,16 @@ export const AllRoutes = () => {
           <div className='.hr'></div>
         </nav>
         <main>
-            <Switch>
-              <Route exact path='/' component={WelcomePage} />
-              <Route path='/login' component={Login} />
-              <Route path='/signup' component={Signup} />
-              <Route path='/allCaterers' component={AllCaterers} />
-              <Route path='/eventSummary' component={EventSummary} />
-              <Route path='/allVenues' component={AllVenues} />
-              <Route path='/singleVenue/:id' component={SingleVenue} />
-            </Switch>
+          <Switch>
+            <Route exact path="/" component={WelcomePage} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/allCaterers" component={AllCaterers} />
+            <Route path="/eventSummary" component={EventSummary} />
+            <Route path="/allVenues" component={AllVenues} />
+            <Route path='/singleVenue/:id' component={SingleVenue} />
+            <Route path="/start" component={StartForm} />
+          </Switch>
         </main>
       </div>
     </Router>
