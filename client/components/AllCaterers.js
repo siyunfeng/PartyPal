@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { fetchAllCaterers } from '../redux/caterer';
+import { fetchSingleCaterer } from '../redux/singleCaterer';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
@@ -11,24 +12,33 @@ function AllCaterers(props) {
   const [rating, setRating] = useState('');
 
   useEffect(() => {
-    return props.fetchAllCaterers();
+    const { location } = props.startForm;
+    return props.fetchAllCaterers({ location, term: 'italian' });
   }, [catererName, address, price, rating]);
 
-  const allCaterers = props.caterers;
-
+  const handleClick = (e) => {
+    const yelpId = e.target.name;
+    props.fetchSingleCaterer(yelpId);
+  };
   return (
     <>
       <p>This is all caterers</p>
-      {allCaterers.map((caterer) => {
+      {props.caterers.map((caterer) => {
         return (
           <div key={caterer.id}>
-            <Card className="mb-4" style={{ width: '18rem' }}>
-              <Card.Img variant="top" src={caterer.photos[0]} />
+            <Card className='mb-4' style={{ width: '18rem' }}>
+              <Card.Img variant='top' src={caterer.photos[0]} />
               <Card.Body>
                 <Card.Title>{caterer.name}</Card.Title>
                 <Card.Text>{caterer.price}</Card.Text>
                 <Card.Text>Overall Rating: {caterer.rating}</Card.Text>
-                <Button variant="primary">See More</Button>
+                <Button
+                  variant='primary'
+                  name={caterer.id}
+                  onClick={(e) => handleClick(e)}
+                >
+                  See More
+                </Button>
               </Card.Body>
             </Card>
           </div>
@@ -39,12 +49,17 @@ function AllCaterers(props) {
 }
 const mapState = (state) => ({
   caterers: state.caterers,
+  caterer: state.caterer,
+  startForm: state.startFormReducer,
 });
 
 const mapDispatch = (dispatch) => {
   return {
-    fetchAllCaterers: () => {
-      dispatch(fetchAllCaterers());
+    fetchAllCaterers: ({ location, term }) => {
+      dispatch(fetchAllCaterers({ location, term }));
+    },
+    fetchSingleCaterer: (yelpId) => {
+      dispatch(fetchSingleCaterer(yelpId));
     },
   };
 };
