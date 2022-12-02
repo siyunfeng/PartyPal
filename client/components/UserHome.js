@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 
 const UserHome = (props) => {
+  // console.log('UserHome user =', props.user);
+  // const [user, setUser] = useState({})
+  // NOTE: before showing login user it will display the user from the previous state
   const { username, firstName, lastName, email } = props.user;
   return (
     <div>
@@ -33,6 +35,7 @@ const UserHome = (props) => {
 };
 
 const mapState = (state) => {
+  console.log('UserHome mapState, state =', state);
   return {
     user: state.auth,
   };

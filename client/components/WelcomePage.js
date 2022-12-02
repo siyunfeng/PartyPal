@@ -7,6 +7,7 @@ import EventSummary from './EventSummary';
 import AllVenues from './AllVenues';
 import SingleVenue from './SingleVenue';
 import StartForm from './StartForm';
+import UserHome from './UserHome';
 // import { Navbar } from "./NavBar";
 
 const WelcomePage = (props) => {
@@ -23,12 +24,12 @@ export const AllRoutes = () => {
     <Router history={history}>
       <div>
         <nav>
-          <Link style={{ textDecoration: 'none' }} to='/'>
+          <Link style={{ textDecoration: 'none' }} to="/">
             <h1>Party Pal 🎉 </h1>
           </Link>
           <ul style={{ listStyle: 'none', textDecoration: 'none' }}>
             <li>
-              <Link style={{ textDecoration: 'none', color: 'black' }} to='/'>
+              <Link style={{ textDecoration: 'none', color: 'black' }} to="/">
                 Main Page
               </Link>
             </li>
@@ -41,7 +42,7 @@ export const AllRoutes = () => {
                   padding: '8px',
                   borderRadius: '10px',
                 }}
-                to='/login'
+                to="/login"
               >
                 Login
               </Link>
@@ -56,13 +57,13 @@ export const AllRoutes = () => {
                   padding: '8px',
                   borderRadius: '10px',
                 }}
-                to='/signup'
+                to="/signup"
               >
                 Signup{' '}
               </Link>
             </li>
           </ul>
-          <div className='.hr'></div>
+          <div className=".hr"></div>
         </nav>
         <main>
           <Switch>
@@ -72,8 +73,9 @@ export const AllRoutes = () => {
             <Route path="/allCaterers" component={AllCaterers} />
             <Route path="/eventSummary" component={EventSummary} />
             <Route path="/allVenues" component={AllVenues} />
-            <Route path='/singleVenue/:id' component={SingleVenue} />
+            <Route path="/singleVenue/:id" component={SingleVenue} />
             <Route path="/start" component={StartForm} />
+            <Route path="/account" component={UserHome} />
           </Switch>
         </main>
       </div>
