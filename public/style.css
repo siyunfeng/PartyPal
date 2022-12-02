@@ -3,7 +3,11 @@
 }
 
 body {
-    background-color: palevioletred;
+    background-color: white;
+}
+
+.img{
+  width: 15rem;
 }
 
 nav {
@@ -30,4 +34,9 @@ nav h1 {
 
 .hr {
   background-color: orange;
+}
+
+.boxes {
+  display: flex;
+  align-items: center;
 }

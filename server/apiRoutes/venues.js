@@ -77,6 +77,7 @@ const queryForSingleVenue = `{
   }
 }`;
 const getVenues = async (queryType) => {
+  console.log('TOKEN', TOKEN)
   const options = {
     method: 'POST',
     url: 'https://api.yelp.com/v3/graphql',
