@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { convert, findDayOfWeek } from '../../helperFunctions';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const SingleVenue = (props) => {
   const business = props?.venue?.data?.business;
@@ -17,7 +18,7 @@ const SingleVenue = (props) => {
   }, []);
 
   if (!business) return null;
-  
+
   const open = convert(business.hours[0].open[0].start);
   const close = convert(business.hours[0].open[0].end);
   const daysOpen = business.hours[0].open.map((day) => {
@@ -33,39 +34,26 @@ const SingleVenue = (props) => {
 
   const { name, rating, photos, phone, price } = business;
 
+  const saveLikedItem = async (e, venueInfo) => {
+    console.log('venue id', e.target.name);
+    const loggedInUserToken = window.localStorage.getItem('token');
+    // attaching token to venueInfo since I will need it to find a user when login
+    // works
+    venueInfo.token = loggedInUserToken
+    console.log('venueInfo', venueInfo)
+
+    
+
+    if (loggedInUserToken) {
+      const saving = await axios.post(`/api/likedItems/${e.target.name}`, venueInfo);
+      console.log('returned true!');
+    }
+    //else trigger sign up component
+  };
+
   return (
     <div>
       <h1>{name}</h1>
-      {/* dont know which one to keep */}
-      {/* <Card>
-        <Card.Header>Venue</Card.Header>
-        <Card.Body>
-          <Card.Title>{name}</Card.Title>
-          <Card.Img className='img' variant='top' src={photos} />
-          <Card.Text>
-            <strong>Phone:</strong> {phone}
-          </Card.Text>
-          <Card.Text>
-            <strong>Price:</strong> {price}
-          </Card.Text>
-          <Card.Text>
-            <strong>Open:</strong> {open}
-          </Card.Text>
-          <Card.Text>
-            <strong>Closes</strong> {close}
-          </Card.Text>
-          <Card.Text>{daysOpen}</Card.Text>
-          <Card.Text>
-            <strong>Overall rating</strong> {rating}
-          </Card.Text>
-          <Card.Text>
-            <strong>Reviews:</strong> {reviews}
-          </Card.Text>
-          <Link to='/allVenues'>
-            <Button variant='primary'>Go Back</Button>
-          </Link>
-        </Card.Body>
-      </Card> */}
       <Card className='text-center'>
         <Card.Header>Venue</Card.Header>
         <Card.Body>
@@ -92,8 +80,22 @@ const SingleVenue = (props) => {
           <Card.Text>
             <strong>Reviews:</strong> {reviews}
           </Card.Text>
+          <Button
+            variant='outline-success'
+            name={business.id}
+            onClick={(e) => {
+              const venueInfo = {
+                name: name, 
+                category: 'venue', 
+                image_url: photos,
+              }
+              saveLikedItem(e, venueInfo);
+            }}
+          >
+            Like
+          </Button>{' '}
           <Link to='/allVenues'>
-            <Button variant='primary'>Go Back</Button>
+            <Button variant='outline-primary'>Go Back</Button>{' '}
           </Link>
         </Card.Body>
         {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}
