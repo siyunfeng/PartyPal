@@ -8,7 +8,7 @@ const userSearch = (userSearchInput, type) => {
   if (type === 'all') {
     const { location, term } = userSearchInput;
     return `{
-    search(term: "restaurant ${term}", location: "${location}", categories: "catering", attributes: "Offers Catering") {
+    search(term: "restaurant ${term}", location: "${location}", categories: "catering", attributes: "Offers Catering", limit: 50) {
       total
       business {
         id

@@ -10,6 +10,8 @@ const setCaterer = (caterer) => {
 };
 
 export const fetchSingleCaterer = (yelpId) => {
+  console.log('yelpId caterer', yelpId);
+
   return async (dispatch) => {
     try {
       const { data } = await axios.post(`/api/caterers/${yelpId}`);
@@ -21,7 +23,7 @@ export const fetchSingleCaterer = (yelpId) => {
   };
 };
 
-const singleCaterer = (state = [], action) => {
+const singleCaterer = (state = {}, action) => {
   switch (action.type) {
     case GET_SINGLE_CATERER:
       return action.caterer;

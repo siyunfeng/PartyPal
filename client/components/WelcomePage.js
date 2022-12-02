@@ -1,9 +1,9 @@
-import AllCaterers from './AllCaterers';
 import React from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import history from '../history';
 import { Login, Signup } from './Auth';
 import EventSummary from './EventSummary';
+import AllCaterers from './AllCaterers';
 import AllVenues from './AllVenues';
 import SingleVenue from './SingleVenue';
 import SingleCaterer from './SingleCaterer';

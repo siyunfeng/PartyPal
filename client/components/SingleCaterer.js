@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchSingleCaterer } from '../redux/singleCaterer';
 
 const SingleCaterer = (props) => {
-  const business = props?.venue?.data?.business;
+  const business = props?.caterer?.data?.business;
 
   useEffect(() => {
     const yelpId = props.match.params;
     props.fetchSingleCaterer(yelpId);
   }, []);
   const { name, rating, photos, phone, price } = business;
+
   return (
     <div>
       <h1>{name}</h1>
@@ -50,7 +51,7 @@ const SingleCaterer = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    cater: state.SingleCaterer,
+    caterer: state.singleCaterer,
   };
 };
 
