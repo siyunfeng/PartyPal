@@ -22,9 +22,9 @@ const SingleVenue = (props) => {
   const daysOpen = business.hours[0].open.map((day) => {
     return `${findDayOfWeek(day.day)} `;
   });
-  let counter = 0
+  let counter = 0;
   const reviews = business.reviews.map((review) => {
-    counter += 1
+    counter += 1;
     return ` ${counter}.  ${review.text} `;
   });
   const { name, rating, photos, phone, price } = business;
@@ -32,21 +32,67 @@ const SingleVenue = (props) => {
   return (
     <div>
       <h1>{name}</h1>
-      <Card style={{ width: '18rem' }}>
-        <Card.Img variant='top' src={photos} />
+      {/* dont know which one to keep */}
+      {/* <Card>
+        <Card.Header>Venue</Card.Header>
         <Card.Body>
           <Card.Title>{name}</Card.Title>
-          <Card.Text><strong>Phone:</strong> {phone}</Card.Text>
-          <Card.Text><strong>Price:</strong> {price}</Card.Text>
-          <Card.Text><strong>Open:</strong> {open}</Card.Text>
-          <Card.Text><strong>Closes</strong> {close}</Card.Text>
+          <Card.Img className='img' variant='top' src={photos} />
+          <Card.Text>
+            <strong>Phone:</strong> {phone}
+          </Card.Text>
+          <Card.Text>
+            <strong>Price:</strong> {price}
+          </Card.Text>
+          <Card.Text>
+            <strong>Open:</strong> {open}
+          </Card.Text>
+          <Card.Text>
+            <strong>Closes</strong> {close}
+          </Card.Text>
           <Card.Text>{daysOpen}</Card.Text>
-          <Card.Text><strong>Overall rating</strong> {rating}</Card.Text>
-          <Card.Text><strong>Reviews:</strong> {reviews}</Card.Text>
+          <Card.Text>
+            <strong>Overall rating</strong> {rating}
+          </Card.Text>
+          <Card.Text>
+            <strong>Reviews:</strong> {reviews}
+          </Card.Text>
           <Link to='/allVenues'>
             <Button variant='primary'>Go Back</Button>
           </Link>
         </Card.Body>
+      </Card> */}
+      <Card className='text-center'>
+        <Card.Header>Venue</Card.Header>
+        <Card.Body>
+          <Card.Title>{name}</Card.Title>
+          <Card.Img className='img' variant='top' src={photos} />
+          <Card.Text>
+            <strong>Phone:</strong> {phone}
+          </Card.Text>
+          <Card.Text>
+            <strong>Price:</strong> {price}
+          </Card.Text>
+          <Card.Text>
+            <strong>Open:</strong> {open}
+          </Card.Text>
+          <Card.Text>
+            <strong>Closes:</strong> {close}
+          </Card.Text>
+          <Card.Text>
+            <strong>Days Open:</strong> {daysOpen}
+          </Card.Text>
+          <Card.Text>
+            <strong>Overall rating:</strong> {rating}
+          </Card.Text>
+          <Card.Text>
+            <strong>Reviews:</strong> {reviews}
+          </Card.Text>
+          <Link to='/allVenues'>
+            <Button variant='primary'>Go Back</Button>
+          </Link>
+        </Card.Body>
+        {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}
       </Card>
     </div>
   );

@@ -12,7 +12,7 @@ const WelcomePage = (props) => {
   return (
     <div>
       {/* <Navbar /> */}
-      <p>Hello!</p>
+      <p>Welcome to Party Pal!</p>
     </div>
   );
 };
@@ -23,11 +23,11 @@ export const AllRoutes = () => {
       <div>
         <nav>
           <Link style={{ textDecoration: 'none' }} to='/'>
-            <h1>Cool Website name</h1>
+            <h1>Party Pal 🎉 </h1>
           </Link>
           <ul style={{ listStyle: 'none', textDecoration: 'none' }}>
             <li>
-              <Link style={{ textDecoration: 'none', color: 'white' }} to='/'>
+              <Link style={{ textDecoration: 'none', color: 'black' }} to='/'>
                 Main Page
               </Link>
             </li>
@@ -38,7 +38,7 @@ export const AllRoutes = () => {
                   color: 'white',
                   backgroundColor: 'green',
                   padding: '8px',
-                  borderRadius: '30px',
+                  borderRadius: '10px',
                 }}
                 to='/login'
               >
@@ -53,7 +53,7 @@ export const AllRoutes = () => {
                   color: 'white',
                   backgroundColor: 'blue',
                   padding: '8px',
-                  borderRadius: '30px',
+                  borderRadius: '10px',
                 }}
                 to='/signup'
               >

@@ -31,14 +31,11 @@ export const AllVenues = (props) => {
               <Card.Img variant='top' src={venue.photos[0]} />
               <Card.Body>
                 <Card.Title>{venue.name}</Card.Title>
-                <Card.Text>{venue.location.address1}</Card.Text>
+                <Card.Text><strong>Address: </strong>{venue.location.address1}</Card.Text>
                 {/* <Card.Text>{venue.phone}</Card.Text> */}
-                <Card.Text>{venue.price}</Card.Text>
+                <Card.Text><strong>Price: </strong>{venue.price}</Card.Text>
                 <Link to={`/singleVenue/${venue.id}`}>
-                  <Button
-                    variant='primary'
-                    name={venue.id}
-                  >
+                  <Button variant='primary' name={venue.id}>
                     See More
                   </Button>
                 </Link>
