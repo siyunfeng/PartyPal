@@ -6,11 +6,13 @@ import singleCaterer from './singleCaterer';
 import axios from 'axios';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
+import startFormReducer from './startForm';
 
 const reducer = combineReducers({
   auth,
   venues,
   caterers,
+  startFormReducer,
   singleCaterer,
   // other subreducers
 });
