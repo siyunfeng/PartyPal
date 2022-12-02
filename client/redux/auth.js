@@ -20,6 +20,7 @@ const setAuth = (auth) => ({ type: SET_AUTH, auth });
 export const me = () => async (dispatch) => {
   const token = window.localStorage.getItem(TOKEN);
   if (token) {
+    console.log('poop1')
     const { data } = await axios.get('/auth/me', {
       headers: {
         authorization: token,
@@ -33,6 +34,7 @@ export const authenticate =
   (username, password, method, firstName, lastName, email) =>
   async (dispatch) => {
     try {
+      console.log('poop 2')
       const res = await axios.post(`/auth/${method}`, {
         username,
         password,

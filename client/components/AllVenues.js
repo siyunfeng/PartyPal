@@ -22,16 +22,6 @@ export const AllVenues = (props) => {
 
   const allVenues = props.venues;
 
-  console.log('allVenues', allVenues);
-
-  // const handleClick = (e) => {
-  //   // let history = useHistory()
-  //   const yelpId = e.target.name;
-  //   console.log('id', yelpId);
-  //   props.getSingleVenue(yelpId);
-  //   // history.push('/singleVenue');
-  // };
-
   return (
     <div>
       {allVenues.map((venue) => {
@@ -42,31 +32,15 @@ export const AllVenues = (props) => {
               <Card.Body>
                 <Card.Title>{venue.name}</Card.Title>
                 <Card.Text>{venue.location.address1}</Card.Text>
-                <Card.Text>{venue.phone}</Card.Text>
+                {/* <Card.Text>{venue.phone}</Card.Text> */}
                 <Card.Text>{venue.price}</Card.Text>
-                <Card.Text>Overall Rating: {venue.rating}</Card.Text>
-                <Card.Text>
-                  Days Open:{' '}
-                  {venue.hours[0].open.map((day) => {
-                    return `${findDayOfWeek(day.day)}, `;
-                  })}
-                </Card.Text>
-                <Card.Text>
-                  Open: {convert(venue.hours[0].open[0].start)}
-                </Card.Text>
-                <Card.Text>
-                  Closes: {convert(venue.hours[0].open[0].end)}
-                </Card.Text>
                 <Link to={`/singleVenue/${venue.id}`}>
-                <Button
-                  variant='primary'
-                  name={venue.id}
-                  onClick={(e) => {
-                    handleClick(e);
-                  }}
-                >
-                  See More
-                </Button>
+                  <Button
+                    variant='primary'
+                    name={venue.id}
+                  >
+                    See More
+                  </Button>
                 </Link>
               </Card.Body>
             </Card>
