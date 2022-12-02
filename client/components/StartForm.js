@@ -52,7 +52,7 @@ const mapDispatch = (dispatch, { history }) => {
       const service = document.getElementById('serviceOption').value;
       const location = event.target.location.value;
       const initialQuery = { service, location };
-      dispatch(sendInitialQuery(initialQuery));
+      dispatch(sendInitialQuery(initialQuery, history));
     },
   };
 };

@@ -1,11 +1,24 @@
 const SEND_INITIAL_QUERY = 'SEND_INITIAL_QUERY';
 
-export const sendInitialQuery = (initialQuery) => ({
+export const _sendInitialQuery = (initialQuery) => ({
   type: SEND_INITIAL_QUERY,
   initialQuery,
 });
 
-// const sendInitialQuery = (initialQuery) =>
+export const sendInitialQuery = (initialQuery, history) => {
+  return async (dispatch) => {
+    try {
+      const { service } = initialQuery;
+      dispatch(_sendInitialQuery(initialQuery));
+      service === 'catering'
+        ? history.push('/allCaterers')
+        : history.push('/allVenues');
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+};
 
 const startFormReducer = (state = {}, action) => {
   switch (action.type) {
