@@ -19,7 +19,6 @@ function AllCaterers(props) {
     const yelpId = e.target.name;
     props.fetchSingleCaterer(yelpId);
   };
-
   return (
     <>
       <p>This is all caterers</p>

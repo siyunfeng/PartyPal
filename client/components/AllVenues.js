@@ -44,7 +44,7 @@ export const AllVenues = (props) => {
                 <Card.Text>
                   Closes: {convert(venue.hours[0].open[0].end)}
                 </Card.Text>
-                <Link to="/singleVenue/:id">
+                <Link to="/venue/:id">
                   <Button variant="primary">See More</Button>
                 </Link>
               </Card.Body>
