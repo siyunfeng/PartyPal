@@ -4,6 +4,7 @@ import { fetchSingleCaterer } from '../redux/singleCaterer';
 
 const SingleCaterer = (props) => {
   const business = props?.caterer?.data?.business;
+  console.log('heree======', props);
 
   useEffect(() => {
     const yelpId = props.match.params;
@@ -24,15 +25,6 @@ const SingleCaterer = (props) => {
           </Card.Text>
           <Card.Text>
             <strong>Price:</strong> {price}
-          </Card.Text>
-          <Card.Text>
-            <strong>Open:</strong> {open}
-          </Card.Text>
-          <Card.Text>
-            <strong>Closes:</strong> {close}
-          </Card.Text>
-          <Card.Text>
-            <strong>Days Open:</strong> {daysOpen}
           </Card.Text>
           <Card.Text>
             <strong>Overall rating:</strong> {rating}

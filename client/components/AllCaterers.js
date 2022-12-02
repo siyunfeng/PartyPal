@@ -19,7 +19,6 @@ function AllCaterers(props) {
 
   const handleClick = (e) => {
     const yelpId = e.target.name;
-    console.log('i am here');
     props.fetchSingleCaterer(yelpId);
   };
   return (
@@ -39,7 +38,7 @@ function AllCaterers(props) {
                     variant="primary"
                     name={caterer.id}
                     onClick={(e) => {
-                      handleClick();
+                      handleClick(e);
                     }}
                   >
                     See More

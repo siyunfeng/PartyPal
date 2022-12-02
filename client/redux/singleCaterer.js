@@ -10,11 +10,10 @@ const setCaterer = (caterer) => {
 };
 
 export const fetchSingleCaterer = (yelpId) => {
-  console.log('yelpId caterer', yelpId);
-
   return async (dispatch) => {
     try {
       const { data } = await axios.post(`/api/caterers/${yelpId}`);
+      console.log('this is the post result', data);
       // const businessArray = data.data.search.business;
       dispatch(setCaterer(data));
     } catch (error) {
