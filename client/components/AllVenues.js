@@ -38,6 +38,7 @@ export const AllVenues = (props) => {
                   <Button variant='primary' name={venue.id}>
                     See More
                   </Button>
+
                 </Link>
               </Card.Body>
             </Card>

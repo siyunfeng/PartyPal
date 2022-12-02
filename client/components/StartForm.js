@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { sendInitialQuery } from '../redux/startForm';
 
 const StartForm = ({ getRecommendations }) => {
   return (
@@ -50,9 +51,8 @@ const mapDispatch = (dispatch, { history }) => {
       event.preventDefault();
       const service = document.getElementById('serviceOption').value;
       const location = event.target.location.value;
-      console.log('service =', service, 'location =', location);
-      state.startForm = { service: service, location: location };
-      history.push('/allCaterers');
+      const initialQuery = { service, location };
+      dispatch(sendInitialQuery(initialQuery, history));
     },
   };
 };
