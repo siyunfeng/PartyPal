@@ -15,8 +15,8 @@ export const getSingleVenueThunk = (yelpId) => {
   console.log('yelpId', yelpId);
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`/api/venues/${yelpId}`);
-      console.log('data', data);
+      const { data } = await axios.post(`/api/venues/${yelpId}`, yelpId);
+      console.log('response from POST -------->', data);
       dispatch(getSingleVenueCreator(data));
     } catch (error) {
       console.error(error);

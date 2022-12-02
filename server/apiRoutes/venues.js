@@ -9,15 +9,18 @@ require('dotenv').config();
 
 // const TOKEN = process.env.IRAIS_YELP_TOKEN
 
-const userSearch = (location, service, queryType) => {
+const userSearch = (queryType, userSearchInput) => {
+  console.log('QUERY TYPE', queryType);
+  console.log('USERRRRRRR', userSearchInput);
   if (queryType === 'all') {
+    console.log('IN HERE');
     return `{
-      search(term: "${service}", location: "${location}", categories: "venues",) {
+      search(term: "${userSearchInput.service}", location: "${userSearchInput.location}", categories: "venues", limit: 50) {
         total
         business {
           id
           alias
-          name
+          namers
           phone
           price
           photos
@@ -48,7 +51,7 @@ const userSearch = (location, service, queryType) => {
     `;
   } else {
     ` {
-        business(id: "g6QOBY2bmEw5CKfiZ43egQ") {
+        business(id: "${userSearchInput}") {
           id
           alias
           name
@@ -81,9 +84,9 @@ const userSearch = (location, service, queryType) => {
   }
 };
 
-
-const getVenues = async (queryType, location, service) => {
-  console.log('TOKEN', TOKEN);
+const getVenues = async (queryType, userSearchInput) => {
+  console.log('SHOULD BE YELP ID', userSearchInput);
+  console.log('QUERY TYPE', queryType);
   const options = {
     method: 'POST',
     url: 'https://api.yelp.com/v3/graphql',
@@ -91,7 +94,7 @@ const getVenues = async (queryType, location, service) => {
       'content-type': 'application/graphql',
       Authorization: `Bearer ${TOKEN}`,
     },
-    data: userSearch(location, service, queryType),
+    data: userSearch(queryType, userSearchInput),
   };
   return axios
     .request(options)
@@ -107,9 +110,9 @@ const getVenues = async (queryType, location, service) => {
 
 venuesRouter.post('/', async (req, res, next) => {
   try {
-    const { location, service } = req.body;
     const queryType = 'all';
-    const data = await getVenues(queryType, location, service);
+    const userSearchInput = req.body;
+    const data = await getVenues(queryType, userSearchInput);
     res.send(data).status(200);
   } catch (error) {
     next(error);
@@ -119,8 +122,12 @@ venuesRouter.post('/', async (req, res, next) => {
 venuesRouter.post('/:id', async (req, res, next) => {
   // get yelp id from frontend and use singleVenueQuery
   try {
+    console.log('REQ', req.body.id);
+    const yelpId = req.body.id;
+    // console.log('IN POST', typeof yelpId);
+    console.log('IN POST', yelpId);
     const queryType = 'single';
-    const data = await getVenues(queryType);
+    const data = await getVenues(queryType, yelpId);
     res.send(data).status(200);
   } catch (error) {
     next(error);

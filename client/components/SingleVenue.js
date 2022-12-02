@@ -17,16 +17,20 @@ const SingleVenue = (props) => {
   }, []);
 
   if (!business) return null;
+  
   const open = convert(business.hours[0].open[0].start);
   const close = convert(business.hours[0].open[0].end);
   const daysOpen = business.hours[0].open.map((day) => {
     return `${findDayOfWeek(day.day)} `;
   });
+
   let counter = 0;
+
   const reviews = business.reviews.map((review) => {
     counter += 1;
     return ` ${counter}.  ${review.text} `;
   });
+
   const { name, rating, photos, phone, price } = business;
 
   return (
