@@ -6,7 +6,7 @@ const axios = require('axios');
 require('dotenv').config();
 
 const queryForAllCaterers = `{
-    search(term: "restaurant mexican", location: "11209", categories: "catering", attributes: "Offers Catering") {
+    search(term: "restaurant mexican", location: "11209", categories: "catering", attributes: "Offers Catering", limit: 50) {
       total
       business {
         id
