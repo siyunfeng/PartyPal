@@ -51,8 +51,8 @@ const mapDispatch = (dispatch, { history }) => {
       const service = document.getElementById('serviceOption').value;
       const location = event.target.location.value;
       console.log('service =', service, 'location =', location);
-      // if (service === 'venue')
-      //   dispatch(initialSearch(service, location, history));
+      state.startForm = { service: service, location: location };
+      history.push('/allCaterers');
     },
   };
 };
