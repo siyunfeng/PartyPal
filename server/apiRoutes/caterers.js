@@ -5,7 +5,6 @@ const axios = require('axios');
 require('dotenv').config();
 
 const userSearch = (userSearchInput, type) => {
-  console.log('this si the search', userSearchInput, type);
   if (type === 'all') {
     const { location, term } = userSearchInput;
     return `{
@@ -97,7 +96,6 @@ caterersRouter.post('/', async (req, res, next) => {
     const queryType = 'all';
     const userSearchInput = req.body;
     const data = await getCaterers(userSearchInput, queryType);
-    console.log('this is the result', data);
     res.send(data).status(200);
   } catch (error) {
     next(error);

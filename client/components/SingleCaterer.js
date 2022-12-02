@@ -3,19 +3,19 @@ import { connect } from 'react-redux';
 import { fetchSingleCaterer } from '../redux/singleCaterer';
 
 const SingleCaterer = (props) => {
-  const business = props?.caterer?.data?.business;
-  console.log('heree======', props);
+  //   const business = props.business
+  console.log('heree======', props.business);
 
   useEffect(() => {
     const yelpId = props.match.params;
     props.fetchSingleCaterer(yelpId);
   }, []);
-  const { name, rating, photos, phone, price } = business;
+  //   const { name, rating, photos, phone, price } = props.business;
 
   return (
     <div>
       <h1>{name}</h1>
-      <Card className="text-center">
+      {/* <Card className="text-center">
         <Card.Header>Caterer</Card.Header>
         <Card.Body>
           <Card.Title>{name}</Card.Title>
@@ -36,7 +36,7 @@ const SingleCaterer = (props) => {
             <Button variant="primary">Go Back</Button>
           </Link>
         </Card.Body>
-      </Card>
+      </Card> */}
     </div>
   );
 };
