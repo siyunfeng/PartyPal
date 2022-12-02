@@ -17,11 +17,7 @@ export const getSingleVenueThunk = (yelpId) => {
     try {
       const { data } = await axios.post(`/api/venues/${yelpId}`);
       console.log('data', data);
-      // const businessArray = data.data.search.business;
       dispatch(getSingleVenueCreator(data));
-      // history.push('/venue/:id');
-    //   let history = useHistory()
-    //   history.push('/singleVenue');
     } catch (error) {
       console.error(error);
     }

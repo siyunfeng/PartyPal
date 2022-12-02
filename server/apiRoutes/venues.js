@@ -9,75 +9,81 @@ require('dotenv').config();
 
 // const TOKEN = process.env.IRAIS_YELP_TOKEN
 
-const queryForAllVenues = `{
-    search(term: "venue", location: "11209", categories: "venues",) {
-      total
-      business {
-        id
-        alias
-        name
-        phone
-        price
-        photos
-        url
-        hours {
-          open {
-            is_overnight
-            end
-            start
-            day
-          }
-        }
-        reviews {
+const userSearch = (location, service, queryType) => {
+  if (queryType === 'all') {
+    return `{
+      search(term: "${service}", location: "${location}", categories: "venues",) {
+        total
+        business {
           id
-          text
+          alias
+          name
+          phone
+          price
+          photos
+          url
+          hours {
+            open {
+              is_overnight
+              end
+              start
+              day
+            }
+          }
+          reviews {
+            id
+            text
+            rating
+          }
+          location {
+            address1
+            city
+            state
+            country
+          }
           rating
         }
-        location {
-          address1
-          city
-          state
-          country
-        }
-        rating
       }
     }
-  }
-  `;
-
-const queryForSingleVenue = `{
-      business(id: "g6QOBY2bmEw5CKfiZ43egQ") {
-        id
-        alias
-        name
-        phone
-        price
-        photos
-        url
-        hours {
-          open {
-            is_overnight
-            end
-            start
-            day
-          }
-        }
-        reviews {
+    `;
+  } else {
+    ` {
+        business(id: "g6QOBY2bmEw5CKfiZ43egQ") {
           id
-          text
+          alias
+          name
+          phone
+          price
+          photos
+          url
+          hours {
+            open {
+              is_overnight
+              end
+              start
+              day
+            }
+          }
+          reviews {
+            id
+            text
+            rating
+          }
+          location {
+            address1
+            city
+            state
+            country
+          }
           rating
-        }
-        location {
-          address1
-          city
-          state
-          country
-        }
-        rating
+    
+    }`;
   }
-}`;
-const getVenues = async (queryType) => {
-  console.log('TOKEN', TOKEN)
+};
+
+
+const getVenues = async (queryType, location, service) => {
+  console.log('TOKEN', TOKEN);
   const options = {
     method: 'POST',
     url: 'https://api.yelp.com/v3/graphql',
@@ -85,7 +91,7 @@ const getVenues = async (queryType) => {
       'content-type': 'application/graphql',
       Authorization: `Bearer ${TOKEN}`,
     },
-    data: queryType === 'single' ? queryForSingleVenue : queryForAllVenues,
+    data: userSearch(location, service, queryType),
   };
   return axios
     .request(options)
@@ -101,9 +107,9 @@ const getVenues = async (queryType) => {
 
 venuesRouter.post('/', async (req, res, next) => {
   try {
+    const { location, service } = req.body;
     const queryType = 'all';
-    const data = await getVenues(queryType);
-    console.log('DATA', data);
+    const data = await getVenues(queryType, location, service);
     res.send(data).status(200);
   } catch (error) {
     next(error);
