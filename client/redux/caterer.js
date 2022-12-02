@@ -14,7 +14,6 @@ export const fetchAllCaterers = ({ location, term }) => {
     try {
       const userSearchInput = { location, term };
       const { data } = await axios.post('/api/caterers', userSearchInput);
-      console.log('data.data.search', data.data.search);
       const businessArray = data.data.search.business;
       dispatch(setCaterers(businessArray));
     } catch (error) {

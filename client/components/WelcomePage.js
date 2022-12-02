@@ -1,11 +1,12 @@
-import AllCaterers from './AllCaterers';
 import React from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import history from '../history';
 import { Login, Signup } from './Auth';
 import EventSummary from './EventSummary';
+import AllCaterers from './AllCaterers';
 import AllVenues from './AllVenues';
 import SingleVenue from './SingleVenue';
+import SingleCaterer from './SingleCaterer';
 import StartForm from './StartForm';
 import UserHome from './UserHome';
 import Home from './Home';
@@ -72,6 +73,7 @@ export const AllRoutes = () => {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/allCaterers" component={AllCaterers} />
+            <Route path="/singleCaterer/:id" component={SingleCaterer} />
             <Route path="/eventSummary" component={EventSummary} />
             <Route path="/allVenues" component={AllVenues} />
             <Route path="/singleVenue/:id" component={SingleVenue} />
