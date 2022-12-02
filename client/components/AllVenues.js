@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import history from '../history';
-import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getVenuesThunk } from '../redux/venues';
 import { getSingleVenueThunk } from '../redux/singleVenue';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { findDayOfWeek, convert } from '../../helperFunctions';
 
 export const AllVenues = (props) => {
   const [venueName, setVenueName] = useState('');
@@ -17,7 +14,8 @@ export const AllVenues = (props) => {
   const [hoursOfOperation, setHoursOfOperation] = useState('');
 
   useEffect(() => {
-    return props.getVenues();
+    const { location, service } = props.startForm;
+    return props.getVenues({ location, service });
   }, [venueName, address, price, rating, hoursOfOperation]);
 
   const allVenues = props.venues;
@@ -31,14 +29,19 @@ export const AllVenues = (props) => {
               <Card.Img variant='top' src={venue.photos[0]} />
               <Card.Body>
                 <Card.Title>{venue.name}</Card.Title>
-                <Card.Text><strong>Address: </strong>{venue.location.address1}</Card.Text>
+                <Card.Text>
+                  <strong>Address: </strong>
+                  {venue.location.address1}
+                </Card.Text>
                 {/* <Card.Text>{venue.phone}</Card.Text> */}
-                <Card.Text><strong>Price: </strong>{venue.price}</Card.Text>
+                <Card.Text>
+                  <strong>Price: </strong>
+                  {venue.price ? venue.price : 'Price not avaliable'}
+                </Card.Text>
                 <Link to={`/singleVenue/${venue.id}`}>
                   <Button variant='primary' name={venue.id}>
                     See More
                   </Button>
-
                 </Link>
               </Card.Body>
             </Card>
@@ -54,13 +57,14 @@ const mapStateToProps = (state) => {
   return {
     venues: state.venues,
     venue: state.venue,
+    startForm: state.startFormReducer,
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
-    getVenues: () => {
-      dispatch(getVenuesThunk());
+    getVenues: ({ location, service }) => {
+      dispatch(getVenuesThunk({ location, service }));
     },
     getSingleVenue: (yelpId) => {
       dispatch(getSingleVenueThunk(yelpId));

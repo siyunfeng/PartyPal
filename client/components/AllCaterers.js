@@ -47,6 +47,7 @@ function AllCaterers(props) {
     </>
   );
 }
+
 const mapState = (state) => ({
   caterers: state.caterers,
   caterer: state.caterer,
