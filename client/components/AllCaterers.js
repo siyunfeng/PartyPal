@@ -12,7 +12,8 @@ function AllCaterers(props) {
   const [rating, setRating] = useState('');
 
   useEffect(() => {
-    return props.fetchAllCaterers({ location: 10014, term: 'italian' });
+    const { location } = props.startForm;
+    return props.fetchAllCaterers({ location, term: 'italian' });
   }, [catererName, address, price, rating]);
 
   const handleClick = (e) => {
@@ -25,14 +26,14 @@ function AllCaterers(props) {
       {props.caterers.map((caterer) => {
         return (
           <div key={caterer.id}>
-            <Card className="mb-4" style={{ width: '18rem' }}>
-              <Card.Img variant="top" src={caterer.photos[0]} />
+            <Card className='mb-4' style={{ width: '18rem' }}>
+              <Card.Img variant='top' src={caterer.photos[0]} />
               <Card.Body>
                 <Card.Title>{caterer.name}</Card.Title>
                 <Card.Text>{caterer.price}</Card.Text>
                 <Card.Text>Overall Rating: {caterer.rating}</Card.Text>
                 <Button
-                  variant="primary"
+                  variant='primary'
                   name={caterer.id}
                   onClick={(e) => handleClick(e)}
                 >
@@ -49,6 +50,7 @@ function AllCaterers(props) {
 const mapState = (state) => ({
   caterers: state.caterers,
   caterer: state.caterer,
+  startForm: state.startFormReducer,
 });
 
 const mapDispatch = (dispatch) => {
