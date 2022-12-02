@@ -1,14 +1,14 @@
 const express = require('express');
 const caterersRouter = express.Router();
 const axios = require('axios');
-// const { GraphQLClient } = require('graphql-request');
 
 require('dotenv').config();
 
-const inputFromState = (location, type) => {
+const userSearch = (userSearchInput, type) => {
+  const { location, term } = userSearchInput;
   if (type === 'all') {
     return `{
-    search(term: "restaurant mexican", location: "${location}", categories: "catering", attributes: "Offers Catering") {
+    search(term: "restaurant ${term}", location: "${location}", categories: "catering", attributes: "Offers Catering") {
       total
       business {
         id
@@ -68,7 +68,7 @@ const inputFromState = (location, type) => {
 // });
 const YELP_TOKEN =
   'RanbOY5NRwsj61NTbTSYC5PusHxCsBee1r0iIBdwGueYurwZ_yIlZL1PD_H5zmaz59Uv8vQAE2rEQQY_wxUbHgjeCvXxfCwNhJS0UY6gDHzP6raJhQ9wGYnWnlN9Y3Yx';
-const getCaterers = async (location, queryType) => {
+const getCaterers = async (location, term, queryType) => {
   const options = {
     method: 'POST',
     url: 'https://api.yelp.com/v3/graphql',
@@ -76,7 +76,7 @@ const getCaterers = async (location, queryType) => {
       'content-type': 'application/graphql',
       Authorization: `Bearer ${YELP_TOKEN}`,
     },
-    data: inputFromState(location, queryType),
+    data: userSearch(location, term, queryType),
   };
   return axios
     .request(options)
@@ -94,8 +94,8 @@ const getCaterers = async (location, queryType) => {
 caterersRouter.post('/', async (req, res, next) => {
   try {
     const queryType = 'all';
-    const { location } = req.body;
-    const data = await getCaterers(location, queryType);
+    const userSearchInput = req.body;
+    const data = await getCaterers(userSearchInput, queryType);
     res.send(data).status(200);
   } catch (error) {
     next(error);

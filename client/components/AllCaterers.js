@@ -12,7 +12,7 @@ function AllCaterers(props) {
   const [rating, setRating] = useState('');
 
   useEffect(() => {
-    return props.fetchAllCaterers({ location: 10014 });
+    return props.fetchAllCaterers({ location: 10014, term: 'italian' });
   }, [catererName, address, price, rating]);
 
   const handleClick = (e) => {
@@ -53,8 +53,8 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => {
   return {
-    fetchAllCaterers: (location) => {
-      dispatch(fetchAllCaterers(location));
+    fetchAllCaterers: ({ location, term }) => {
+      dispatch(fetchAllCaterers({ location, term }));
     },
     fetchSingleCaterer: (yelpId) => {
       dispatch(fetchSingleCaterer(yelpId));
