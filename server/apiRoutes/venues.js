@@ -3,7 +3,7 @@ const venuesRouter = require('express').Router();
 const axios = require('axios');
 
 let TOKEN =
-  '_2xNYMdiNkK47vAXUI6TX4TZEvGdmVjME5dVO-YoXSJgd2N31SfwR0hXUE-Lp5SY6-New20UEpRJdBDgbl3kcD_3cS5q6Rh7xAPajw5lUSiSYKZcqsTSSC0GR2Z-Y3Yx';
+  'OfKrzkAMS0PZWEzC94IyenIjNfGwzbCIhqoFWHp45icVQmoRaZ7FJ9MoIgvzTwXWVHzhy_LATrP9lmlYv61ZA65r2a13aXrQsxK8t1pzoLOSsmRmsTd8PDioSk-KY3Yx';
 
 require('dotenv').config();
 
@@ -11,7 +11,7 @@ require('dotenv').config();
 
 const userSearch = (queryType, userSearchInput) => {
   console.log('QUERY TYPE', queryType);
-  console.log('USERRRRRRR', userSearchInput);
+  console.log('USERRRRRRR', typeof userSearchInput);
   if (queryType === 'all') {
     console.log('IN HERE');
     return `{
@@ -20,7 +20,7 @@ const userSearch = (queryType, userSearchInput) => {
         business {
           id
           alias
-          namers
+          name
           phone
           price
           photos
@@ -50,42 +50,44 @@ const userSearch = (queryType, userSearchInput) => {
     }
     `;
   } else {
-    ` {
-        business(id: "${userSearchInput}") {
+    return `{
+      business(id: "${userSearchInput}") {
+        id
+        alias
+        name
+        phone
+        price
+        photos
+        url
+        hours {
+          open {
+            is_overnight
+            end
+            start
+            day
+          }
+        }
+        reviews {
           id
-          alias
-          name
-          phone
-          price
-          photos
-          url
-          hours {
-            open {
-              is_overnight
-              end
-              start
-              day
-            }
-          }
-          reviews {
-            id
-            text
-            rating
-          }
-          location {
-            address1
-            city
-            state
-            country
-          }
+          text
           rating
-    
-    }`;
+        }
+        location {
+          address1
+          city
+          state
+          country
+        }
+        rating
+      }
+    }
+     `;
   }
 };
 
+// g6QOBY2bmEw5CKfiZ43egQ
 const getVenues = async (queryType, userSearchInput) => {
-  console.log('SHOULD BE YELP ID', userSearchInput);
+  console.log('SHOULD BE YELP ID', typeof userSearchInput);
   console.log('QUERY TYPE', queryType);
   const options = {
     method: 'POST',
@@ -112,6 +114,7 @@ venuesRouter.post('/', async (req, res, next) => {
   try {
     const queryType = 'all';
     const userSearchInput = req.body;
+    console.log('userSearcInout', userSearchInput);
     const data = await getVenues(queryType, userSearchInput);
     res.send(data).status(200);
   } catch (error) {
@@ -124,6 +127,7 @@ venuesRouter.post('/:id', async (req, res, next) => {
   try {
     console.log('REQ', req.body.id);
     const yelpId = req.body.id;
+
     // console.log('IN POST', typeof yelpId);
     console.log('IN POST', yelpId);
     const queryType = 'single';
