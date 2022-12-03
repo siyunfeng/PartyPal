@@ -32,6 +32,7 @@ export const authenticate =
   (history, username, password, method, firstName, lastName, email) =>
   async (dispatch) => {
     try {
+      const urlVisting = window.localStorage.pathVisting;
       const res = await axios.post(`/auth/${method}`, {
         username,
         password,
@@ -41,7 +42,14 @@ export const authenticate =
       });
       window.localStorage.setItem(TOKEN, res.data.token);
       dispatch(me());
-      method === 'login' ? history.push('/account') : history.push('/login');
+      if (method === 'login' && urlVisting) {
+        window.localStorage.removeItem(window.localStorage.pathVisting);
+        history.push(`${urlVisting}`);
+      } else if (method === 'login')
+        method === 'login' ? history.push('/account') : history.push('/login');
+      else {
+        return;
+      }
     } catch (authError) {
       return dispatch(setAuth({ error: authError }));
     }
