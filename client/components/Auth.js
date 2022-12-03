@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { authenticate } from '../redux/auth';
-import history from '../history';
 
 /**
  * COMPONENT
  */
 
 export const AuthForm = (props) => {
-  console.log('PROPRPR', props);
   const { displayName } = props;
 
   if (displayName === 'Login') {
@@ -30,16 +28,7 @@ export const AuthForm = (props) => {
             <input name='password' type='password' />
           </div>
           <div>
-            <button
-              type='submit'
-              // onClick={() => {
-              //   props.state.prevPath
-              //     ? history.push(`${props.state.prevPath}`)
-              //     : null;
-              // }}
-            >
-              {displayName}
-            </button>
+            <button type='submit'>{displayName}</button>
           </div>
           {error && error.response && <div> {error.response.data} </div>}
         </form>
@@ -84,9 +73,7 @@ export const AuthForm = (props) => {
             <input name='email' type='email' />
           </div>
           <div>
-            <button type='submit' onClick={urlRedirect}>
-              {displayName}
-            </button>
+            <button type='submit'>{displayName}</button>
           </div>
           {error && error.response && <div> {error.response.data} </div>}
         </form>

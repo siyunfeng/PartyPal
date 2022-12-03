@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import PopUpDiv from './Styled-Components/PopUpDiv.styled';
+import PopUpDiv from './Styled-Components/FlexBox';
 
 function EventSummaryPopUp() {
   const [lgShow, setLgShow] = useState(false);

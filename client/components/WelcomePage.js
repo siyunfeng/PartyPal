@@ -11,6 +11,7 @@ import UserHome from './UserHome';
 import Home from './Home';
 import EventSummaryPopUp from './EventSummaryPopUp';
 // import { Navbar } from "./NavBar";
+import Button from 'react-bootstrap/Button';
 
 const WelcomePage = (props) => {
   return (
@@ -26,59 +27,35 @@ export const AllRoutes = () => {
     <Router history={history}>
       <div>
         <nav>
-          <Link style={{ textDecoration: 'none' }} to="/">
+          <Link style={{ textDecoration: 'none' }} to='/'>
             <h1>Party Pal 🎉 </h1>
           </Link>
           <ul style={{ listStyle: 'none', textDecoration: 'none' }}>
             <li>
-              <Link style={{ textDecoration: 'none', color: 'black' }} to="/">
-                Main Page
+              <Link to='/login'>
+                <Button variant='outline-success'>Log In</Button>{' '}
               </Link>
             </li>
             <li>
-              <Link
-                style={{
-                  textDecoration: 'none',
-                  color: 'white',
-                  backgroundColor: 'green',
-                  padding: '8px',
-                  borderRadius: '10px',
-                }}
-                to="/login"
-              >
-                Login
-              </Link>
-            </li>
-            <li>
-              {' '}
-              <Link
-                style={{
-                  textDecoration: 'none',
-                  color: 'white',
-                  backgroundColor: 'blue',
-                  padding: '8px',
-                  borderRadius: '10px',
-                }}
-                to="/signup"
-              >
-                Signup{' '}
+              <Link to='/signup'>
+                <Button variant='outline-primary'>Sign up</Button>{' '}
               </Link>
             </li>
           </ul>
-          <div className=".hr"></div>
+          <div className='.hr'></div>
         </nav>
         <main>
           <Switch>
-            <Route exact path="/" component={WelcomePage} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/allCaterers" component={AllCaterers} />
-            <Route path="/singleCaterer/:id" component={SingleCaterer} />
-            <Route path="/eventSummary" component={EventSummaryPopUp} />
-            <Route path="/allVenues" component={AllVenues} />
-            <Route path="/singleVenue/:id" component={SingleVenue} />
-            <Route path="/start" component={StartForm} />
-            <Route path="/account" component={UserHome} />
+            <Route exact path='/' component={WelcomePage} />
+            <Route path='/login' component={Login} />
+            <Route path='/signup' component={Signup} />
+            <Route path='/allCaterers' component={AllCaterers} />
+            <Route path='/singleCaterer/:id' component={SingleCaterer} />
+            <Route path='/eventSummary' component={EventSummaryPopUp} />
+            <Route path='/allVenues' component={AllVenues} />
+            <Route path='/singleVenue/:id' component={SingleVenue} />
+            <Route path='/start' component={StartForm} />
+            <Route path='/account' component={UserHome} />
           </Switch>
         </main>
       </div>
