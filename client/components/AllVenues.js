@@ -25,7 +25,7 @@ export const AllVenues = (props) => {
       {allVenues.map((venue) => {
         return (
           <div key={venue.id}>
-            <Card className='mb-4' style={{ width: '18rem' }}>
+            <Card className='mb-4' style={{ width: '25rem' }}>
               <Card.Img variant='top' src={venue.photos[0]} />
               <Card.Body>
                 <Card.Title>{venue.name}</Card.Title>
@@ -33,7 +33,6 @@ export const AllVenues = (props) => {
                   <strong>Address: </strong>
                   {venue.location.address1}
                 </Card.Text>
-                {/* <Card.Text>{venue.phone}</Card.Text> */}
                 <Card.Text>
                   <strong>Price: </strong>
                   {venue.price ? venue.price : 'Price not avaliable'}
