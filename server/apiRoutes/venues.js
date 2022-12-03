@@ -16,6 +16,7 @@ const userSearch = (queryType, userSearchInput) => {
         total
         business {
           id
+          is_claimed
           alias
           name
           phone

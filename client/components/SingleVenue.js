@@ -7,8 +7,10 @@ import Card from 'react-bootstrap/Card';
 import { convert, findDayOfWeek } from '../../helperFunctions';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import ModalSignUpandLogIn from './ModalSignUpAndLogin';
 
 const SingleVenue = (props) => {
+  console.log('url visiting', urlVisting);
   const business = props?.venue?.data?.business;
 
   useEffect(() => {
@@ -33,22 +35,22 @@ const SingleVenue = (props) => {
   });
 
   const { name, rating, photos, phone, price } = business;
+  
+  const urlVisting = props.history.location.pathname;
+  window.localStorage.setItem('pathVisting', urlVisting);
 
   const saveLikedItem = async (e, venueInfo) => {
-    console.log('venue id', e.target.name);
+    const idToSave = e.target.name;
     const loggedInUserToken = window.localStorage.getItem('token');
-    // attaching token to venueInfo since I will need it to find a user when login
-    // works
-    venueInfo.token = loggedInUserToken
-    console.log('venueInfo', venueInfo)
-
-    
+    // attaching token to venueInfo since I will need it to find a user when login works
+    venueInfo.token = loggedInUserToken;
+    console.log('venueInfo', venueInfo);
 
     if (loggedInUserToken) {
-      const saving = await axios.post(`/api/likedItems/${e.target.name}`, venueInfo);
+      const saving = await axios.post(`/api/likedItems/${idToSave}`, venueInfo);
       console.log('returned true!');
     }
-    //else trigger sign up component
+    //else trigger sign up/login component
   };
 
   return (
@@ -80,20 +82,30 @@ const SingleVenue = (props) => {
           <Card.Text>
             <strong>Reviews:</strong> {reviews}
           </Card.Text>
-          <Button
-            variant='outline-success'
-            name={business.id}
-            onClick={(e) => {
-              const venueInfo = {
-                name: name, 
-                category: 'venue', 
-                image_url: photos,
-              }
-              saveLikedItem(e, venueInfo);
-            }}
-          >
-            Like
-          </Button>{' '}
+          {window.localStorage.getItem('token') ? (
+            <Button
+              variant='outline-success'
+              name={business.id}
+              onClick={(e) => {
+                const venueInfo = {
+                  name: name,
+                  category: 'venue',
+                  image_url: photos,
+                };
+                saveLikedItem(e, venueInfo);
+              }}
+            >
+              Like
+            </Button>
+          ) : (
+            <ModalSignUpandLogIn
+              id={business.id}
+              name={name}
+              category={'venue'}
+              image_url={photos}
+              urlVisted={urlVisting}
+            />
+          )}
           <Link to='/allVenues'>
             <Button variant='outline-primary'>Go Back</Button>{' '}
           </Link>

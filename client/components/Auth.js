@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { authenticate } from '../redux/auth';
+import history from '../history';
 
 /**
  * COMPONENT
  */
+
 export const AuthForm = (props) => {
+  console.log('PROPRPR', props);
   const { displayName } = props;
 
   if (displayName === 'Login') {
@@ -15,19 +18,28 @@ export const AuthForm = (props) => {
         <h2>Account Login</h2>
         <form onSubmit={handleLogin} name={name}>
           <div>
-            <label htmlFor="username">
+            <label htmlFor='username'>
               <small>Username</small>
             </label>
-            <input name="username" type="text" />
+            <input name='username' type='text' />
           </div>
           <div>
-            <label htmlFor="password">
+            <label htmlFor='password'>
               <small>Password</small>
             </label>
-            <input name="password" type="password" />
+            <input name='password' type='password' />
           </div>
           <div>
-            <button type="submit">{displayName}</button>
+            <button
+              type='submit'
+              // onClick={() => {
+              //   props.state.prevPath
+              //     ? history.push(`${props.state.prevPath}`)
+              //     : null;
+              // }}
+            >
+              {displayName}
+            </button>
           </div>
           {error && error.response && <div> {error.response.data} </div>}
         </form>
@@ -42,37 +54,39 @@ export const AuthForm = (props) => {
         <h2>Create Account</h2>
         <form onSubmit={handleSignup} name={name}>
           <div>
-            <label htmlFor="username">
+            <label htmlFor='username'>
               <small>Username</small>
             </label>
-            <input name="username" type="text" />
+            <input name='username' type='text' />
           </div>
           <div>
-            <label htmlFor="password">
+            <label htmlFor='password'>
               <small>Password</small>
             </label>
-            <input name="password" type="password" />
+            <input name='password' type='password' />
           </div>
           <div>
-            <label htmlFor="firstName">
+            <label htmlFor='firstName'>
               <small>First Name</small>
             </label>
-            <input name="firstName" type="text" />
+            <input name='firstName' type='text' />
           </div>
           <div>
-            <label htmlFor="lastName">
+            <label htmlFor='lastName'>
               <small>Last Name</small>
             </label>
-            <input name="lastName" type="text" />
+            <input name='lastName' type='text' />
           </div>
           <div>
-            <label htmlFor="email">
+            <label htmlFor='email'>
               <small>Email</small>
             </label>
-            <input name="email" type="email" />
+            <input name='email' type='email' />
           </div>
           <div>
-            <button type="submit">{displayName}</button>
+            <button type='submit' onClick={urlRedirect}>
+              {displayName}
+            </button>
           </div>
           {error && error.response && <div> {error.response.data} </div>}
         </form>
