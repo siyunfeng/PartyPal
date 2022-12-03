@@ -1,22 +1,23 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
+import axios from 'axios';
+import thunkMiddleware from 'redux-thunk';
+import { createLogger } from 'redux-logger';
 import auth from './auth';
 import venues from './venues';
 import caterers from './caterer';
 import singleCaterer from './singleCaterer';
-import axios from 'axios';
-import thunkMiddleware from 'redux-thunk';
-import { createLogger } from 'redux-logger';
-import singleVenue from './singleVenue'
+import singleVenue from './singleVenue';
 import startFormReducer from './startForm';
-
+import events from './events';
 
 const reducer = combineReducers({
   auth,
   venues,
-  singleVenue, 
+  singleVenue,
   caterers,
   startFormReducer,
   singleCaterer,
+  events,
   // other subreducers
 });
 
@@ -26,3 +27,11 @@ const store = createStore(
 );
 
 export default store;
+// export all reducers below:
+export * from './auth';
+export * from './venues';
+export * from './singleVenue';
+export * from './caterer';
+export * from './startForm';
+export * from './singleCaterer';
+export * from './events';

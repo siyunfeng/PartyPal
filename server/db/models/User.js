@@ -7,10 +7,7 @@ const SALT_ROUNDS = 5;
 const User = db.define('user', {
   username: {
     type: DataTypes.STRING,
-    unique: {
-      args: true,
-      msg: 'existing username',
-    },
+    unique: true,
     allowNull: false,
     validate: {
       notEmpty: true,
@@ -39,16 +36,12 @@ const User = db.define('user', {
   },
   email: {
     type: DataTypes.STRING,
-    allowNull: false,
+    unique: true,
     validate: {
       isEmail: true,
     },
   },
 });
-
-module.exports = {
-  User,
-};
 
 User.prototype.correctPassword = async function (candidatePwd) {
   //we need to compare the plain version to an encrypted version of the password
@@ -75,6 +68,8 @@ User.authenticate = async function ({ username, password }) {
 
 User.findByToken = async function (token) {
   try {
+    console.log('Model User >>>> token =', token);
+
     const { id } = jwt.verify(token, process.env.JWT);
     const user = User.findByPk(id);
     if (!user) {
@@ -83,8 +78,10 @@ User.findByToken = async function (token) {
     return user;
   } catch (ex) {
     const error = Error('bad token');
+    const message = Error(ex);
     error.status = 401;
-    throw error;
+    // throw error;
+    throw message;
   }
 };
 
@@ -99,3 +96,7 @@ const hashPassword = async (user) => {
 User.beforeCreate(hashPassword);
 User.beforeUpdate(hashPassword);
 User.beforeBulkCreate((users) => Promise.all(users.map(hashPassword)));
+
+module.exports = {
+  User,
+};
