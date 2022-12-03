@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <div>
       {/* <FlexBox>
-        <h1>Welcome to Party Pal!</h1>
+        <h1>Welcome to Party Pal!</h1>S
       </FlexBox> */}
       <CarouselHome />
       <div>
