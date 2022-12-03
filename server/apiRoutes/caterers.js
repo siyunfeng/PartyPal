@@ -105,7 +105,6 @@ caterersRouter.post('/', async (req, res, next) => {
   try {
     const queryType = 'all';
     const userSearchInput = req.body;
-    // console.log('this is data', userSearchInput);
 
     const data = await getCaterers(userSearchInput, queryType);
     res.send(data).status(200);
