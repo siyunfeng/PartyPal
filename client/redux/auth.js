@@ -32,7 +32,7 @@ export const authenticate =
   (history, username, password, method, firstName, lastName, email) =>
   async (dispatch) => {
     try {
-      const urlVisting = window.localStorage.pathVisting;
+      const urlVisiting = window.localStorage.pathVisiting;
       const res = await axios.post(`/auth/${method}`, {
         username,
         password,
@@ -42,22 +42,19 @@ export const authenticate =
       });
       window.localStorage.setItem(TOKEN, res.data.token);
       dispatch(me());
-      if (method === 'login' && urlVisting) {
-        console.log('in LOGIN AND URL');
-        window.localStorage.removeItem('pathVisting');
-        history.push(`${urlVisting}`);
+      if (method === 'login' && urlVisiting) {
+        window.localStorage.removeItem('pathVisiting');
+        history.push(`${urlVisiting}`);
       } else if (method === 'login') {
         history.push('/account');
-        console.log('In LoG IN ONLY');
-      } else if (method === 'signup' && urlVisting) {
-        console.log('SIGN AND URL');
-        window.localStorage.removeItem('pathVisting');
-        history.push(`${urlVisting}`);
+      } else if (method === 'signup' && urlVisiting) {
+        window.localStorage.removeItem('pathVisiting');
+        history.push(`${urlVisiting}`);
       }
+      // Note: Siyun I commented out your ternary and replaced it with my chained if/else, is that okay? They do same thing - Irais
       // method === 'login' ? history.push('/account') : history.push('/login');
       else if (method === 'signup') {
-        console.log('signup only');
-        history.push('/account');
+        history.push('/start');
       } else {
         return;
       }

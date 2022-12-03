@@ -29,7 +29,7 @@ const ModalSignUpandLogIn = (props) => {
           <Modal.Title>Log In or Sign Up</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Please log in or sign up to save your selection.
+          Please log in or sign up to like this selection.
         </Modal.Body>
         <Modal.Footer>
           <Link

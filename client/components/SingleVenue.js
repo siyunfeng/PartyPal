@@ -10,7 +10,6 @@ import axios from 'axios';
 import ModalSignUpandLogIn from './ModalSignUpAndLogin';
 
 const SingleVenue = (props) => {
-  console.log('url visiting', urlVisting);
   const business = props?.venue?.data?.business;
 
   useEffect(() => {
@@ -36,8 +35,13 @@ const SingleVenue = (props) => {
 
   const { name, rating, photos, phone, price } = business;
 
-  const urlVisting = props.history.location.pathname;
-  window.localStorage.setItem('pathVisting', urlVisting);
+  const urlVisiting = props.history.location.pathname;
+
+  // if there is a token don't save url history
+    // if there is a token do save it 
+  if (!window.localStorage.getItem('token')) {
+    window.localStorage.setItem('pathVisiting', urlVisiting);
+  }
 
   const saveLikedItem = async (e, venueInfo) => {
     const idToSave = e.target.name;
@@ -108,7 +112,7 @@ const SingleVenue = (props) => {
               name={name}
               category={'venue'}
               image_url={photos}
-              urlVisted={urlVisting}
+              urlVisted={urlVisiting}
             />
           )}
           <Link to='/allVenues'>
