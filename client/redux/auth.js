@@ -43,11 +43,22 @@ export const authenticate =
       window.localStorage.setItem(TOKEN, res.data.token);
       dispatch(me());
       if (method === 'login' && urlVisting) {
-        window.localStorage.removeItem(window.localStorage.pathVisting);
+        console.log('in LOGIN AND URL');
+        window.localStorage.removeItem('pathVisting');
         history.push(`${urlVisting}`);
-      } else if (method === 'login')
-        method === 'login' ? history.push('/account') : history.push('/login');
-      else {
+      } else if (method === 'login') {
+        history.push('/account');
+        console.log('In LoG IN ONLY');
+      } else if (method === 'signup' && urlVisting) {
+        console.log('SIGN AND URL');
+        window.localStorage.removeItem('pathVisting');
+        history.push(`${urlVisting}`);
+      }
+      // method === 'login' ? history.push('/account') : history.push('/login');
+      else if (method === 'signup') {
+        console.log('signup only');
+        history.push('/account');
+      } else {
         return;
       }
     } catch (authError) {

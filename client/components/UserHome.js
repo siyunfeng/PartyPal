@@ -5,7 +5,6 @@ import { getEvents } from '../redux/events';
 const UserHome = (props) => {
   // NOTE: before showing login user it will display the user from the previous state
   let { id, username, firstName, lastName, email } = props.user;
-  // console.log('UserHome >>>> props =', props, 'user.id =', id);
   let { events } = props;
 
   useEffect(() => {
@@ -18,7 +17,6 @@ const UserHome = (props) => {
     <div>
       <div className="user-profile">
         <div>
-          {/* QUESTION: should the user be able to upload their profile photo? */}
           <img />
         </div>
         <div>
@@ -43,7 +41,6 @@ const UserHome = (props) => {
           </div>
           {events[0]?.length ? (
             events[0].map((event, index) => {
-              console.log('inside events.map event =', event, 'index =', index);
               return (
                 <div className="user-home-upcomings" key={index}>
                   <div>
@@ -63,7 +60,6 @@ const UserHome = (props) => {
 };
 
 const mapState = (state) => {
-  // console.log('UserHome mapState, state =', state);
   return {
     user: state.auth,
     events: state.events,
