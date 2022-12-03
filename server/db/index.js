@@ -8,6 +8,7 @@ Event.belongsTo(User);
 
 User.hasMany(Favorite);
 Favorite.belongsTo(User);
+// QUESTION: should we add Favorite.hasMany(User)?
 
 module.exports = {
   db,
