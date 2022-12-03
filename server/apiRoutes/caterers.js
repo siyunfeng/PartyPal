@@ -6,16 +6,18 @@ require('dotenv').config();
 
 const userSearch = (userSearchInput, type) => {
   if (type === 'all') {
-    const { location, term } = userSearchInput;
+    const { location, term, price } = userSearchInput;
     return `{
-    search(term: "restaurant ${term}", location: "${location}", categories: "catering", attributes: "Offers Catering", limit: 50) {
+    search(term: "restaurant ${term}", location: "${location}", price: "${price}", categories: "catering", attributes: "Offers Catering", limit: 50) {
       total
       business {
         id
+        rating
         name
         phone
         price
         photos
+        is_claimed
         url
         reviews {
           id
@@ -103,6 +105,7 @@ caterersRouter.post('/', async (req, res, next) => {
   try {
     const queryType = 'all';
     const userSearchInput = req.body;
+
     const data = await getCaterers(userSearchInput, queryType);
     res.send(data).status(200);
   } catch (error) {

@@ -9,10 +9,10 @@ const setCaterers = (caterers) => {
   };
 };
 
-export const fetchAllCaterers = ({ location, term }) => {
+export const fetchAllCaterers = ({ location, term, price }) => {
   return async (dispatch) => {
     try {
-      const userSearchInput = { location, term };
+      const userSearchInput = { location, term, price };
       const { data } = await axios.post('/api/caterers', userSearchInput);
       const businessArray = data.data.search.business;
       dispatch(setCaterers(businessArray));
