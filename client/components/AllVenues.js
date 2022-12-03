@@ -22,6 +22,8 @@ export const AllVenues = (props) => {
 
   return (
     <div>
+      <h1>Search results for {props.startForm.location}: </h1>
+      <p>Results length: {allVenues.length}</p>
       {allVenues.map((venue) => {
         return (
           <div key={venue.id}>
