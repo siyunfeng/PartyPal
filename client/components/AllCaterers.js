@@ -12,20 +12,21 @@ function AllCaterers(props) {
   const [address, setAddress] = useState('');
   const [price, setPrice] = useState('');
   const [rating, setRating] = useState('');
+  const [term, setTerm] = useState('');
 
   let allCaterers = props.caterers;
 
   useEffect(() => {
     const { location } = props.startForm;
-    return props.fetchAllCaterers({ location, term: '', price });
-  }, [catererName, address, price, rating]);
+    return props.fetchAllCaterers({ location, term, price });
+  }, [catererName, address, price, rating, term]);
 
   const handleClick = (e) => {
     const yelpId = e.target.name;
     props.fetchSingleCaterer(yelpId);
   };
 
-  const handleSelect = (eventKey) => {
+  const handlePriceSelect = (eventKey) => {
     if (eventKey !== 'All') {
       setPrice(eventKey);
     } else {
@@ -33,12 +34,20 @@ function AllCaterers(props) {
     }
   };
 
-  console.log(allCaterers);
+  const handleCuisineSelect = (eventKey) => {
+    if (eventKey !== 'All') {
+      setTerm(eventKey);
+    } else {
+      setTerm('');
+    }
+  };
 
   return (
     <>
+      <p>Price:{price}</p>
+      <p>Cuisine:{term}</p>
       <div>
-        <Dropdown onSelect={handleSelect}>
+        <Dropdown onSelect={handlePriceSelect}>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
             Price{' '}
           </Dropdown.Toggle>
@@ -47,6 +56,20 @@ function AllCaterers(props) {
             <Dropdown.Item eventKey="2">$$</Dropdown.Item>
             <Dropdown.Item eventKey="3">$$$</Dropdown.Item>
             <Dropdown.Item eventKey="4">$$$$</Dropdown.Item>
+            <Dropdown.Item eventKey="All">All</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
+      <div>
+        <Dropdown onSelect={handleCuisineSelect}>
+          <Dropdown.Toggle variant="success" id="dropdown-basic">
+            Cuisine{' '}
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item eventKey="American">American</Dropdown.Item>
+            <Dropdown.Item eventKey="Italian">Italian</Dropdown.Item>
+            <Dropdown.Item eventKey="Mexican">Mexican</Dropdown.Item>
+            <Dropdown.Item eventKey="Asian">Asian</Dropdown.Item>
             <Dropdown.Item eventKey="All">All</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>

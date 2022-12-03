@@ -12,6 +12,7 @@ const userSearch = (userSearchInput, type) => {
       total
       business {
         id
+        rating
         name
         phone
         price
