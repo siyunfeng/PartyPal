@@ -34,7 +34,7 @@ const SingleCaterer = (props) => {
     <div>
       <h1>{name}</h1>
       <Card className="text-center">
-        <Card.Header>Venue</Card.Header>
+        <Card.Header>Caterer</Card.Header>
         <Card.Body>
           <Card.Title>{name}</Card.Title>
           <Card.Img className="img" variant="top" src={photos} />
