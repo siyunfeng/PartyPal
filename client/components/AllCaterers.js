@@ -42,6 +42,8 @@ function AllCaterers(props) {
     }
   };
 
+  // window.localStorage.setItem('userSelectedFilter', priceToSend);
+
   return (
     <>
       <p>Price:{price}</p>
@@ -82,7 +84,9 @@ function AllCaterers(props) {
                 <Card.Img variant="top" src={caterer.photos[0]} />
                 <Card.Body>
                   <Card.Title>{caterer.name}</Card.Title>
-                  <Card.Text>{caterer.price}</Card.Text>
+                  <Card.Text>
+                    {caterer.price ? caterer.price : 'No price available'}
+                  </Card.Text>
                   <Card.Text>Overall Rating: {caterer.rating}</Card.Text>
                   <Link to={`/singleCaterer/${caterer.id}`}>
                     <Button
