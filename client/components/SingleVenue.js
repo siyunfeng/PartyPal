@@ -24,7 +24,7 @@ const SingleVenue = (props) => {
   const open = convert(business.hours[0].open[0].start);
   const close = convert(business.hours[0].open[0].end);
   const daysOpen = business.hours[0].open.map((day) => {
-    return `${findDayOfWeek(day.day)} `;
+    return ` ${findDayOfWeek(day.day)}, `;
   });
 
   let counter = 0;
@@ -35,7 +35,7 @@ const SingleVenue = (props) => {
   });
 
   const { name, rating, photos, phone, price } = business;
-  
+
   const urlVisting = props.history.location.pathname;
   window.localStorage.setItem('pathVisting', urlVisting);
 
@@ -48,39 +48,44 @@ const SingleVenue = (props) => {
 
     if (loggedInUserToken) {
       const saving = await axios.post(`/api/likedItems/${idToSave}`, venueInfo);
-      console.log('returned true!');
+      console.log('returned from saving!', saving);
     }
     //else trigger sign up/login component
   };
 
   return (
     <div>
-      <h1>{name}</h1>
+      <h1>{name ? name : ''}</h1>
       <Card className='text-center'>
         <Card.Header>Venue</Card.Header>
         <Card.Body>
-          <Card.Title>{name}</Card.Title>
+          <Card.Title>{name ? name : 'No name available'}</Card.Title>
           <Card.Img className='img' variant='top' src={photos} />
           <Card.Text>
-            <strong>Phone:</strong> {phone}
+            <strong>Phone:</strong> {phone ? phone : 'No phone available'}
           </Card.Text>
           <Card.Text>
-            <strong>Price:</strong> {price}
+            <strong>Price:</strong> {price ? price : 'No price available'}
           </Card.Text>
           <Card.Text>
-            <strong>Open:</strong> {open}
+            <strong>Open:</strong>{' '}
+            {open ? open : 'No open hours information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Closes:</strong> {close}
+            <strong>Closes:</strong>{' '}
+            {close ? close : 'No closing hours information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Days Open:</strong> {daysOpen}
+            <strong>Days Open:</strong>{' '}
+            {daysOpen ? daysOpen : 'No days open information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Overall rating:</strong> {rating}
+            <strong>Overall rating:</strong>{' '}
+            {rating ? rating : 'No rating available'}
           </Card.Text>
           <Card.Text>
-            <strong>Reviews:</strong> {reviews}
+            <strong>Reviews:</strong>{' '}
+            {reviews ? reviews : 'No reviews available'}
           </Card.Text>
           {window.localStorage.getItem('token') ? (
             <Button
