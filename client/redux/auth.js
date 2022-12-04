@@ -57,7 +57,7 @@ export const authenticate =
 
 export const logout = () => {
   window.localStorage.removeItem(TOKEN);
-  history.push('/login');
+  // console.log('User is logging out');
   return {
     type: SET_AUTH,
     auth: {},

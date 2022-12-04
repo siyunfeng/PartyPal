@@ -10,43 +10,17 @@ import StartForm from './StartForm';
 import UserHome from './UserHome';
 import Home from './Home';
 import EventSummaryPopUp from './EventSummaryPopUp';
-// import { Navbar } from "./NavBar";
+import Navbar from './NavBar';
 import Button from 'react-bootstrap/Button';
-
-const WelcomePage = (props) => {
-  return (
-    <div>
-      {/* <Navbar /> */}
-      <Home />
-    </div>
-  );
-};
 
 export const AllRoutes = () => {
   return (
     <Router history={history}>
       <div>
-        <nav>
-          <Link style={{ textDecoration: 'none' }} to='/'>
-            <h1>Party Pal 🎉 </h1>
-          </Link>
-          <ul style={{ listStyle: 'none', textDecoration: 'none' }}>
-            <li>
-              <Link to='/login'>
-                <Button variant='outline-success'>Log In</Button>{' '}
-              </Link>
-            </li>
-            <li>
-              <Link to='/signup'>
-                <Button variant='outline-primary'>Sign up</Button>{' '}
-              </Link>
-            </li>
-          </ul>
-          <div className='.hr'></div>
-        </nav>
+        <Navbar />
         <main>
           <Switch>
-            <Route exact path='/' component={WelcomePage} />
+            <Route exact path='/' component={Home} />
             <Route path='/login' component={Login} />
             <Route path='/signup' component={Signup} />
             <Route path='/allCaterers' component={AllCaterers} />
