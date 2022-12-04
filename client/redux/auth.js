@@ -43,6 +43,7 @@ export const authenticate =
       window.localStorage.setItem(TOKEN, res.data.token);
       dispatch(me());
       if (method === 'login' && urlVisiting) {
+        console.log('PATH VISTING IN AUTH', urlVisiting)
         window.localStorage.removeItem('pathVisiting');
         history.push(`${urlVisiting}`);
       } else if (method === 'login') {

@@ -1,12 +1,9 @@
-// const moment = require('moment');
 import moment from 'moment'
 
-// for converting end and start hours for a venue from military time to regular human time
 export const convert = (input) => {
   return moment(input, 'HH:mm').format('h:mm A');
 };
 
-// for finding day of the week since yelp uses numbers (e.g Monday = 0, Sunday = 6)
 const dayOfWeek = {
   0: 'Monday',
   1: 'Tuesday',
