@@ -6,7 +6,7 @@ import { Login, Signup } from './Auth';
 
 export let pathVisted;
 const ModalSignUpandLogIn = (props) => {
-  console.log('modal props', props.urlVisted.pathname);
+  // console.log('modal props', props);
   pathVisted = props.urlVisted.pathname;
 
   const [show, setShow] = useState(false);
@@ -29,7 +29,7 @@ const ModalSignUpandLogIn = (props) => {
           <Modal.Title>Log In or Sign Up</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Please log in or sign up to save your selection.
+          Please log in or sign up to like this selection.
         </Modal.Body>
         <Modal.Footer>
           <Link
@@ -42,9 +42,6 @@ const ModalSignUpandLogIn = (props) => {
               Sign up
             </Button>{' '}
           </Link>
-          {/* <Link to='/login'>
-            <Button variant='success'>Log in</Button>{' '}
-          </Link> */}
           <Link
             to={{
               pathname: '/login',

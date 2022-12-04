@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ReviewsHome from './ReviewsHome';
 import CarouselHome from './CarouselHome';
-import FlexBox from './Styled-Components/FlexBox';
+import FlexBox from './Styled-Components/FlexBox.styled';
 
 const Home = () => {
   return (

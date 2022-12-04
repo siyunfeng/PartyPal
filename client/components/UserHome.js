@@ -6,9 +6,11 @@ import { getFavorites } from '../redux/favorites';
 
 const UserHome = (props) => {
   // NOTE: before showing login user it will display the user from the previous state
+
   let { id, username, email } = props.user;
   // console.log('UserHome >>>> props =', props, 'user.id =', id);
   // console.log('UserHome id =', id);
+
   useEffect(() => {
     if (id) {
       // console.log('UserHome useEffect id =', id);
@@ -110,7 +112,6 @@ const UserHome = (props) => {
 };
 
 const mapState = (state) => {
-  // console.log('UserHome mapState, state =', state);
   return {
     user: state.auth,
     events: state.events,
