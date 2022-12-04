@@ -5,7 +5,6 @@ import { fetchAllCaterers } from '../redux/caterer';
 import { fetchSingleCaterer } from '../redux/singleCaterer';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Dropdown from 'react-bootstrap/Dropdown';
 import { default as Select } from 'react-select';
 
 function AllCaterers(props) {
@@ -66,7 +65,7 @@ function AllCaterers(props) {
 
   return (
     <>
-      <form onSubmit={handlePriceSelect(price)}>
+      <form style={{ width: '100px' }} onSubmit={handlePriceSelect(price)}>
         <Select
           defaultValue={priceOptions[4]}
           // isMulti
@@ -76,7 +75,6 @@ function AllCaterers(props) {
           classNamePrefix="select"
           onChange={handlePriceSelect}
         />
-        <button type="submit">Search</button>
       </form>
       <div>
         {/* <form onSubmit={handleCuisineSelect(price)}>
