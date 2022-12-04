@@ -20,13 +20,13 @@ export const AllVenues = (props) => {
   }, [venueName, address, price, rating, hoursOfOperation]);
 
   const allVenues = props.venues.filter((venue) => {
-    return venue.is_claimed === true;
+    return venue.is_claimed === true && venue.rating >= 4;
   });
 
   return (
     <div>
       <FlexBoxForAllView>
-        <h1>Search results for {props.startForm.location}: </h1>
+        <h1>Venue search results for {props.startForm.location}: </h1>
         <p>Results length: {allVenues.length}</p>
         {allVenues.map((venue) => {
           return (

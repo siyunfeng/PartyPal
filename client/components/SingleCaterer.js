@@ -12,7 +12,6 @@ const SingleCaterer = (props) => {
   const business = props?.caterer?.business;
 
   useEffect(() => {
-    console.log("IN SINGLE CATERER USE EFFECT")
     const yelpId = props.match.params;
     props.fetchSingleCaterer(yelpId);
   }, []);
@@ -60,6 +59,7 @@ const SingleCaterer = (props) => {
   };
 
   //irais
+
   return (
     <div>
       <h1>{name}</h1>
@@ -89,7 +89,7 @@ const SingleCaterer = (props) => {
           <Card.Text>
             <strong>Reviews:</strong> {reviews}
           </Card.Text>
-          {/* irais  */}
+          {/* added lines 92 - 117 -irais  */}
           {window.localStorage.getItem('token') ? (
             <Button
               variant='outline-success'
@@ -114,7 +114,7 @@ const SingleCaterer = (props) => {
               urlVisted={urlVisiting}
             />
           )}
-          {/* irais  */}
+          {/* added lines 92 - 117 -irais  */}
           <Link to='/allCaterers'>
             <Button variant='primary'>Go Back</Button>
           </Link>
@@ -125,9 +125,6 @@ const SingleCaterer = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  //irais
-  console.log('STATE ', state);
-  //irais 
   return {
     caterer: state.singleCaterer,
   };
