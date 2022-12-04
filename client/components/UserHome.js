@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getEvents } from '../redux/events';
+import { getFavorites } from '../redux/favorites';
 
 const UserHome = (props) => {
   // NOTE: before showing login user it will display the user from the previous state
@@ -12,20 +13,20 @@ const UserHome = (props) => {
     if (id) {
       // console.log('UserHome useEffect id =', id);
       props.getEvents(id);
+      props.getFavorites(id);
     }
   }, [id]);
 
-  let { events } = props;
+  let {
+    events,
+    favorites: { venues, caterers },
+  } = props;
 
   return (
     <>
       {id ? (
         <div>
           <div className='user-profile'>
-            <div>
-              {/* QUESTION: should the user be able to upload their profile photo? */}
-              <img />
-            </div>
             <div>
               <p>Username: {username}</p>
               <p>Email: {email}</p>
@@ -35,9 +36,45 @@ const UserHome = (props) => {
             <h4>Favorite</h4>
             <div>
               <h6>Venues</h6>
+              {venues?.length ? (
+                venues.map((venue, index) => {
+                  return (
+                    <div className='user-favorite-venues' key={index}>
+                      <div>
+                        <img src={venue.image_url} />
+                        <p>
+                          {venue.name
+                            ? venue.name
+                            : 'venue name is not available'}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })
+              ) : (
+                <p>You did not save any venues in your favorite yet.</p>
+              )}
             </div>
             <div>
               <h6>Catering</h6>
+              {caterers?.length ? (
+                caterers.map((caterer, index) => {
+                  return (
+                    <div className='user-favorite-caterers' key={index}>
+                      <div>
+                        <img src={caterer.image_url} />
+                        <p>
+                          {caterer.name
+                            ? caterer.name
+                            : 'caterer name is not available'}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })
+              ) : (
+                <p>You did not save any caterers in your favorite yet.</p>
+              )}
             </div>
           </div>
           <div className='user-home-events'>
@@ -77,12 +114,14 @@ const mapState = (state) => {
   return {
     user: state.auth,
     events: state.events,
+    favorites: state.favorites,
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
     getEvents: (userId) => dispatch(getEvents(userId)),
+    getFavorites: (userId) => dispatch(getFavorites(userId)),
   };
 };
 

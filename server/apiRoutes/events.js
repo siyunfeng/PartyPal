@@ -15,7 +15,7 @@ eventsRouter.get('/:userId', async (req, res, next) => {
       res.send('no event');
     }
   } catch (error) {
-    console.log(error);
+    console.log(`api/events get('/:userId') ERROR:`, error);
     next(error);
   }
 });
