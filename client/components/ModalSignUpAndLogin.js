@@ -6,7 +6,7 @@ import { Login, Signup } from './Auth';
 
 export let pathVisted;
 const ModalSignUpandLogIn = (props) => {
-  console.log('modal props', props);
+  // console.log('modal props', props);
   pathVisted = props.urlVisted.pathname;
 
   const [show, setShow] = useState(false);

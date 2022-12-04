@@ -12,7 +12,8 @@ const setCaterer = (caterer) => {
 export const fetchSingleCaterer = (yelpId) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`/api/caterers/${yelpId}`);
+      // sending yelpId to backend via req.body - irais 
+      const { data } = await axios.post(`/api/caterers/${yelpId}`, yelpId);
       console.log('this is the post result', data.data);
       // const businessArray = data.data.search.business;
       dispatch(setCaterer(data.data));

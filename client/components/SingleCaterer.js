@@ -12,6 +12,7 @@ const SingleCaterer = (props) => {
   const business = props?.caterer?.business;
 
   useEffect(() => {
+    console.log("IN SINGLE CATERER USE EFFECT")
     const yelpId = props.match.params;
     props.fetchSingleCaterer(yelpId);
   }, []);
@@ -124,7 +125,9 @@ const SingleCaterer = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log('this is state', state);
+  //irais
+  console.log('STATE ', state);
+  //irais 
   return {
     caterer: state.singleCaterer,
   };

@@ -116,8 +116,12 @@ caterersRouter.post('/', async (req, res, next) => {
 caterersRouter.post('/:id', async (req, res, next) => {
   try {
     const queryType = 'single';
-    const yelpId = req.params.id;
+    // const yelpId = req.params.id;
+    // getting yelpId off req.body - irais
+    const yelpId = req.body.id;
+    console.log('yelpId: ------->', yelpId)
     const data = await getCaterers(yelpId, queryType);
+    console.log("MADE IT INTO POST FOR SINGLE CATERER here is data", data,)
     res.send(data).status(200);
   } catch (error) {
     next(error);
