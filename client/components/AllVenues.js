@@ -20,7 +20,7 @@ export const AllVenues = (props) => {
   }, [venueName, address, price, rating, hoursOfOperation]);
 
   const allVenues = props.venues.filter((venue) => {
-    return venue.is_claimed === true && venue.rating >= 4;
+    return venue.is_claimed === true && venue.rating >= 3.5;
   });
 
   return (
