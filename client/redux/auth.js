@@ -32,7 +32,7 @@ export const authenticate =
   (history, username, password, method, firstName, lastName, email) =>
   async (dispatch) => {
     try {
-      const urlVisting = window.localStorage.pathVisting;
+      const urlVisiting = window.localStorage.pathVisiting;
       const res = await axios.post(`/auth/${method}`, {
         username,
         password,
@@ -42,12 +42,21 @@ export const authenticate =
       });
       window.localStorage.setItem(TOKEN, res.data.token);
       dispatch(me());
-      if (method === 'login' && urlVisting) {
-        window.localStorage.removeItem(window.localStorage.pathVisting);
-        history.push(`${urlVisting}`);
-      } else if (method === 'login')
-        method === 'login' ? history.push('/account') : history.push('/login');
-      else {
+      if (method === 'login' && urlVisiting) {
+        console.log('PATH VISTING IN AUTH', urlVisiting)
+        window.localStorage.removeItem('pathVisiting');
+        history.push(`${urlVisiting}`);
+      } else if (method === 'login') {
+        history.push('/account');
+      } else if (method === 'signup' && urlVisiting) {
+        window.localStorage.removeItem('pathVisiting');
+        history.push(`${urlVisiting}`);
+      }
+      // Note: Siyun I commented out your ternary and replaced it with my chained if/else, is that okay? They do same thing - Irais
+      // method === 'login' ? history.push('/account') : history.push('/login');
+      else if (method === 'signup') {
+        history.push('/account');
+      } else {
         return;
       }
     } catch (authError) {
@@ -57,7 +66,7 @@ export const authenticate =
 
 export const logout = () => {
   window.localStorage.removeItem(TOKEN);
-  history.push('/login');
+  // console.log('User is logging out');
   return {
     type: SET_AUTH,
     auth: {},

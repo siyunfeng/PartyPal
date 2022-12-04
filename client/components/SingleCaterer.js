@@ -5,6 +5,10 @@ import { fetchSingleCaterer } from '../redux/singleCaterer';
 import { convert, findDayOfWeek } from '../../helperFunctions';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import ModalSignUpandLogIn from './ModalSignUpAndLogin';
+import axios from 'axios';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 const SingleCaterer = (props) => {
   const business = props?.caterer?.business;
@@ -30,14 +34,48 @@ const SingleCaterer = (props) => {
   });
 
   const { name, rating, photos, phone, price } = business;
+
+  // irais
+  const urlVisiting = props.history.location.pathname;
+
+  // if there is a token don't save url history
+  // if there is a token do save it
+  if (!window.localStorage.getItem('token')) {
+    window.localStorage.setItem('pathVisiting', urlVisiting);
+  }
+
+  const saveLikedItem = async (e, cateringInfo) => {
+    const idToSave = e.target.name;
+    const loggedInUserToken = window.localStorage.getItem('token');
+    // attaching token to cateringInfo since I will need it to find a user when login works
+    cateringInfo.token = loggedInUserToken;
+    console.log('cateringInfo', cateringInfo);
+
+    if (loggedInUserToken) {
+      const saving = await axios.post(
+        `/api/likedItems/caterer/${idToSave}`,
+        cateringInfo
+      );
+      console.log('returned from saving! in single catering', saving);
+    }
+  };
+  
+  const renderTooltip = (props) => (
+    <Tooltip id='button-tooltip' {...props}>
+      Like to save to user dashboard
+    </Tooltip>
+  );
+
+  //irais
+
   return (
     <div>
       <h1>{name}</h1>
-      <Card className="text-center">
+      <Card className='text-center'>
         <Card.Header>Caterer</Card.Header>
         <Card.Body>
           <Card.Title>{name}</Card.Title>
-          <Card.Img className="img" variant="top" src={photos} />
+          <Card.Img className='img' variant='top' src={photos} />
           <Card.Text>
             <strong>Phone:</strong> {phone ? phone : 'No information available'}
           </Card.Text>
@@ -61,8 +99,40 @@ const SingleCaterer = (props) => {
           <Card.Text>
             <strong>Reviews:</strong> {reviews}
           </Card.Text>
-          <Link to="/allCaterers">
-            <Button variant="primary">Go Back</Button>
+          {/* added lines 92 - 117 -irais  */}
+          {window.localStorage.getItem('token') ? (
+            <OverlayTrigger
+              placement='top'
+              delay={{ show: 250, hide: 400 }}
+              overlay={renderTooltip}
+            >
+              <Button
+                variant='outline-success'
+                name={business.id}
+                onClick={(e) => {
+                  const cateringInfo = {
+                    name: name,
+                    category: 'caterer',
+                    image_url: photos,
+                  };
+                  saveLikedItem(e, cateringInfo);
+                }}
+              >
+                Like
+              </Button>
+            </OverlayTrigger>
+          ) : (
+            <ModalSignUpandLogIn
+              id={business.id}
+              name={name}
+              category={'caterer'}
+              image_url={photos}
+              urlVisted={urlVisiting}
+            />
+          )}
+          {/* added lines 92 - 117 -irais  */}
+          <Link to='/allCaterers'>
+            <Button variant='primary'>Go Back</Button>
           </Link>
         </Card.Body>
       </Card>
@@ -71,7 +141,6 @@ const SingleCaterer = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log('this is state', state);
   return {
     caterer: state.singleCaterer,
   };

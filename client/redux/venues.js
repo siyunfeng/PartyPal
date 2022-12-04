@@ -13,8 +13,7 @@ export const getVenuesThunk = ({ location, service, price }) => {
   return async (dispatch) => {
     try {
       const userSearchInput = { location, service, price };
-      console.log('ALL VENUE THUNK', userSearchInput);
-      const { data } = await axios.post('/api/venues', userSearchInput);
+      const { data } = await axios.post('/api/venues', userSearchInput)
       const businessArray = data.data.search.business;
       dispatch(getVenuesCreator(businessArray));
     } catch (error) {

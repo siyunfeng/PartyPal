@@ -8,14 +8,14 @@ import { convert, findDayOfWeek } from '../../helperFunctions';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import ModalSignUpandLogIn from './ModalSignUpAndLogin';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 const SingleVenue = (props) => {
-  console.log('url visiting', urlVisting);
   const business = props?.venue?.data?.business;
 
   useEffect(() => {
     const yelpId = props.match.params;
-    console.log('YELPPPPPP', yelpId);
     props.getSingleVenue(yelpId);
   }, []);
 
@@ -24,7 +24,7 @@ const SingleVenue = (props) => {
   const open = convert(business.hours[0].open[0].start);
   const close = convert(business.hours[0].open[0].end);
   const daysOpen = business.hours[0].open.map((day) => {
-    return `${findDayOfWeek(day.day)} `;
+    return ` ${findDayOfWeek(day.day)}, `;
   });
 
   let counter = 0;
@@ -35,9 +35,14 @@ const SingleVenue = (props) => {
   });
 
   const { name, rating, photos, phone, price } = business;
-  
-  const urlVisting = props.history.location.pathname;
-  window.localStorage.setItem('pathVisting', urlVisting);
+
+  const urlVisiting = props.history.location.pathname;
+
+  // if there is a token don't save url history
+  // if there is a token do save it
+  if (!window.localStorage.getItem('token')) {
+    window.localStorage.setItem('pathVisiting', urlVisiting);
+  }
 
   const saveLikedItem = async (e, venueInfo) => {
     const idToSave = e.target.name;
@@ -47,67 +52,86 @@ const SingleVenue = (props) => {
     console.log('venueInfo', venueInfo);
 
     if (loggedInUserToken) {
-      const saving = await axios.post(`/api/likedItems/${idToSave}`, venueInfo);
-      console.log('returned true!');
+      const saving = await axios.post(
+        `/api/likedItems/venue/${idToSave}`,
+        venueInfo
+      );
+      console.log('returned from saving!', saving);
     }
-    //else trigger sign up/login component
   };
+
+  const renderTooltip = (props) => (
+    <Tooltip id='button-tooltip' {...props}>
+      Like to save to user dashboard
+    </Tooltip>
+  );
 
   return (
     <div>
-      <h1>{name}</h1>
+      <h1>{name ? name : ''}</h1>
       <Card className='text-center'>
         <Card.Header>Venue</Card.Header>
         <Card.Body>
-          <Card.Title>{name}</Card.Title>
+          <Card.Title>{name ? name : 'No name available'}</Card.Title>
           <Card.Img className='img' variant='top' src={photos} />
           <Card.Text>
-            <strong>Phone:</strong> {phone}
+            <strong>Phone:</strong> {phone ? phone : 'No phone available'}
           </Card.Text>
           <Card.Text>
-            <strong>Price:</strong> {price}
+            <strong>Price:</strong> {price ? price : 'No price available'}
           </Card.Text>
           <Card.Text>
-            <strong>Open:</strong> {open}
+            <strong>Open:</strong>
+            {open ? open : 'No open hours information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Closes:</strong> {close}
+            <strong>Closes:</strong>
+            {close ? close : 'No closing hours information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Days Open:</strong> {daysOpen}
+            <strong>Days Open:</strong>
+            {daysOpen ? daysOpen : 'No days open information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Overall rating:</strong> {rating}
+            <strong>Overall rating:</strong>
+            {rating ? rating : 'No rating available'}
           </Card.Text>
           <Card.Text>
-            <strong>Reviews:</strong> {reviews}
+            <strong>Reviews:</strong>
+            {reviews ? reviews : 'No reviews available'}
           </Card.Text>
           {window.localStorage.getItem('token') ? (
-            <Button
-              variant='outline-success'
-              name={business.id}
-              onClick={(e) => {
-                const venueInfo = {
-                  name: name,
-                  category: 'venue',
-                  image_url: photos,
-                };
-                saveLikedItem(e, venueInfo);
-              }}
+            <OverlayTrigger
+              placement='top'
+              delay={{ show: 250, hide: 400 }}
+              overlay={renderTooltip}
             >
-              Like
-            </Button>
+              <Button
+                variant='outline-success'
+                name={business.id}
+                onClick={(e) => {
+                  const venueInfo = {
+                    name,
+                    category: 'venue',
+                    image_url: photos,
+                  };
+                  saveLikedItem(e, venueInfo);
+                }}
+              >
+                Like
+              </Button>
+            </OverlayTrigger>
           ) : (
             <ModalSignUpandLogIn
               id={business.id}
               name={name}
               category={'venue'}
               image_url={photos}
-              urlVisted={urlVisting}
+              urlVisted={urlVisiting}
             />
           )}
           <Link to='/allVenues'>
-            <Button variant='outline-primary'>Go Back</Button>{' '}
+            <Button variant='outline-primary'>Go Back</Button>
           </Link>
         </Card.Body>
         {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}

@@ -55,9 +55,8 @@ User.prototype.generateToken = function () {
 };
 
 User.authenticate = async function ({ username, password }) {
-  console.log('user info', { username, password });
   const user = await this.findOne({ where: { username } });
-  console.log('here', user);
+  console.log('User reached authenticate');
   if (!user || !(await user.correctPassword(password))) {
     const error = Error('Incorrect username/password');
     error.status = 401;
@@ -68,8 +67,6 @@ User.authenticate = async function ({ username, password }) {
 
 User.findByToken = async function (token) {
   try {
-    console.log('Model User >>>> token =', token);
-
     const { id } = jwt.verify(token, process.env.JWT);
     const user = User.findByPk(id);
     if (!user) {
