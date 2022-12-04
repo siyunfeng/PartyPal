@@ -8,7 +8,7 @@ eventsRouter.get('/:userId', async (req, res, next) => {
   try {
     const { userId } = req.params;
     const userEvent = await Event.findAll({ where: { userId: userId } });
-    console.log('userEvent =', userEvent);
+    // console.log('userEvent =', userEvent);
     if (userEvent) {
       res.send(userEvent);
     } else {
