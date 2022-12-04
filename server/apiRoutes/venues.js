@@ -11,8 +11,9 @@ require('dotenv').config();
 
 const userSearch = (queryType, userSearchInput) => {
   if (queryType === 'all') {
+    console.log(userSearchInput);
     return `{
-      search(term: "${userSearchInput.service}", location: "${userSearchInput.location}", categories: "venues", limit: 50) {
+      search(term: "${userSearchInput.service}", location: "${userSearchInput.location}", categories: "venues", price: "${userSearchInput.price}", limit: 50) {
         total
         business {
           id

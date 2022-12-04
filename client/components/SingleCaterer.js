@@ -77,19 +77,21 @@ const SingleCaterer = (props) => {
           <Card.Title>{name}</Card.Title>
           <Card.Img className='img' variant='top' src={photos} />
           <Card.Text>
-            <strong>Phone:</strong> {phone}
+            <strong>Phone:</strong> {phone ? phone : 'No information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Price:</strong> {price}
+            <strong>Price:</strong> {price ? price : 'No information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Open:</strong> {open}
+            <strong>Open:</strong> {open ? open : 'No information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Closes:</strong> {close}
+            <strong>Closes:</strong>{' '}
+            {close ? close : 'No information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Days Open:</strong> {daysOpen}
+            <strong>Days Open:</strong>{' '}
+            {daysOpen ? daysOpen : 'No information available'}
           </Card.Text>
           <Card.Text>
             <strong>Overall rating:</strong> {rating}
