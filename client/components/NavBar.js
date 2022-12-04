@@ -13,9 +13,9 @@ const Navbar = ({ handleLogout, isLoggedIn }) => {
         <h1>Party Pal 🎉 </h1>
       </Link>
       {isLoggedIn ? (
-        <ul style={{ textDecoration: 'none' }}>
+        <ul style={{ listStyle: 'none', textDecoration: 'none' }}>
           {/* The navbar will show these links after you log in */}
-          <li style={{ listStyle: 'none' }}>
+          <li>
             <Link to='/'>
               <Button>Home</Button>
             </Link>
@@ -32,7 +32,7 @@ const Navbar = ({ handleLogout, isLoggedIn }) => {
           </li>
         </ul>
       ) : (
-        <ul>
+        <ul style={{ listStyle: 'none', textDecoration: 'none' }}>
           {/* The navbar will show these links before you log in */}
           <li>
             <Link to='/'>
