@@ -9,6 +9,7 @@ import singleCaterer from './singleCaterer';
 import singleVenue from './singleVenue';
 import startFormReducer from './startForm';
 import events from './events';
+import favorites from './favorites';
 
 const reducer = combineReducers({
   auth,
@@ -18,6 +19,7 @@ const reducer = combineReducers({
   startFormReducer,
   singleCaterer,
   events,
+  favorites,
   // other subreducers
 });
 
@@ -35,3 +37,4 @@ export * from './caterer';
 export * from './startForm';
 export * from './singleCaterer';
 export * from './events';
+export * from './favorites';
