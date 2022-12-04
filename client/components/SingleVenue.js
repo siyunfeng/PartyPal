@@ -14,7 +14,6 @@ import Tooltip from 'react-bootstrap/Tooltip';
 const SingleVenue = (props) => {
   const business = props?.venue?.data?.business;
 
-
   useEffect(() => {
     const yelpId = props.match.params;
     props.getSingleVenue(yelpId);
@@ -60,6 +59,7 @@ const SingleVenue = (props) => {
       console.log('returned from saving!', saving);
     }
   };
+
   const renderTooltip = (props) => (
     <Tooltip id='button-tooltip' {...props}>
       Like to save to user dashboard
@@ -81,28 +81,28 @@ const SingleVenue = (props) => {
             <strong>Price:</strong> {price ? price : 'No price available'}
           </Card.Text>
           <Card.Text>
-            <strong>Open:</strong>{' '}
+            <strong>Open:</strong>
             {open ? open : 'No open hours information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Closes:</strong>{' '}
+            <strong>Closes:</strong>
             {close ? close : 'No closing hours information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Days Open:</strong>{' '}
+            <strong>Days Open:</strong>
             {daysOpen ? daysOpen : 'No days open information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Overall rating:</strong>{' '}
+            <strong>Overall rating:</strong>
             {rating ? rating : 'No rating available'}
           </Card.Text>
           <Card.Text>
-            <strong>Reviews:</strong>{' '}
+            <strong>Reviews:</strong>
             {reviews ? reviews : 'No reviews available'}
           </Card.Text>
           {window.localStorage.getItem('token') ? (
             <OverlayTrigger
-              placement='right'
+              placement='top'
               delay={{ show: 250, hide: 400 }}
               overlay={renderTooltip}
             >
@@ -111,7 +111,7 @@ const SingleVenue = (props) => {
                 name={business.id}
                 onClick={(e) => {
                   const venueInfo = {
-                    name: name,
+                    name,
                     category: 'venue',
                     image_url: photos,
                   };
@@ -122,16 +122,16 @@ const SingleVenue = (props) => {
               </Button>
             </OverlayTrigger>
           ) : (
-              <ModalSignUpandLogIn
-                id={business.id}
-                name={name}
-                category={'venue'}
-                image_url={photos}
-                urlVisted={urlVisiting}
-              />
+            <ModalSignUpandLogIn
+              id={business.id}
+              name={name}
+              category={'venue'}
+              image_url={photos}
+              urlVisted={urlVisiting}
+            />
           )}
           <Link to='/allVenues'>
-            <Button variant='outline-primary'>Go Back</Button>{' '}
+            <Button variant='outline-primary'>Go Back</Button>
           </Link>
         </Card.Body>
         {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}

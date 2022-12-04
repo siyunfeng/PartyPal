@@ -63,7 +63,6 @@ export const AllVenues = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log('state', state);
   return {
     venues: state.venues,
     venue: state.venue,

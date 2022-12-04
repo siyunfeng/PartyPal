@@ -6,7 +6,9 @@ import { convert, findDayOfWeek } from '../../helperFunctions';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ModalSignUpandLogIn from './ModalSignUpAndLogin';
-import axios from 'axios'
+import axios from 'axios';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 const SingleCaterer = (props) => {
   const business = props?.caterer?.business;
@@ -57,6 +59,12 @@ const SingleCaterer = (props) => {
       console.log('returned from saving! in single catering', saving);
     }
   };
+  
+  const renderTooltip = (props) => (
+    <Tooltip id='button-tooltip' {...props}>
+      Like to save to user dashboard
+    </Tooltip>
+  );
 
   //irais
 
@@ -91,20 +99,26 @@ const SingleCaterer = (props) => {
           </Card.Text>
           {/* added lines 92 - 117 -irais  */}
           {window.localStorage.getItem('token') ? (
-            <Button
-              variant='outline-success'
-              name={business.id}
-              onClick={(e) => {
-                const cateringInfo = {
-                  name: name,
-                  category: 'caterer',
-                  image_url: photos,
-                };
-                saveLikedItem(e, cateringInfo);
-              }}
+            <OverlayTrigger
+              placement='top'
+              delay={{ show: 250, hide: 400 }}
+              overlay={renderTooltip}
             >
-              Like
-            </Button>
+              <Button
+                variant='outline-success'
+                name={business.id}
+                onClick={(e) => {
+                  const cateringInfo = {
+                    name: name,
+                    category: 'caterer',
+                    image_url: photos,
+                  };
+                  saveLikedItem(e, cateringInfo);
+                }}
+              >
+                Like
+              </Button>
+            </OverlayTrigger>
           ) : (
             <ModalSignUpandLogIn
               id={business.id}

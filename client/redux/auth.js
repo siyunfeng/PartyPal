@@ -55,7 +55,7 @@ export const authenticate =
       // Note: Siyun I commented out your ternary and replaced it with my chained if/else, is that okay? They do same thing - Irais
       // method === 'login' ? history.push('/account') : history.push('/login');
       else if (method === 'signup') {
-        history.push('/start');
+        history.push('/account');
       } else {
         return;
       }
