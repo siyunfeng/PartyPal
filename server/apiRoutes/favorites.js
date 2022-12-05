@@ -5,15 +5,10 @@ const { requireToken, isAdmin } = require('./gateKeepingMiddleware');
 // GET user's favorites
 favoritesRouter.get('/:userId', async (req, res, next) => {
   try {
-    console.log(
-      'req.paras.userId >>>>',
-      req.params.userId,
-      'type >>>>',
-      typeof req.params.userId
-    );
     const { userId } = req.params;
     const userFavorite = await Favorite.findAll({ where: { userId: userId } });
     console.log('userFavorite =,', userFavorite);
+    // userFavorite is an array with objects(favorite.id, favorite.name)
     if (userFavorite) {
       res.send(userFavorite);
     } else {

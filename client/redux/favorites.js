@@ -14,10 +14,7 @@ export const getFavorites = (userId) => {
     try {
       const { data: favorites } = await axios.get(`/api/favorites/${userId}`);
       // favorites is an array with rows that match user id
-      console.log(
-        'favorites reducer getFavoriteVenues, favorites =',
-        favorites
-      );
+      console.log('getFavorites data: favorites =', favorites);
       const favoriteVenues = favorites.filter(
         (favorite) => favorite.category === 'venue'
       );
@@ -30,10 +27,10 @@ export const getFavorites = (userId) => {
         'favoriteCaterers =',
         favoriteCaterers
       );
-      if (favoriteVenues) {
+      if (favoriteVenues.length) {
         dispatch(_getFavoriteVenues(favoriteVenues));
       }
-      if (favoriteCaterers) {
+      if (favoriteCaterers.length) {
         dispatch(_getFavoriteCaterers(favoriteCaterers));
       }
     } catch (error) {
@@ -45,11 +42,13 @@ export const getFavorites = (userId) => {
 const favorites = (state = {}, action) => {
   switch (action.type) {
     case GET_FAVORITE_VENUES:
-      const venues = action.venus;
-      return { ...state, venues };
+      const venues = action.venues;
+      //   console.log('favorites reducer fave venues >>>>', action.venues);
+      return { ...state, venues: venues };
     case GET_FAVORITE_CATERER:
-      const caterers = action.caterer;
-      return { ...state, caterers };
+      const caterers = action.caterers;
+      //   console.log('favorites reducer fave caterers >>>>', action.caterer);
+      return { ...state, caterers: caterers };
     default:
       return state;
   }
