@@ -9,7 +9,7 @@ const getVenuesCreator = (venues) => {
   };
 };
 
-export const getVenuesThunk = ({ location, service, price }) => {
+export const getVenuesThunk = ({ location, service, price }, history) => {
   return async (dispatch) => {
     try {
       const userSearchInput = { location, service, price };
@@ -17,7 +17,9 @@ export const getVenuesThunk = ({ location, service, price }) => {
       console.log('error', data)
       if (typeof data === 'string') {
         console.log('in here')
-        dispatch(getVenuesCreator(data))
+        window.alert('😭 No results, please try specifying a more exact location.')
+        history.push('/start')
+        // dispatch(getVenuesCreator(data))
       }
       const businessArray = data.data.search.business;
       dispatch(getVenuesCreator(businessArray));

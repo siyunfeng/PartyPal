@@ -46,7 +46,7 @@ export const AllVenues = (props) => {
     <div>
       <FlexBoxForAllView>
         <h1>Venue search results for {props.startForm.location}: </h1>
-        <p>Results length: {allVenues.length}</p>
+        <p>{allVenues.length} venues found</p>
         <form style={{ width: '100px' }} onSubmit={handlePriceSelect(price)}>
           <Select
             defaultValue={priceOptions[4]}
@@ -104,10 +104,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, {history}) => {
   return {
     getVenues: ({ location, service, price }) => {
-      dispatch(getVenuesThunk({ location, service, price }));
+      dispatch(getVenuesThunk({ location, service, price }, history));
     },
     getSingleVenue: (yelpId) => {
       dispatch(getSingleVenueThunk(yelpId));
