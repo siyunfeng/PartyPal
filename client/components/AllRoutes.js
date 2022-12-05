@@ -11,6 +11,7 @@ import UserHome from './UserHome';
 import Home from './Home';
 import EventSummaryPopUp from './EventSummaryPopUp';
 import Navbar from './NavBar';
+import EventForm from './EventForm';
 import Button from 'react-bootstrap/Button';
 
 export const AllRoutes = () => {
@@ -30,6 +31,7 @@ export const AllRoutes = () => {
             <Route path='/singleVenue/:id' component={SingleVenue} />
             <Route path='/start' component={StartForm} />
             <Route path='/account' component={UserHome} />
+            <Route path='/new-event' component={EventForm} />
           </Switch>
         </main>
       </div>
