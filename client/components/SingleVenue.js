@@ -34,15 +34,16 @@ const SingleVenue = (props) => {
     return ` ${counter}.  ${review.text} `;
   });
 
-  const { name, rating, photos, phone, price } = business;
+  const { name, rating, photos, phone, price, hours } = business;
+  console.log('hours?', hours)
 
   const urlVisiting = props.history.location.pathname;
 
   // if there is a token don't save url history
-  // if there is a token do save it
+  // if there is a not token do save it
   if (!window.localStorage.getItem('token')) {
     window.localStorage.setItem('pathVisiting', urlVisiting);
-  }
+  } 
 
   const saveLikedItem = async (e, venueInfo) => {
     const idToSave = e.target.name;
@@ -50,14 +51,12 @@ const SingleVenue = (props) => {
 
     // attaching token to venueInfo since I will need it to find a user when login works
     venueInfo.token = loggedInUserToken;
-    console.log('venueInfo', venueInfo);
 
     if (loggedInUserToken) {
       const saving = await axios.post(
         `/api/likedItems/venue/${idToSave}`,
         venueInfo
       );
-      console.log('returned from saving!', saving);
     }
   };
 

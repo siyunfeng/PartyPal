@@ -16,6 +16,8 @@ function AllCaterers(props) {
 
   let allCaterers = props.caterers;
 
+  window.localStorage.removeItem('pathVisiting');
+
   useEffect(() => {
     const { location } = props.startForm;
     return props.fetchAllCaterers({ location, term, price });
@@ -50,29 +52,29 @@ function AllCaterers(props) {
       <p>Cuisine:{term}</p>
       <div>
         <Dropdown onSelect={handlePriceSelect}>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
+          <Dropdown.Toggle variant='success' id='dropdown-basic'>
             Price{' '}
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item eventKey="1">$</Dropdown.Item>
-            <Dropdown.Item eventKey="2">$$</Dropdown.Item>
-            <Dropdown.Item eventKey="3">$$$</Dropdown.Item>
-            <Dropdown.Item eventKey="4">$$$$</Dropdown.Item>
-            <Dropdown.Item eventKey="All">All</Dropdown.Item>
+            <Dropdown.Item eventKey='1'>$</Dropdown.Item>
+            <Dropdown.Item eventKey='2'>$$</Dropdown.Item>
+            <Dropdown.Item eventKey='3'>$$$</Dropdown.Item>
+            <Dropdown.Item eventKey='4'>$$$$</Dropdown.Item>
+            <Dropdown.Item eventKey='All'>All</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
       <div>
         <Dropdown onSelect={handleCuisineSelect}>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
+          <Dropdown.Toggle variant='success' id='dropdown-basic'>
             Cuisine{' '}
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item eventKey="American">American</Dropdown.Item>
-            <Dropdown.Item eventKey="Italian">Italian</Dropdown.Item>
-            <Dropdown.Item eventKey="Mexican">Mexican</Dropdown.Item>
-            <Dropdown.Item eventKey="Asian">Asian</Dropdown.Item>
-            <Dropdown.Item eventKey="All">All</Dropdown.Item>
+            <Dropdown.Item eventKey='American'>American</Dropdown.Item>
+            <Dropdown.Item eventKey='Italian'>Italian</Dropdown.Item>
+            <Dropdown.Item eventKey='Mexican'>Mexican</Dropdown.Item>
+            <Dropdown.Item eventKey='Asian'>Asian</Dropdown.Item>
+            <Dropdown.Item eventKey='All'>All</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
@@ -80,8 +82,8 @@ function AllCaterers(props) {
         allCaterers.map((caterer) => {
           return (
             <div key={caterer.id}>
-              <Card className="mb-4" style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={caterer.photos[0]} />
+              <Card className='mb-4' style={{ width: '18rem' }}>
+                <Card.Img variant='top' src={caterer.photos[0]} />
                 <Card.Body>
                   <Card.Title>{caterer.name}</Card.Title>
                   <Card.Text>
@@ -90,7 +92,7 @@ function AllCaterers(props) {
                   <Card.Text>Overall Rating: {caterer.rating}</Card.Text>
                   <Link to={`/singleCaterer/${caterer.id}`}>
                     <Button
-                      variant="primary"
+                      variant='primary'
                       name={caterer.id}
                       onClick={(e) => {
                         handleClick(e);

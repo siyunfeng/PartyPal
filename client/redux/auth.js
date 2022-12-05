@@ -43,7 +43,6 @@ export const authenticate =
       window.localStorage.setItem(TOKEN, res.data.token);
       dispatch(me());
       if (method === 'login' && urlVisiting) {
-        console.log('PATH VISTING IN AUTH', urlVisiting)
         window.localStorage.removeItem('pathVisiting');
         history.push(`${urlVisiting}`);
       } else if (method === 'login') {
@@ -51,10 +50,7 @@ export const authenticate =
       } else if (method === 'signup' && urlVisiting) {
         window.localStorage.removeItem('pathVisiting');
         history.push(`${urlVisiting}`);
-      }
-      // Note: Siyun I commented out your ternary and replaced it with my chained if/else, is that okay? They do same thing - Irais
-      // method === 'login' ? history.push('/account') : history.push('/login');
-      else if (method === 'signup') {
+      } else if (method === 'signup') {
         history.push('/account');
       } else {
         return;
