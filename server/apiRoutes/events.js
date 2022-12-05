@@ -20,4 +20,36 @@ eventsRouter.get('/:userId', async (req, res, next) => {
   }
 });
 
+// edit event detail
+eventsRouter.put('/:eventId', async (req, res, next) => {
+  try {
+    const eventToUpdate = await Event.findByPk(req.params.eventId);
+    eventToUpdate.update(req.body);
+    res.send(eventToUpdate);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// create an event as a logged in user
+eventsRouter.post('/', async (req, res, next) => {
+  try {
+    const newEvent = await Event.create(req.body);
+    res.send(newEvent);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// delete an event as a logged in user
+eventsRouter.delete('/:eventId', async (req, res, next) => {
+  try {
+    const eventToDelete = await Event.findByPk(req.params.eventId);
+    await eventToDelete.destroy();
+    res.send(eventToDelete);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = eventsRouter;
