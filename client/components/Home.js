@@ -5,6 +5,9 @@ import CarouselHome from './CarouselHome';
 import FlexBox from './Styled-Components/FlexBox.styled';
 
 const Home = () => {
+  window.localStorage.removeItem('price');
+  window.localStorage.removeItem('term');
+
   return (
     <div>
       {/* <FlexBox>
