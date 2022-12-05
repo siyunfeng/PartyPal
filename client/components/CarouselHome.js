@@ -8,42 +8,42 @@ function CarouselHome() {
     <div>
       {/* <img src={'images/venue-photo-3.jpg'} /> */}
       <Carousel>
-        <Carousel.Item className="mb-5 w-100">
+        <Carousel.Item>
           <img
-            className="d-block w-100"
-            src="/images/caterer-photo-1.jpg"
-            alt="First slide"
+            className='d-block w-100'
+            src='/images/caterer-photo-1.jpg'
+            alt='First slide'
           />
           <Carousel.Caption>
             <h1>Plan your party with PartyPal</h1>
-            <Link to="/start">
-              <Button variant="primary">Start Planning</Button>
-            </Link>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item className="mb-5 w-100">
-          <img
-            className="d-block w-100"
-            src="/images/party-photo-2.jpg"
-            alt="First slide"
-          />
-          <Carousel.Caption>
-            <h1>Plan your party with PartyPal</h1>
-            <Link to="/start">
-              <Button variant="primary">Start Planning</Button>
+            <Link to='/start'>
+              <Button variant='primary'>Start Planning</Button>
             </Link>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
-            className="d-block w-100"
-            src="/images/venue-photo-3.jpg"
-            alt="Second slide"
+            className='d-block w-100'
+            src='/images/party-photo-2.jpg'
+            alt='Second slide'
           />
           <Carousel.Caption>
             <h1>Plan your party with PartyPal</h1>
-            <Link to="/start">
-              <Button className="mb-5" variant="primary">
+            <Link to='/start'>
+              <Button variant='primary'>Start Planning</Button>
+            </Link>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className='d-block w-100'
+            src='/images/venue-photo-3.jpg'
+            alt='Third slide'
+          />
+          <Carousel.Caption>
+            <h1>Plan your party with PartyPal</h1>
+            <Link to='/start'>
+              <Button className='mb-5' variant='primary'>
                 Start Planning
               </Button>
             </Link>
@@ -51,15 +51,15 @@ function CarouselHome() {
         </Carousel.Item>
         <Carousel.Item>
           <img
-            className="d-block w-100"
-            src="/images/venue-photo-1.jpg"
-            alt="Third slide"
+            className='d-block w-100'
+            src='/images/venue-photo-1.jpg'
+            alt='Fourth slide'
           />
 
           <Carousel.Caption>
             <h1>Plan your party with PartyPal</h1>
-            <Link to="/start">
-              <Button className="mb-5" variant="primary">
+            <Link to='/start'>
+              <Button className='mb-5' variant='primary'>
                 Start Planning
               </Button>
             </Link>
@@ -67,14 +67,14 @@ function CarouselHome() {
         </Carousel.Item>
         <Carousel.Item>
           <img
-            className="d-block w-100"
-            src="/images/caterer-photo-2.jpg"
-            alt="Second slide"
+            className='d-block w-100'
+            src='/images/caterer-photo-2.jpg'
+            alt='Fifth slide'
           />
           <Carousel.Caption>
             <h1>Plan your party with PartyPal</h1>
-            <Link to="/start">
-              <Button className="mb-5" variant="primary">
+            <Link to='/start'>
+              <Button className='mb-5' variant='primary'>
                 Start Planning
               </Button>
             </Link>
