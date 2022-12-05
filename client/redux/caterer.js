@@ -9,11 +9,16 @@ const setCaterers = (caterers) => {
   };
 };
 
-export const fetchAllCaterers = ({ location, term, price }) => {
+export const fetchAllCaterers = ({ location, term, price }, history) => {
   return async (dispatch) => {
     try {
       const userSearchInput = { location, term, price };
       const { data } = await axios.post('/api/caterers', userSearchInput);
+      if (typeof data === 'string') {
+        window.alert('😭 No results, please try specifying a more exact location.')
+        history.push('/start')
+        // dispatch(getVenuesCreator(data))
+      }
       const businessArray = data.data.search.business;
       dispatch(setCaterers(businessArray));
     } catch (error) {

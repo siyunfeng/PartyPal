@@ -3,7 +3,7 @@ const { Favorite } = require('../db');
 const { requireToken, isAdmin } = require('./gateKeepingMiddleware');
 
 // GET user's favorites
-favoritesRouter.get('/:userId', async (req, res, next) => {
+favoritesRouter.get('/:userId', requireToken, async (req, res, next) => {
   try {
     const { userId } = req.params;
     const userFavorite = await Favorite.findAll({ where: { userId: userId } });

@@ -47,47 +47,24 @@ export const AllVenues = (props) => {
 
   return (
     <div>
-      <form style={{ width: '100px' }} onSubmit={handlePriceSelect(price)}>
-        <Select
-          defaultValue={priceOptions[4]}
-          // isMulti
-          name="price"
-          options={priceOptions}
-          menuPlacement="auto"
-          menuPosition="fixed"
-          className="basic-multi-select"
-          classNamePrefix="select"
-          onChange={handlePriceSelect}
-        />
-      </form>
-      {allVenues.map((venue) => {
-        return (
-          <div key={venue.id}>
-            <Card className="mb-4" style={{ width: '25rem' }}>
-              <Card.Img variant="top" src={venue.photos[0]} />
-              <Card.Body>
-                <Card.Title>{venue.name}</Card.Title>
-                <Card.Text>
-                  <strong>Address: </strong>
-                  {venue.location.address1}
-                </Card.Text>
-                <Card.Text>
-                  <strong>Price: </strong>
-                  {venue.price ? venue.price : 'Price not available'}
-                </Card.Text>
-                <Link to={`/singleVenue/${venue.id}`}>
-                  <Button variant="primary" name={venue.id}>
-                    See More
-                  </Button>
-                </Link>
-              </Card.Body>
-            </Card>
-          </div>
-        );
-      })}
       <FlexBoxForAllView>
         <h1>Venue search results for {props.startForm.location}: </h1>
-        <p>Results length: {allVenues.length}</p>
+        <p>{allVenues.length} venues found</p>
+        <form style={{ width: '100px' }} onSubmit={handlePriceSelect(price)}>
+          <Select
+            defaultValue={priceOptions[4]}
+            // isMulti
+            name='price'
+            options={priceOptions}
+            menuPlacement='auto'
+            menuPosition='fixed'
+            className='basic-multi-select'
+            classNamePrefix='select'
+            onChange={handlePriceSelect}
+          />
+        </form>
+        <br></br>
+        <br></br>
         {allVenues.map((venue) => {
           return (
             <div key={venue.id}>
@@ -130,10 +107,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, {history}) => {
   return {
     getVenues: ({ location, service, price }) => {
-      dispatch(getVenuesThunk({ location, service, price }));
+      dispatch(getVenuesThunk({ location, service, price }, history));
     },
     getSingleVenue: (yelpId) => {
       dispatch(getSingleVenueThunk(yelpId));

@@ -43,9 +43,14 @@ const SingleVenue = (props) => {
     venueInfo.token = loggedInUserToken;
 
     if (loggedInUserToken) {
+      const token = window.localStorage.getItem('token')
       const saving = await axios.post(
         `/api/likedItems/venue/${idToSave}`,
-        venueInfo
+        venueInfo, {
+          headers: {
+            authorization: token
+          }
+        }
       );
     }
   };
@@ -165,7 +170,6 @@ const SingleVenue = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     venue: state.singleVenue,
   };
