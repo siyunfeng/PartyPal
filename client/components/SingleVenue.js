@@ -21,12 +21,6 @@ const SingleVenue = (props) => {
 
   if (!business) return null;
 
-  const open = convert(business.hours[0].open[0].start);
-  const close = convert(business.hours[0].open[0].end);
-  const daysOpen = business.hours[0].open.map((day) => {
-    return ` ${findDayOfWeek(day.day)}, `;
-  });
-
   let counter = 0;
 
   const reviews = business.reviews.map((review) => {
@@ -34,12 +28,10 @@ const SingleVenue = (props) => {
     return ` ${counter}.  ${review.text} `;
   });
 
-  const { name, rating, photos, phone, price } = business;
+  const { name, rating, photos, phone, price, hours } = business;
 
   const urlVisiting = props.history.location.pathname;
 
-  // if there is a token don't save url history
-  // if there is a token do save it
   if (!window.localStorage.getItem('token')) {
     window.localStorage.setItem('pathVisiting', urlVisiting);
   }
@@ -47,16 +39,14 @@ const SingleVenue = (props) => {
   const saveLikedItem = async (e, venueInfo) => {
     const idToSave = e.target.name;
     const loggedInUserToken = window.localStorage.getItem('token');
-    // attaching token to venueInfo since I will need it to find a user when login works
+
     venueInfo.token = loggedInUserToken;
-    console.log('venueInfo', venueInfo);
 
     if (loggedInUserToken) {
       const saving = await axios.post(
         `/api/likedItems/venue/${idToSave}`,
         venueInfo
       );
-      console.log('returned from saving!', saving);
     }
   };
 
@@ -72,29 +62,37 @@ const SingleVenue = (props) => {
       <Card className='text-center'>
         <Card.Header>Venue</Card.Header>
         <Card.Body>
-          <Card.Title>{name ? name : 'No name available'}</Card.Title>
-          <Card.Img className='img' variant='top' src={photos} />
+          <Card.Title>{name ? name : 'No information available'}</Card.Title>
+          <Card.Img className='img' variant='top' src={photos.length ? photos : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAh8YVQhMCGhp1xDo9Pew7q0W4H1zLD-9wbA&usqp=CAU'} />
           <Card.Text>
-            <strong>Phone:</strong> {phone ? phone : 'No phone available'}
+            <strong>Phone: </strong> {phone ? phone : 'No information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Price:</strong> {price ? price : 'No price available'}
+            <strong>Price: </strong> {price ? price : 'No information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Open:</strong>
-            {open ? open : 'No open hours information available'}
+            <strong>Open: </strong>
+            {hours.length
+              ? convert(business.hours[0].open[0].start)
+              : 'No information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Closes:</strong>
-            {close ? close : 'No closing hours information available'}
+            <strong>Closes: </strong>
+            {hours.length
+              ? convert(business.hours[0].open[0].end)
+              : 'No information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Days Open:</strong>
-            {daysOpen ? daysOpen : 'No days open information available'}
+            <strong>Days Open: </strong>
+            {hours.length
+              ? business.hours[0].open.map((day) => {
+                  return ` ${findDayOfWeek(day.day)}, `;
+                })
+              : 'No information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Overall rating:</strong>
-            {rating ? rating : 'No rating available'}
+            <strong>Overall rating: </strong>
+            {rating ? rating : 'No information available'}
           </Card.Text>
           <Card.Text>
             <strong>Reviews:</strong>

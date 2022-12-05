@@ -5,8 +5,6 @@ import { logout } from '../redux/store';
 import Button from 'react-bootstrap/Button';
 
 const Navbar = ({ handleLogout, isLoggedIn }) => {
-  console.log('isLoggedIn user id is >>>>', isLoggedIn);
-
   return (
     <nav>
       <Link to='/' style={{ textDecoration: 'none' }}>

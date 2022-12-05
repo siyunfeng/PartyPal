@@ -13,6 +13,8 @@ export const AllVenues = (props) => {
   const [rating, setRating] = useState('');
   const [hoursOfOperation, setHoursOfOperation] = useState('');
 
+  window.localStorage.removeItem('pathVisiting');
+
   useEffect(() => {
     const { location, service } = props.startForm;
     return props.getVenues({ location, service, price });

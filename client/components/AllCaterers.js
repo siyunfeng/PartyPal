@@ -12,6 +12,8 @@ function AllCaterers(props) {
   const [rating, setRating] = useState('');
   const [term, setTerm] = useState('');
 
+  window.localStorage.removeItem('pathVisiting');
+
   useEffect(() => {
     const { location } = props.startForm;
     return props.fetchAllCaterers({ location, term, price });
@@ -94,8 +96,8 @@ function AllCaterers(props) {
         allCaterers.map((caterer) => {
           return (
             <div key={caterer.id}>
-              <Card className="mb-4" style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={caterer.photos[0]} />
+              <Card className='mb-4' style={{ width: '18rem' }}>
+                <Card.Img variant='top' src={caterer.photos[0]} />
                 <Card.Body>
                   <Card.Title>{caterer.name}</Card.Title>
                   <Card.Text>
@@ -104,7 +106,7 @@ function AllCaterers(props) {
                   <Card.Text>Overall Rating: {caterer.rating}</Card.Text>
                   <Link to={`/singleCaterer/${caterer.id}`}>
                     <Button
-                      variant="primary"
+                      variant='primary'
                       name={caterer.id}
                       onClick={(e) => {
                         handleClick(e);
