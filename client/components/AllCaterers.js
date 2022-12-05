@@ -67,7 +67,10 @@ function AllCaterers(props) {
 
   return (
     <>
-      <form style={{ width: '100px' }} onSubmit={handlePriceSelect(price)}>
+      <form
+        style={{ width: '100px', display: 'inline' }}
+        onSubmit={handlePriceSelect(price)}
+      >
         <Select
           defaultValue={priceOptions[4]}
           // isMulti
@@ -79,7 +82,10 @@ function AllCaterers(props) {
         />
       </form>
       <div>
-        {/* <form onSubmit={handleCuisineSelect(price)}>
+        <form
+          style={{ width: '100px', display: 'inline' }}
+          onSubmit={handleCuisineSelect(price)}
+        >
           <Select
             defaultValue={cuisineOptions[4]}
             // isMulti
@@ -89,15 +95,14 @@ function AllCaterers(props) {
             classNamePrefix="select"
             onChange={handleCuisineSelect}
           />
-          <button type="submit">Search</button>
-        </form> */}
+        </form>
       </div>
       {allCaterers?.length ? (
         allCaterers.map((caterer) => {
           return (
             <div key={caterer.id}>
-              <Card className='mb-4' style={{ width: '18rem' }}>
-                <Card.Img variant='top' src={caterer.photos[0]} />
+              <Card className="mb-4" style={{ width: '18rem' }}>
+                <Card.Img variant="top" src={caterer.photos[0]} />
                 <Card.Body>
                   <Card.Title>{caterer.name}</Card.Title>
                   <Card.Text>
@@ -106,7 +111,7 @@ function AllCaterers(props) {
                   <Card.Text>Overall Rating: {caterer.rating}</Card.Text>
                   <Link to={`/singleCaterer/${caterer.id}`}>
                     <Button
-                      variant='primary'
+                      variant="primary"
                       name={caterer.id}
                       onClick={(e) => {
                         handleClick(e);
