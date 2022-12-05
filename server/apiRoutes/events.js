@@ -32,7 +32,7 @@ eventsRouter.put('/:eventId', async (req, res, next) => {
 });
 
 // create an event as a logged in user
-eventsRouter.post('/:userId', async (req, res, next) => {
+eventsRouter.post('/', async (req, res, next) => {
   try {
     const newEvent = await Event.create(req.body);
     res.send(newEvent);
