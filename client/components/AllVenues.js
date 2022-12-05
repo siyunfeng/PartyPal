@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import FlexBoxForAllView from './Styled-Components/FlexBoxForAllView.styled';
 
-export const AllVenues = (props) => {
+const AllVenues = (props) => {
   const [venueName, setVenueName] = useState('');
   const [address, setAddress] = useState('');
   const [price, setPrice] = useState('');
