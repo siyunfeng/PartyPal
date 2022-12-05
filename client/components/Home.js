@@ -17,7 +17,7 @@ const Home = () => {
             <br></br>
             <p>
               <strong>
-                Have a party coming up? Need venue and catering reccomendations
+                Have a party coming up? Need venue and catering recommendations
                 in your area? Click Start Planning to find recommendations in
                 your area.
               </strong>
