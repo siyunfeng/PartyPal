@@ -8,16 +8,23 @@ import Card from 'react-bootstrap/Card';
 import { default as Select } from 'react-select';
 
 function AllCaterers(props) {
-  const [price, setPrice] = useState('');
-  const [rating, setRating] = useState('');
-  const [term, setTerm] = useState('');
+  const [price, setPrice] = useState(() => {
+    const priceValue = window.localStorage.getItem('price');
+    return priceValue !== null ? JSON.parse(priceValue) : '';
+  });
+  const [term, setTerm] = useState(() => {
+    const termValue = window.localStorage.getItem('term');
+    return termValue !== null ? JSON.parse(termValue) : '';
+  });
 
   window.localStorage.removeItem('pathVisiting');
 
   useEffect(() => {
     const { location } = props.startForm;
+    window.localStorage.setItem('price', JSON.stringify(price));
+    window.localStorage.setItem('term', JSON.stringify(term));
     return props.fetchAllCaterers({ location, term, price });
-  }, [price, rating, term]);
+  }, [price, term]);
 
   const handleClick = (e) => {
     const yelpId = e.target.name;
@@ -68,7 +75,7 @@ function AllCaterers(props) {
   return (
     <>
       <form
-        style={{ width: '100px' }}
+        style={{ width: '150px' }}
         onSubmit={handlePriceSelect(priceOptions)}
       >
         <Select
@@ -83,7 +90,7 @@ function AllCaterers(props) {
       </form>
       <div>
         <form
-          style={{ width: '100px' }}
+          style={{ width: '150px' }}
           onSubmit={handleCuisineSelect(cuisineOptions)}
         >
           <Select
@@ -97,6 +104,8 @@ function AllCaterers(props) {
           />
         </form>
       </div>
+      <h1>Caterer search results for {props.startForm.location}: </h1>
+      <p>Results length: {allCaterers.length}</p>
       {allCaterers?.length ? (
         allCaterers.map((caterer) => {
           return (
