@@ -112,6 +112,7 @@ const UserHome = (props) => {
 };
 
 const mapState = (state) => {
+  console.log('UserHome >>>> state', state);
   return {
     user: state.auth,
     events: state.events,
