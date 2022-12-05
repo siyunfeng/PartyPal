@@ -1,12 +1,17 @@
 # PartyPal
 
-Find a curated list of highly rated caterer and venues
-
 [Visit PartyPal Here](https://partypal.onrender.com/)
+
+PartyPal is an application that
+where you can find a curated list of highly rated caterers and venues for your next party!
 
 ## Technologies
 
 ---
+
+This project was built with PostgreSQL database, Express for backend routing, and Node.js server.
+
+[YelpAPI](https://docs.developer.yelp.com/)
 
 ## Features
 
@@ -14,8 +19,8 @@ Find a curated list of highly rated caterer and venues
 
 - Guest can browse a curated list of caterers or venues in their selected location.
 - Guest can sign up as a user.
-- User can "like" a specific caterer or venue of choice and is able to look at their list of liked choices.
-- Users can create an event
+- User can "like" a specific caterer or venue of choice and is able to look at their list of saved choices.
+- Users can create an event with
 
 ## Getting Started
 
@@ -29,7 +34,8 @@ Sync and seed the database by running npm run seed. Running `npm run start:dev`
 
 - Integrate Google maps and pin results with each search
 - Integrate Google sign-in
--
+- Include additional categories such as photo booth, flower, music...etc.
+- Generate event invites to guests
 
 ## Team
 
