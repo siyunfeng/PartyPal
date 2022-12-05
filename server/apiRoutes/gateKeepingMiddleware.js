@@ -4,7 +4,7 @@ const { User } = require('../db/models/User');
 const requireToken = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
-    console.log('requireToken >>>> token =', token);
+    console.log('this is token', token)
     const user = await User.findByToken(token);
     req.user = user;
     next();

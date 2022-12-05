@@ -22,6 +22,7 @@ userRouter.get('/', requireToken, async (req, res, next) => {
   }
 });
 
+
 // POST create new user
 userRouter.post('/', requireToken, async (req, res, next) => {
   try {
