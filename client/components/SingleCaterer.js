@@ -50,21 +50,46 @@ const SingleCaterer = (props) => {
   };
 
   const renderTooltip = (props) => (
-    <Tooltip id='button-tooltip' {...props}>
+    <Tooltip id="button-tooltip" {...props}>
       Like to save to user dashboard
     </Tooltip>
   );
 
+  let newPhone;
+  if (phone) {
+    if (phone.charAt(1) !== '1') {
+      newPhone = phone;
+    } else {
+      newPhone =
+        '(' +
+        phone.slice(2, 5) +
+        ') ' +
+        phone.slice(5, 8) +
+        '-' +
+        phone.slice(8, 12);
+    }
+  } else {
+    newPhone = 'No information available';
+  }
+
   return (
     <div>
       <h1>{name}</h1>
-      <Card className='text-center'>
+      <Card className="text-center">
         <Card.Header>Caterer</Card.Header>
         <Card.Body>
           <Card.Title>{name}</Card.Title>
-          <Card.Img className='img' variant='top' src={photos.length ? photos : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAh8YVQhMCGhp1xDo9Pew7q0W4H1zLD-9wbA&usqp=CAU'} />
+          <Card.Img
+            className="img"
+            variant="top"
+            src={
+              photos.length
+                ? photos
+                : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAh8YVQhMCGhp1xDo9Pew7q0W4H1zLD-9wbA&usqp=CAU'
+            }
+          />
           <Card.Text>
-         <strong>Phone:</strong> {phone ? phone : 'No information available'}
+            <strong>Phone:</strong> {newPhone}
           </Card.Text>
           <Card.Text>
             <strong>Price:</strong> {price ? price : 'No information available'}
@@ -97,12 +122,12 @@ const SingleCaterer = (props) => {
           </Card.Text>
           {window.localStorage.getItem('token') ? (
             <OverlayTrigger
-              placement='top'
+              placement="top"
               delay={{ show: 250, hide: 400 }}
               overlay={renderTooltip}
             >
               <Button
-                variant='outline-success'
+                variant="outline-success"
                 name={business.id}
                 onClick={(e) => {
                   const cateringInfo = {
@@ -125,8 +150,8 @@ const SingleCaterer = (props) => {
               urlVisted={urlVisiting}
             />
           )}
-          <Link to='/allCaterers'>
-            <Button variant='primary'>Go Back</Button>
+          <Link to="/allCaterers">
+            <Button variant="primary">Go Back</Button>
           </Link>
         </Card.Body>
       </Card>
