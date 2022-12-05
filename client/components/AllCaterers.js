@@ -5,78 +5,92 @@ import { fetchAllCaterers } from '../redux/caterer';
 import { fetchSingleCaterer } from '../redux/singleCaterer';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Dropdown from 'react-bootstrap/Dropdown';
+import { default as Select } from 'react-select';
 
 function AllCaterers(props) {
-  const [catererName, setCatererName] = useState('');
-  const [address, setAddress] = useState('');
   const [price, setPrice] = useState('');
   const [rating, setRating] = useState('');
   const [term, setTerm] = useState('');
-
-  let allCaterers = props.caterers;
 
   window.localStorage.removeItem('pathVisiting');
 
   useEffect(() => {
     const { location } = props.startForm;
     return props.fetchAllCaterers({ location, term, price });
-  }, [catererName, address, price, rating, term]);
+  }, [price, rating, term]);
 
   const handleClick = (e) => {
     const yelpId = e.target.name;
     props.fetchSingleCaterer(yelpId);
   };
 
-  const handlePriceSelect = (eventKey) => {
-    if (eventKey !== 'All') {
-      setPrice(eventKey);
-    } else {
-      setPrice('');
+  const handlePriceSelect = (priceOptions) => {
+    if (priceOptions.value) {
+      if (priceOptions.value !== 'all') {
+        setPrice(priceOptions.value);
+      } else {
+        setPrice('');
+      }
     }
   };
 
-  const handleCuisineSelect = (eventKey) => {
-    if (eventKey !== 'All') {
-      setTerm(eventKey);
-    } else {
-      setTerm('');
+  const handleCuisineSelect = (cuisineOptions) => {
+    if (priceOptions.value) {
+      if (cuisineOptions.value !== 'All') {
+        setTerm(cuisineOptions.value);
+      } else {
+        setTerm('');
+      }
     }
   };
+  const priceOptions = [
+    { value: '1', label: '$' },
+    { value: '2', label: '$$' },
+    { value: '3', label: '$$$' },
+    { value: '4', label: '$$$$' },
+    { value: 'all', label: 'All' },
+  ];
+
+  const cuisineOptions = [
+    { value: 'American', label: 'American' },
+    { value: 'Mexican', label: 'Mexican' },
+    { value: 'Italian', label: 'Italian' },
+    { value: 'Asian', label: 'Asian' },
+    { value: 'all', label: 'All' },
+  ];
 
   // window.localStorage.setItem('userSelectedFilter', priceToSend);
 
+  let allCaterers = props.caterers.filter((caterer) => {
+    return caterer.is_claimed === true && caterer.rating >= 3.5;
+  });
+
   return (
     <>
-      <p>Price:{price}</p>
-      <p>Cuisine:{term}</p>
+      <form style={{ width: '100px' }} onSubmit={handlePriceSelect(price)}>
+        <Select
+          defaultValue={priceOptions[4]}
+          // isMulti
+          name="price"
+          options={priceOptions}
+          className="basic-multi-select"
+          classNamePrefix="select"
+          onChange={handlePriceSelect}
+        />
+      </form>
       <div>
-        <Dropdown onSelect={handlePriceSelect}>
-          <Dropdown.Toggle variant='success' id='dropdown-basic'>
-            Price{' '}
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Dropdown.Item eventKey='1'>$</Dropdown.Item>
-            <Dropdown.Item eventKey='2'>$$</Dropdown.Item>
-            <Dropdown.Item eventKey='3'>$$$</Dropdown.Item>
-            <Dropdown.Item eventKey='4'>$$$$</Dropdown.Item>
-            <Dropdown.Item eventKey='All'>All</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      </div>
-      <div>
-        <Dropdown onSelect={handleCuisineSelect}>
-          <Dropdown.Toggle variant='success' id='dropdown-basic'>
-            Cuisine{' '}
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Dropdown.Item eventKey='American'>American</Dropdown.Item>
-            <Dropdown.Item eventKey='Italian'>Italian</Dropdown.Item>
-            <Dropdown.Item eventKey='Mexican'>Mexican</Dropdown.Item>
-            <Dropdown.Item eventKey='Asian'>Asian</Dropdown.Item>
-            <Dropdown.Item eventKey='All'>All</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        {/* <form onSubmit={handleCuisineSelect(price)}>
+          <Select
+            defaultValue={cuisineOptions[4]}
+            // isMulti
+            name="cuisine"
+            options={cuisineOptions}
+            className="basic-multi-select"
+            classNamePrefix="select"
+            onChange={handleCuisineSelect}
+          />
+          <button type="submit">Search</button>
+        </form> */}
       </div>
       {allCaterers?.length ? (
         allCaterers.map((caterer) => {

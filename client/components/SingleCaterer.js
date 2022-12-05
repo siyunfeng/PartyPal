@@ -64,10 +64,10 @@ const SingleCaterer = (props) => {
           <Card.Title>{name}</Card.Title>
           <Card.Img className='img' variant='top' src={photos.length ? photos : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAh8YVQhMCGhp1xDo9Pew7q0W4H1zLD-9wbA&usqp=CAU'} />
           <Card.Text>
-            <strong>Phone: </strong> {phone}
+         <strong>Phone:</strong> {phone ? phone : 'No information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Price: </strong> {price}
+            <strong>Price:</strong> {price ? price : 'No information available'}
           </Card.Text>
           <Card.Text>
             <strong>Open: </strong>{' '}
