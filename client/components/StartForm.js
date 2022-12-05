@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { sendInitialQuery } from '../redux/startForm';
 
 const StartForm = ({ getRecommendations }) => {
+  window.localStorage.removeItem('price');
+  window.localStorage.removeItem('term');
   return (
     <div>
       {/* <Navbar /> */}

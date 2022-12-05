@@ -9,16 +9,19 @@ import { default as Select } from 'react-select';
 import FlexBoxForAllView from './Styled-Components/FlexBoxForAllView.styled';
 
 export const AllVenues = (props) => {
-  const [price, setPrice] = useState('');
-  const [rating, setRating] = useState('');
+  const [price, setPrice] = useState(() => {
+    const priceValue = window.localStorage.getItem('price');
+    return priceValue !== null ? JSON.parse(priceValue) : '';
+  });
   const [hoursOfOperation, setHoursOfOperation] = useState('');
 
   window.localStorage.removeItem('pathVisiting');
 
   useEffect(() => {
     const { location, service } = props.startForm;
+    window.localStorage.setItem('price', JSON.stringify(price));
     return props.getVenues({ location, service, price });
-  }, [price, rating, hoursOfOperation]);
+  }, [price, hoursOfOperation]);
 
   const handlePriceSelect = (priceOptions) => {
     if (priceOptions.value) {
@@ -65,8 +68,8 @@ export const AllVenues = (props) => {
         {allVenues.map((venue) => {
           return (
             <div key={venue.id}>
-              <Card className='mb-4' style={{ width: '25rem' }}>
-                <Card.Img variant='top' src={venue.photos[0]} />
+              <Card className="mb-4" style={{ width: '25rem' }}>
+                <Card.Img variant="top" src={venue.photos[0]} />
                 <Card.Body>
                   <Card.Title>
                     {venue.name ? venue.name : 'No venue name available'}
@@ -82,7 +85,7 @@ export const AllVenues = (props) => {
                     {venue.price ? venue.price : 'Price not available'}
                   </Card.Text>
                   <Link to={`/singleVenue/${venue.id}`}>
-                    <Button variant='primary' name={venue.id}>
+                    <Button variant="primary" name={venue.id}>
                       See More
                     </Button>
                   </Link>
