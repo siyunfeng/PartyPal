@@ -35,7 +35,7 @@ function AllCaterers(props) {
   };
 
   const handleCuisineSelect = (cuisineOptions) => {
-    if (priceOptions.value) {
+    if (cuisineOptions.value) {
       if (cuisineOptions.value !== 'All') {
         setTerm(cuisineOptions.value);
       } else {
@@ -68,8 +68,8 @@ function AllCaterers(props) {
   return (
     <>
       <form
-        style={{ width: '100px', display: 'inline' }}
-        onSubmit={handlePriceSelect(price)}
+        style={{ width: '100px' }}
+        onSubmit={handlePriceSelect(priceOptions)}
       >
         <Select
           defaultValue={priceOptions[4]}
@@ -83,8 +83,8 @@ function AllCaterers(props) {
       </form>
       <div>
         <form
-          style={{ width: '100px', display: 'inline' }}
-          onSubmit={handleCuisineSelect(price)}
+          style={{ width: '100px' }}
+          onSubmit={handleCuisineSelect(cuisineOptions)}
         >
           <Select
             defaultValue={cuisineOptions[4]}
