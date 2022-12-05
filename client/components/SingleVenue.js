@@ -144,7 +144,6 @@ const SingleVenue = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     venue: state.singleVenue,
   };

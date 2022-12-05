@@ -133,10 +133,10 @@ const mapState = (state) => ({
   startForm: state.startFormReducer,
 });
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, {history}) => {
   return {
     fetchAllCaterers: ({ location, term, price }) => {
-      dispatch(fetchAllCaterers({ location, term, price }));
+      dispatch(fetchAllCaterers({ location, term, price }, history));
     },
     fetchSingleCaterer: (yelpId) => {
       dispatch(fetchSingleCaterer(yelpId));

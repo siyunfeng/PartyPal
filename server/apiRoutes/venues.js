@@ -112,9 +112,7 @@ venuesRouter.post('/', async (req, res, next) => {
     const queryType = 'all';
     const userSearchInput = req.body;
     const data = await getVenues(queryType, userSearchInput);
-    console.log('data error?', data);
     if (data.errors) {
-      console.log('error message', data.errors[0].message);
       res.send(data.errors[0].message).status(404)
     } else {
       res.send(data).status(200);
