@@ -47,6 +47,7 @@ const SingleVenue = (props) => {
   const saveLikedItem = async (e, venueInfo) => {
     const idToSave = e.target.name;
     const loggedInUserToken = window.localStorage.getItem('token');
+
     // attaching token to venueInfo since I will need it to find a user when login works
     venueInfo.token = loggedInUserToken;
     console.log('venueInfo', venueInfo);
@@ -75,17 +76,17 @@ const SingleVenue = (props) => {
           <Card.Title>{name ? name : 'No name available'}</Card.Title>
           <Card.Img className='img' variant='top' src={photos} />
           <Card.Text>
-            <strong>Phone:</strong> {phone ? phone : 'No phone available'}
+            <strong>Phone: </strong> {phone ? phone : 'No phone available'}
           </Card.Text>
           <Card.Text>
-            <strong>Price:</strong> {price ? price : 'No price available'}
+            <strong>Price: </strong> {price ? price : 'No price available'}
           </Card.Text>
           <Card.Text>
-            <strong>Open:</strong>
+            <strong>Open: </strong>
             {open ? open : 'No open hours information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Closes:</strong>
+            <strong>Closes: </strong>
             {close ? close : 'No closing hours information available'}
           </Card.Text>
           <Card.Text>

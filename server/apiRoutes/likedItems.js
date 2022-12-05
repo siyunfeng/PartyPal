@@ -2,18 +2,19 @@ const saveLikedItemsRouter = require('express').Router();
 
 const { Favorite, User } = require('../db/index');
 
+// saving venue
 saveLikedItemsRouter.post('/venue/:yelpReferenceId', async (req, res, next) => {
   try {
     const yelpReferenceId = req.params.yelpReferenceId;
     const venueInfo = req.body;
+    const { token } = req.body;
 
-    // when log in works find user by token
-    // const userToAddLikedItemTo = await User.findByToken(userToken)
+    const userToAddLikedItemTo = await User.findByToken(token);
+
     const existingFavorite = await Favorite.findOne({
       where: {
         yelp_reference_id: yelpReferenceId,
-        // hard coding to 1 until login works
-        userId: 1,
+        userId: userToAddLikedItemTo.id,
       },
     });
     if (existingFavorite) {
@@ -25,7 +26,7 @@ saveLikedItemsRouter.post('/venue/:yelpReferenceId', async (req, res, next) => {
         yelp_reference_id: yelpReferenceId,
         image_url: venueInfo.image_url[0],
         // hard coding to 1 until login works
-        userId: 1,
+        userId: userToAddLikedItemTo.id,
       });
       res.send(savedItem).status(200);
     }
@@ -34,37 +35,39 @@ saveLikedItemsRouter.post('/venue/:yelpReferenceId', async (req, res, next) => {
   }
 });
 
-saveLikedItemsRouter.post('/caterer/:yelpReferenceId', async (req, res, next) => {
-  try {
-    console.log('in caterer post route ------>')
-    const yelpReferenceId = req.params.yelpReferenceId;
-    const catererInfo = req.body;
+//saving caterer
+saveLikedItemsRouter.post(
+  '/caterer/:yelpReferenceId',
+  async (req, res, next) => {
+    try {
+      const yelpReferenceId = req.params.yelpReferenceId;
+      const catererInfo = req.body;
+      const { token } = req.body;
 
-    // when log in works find user by token
-    // const userToAddLikedItemTo = await User.findByToken(userToken)
-    const existingFavorite = await Favorite.findOne({
-      where: {
-        yelp_reference_id: yelpReferenceId,
-        // hard coding to 1 until login works
-        userId: 1,
-      },
-    });
-    if (existingFavorite) {
-      res.send('Already liked item').status(200);
-    } else {
-      const savedItem = await Favorite.create({
-        name: catererInfo.name,
-        category: catererInfo.category,
-        yelp_reference_id: yelpReferenceId,
-        image_url: catererInfo.image_url[0],
-        // hard coding to 1 until login works
-        userId: 1,
+      const userToAddLikedItemTo = await User.findByToken(token);
+
+      const existingFavorite = await Favorite.findOne({
+        where: {
+          yelp_reference_id: yelpReferenceId,
+          userId: userToAddLikedItemTo.id,
+        },
       });
-      res.send(savedItem).status(200);
+      if (existingFavorite) {
+        res.send('Already liked item').status(200);
+      } else {
+        const savedItem = await Favorite.create({
+          name: catererInfo.name,
+          category: catererInfo.category,
+          yelp_reference_id: yelpReferenceId,
+          image_url: catererInfo.image_url[0],
+          userId: userToAddLikedItemTo.id,
+        });
+        res.send(savedItem).status(200);
+      }
+    } catch (error) {
+      next(error);
     }
-  } catch (error) {
-    next(error);
   }
-});
+);
 
 module.exports = saveLikedItemsRouter;
