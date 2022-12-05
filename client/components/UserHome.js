@@ -4,13 +4,10 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { getEvents } from '../redux/events';
 import { getFavorites } from '../redux/favorites';
+import Card from 'react-bootstrap/Card';
 
 const UserHome = (props) => {
-  // NOTE: before showing login user it will display the user from the previous state
-
   let { id, username, email } = props.user;
-  // console.log('UserHome >>>> props =', props, 'user.id =', id);
-  // console.log('UserHome id =', id);
 
   useEffect(() => {
     if (id) {
@@ -66,42 +63,74 @@ const UserHome = (props) => {
           </div>
           <div className='user-home-favorite'>
             <h4>Favorite</h4>
-            <div>
+            <div className='each-favorite-venue-container'>
               <h6>Venues</h6>
               {venues?.length ? (
                 venues.map((venue, index) => {
                   return (
-                    <div className='user-favorite-venues' key={index}>
-                      <div>
-                        <img src={venue.image_url} />
-                        <p>
+                    <Card key={index} style={{ width: '18rem' }}>
+                      <Card.Img variant='top' src={venue.image_url} />
+                      <Card.Body>
+                        <Card.Title>
                           {venue.name
                             ? venue.name
                             : 'venue name is not available'}
-                        </p>
-                      </div>
-                    </div>
+                        </Card.Title>
+                        <Button variant='primary'>Delete</Button>
+                      </Card.Body>
+                    </Card>
+                    // <div className='user-favorite-venues' key={index}>
+                    //   <div className='each-favorite-venues-container'>
+                    //     <div>
+                    //       <img className='' src={venue.image_url} />
+                    //     </div>
+                    //     <div>
+                    //       <p>
+                    //         {venue.name
+                    //           ? venue.name
+                    //           : 'venue name is not available'}
+                    //       </p>
+                    //       <Button>Delete</Button>
+                    //     </div>
+                    //   </div>
+                    // </div>
                   );
                 })
               ) : (
                 <p>You did not save any venues in your favorite yet.</p>
               )}
             </div>
-            <div>
+            <div className='each-favorite-caterer-container'>
               <h6>Catering</h6>
               {caterers?.length ? (
                 caterers.map((caterer, index) => {
                   return (
-                    <div className='user-favorite-caterers' key={index}>
-                      <div>
-                        <img src={caterer.image_url} />
-                        <p>
+                    <Card key={index} style={{ width: '18rem' }}>
+                      <Card.Img variant='top' src={caterer.image_url} />
+                      <Card.Body>
+                        <Card.Title>
                           {caterer.name
                             ? caterer.name
                             : 'caterer name is not available'}
-                        </p>
-                      </div>
-                    </div>
+                        </Card.Title>
+                        <Button variant='primary'>Delete</Button>
+                      </Card.Body>
+                    </Card>
+                    // <div className='user-favorite-caterers' key={index}>
+                    //   <div className='each-favorite-caterer-container'>
+                    //     <div>
+                    //       <img src={caterer.image_url} />
+                    //     </div>
+                    //     <div>
+                    //       <p>
+                    //         {caterer.name
+                    //           ? caterer.name
+                    //           : 'caterer name is not available'}
+                    //       </p>
+                    //       <Button>Delete</Button>
+                    //     </div>
+                    //   </div>
+                    // </div>
                   );
                 })
               ) : (
