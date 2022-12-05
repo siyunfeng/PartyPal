@@ -43,9 +43,14 @@ const SingleVenue = (props) => {
     venueInfo.token = loggedInUserToken;
 
     if (loggedInUserToken) {
+      const token = window.localStorage.getItem('token')
       const saving = await axios.post(
         `/api/likedItems/venue/${idToSave}`,
-        venueInfo
+        venueInfo, {
+          headers: {
+            authorization: token
+          }
+        }
       );
     }
   };

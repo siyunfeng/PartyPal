@@ -4,7 +4,7 @@ const { requireToken, isAdmin } = require('./gateKeepingMiddleware');
 
 // GET user's events
 // NEED TO PUT IT BACK TO ROUTER requireToken
-eventsRouter.get('/:userId', async (req, res, next) => {
+eventsRouter.get('/:userId', requireToken, async (req, res, next) => {
   try {
     const { userId } = req.params;
     const userEvent = await Event.findAll({ where: { userId: userId } });
@@ -32,6 +32,7 @@ eventsRouter.put('/:eventId', async (req, res, next) => {
 });
 
 // create an event as a logged in user
+// add middleware
 eventsRouter.post('/', async (req, res, next) => {
   try {
     const newEvent = await Event.create(req.body);

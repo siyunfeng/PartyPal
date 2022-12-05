@@ -1,4 +1,5 @@
 import axios from 'axios';
+const TOKEN = 'token'
 
 const GET_EVENTS = 'GET_EVENTS';
 
@@ -8,7 +9,12 @@ export const getEvents = (userId) => {
   return async (dispatch) => {
     try {
       // console.log('redux/event.js userId =', userId);
-      const { data: events } = await axios.get(`/api/events/${userId}`);
+      const token = window.localStorage.getItem(TOKEN);
+      const { data: events } = await axios.get(`/api/events/${userId}`, {
+        headers: {
+          authorization: token
+        }
+      });
       // console.log('getEvents data =', events);
       dispatch(_getEvents(events));
     } catch (error) {

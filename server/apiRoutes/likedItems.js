@@ -1,9 +1,10 @@
 const saveLikedItemsRouter = require('express').Router();
+const {requireToken} = require('./gateKeepingMiddleware')
 
 const { Favorite, User } = require('../db/index');
 
 // saving venue
-saveLikedItemsRouter.post('/venue/:yelpReferenceId', async (req, res, next) => {
+saveLikedItemsRouter.post('/venue/:yelpReferenceId', requireToken, async (req, res, next) => {
   try {
     const yelpReferenceId = req.params.yelpReferenceId;
     const venueInfo = req.body;
@@ -25,7 +26,6 @@ saveLikedItemsRouter.post('/venue/:yelpReferenceId', async (req, res, next) => {
         category: venueInfo.category,
         yelp_reference_id: yelpReferenceId,
         image_url: venueInfo.image_url[0],
-        // hard coding to 1 until login works
         userId: userToAddLikedItemTo.id,
       });
       res.send(savedItem).status(200);
@@ -37,7 +37,7 @@ saveLikedItemsRouter.post('/venue/:yelpReferenceId', async (req, res, next) => {
 
 //saving caterer
 saveLikedItemsRouter.post(
-  '/caterer/:yelpReferenceId',
+  '/caterer/:yelpReferenceId', requireToken,
   async (req, res, next) => {
     try {
       const yelpReferenceId = req.params.yelpReferenceId;

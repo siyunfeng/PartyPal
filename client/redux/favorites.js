@@ -1,4 +1,5 @@
 import axios from 'axios';
+const TOKEN = 'token'
 
 const GET_FAVORITE_VENUES = 'GET_FAVORITE_VENUES';
 const GET_FAVORITE_CATERER = 'GET_FAVORITE_CATERER';
@@ -12,7 +13,12 @@ const _getFavoriteCaterers = (caterers) => ({
 export const getFavorites = (userId) => {
   return async (dispatch) => {
     try {
-      const { data: favorites } = await axios.get(`/api/favorites/${userId}`);
+      const token = window.localStorage.getItem(TOKEN);
+      const { data: favorites } = await axios.get(`/api/favorites/${userId}`, {
+        headers: {
+          authorization: token
+        }
+      });
       // favorites is an array with rows that match user id
       console.log('getFavorites data: favorites =', favorites);
       const favoriteVenues = favorites.filter(

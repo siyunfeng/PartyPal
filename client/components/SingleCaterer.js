@@ -42,9 +42,15 @@ const SingleCaterer = (props) => {
     cateringInfo.token = loggedInUserToken;
 
     if (loggedInUserToken) {
+      const token = window.localStorage.getItem('token');
       const saving = await axios.post(
         `/api/likedItems/caterer/${idToSave}`,
-        cateringInfo
+        cateringInfo,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
       );
     }
   };
@@ -62,9 +68,17 @@ const SingleCaterer = (props) => {
         <Card.Header>Caterer</Card.Header>
         <Card.Body>
           <Card.Title>{name}</Card.Title>
-          <Card.Img className='img' variant='top' src={photos.length ? photos : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAh8YVQhMCGhp1xDo9Pew7q0W4H1zLD-9wbA&usqp=CAU'} />
+          <Card.Img
+            className='img'
+            variant='top'
+            src={
+              photos.length
+                ? photos
+                : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAh8YVQhMCGhp1xDo9Pew7q0W4H1zLD-9wbA&usqp=CAU'
+            }
+          />
           <Card.Text>
-         <strong>Phone:</strong> {phone ? phone : 'No information available'}
+            <strong>Phone:</strong> {phone ? phone : 'No information available'}
           </Card.Text>
           <Card.Text>
             <strong>Price:</strong> {price ? price : 'No information available'}
