@@ -1,39 +1,40 @@
 # PartyPal
 
-## [Visit PartyPal Here](https://partypal.onrender.com/)
+Find a curated list of highly rated caterer and venues
+
+[Visit PartyPal Here](https://partypal.onrender.com/)
 
 ## Technologies
-
-This project was built with a Node.js backend with PostgreSQL database
-
-React and Redux were used on the frontend to make it a single-page application with seamless navigation.
 
 ---
 
 ## Features
 
-Guest can browse a curated
-
 ---
+
+- Guest can browse a curated list of caterers or venues in their selected location.
+- Guest can sign up as a user.
+- User can "like" a specific caterer or venue of choice and is able to look at their list of liked choices.
+- Users can create an event
 
 ## Getting Started
 
-Sync and seed your database by running npm run seed. Running npm run start:dev will make great things happen!
-
-start:dev will both start your server and build your client side files using webpack
-start:dev:logger is the same as start:dev, but you will see your SQL queries (can be helpful for debugging)
-start:dev:seed will start your server and also seed your database (this is useful when you are making schema changes and you don't want to run your seed script separately)
-
 ---
+
+Sync and seed the database by running npm run seed. Running `npm run start:dev`
 
 ## Future features
 
-Guest can browse a curated
-
 ---
+
+- Integrate Google maps and pin results with each search
+- Integrate Google sign-in
+-
 
 ## Team
 
-Irais Valenzuela
-Jane Yeh
-Siyun Feng
+---
+
+- Irais Valenzuela
+- Jane Yeh
+- Siyun Feng
