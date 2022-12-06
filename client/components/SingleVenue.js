@@ -12,6 +12,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 
 const SingleVenue = (props) => {
   const business = props?.venue?.data?.business;
+  console.log(business)
   const [solidGreen, setSolidGreen] = useState(false);
   const [liked, setLiked] = useState(false);
 

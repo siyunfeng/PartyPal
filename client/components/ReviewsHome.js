@@ -1,6 +1,6 @@
 import React from 'react';
 import Alert from 'react-bootstrap/Alert';
-// import StarRating from './StarRating';
+
 
 function ReviewsHome() {
   const reviews = [
@@ -23,7 +23,7 @@ function ReviewsHome() {
     },
     {
       id: 4,
-      name: 'Alan Cheng',
+      name: 'Ashin Chen',
       review:
         "Planned my son's graduation party using the app. Would recommend it!",
     },
@@ -36,7 +36,6 @@ function ReviewsHome() {
           <Alert key={review.id} variant='info'>
             <Alert.Heading>{review.name}</Alert.Heading>
             <p>{review.review}</p>
-            {/* <StarRating /> */}
             <hr />
 
           </Alert>
