@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { authenticate } from '../redux/auth';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
-/**
- * COMPONENT
- */
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}));
 
 export const AuthForm = (props) => {
+  const classes = useStyles();
+
   window.localStorage.removeItem('price');
   window.localStorage.removeItem('term');
 
@@ -17,21 +27,29 @@ export const AuthForm = (props) => {
     return (
       <div>
         <h2>Account Login</h2>
-        <form onSubmit={handleLogin} name={name}>
+        <form
+          className={classes.root}
+          noValidate
+          autoComplete='off'
+          onSubmit={handleLogin}
+          name={name}
+        >
+          <TextField
+            htmlFor='username'
+            name='username'
+            label='Username'
+            variant='outlined'
+          />
+          <TextField
+            htmlFor='password'
+            name='password'
+            label='Password'
+            variant='outlined'
+          />
           <div>
-            <label htmlFor="username">
-              <small>Username</small>
-            </label>
-            <input name="username" type="text" />
-          </div>
-          <div>
-            <label htmlFor="password">
-              <small>Password</small>
-            </label>
-            <input name="password" type="password" />
-          </div>
-          <div>
-            <button type="submit">{displayName}</button>
+            <Button variant='contained' type='submit' color='primary'>
+              {displayName}
+            </Button>
           </div>
           {error && error.response && <div> {error.response.data} </div>}
         </form>
@@ -44,39 +62,49 @@ export const AuthForm = (props) => {
     return (
       <div>
         <h2>Create Account</h2>
-        <form onSubmit={handleSignup} name={name}>
+        <form
+          className={classes.root}
+          noValidate
+          autoComplete='off'
+          onSubmit={handleSignup}
+          name={name}
+        >
+          <TextField
+            htmlFor='username'
+            name='username'
+            label='Username'
+            variant='outlined'
+          />
+
+          <TextField
+            htmlFor='password'
+            name='password'
+            label='Password'
+            variant='outlined'
+          />
+
+          <TextField
+            htmlFor='firstName'
+            name='firstName'
+            label='First Name'
+            variant='outlined'
+          />
+          <TextField
+            htmlFor='lastName'
+            name='lastName'
+            label='Last Name'
+            variant='outlined'
+          />
+          <TextField
+            htmlFor='email'
+            name='email'
+            label='Email'
+            variant='outlined'
+          />
           <div>
-            <label htmlFor="username">
-              <small>Username</small>
-            </label>
-            <input name="username" type="text" />
-          </div>
-          <div>
-            <label htmlFor="password">
-              <small>Password</small>
-            </label>
-            <input name="password" type="password" />
-          </div>
-          <div>
-            <label htmlFor="firstName">
-              <small>First Name</small>
-            </label>
-            <input name="firstName" type="text" />
-          </div>
-          <div>
-            <label htmlFor="lastName">
-              <small>Last Name</small>
-            </label>
-            <input name="lastName" type="text" />
-          </div>
-          <div>
-            <label htmlFor="email">
-              <small>Email</small>
-            </label>
-            <input name="email" type="email" />
-          </div>
-          <div>
-            <button type="submit">{displayName}</button>
+            <Button variant='contained' type='submit' color='primary'>
+              {displayName}
+            </Button>
           </div>
           {error && error.response && <div> {error.response.data} </div>}
         </form>
