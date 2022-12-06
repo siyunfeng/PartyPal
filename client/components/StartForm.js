@@ -21,11 +21,20 @@ const StartForm = ({ getRecommendations }) => {
   window.localStorage.removeItem('term');
   return (
     <div>
-      <div className='start-form'>
+      <div
+        className='start-form'
+        style={{ width: '350px', textAlign: 'center' }}
+      >
         <div>
           <h3>What can we help you find?</h3>
         </div>
-        <form onSubmit={getRecommendations} name='start-form'>
+        <form
+          className={classes.root}
+          noValidate
+          autoComplete='off'
+          onSubmit={getRecommendations}
+          name='start-form'
+        >
           <div>
             <label htmlFor='serviceOptions'>
               Step 1. What service you need
@@ -40,12 +49,13 @@ const StartForm = ({ getRecommendations }) => {
               Step 2. Where will your party be held?
             </label>
           </div>
-          <input
-            type='text'
-            id='location'
+          <TextField
+            htmlFor='location'
             name='location'
-            placeholder='Enter location or zipcode'
+            label='Location or Zip-Code'
+            variant='outlined'
           />
+
           <div>
             <Button variant='contained' type='submit' color='primary'>
               Get Recommendations
