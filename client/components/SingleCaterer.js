@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchSingleCaterer } from '../redux/singleCaterer';
@@ -12,6 +12,8 @@ import Tooltip from 'react-bootstrap/Tooltip';
 
 const SingleCaterer = (props) => {
   const business = props?.caterer?.business;
+  const [solidGreen, setSolidGreen] = useState(false);
+  const [liked, setLiked] = useState(false);
 
   useEffect(() => {
     const yelpId = props.match.params;
@@ -56,7 +58,7 @@ const SingleCaterer = (props) => {
   };
 
   const renderTooltip = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
+    <Tooltip id='button-tooltip' {...props}>
       Like to save to user dashboard
     </Tooltip>
   );
@@ -81,13 +83,13 @@ const SingleCaterer = (props) => {
   return (
     <div>
       <h1>{name}</h1>
-      <Card className="text-center">
+      <Card className='text-center'>
         <Card.Header>Caterer</Card.Header>
         <Card.Body>
           <Card.Title>{name}</Card.Title>
           <Card.Img
-            className="img"
-            variant="top"
+            className='img'
+            variant='top'
             src={
               photos.length
                 ? photos
@@ -128,12 +130,12 @@ const SingleCaterer = (props) => {
           </Card.Text>
           {window.localStorage.getItem('token') ? (
             <OverlayTrigger
-              placement="top"
+              placement='top'
               delay={{ show: 250, hide: 400 }}
               overlay={renderTooltip}
             >
               <Button
-                variant="outline-success"
+                variant={solidGreen ? 'success' : 'outline-success'}
                 name={business.id}
                 onClick={(e) => {
                   const cateringInfo = {
@@ -141,10 +143,12 @@ const SingleCaterer = (props) => {
                     category: 'caterer',
                     image_url: photos,
                   };
+                  setSolidGreen(true);
+                  setLiked(true);
                   saveLikedItem(e, cateringInfo);
                 }}
               >
-                Like
+                {liked ? 'Liked' : 'Like'}
               </Button>
             </OverlayTrigger>
           ) : (
@@ -156,8 +160,8 @@ const SingleCaterer = (props) => {
               urlVisted={urlVisiting}
             />
           )}
-          <Link to="/allCaterers">
-            <Button variant="primary">Go Back</Button>
+          <Link to='/allCaterers'>
+            <Button variant='primary'>Go Back</Button>
           </Link>
         </Card.Body>
       </Card>

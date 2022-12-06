@@ -8,7 +8,7 @@ const Navbar = ({ handleLogout, isLoggedIn }) => {
   return (
     <nav>
       <Link to='/' style={{ textDecoration: 'none' }}>
-        <h1>Party Pal 🎉 </h1>
+        <h1>PartyPal 🎉 </h1>
       </Link>
       {isLoggedIn ? (
         <ul style={{ listStyle: 'none', textDecoration: 'none' }}>

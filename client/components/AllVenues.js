@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { default as Select } from 'react-select';
 import FlexBoxForAllView from './Styled-Components/FlexBoxForAllView.styled';
+import FlexBoxForSearchResults from './Styled-Components/FlexBoxForSearchResults.styled';
 
 export const AllVenues = (props) => {
   const [price, setPrice] = useState(() => {
@@ -52,9 +53,10 @@ export const AllVenues = (props) => {
 
   return (
     <div>
-      <FlexBoxForAllView>
+      <FlexBoxForSearchResults>
         <h1>Venue search results for {props.startForm.location}: </h1>
         <p>{allVenues.length} venues found</p>
+
         <form style={{ width: '100px' }} onSubmit={handlePriceSelect(price)}>
           <Select
             defaultValue={priceOptions[4]}
@@ -69,7 +71,10 @@ export const AllVenues = (props) => {
           />
         </form>
         <br></br>
+         </FlexBoxForSearchResults>
         <br></br>
+         <br></br>
+               <FlexBoxForAllView>
         {isLoaded ? (
           allVenues.map((venue) => {
             return (
@@ -103,6 +108,7 @@ export const AllVenues = (props) => {
         ) : (
           <p>Loading</p>
         )}
+
       </FlexBoxForAllView>
     </div>
   );
