@@ -3,36 +3,49 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { getEvents } from '../redux/events';
-import { getFavorites } from '../redux/favorites';
+import {
+  deleteCatererLikedItem,
+  deleteVenueLikedItem,
+  getFavorites,
+} from '../redux/favorites';
 import Card from 'react-bootstrap/Card';
 import { fetchSingleCaterer } from '../redux/singleCaterer';
 import { getSingleVenueThunk } from '../redux/singleVenue';
 
 const UserHome = (props) => {
   let { id, username, email } = props.user;
-
-  useEffect(() => {
-    if (id) {
-      // console.log('UserHome useEffect id =', id);
-      props.getEvents(id);
-      props.getFavorites(id);
-    }
-  }, [id]);
-
   let {
     events,
     favorites: { venues, caterers },
+    getEvents,
+    getFavorites,
+    fetchSingleCaterer,
+    getSingleVenueThunk,
+    deleteCatererLikedItem,
+    deleteVenueLikedItem,
   } = props;
+
+  useEffect(() => {
+    if (id) {
+      getEvents(id);
+      getFavorites(id);
+    }
+  }, [id]);
 
   const handleCatererClick = (e) => {
     const yelpId = e.target.name;
-    props.fetchSingleCaterer(yelpId);
+    fetchSingleCaterer(yelpId);
   };
 
   const handleVenueClick = (e) => {
     const yelpId = e.target.name;
-    props.getSingleVenueThunk(yelpId);
+    getSingleVenueThunk(yelpId);
   };
+
+  const handleDeleteCaterer = (favoriteId) =>
+    deleteCatererLikedItem(favoriteId);
+
+  const handleDeleteVenue = (favoriteId) => deleteVenueLikedItem(favoriteId);
 
   return (
     <>
@@ -100,24 +113,14 @@ const UserHome = (props) => {
                               : 'venue name is not available'}
                           </Card.Title>
                         </Link>
-                        <Button variant='primary'>Delete</Button>
+                        <Button
+                          onClick={() => handleDeleteVenue(venue.id)}
+                          variant='primary'
+                        >
+                          Delete
+                        </Button>
                       </Card.Body>
                     </Card>
-                    // <div className='user-favorite-venues' key={index}>
-                    //   <div className='each-favorite-venues-container'>
-                    //     <div>
-                    //       <img className='' src={venue.image_url} />
-                    //     </div>
-                    //     <div>
-                    //       <p>
-                    //         {venue.name
-                    //           ? venue.name
-                    //           : 'venue name is not available'}
-                    //       </p>
-                    //       <Button>Delete</Button>
-                    //     </div>
-                    //   </div>
-                    // </div>
                   );
                 })
               ) : (
@@ -149,24 +152,14 @@ const UserHome = (props) => {
                               : 'caterer name is not available'}
                           </Card.Title>
                         </Link>
-                        <Button variant='primary'>Delete</Button>
+                        <Button
+                          onClick={() => handleDeleteCaterer(caterer.id)}
+                          variant='primary'
+                        >
+                          Delete
+                        </Button>
                       </Card.Body>
                     </Card>
-                    // <div className='user-favorite-caterers' key={index}>
-                    //   <div className='each-favorite-caterer-container'>
-                    //     <div>
-                    //       <img src={caterer.image_url} />
-                    //     </div>
-                    //     <div>
-                    //       <p>
-                    //         {caterer.name
-                    //           ? caterer.name
-                    //           : 'caterer name is not available'}
-                    //       </p>
-                    //       <Button>Delete</Button>
-                    //     </div>
-                    //   </div>
-                    // </div>
                   );
                 })
               ) : (
@@ -185,7 +178,6 @@ const UserHome = (props) => {
 };
 
 const mapState = (state) => {
-  console.log('UserHome >>>> state', state);
   return {
     user: state.auth,
     events: state.events,
@@ -199,6 +191,10 @@ const mapDispatch = (dispatch) => {
     getFavorites: (userId) => dispatch(getFavorites(userId)),
     fetchSingleCaterer: (yelpId) => dispatch(fetchSingleCaterer(yelpId)),
     getSingleVenueThunk: (yelpId) => dispatch(getSingleVenueThunk(yelpId)),
+    deleteVenueLikedItem: (favoriteId) =>
+      dispatch(deleteVenueLikedItem(favoriteId)),
+    deleteCatererLikedItem: (favoriteId) =>
+      dispatch(deleteCatererLikedItem(favoriteId)),
   };
 };
 

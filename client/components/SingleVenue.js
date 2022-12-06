@@ -43,20 +43,21 @@ const SingleVenue = (props) => {
     venueInfo.token = loggedInUserToken;
 
     if (loggedInUserToken) {
-      const token = window.localStorage.getItem('token')
+      const token = window.localStorage.getItem('token');
       const saving = await axios.post(
-        `/api/likedItems/venue/${idToSave}`,
-        venueInfo, {
+        `/api/favorites/venue/${idToSave}`,
+        venueInfo,
+        {
           headers: {
-            authorization: token
-          }
+            authorization: token,
+          },
         }
       );
     }
   };
 
   const renderTooltip = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
+    <Tooltip id='button-tooltip' {...props}>
       Like to save to user dashboard
     </Tooltip>
   );
@@ -81,13 +82,13 @@ const SingleVenue = (props) => {
   return (
     <div>
       <h1>{name ? name : ''}</h1>
-      <Card className="text-center">
+      <Card className='text-center'>
         <Card.Header>Venue</Card.Header>
         <Card.Body>
           <Card.Title>{name ? name : 'No information available'}</Card.Title>
           <Card.Img
-            className="img"
-            variant="top"
+            className='img'
+            variant='top'
             src={
               photos.length
                 ? photos
@@ -131,12 +132,12 @@ const SingleVenue = (props) => {
           </Card.Text>
           {window.localStorage.getItem('token') ? (
             <OverlayTrigger
-              placement="top"
+              placement='top'
               delay={{ show: 250, hide: 400 }}
               overlay={renderTooltip}
             >
               <Button
-                variant="outline-success"
+                variant='outline-success'
                 name={business.id}
                 onClick={(e) => {
                   const venueInfo = {
@@ -159,8 +160,8 @@ const SingleVenue = (props) => {
               urlVisted={urlVisiting}
             />
           )}
-          <Link to="/allVenues">
-            <Button variant="outline-primary">Go Back</Button>
+          <Link to='/allVenues'>
+            <Button variant='outline-primary'>Go Back</Button>
           </Link>
         </Card.Body>
         {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}
