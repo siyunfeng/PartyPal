@@ -95,43 +95,51 @@ favoritesRouter.post(
   }
 );
 
-// delete liked venue
-favoritesRouter.delete('/deleteVenue/:favoriteId', async (req, res, next) => {
-  try {
-    const { favoriteId } = req.params;
-    const token = req.headers.authorization;
-    const userToDeleteItemFrom = await User.findByToken(token);
-    const itemDeleted = await Favorite.findOne({
-      where: {
-        id: favoriteId,
-        userId: userToDeleteItemFrom.id,
-      },
-    });
-    await itemDeleted.destroy();
-    res.send(itemDeleted).status(200);
-  } catch (error) {
-    next(error);
+// DELETE /api/favorites/deleteVenue/:favoriteId (delete venue from favorite)
+favoritesRouter.delete(
+  '/deleteVenue/:favoriteId',
+  requireToken,
+  async (req, res, next) => {
+    try {
+      const { favoriteId } = req.params;
+      const token = req.headers.authorization;
+      const userToDeleteItemFrom = await User.findByToken(token);
+      const itemDeleted = await Favorite.findOne({
+        where: {
+          id: favoriteId,
+          userId: userToDeleteItemFrom.id,
+        },
+      });
+      await itemDeleted.destroy();
+      res.send(itemDeleted).status(200);
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
-// delete caterer
-favoritesRouter.delete('/deleteCaterer/:favoriteId', async (req, res, next) => {
-  try {
-    const { favoriteId } = req.params;
-    const token = req.headers.authorization;
+// DELETE /api/favorites/deleteCaterer/:favoriteId (delete caterer from favorite)
+favoritesRouter.delete(
+  '/deleteCaterer/:favoriteId',
+  requireToken,
+  async (req, res, next) => {
+    try {
+      const { favoriteId } = req.params;
+      const token = req.headers.authorization;
 
-    const userToDeleteItemFrom = await User.findByToken(token);
-    const itemDeleted = await Favorite.findOne({
-      where: {
-        id: favoriteId,
-        userId: userToDeleteItemFrom.id,
-      },
-    });
-    await itemDeleted.destroy();
-    res.send(itemDeleted).status(200);
-  } catch (error) {
-    next(error);
+      const userToDeleteItemFrom = await User.findByToken(token);
+      const itemDeleted = await Favorite.findOne({
+        where: {
+          id: favoriteId,
+          userId: userToDeleteItemFrom.id,
+        },
+      });
+      await itemDeleted.destroy();
+      res.send(itemDeleted).status(200);
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 module.exports = favoritesRouter;

@@ -104,13 +104,11 @@ const favorites = (state = {}, action) => {
       const newVenues = state.venues.filter(
         (venue) => venue.id !== action.venue.id
       );
-      console.log('DELETE_LIKED_VENUE_ITEM newVenues =', newVenues);
       return { ...state, venues: newVenues };
     case DELETE_LIKED_CATERER_ITEM:
       const newCaterers = state.caterers.filter(
         (caterer) => caterer.id !== action.caterer.id
       );
-      console.log('DELETE_LIKED_CATERER_ITEM newCaterers =', newCaterers);
       return { ...state, caterers: newCaterers };
     default:
       return state;
