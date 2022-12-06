@@ -8,8 +8,9 @@ const Navbar = ({ handleLogout, isLoggedIn }) => {
   return (
     <nav>
       <Link to='/' style={{ textDecoration: 'none' }}>
-        <h1>Party Pal 🎉 </h1>
+        <img style={{ width: '8rem' }} src='/images/logo-PartyPal.png' />
       </Link>
+      <br></br>
       {isLoggedIn ? (
         <ul style={{ listStyle: 'none', textDecoration: 'none' }}>
           {/* The navbar will show these links after you log in */}

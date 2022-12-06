@@ -6,6 +6,8 @@ import { fetchSingleCaterer } from '../redux/singleCaterer';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { default as Select } from 'react-select';
+import FlexBoxForSearchResults from './Styled-Components/FlexBoxForSearchResults.styled';
+import FlexBoxForAllView from './Styled-Components/FlexBoxForAllView.styled';
 
 function AllCaterers(props) {
   const [price, setPrice] = useState(() => {
@@ -16,15 +18,24 @@ function AllCaterers(props) {
     const termValue = window.localStorage.getItem('term');
     return termValue !== null ? JSON.parse(termValue) : '';
   });
+  const [isLoaded, setIsLoaded] = useState(false);
 
   window.localStorage.removeItem('pathVisiting');
 
   useEffect(() => {
     const { location } = props.startForm;
+    const fetchData = async () => {
+      await props.fetchAllCaterers({ location, term, price });
+    };
+    fetchData();
+    setTimeout(() => setIsLoaded(true), 3000);
     window.localStorage.setItem('price', JSON.stringify(price));
     window.localStorage.setItem('term', JSON.stringify(term));
-    return props.fetchAllCaterers({ location, term, price });
   }, [price, term]);
+
+  let allCaterers = props.caterers.filter((caterer) => {
+    return caterer.is_claimed === true && caterer.rating >= 3.5;
+  });
 
   const handleClick = (e) => {
     const yelpId = e.target.name;
@@ -66,52 +77,47 @@ function AllCaterers(props) {
     { value: 'all', label: 'All' },
   ];
 
-  // window.localStorage.setItem('userSelectedFilter', priceToSend);
-
-  let allCaterers = props.caterers.filter((caterer) => {
-    return caterer.is_claimed === true && caterer.rating >= 3.5;
-  });
-
   return (
     <>
-      <form
-        style={{ width: '150px' }}
-        onSubmit={handlePriceSelect(priceOptions)}
-      >
-        <Select
-          defaultValue={priceOptions[4]}
-          // isMulti
-          name="price"
-          options={priceOptions}
-          className="basic-multi-select"
-          classNamePrefix="select"
-          onChange={handlePriceSelect}
-        />
-      </form>
-      <div>
+      <FlexBoxForSearchResults>
+        <h1>Caterer search results for {props.startForm.location}: </h1>
+        <p>{allCaterers.length} caterers found</p>
         <form
           style={{ width: '150px' }}
-          onSubmit={handleCuisineSelect(cuisineOptions)}
+          onSubmit={handlePriceSelect(priceOptions)}
         >
           <Select
-            defaultValue={cuisineOptions[4]}
+            defaultValue={priceOptions[4]}
             // isMulti
-            name="cuisine"
+            name='price'
+            options={priceOptions}
+            className='basic-multi-select'
+            classNamePrefix='select'
+            onChange={handlePriceSelect}
+          />
+          </form>
+          <form
+          style={{ width: '150px' }}
+          onSubmit={handleCuisineSelect(cuisineOptions)}>
+          <Select
+               name='cuisine'
             options={cuisineOptions}
-            className="basic-multi-select"
-            classNamePrefix="select"
+            className='basic-multi-select'
+            classNamePrefix='select'
             onChange={handleCuisineSelect}
           />
         </form>
-      </div>
-      <h1>Caterer search results for {props.startForm.location}: </h1>
-      <p>Results length: {allCaterers.length}</p>
-      {allCaterers?.length ? (
+             <br></br>
+           </FlexBoxForSearchResults>
+      <br></br>
+      <br></br>
+      <FlexBoxForAllView>
+      {isLoaded ? (
         allCaterers.map((caterer) => {
           return (
             <div key={caterer.id}>
-              <Card className="mb-4" style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={caterer.photos[0]} />
+              <Card className='mb-4' style={{ width: '18rem' }}>
+                <Card.Img variant='top' src={caterer.photos[0]} />
                 <Card.Body>
                   <Card.Title>{caterer.name}</Card.Title>
                   <Card.Text>
@@ -120,7 +126,7 @@ function AllCaterers(props) {
                   <Card.Text>Overall Rating: {caterer.rating}</Card.Text>
                   <Link to={`/singleCaterer/${caterer.id}`}>
                     <Button
-                      variant="primary"
+                      variant='primary'
                       name={caterer.id}
                       onClick={(e) => {
                         handleClick(e);
@@ -135,8 +141,9 @@ function AllCaterers(props) {
           );
         })
       ) : (
-        <p>no result</p>
+        <p>Loading</p>
       )}
+       </FlexBoxForAllView>
     </>
   );
 }
@@ -147,7 +154,7 @@ const mapState = (state) => ({
   startForm: state.startFormReducer,
 });
 
-const mapDispatch = (dispatch, {history}) => {
+const mapDispatch = (dispatch, { history }) => {
   return {
     fetchAllCaterers: ({ location, term, price }) => {
       dispatch(fetchAllCaterers({ location, term, price }, history));

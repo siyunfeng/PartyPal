@@ -1,86 +1,200 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { authenticate } from '../redux/auth';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
-/**
- * COMPONENT
- */
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+
 
 export const AuthForm = (props) => {
+  const classes = useStyles();
   window.localStorage.removeItem('price');
   window.localStorage.removeItem('term');
 
   const { displayName } = props;
-
   if (displayName === 'Login') {
     const { name, handleLogin, error } = props;
+
     return (
-      <div>
-        <h2>Account Login</h2>
-        <form onSubmit={handleLogin} name={name}>
-          <div>
-            <label htmlFor="username">
-              <small>Username</small>
-            </label>
-            <input name="username" type="text" />
-          </div>
-          <div>
-            <label htmlFor="password">
-              <small>Password</small>
-            </label>
-            <input name="password" type="password" />
-          </div>
-          <div>
-            <button type="submit">{displayName}</button>
-          </div>
-          {error && error.response && <div> {error.response.data} </div>}
-        </form>
-      </div>
+      <Container component='main' maxWidth='xs'>
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component='h1' variant='h5'>
+            Account Log In
+          </Typography>
+          <form
+            className={classes.form}
+            noValidate
+            onSubmit={handleLogin}
+            name={name}
+          >
+            <TextField
+              variant='outlined'
+              margin='normal'
+              required
+              fullWidth
+              id='email'
+              // htmlFor="username"
+              label='Username'
+              name='username'
+              autoComplete='username'
+              autoFocus
+            />
+            <TextField
+              variant='outlined'
+              margin='normal'
+              required
+              fullWidth
+              name='password'
+              label='Password'
+              type='password'
+              id='password'
+              autoComplete='current-password'
+            />
+            <Button
+              type='submit'
+              fullWidth
+              variant='contained'
+              color='primary'
+              className={classes.submit}
+            >
+              {displayName}
+            </Button>
+            {error && error.response && <div> {error.response.data} </div>}
+          </form>
+        </div>
+        <Box mt={8}>
+        </Box>
+      </Container>
     );
   }
   if (displayName === 'Sign Up') {
+    const classes = useStyles();
     const { name, handleSignup, error } = props;
-
     return (
-      <div>
-        <h2>Create Account</h2>
-        <form onSubmit={handleSignup} name={name}>
-          <div>
-            <label htmlFor="username">
-              <small>Username</small>
-            </label>
-            <input name="username" type="text" />
-          </div>
-          <div>
-            <label htmlFor="password">
-              <small>Password</small>
-            </label>
-            <input name="password" type="password" />
-          </div>
-          <div>
-            <label htmlFor="firstName">
-              <small>First Name</small>
-            </label>
-            <input name="firstName" type="text" />
-          </div>
-          <div>
-            <label htmlFor="lastName">
-              <small>Last Name</small>
-            </label>
-            <input name="lastName" type="text" />
-          </div>
-          <div>
-            <label htmlFor="email">
-              <small>Email</small>
-            </label>
-            <input name="email" type="email" />
-          </div>
-          <div>
-            <button type="submit">{displayName}</button>
-          </div>
-          {error && error.response && <div> {error.response.data} </div>}
-        </form>
-      </div>
+      <Container component='main' maxWidth='xs'>
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component='h1' variant='h5'>
+            Create Account
+          </Typography>
+          <form
+            className={classes.form}
+            noValidate
+            onSubmit={handleSignup}
+            name={name}
+          >
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete='fname'
+                  name='firstName'
+                  variant='outlined'
+                  required
+                  fullWidth
+                  id='firstName'
+                  label='First Name'
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant='outlined'
+                  required
+                  fullWidth
+                  id='lastName'
+                  label='Last Name'
+                  name='lastName'
+                  autoComplete='lname'
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant='outlined'
+                  required
+                  fullWidth
+                  id='username'
+                  label='Username'
+                  name='username'
+                  autoComplete='email'
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant='outlined'
+                  required
+                  fullWidth
+                  id='email'
+                  label='Email Address'
+                  name='email'
+                  autoComplete='email'
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant='outlined'
+                  required
+                  fullWidth
+                  name='password'
+                  label='Password'
+                  type='password'
+                  id='password'
+                  autoComplete='current-password'
+                />
+              </Grid>
+            </Grid>
+
+            <Button
+              type='submit'
+              fullWidth
+              variant='contained'
+              color='primary'
+              className={classes.submit}
+            >
+              {displayName}
+            </Button>
+            {error && error.response && <div> {error.response.data} </div>}
+          </form>
+        </div>
+        <Box mt={5}>
+        </Box>
+      </Container>
     );
   }
 };
@@ -149,3 +263,4 @@ const mapDispatchSignup = (dispatch, { history }) => {
 
 export const Login = connect(mapStateLogin, mapDispatchLogin)(AuthForm);
 export const Signup = connect(mapStateSignup, mapDispatchSignup)(AuthForm);
+

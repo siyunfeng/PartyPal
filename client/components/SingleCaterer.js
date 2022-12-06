@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchSingleCaterer } from '../redux/singleCaterer';
@@ -12,6 +12,8 @@ import Tooltip from 'react-bootstrap/Tooltip';
 
 const SingleCaterer = (props) => {
   const business = props?.caterer?.business;
+  const [solidGreen, setSolidGreen] = useState(false);
+  const [liked, setLiked] = useState(false);
 
   useEffect(() => {
     const yelpId = props.match.params;
@@ -133,7 +135,7 @@ const SingleCaterer = (props) => {
               overlay={renderTooltip}
             >
               <Button
-                variant='outline-success'
+                variant={solidGreen ? 'success' : 'outline-success'}
                 name={business.id}
                 onClick={(e) => {
                   const cateringInfo = {
@@ -141,10 +143,12 @@ const SingleCaterer = (props) => {
                     category: 'caterer',
                     image_url: photos,
                   };
+                  setSolidGreen(true);
+                  setLiked(true);
                   saveLikedItem(e, cateringInfo);
                 }}
               >
-                Like
+                {liked ? 'Liked' : 'Like'}
               </Button>
             </OverlayTrigger>
           ) : (
