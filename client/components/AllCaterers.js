@@ -113,37 +113,33 @@ function AllCaterers(props) {
       <h1>Caterer search results for {props.startForm.location}: </h1>
       <p>{allCaterers.length} caterers found</p>
       {isLoaded ? (
-        allCaterers?.length ? (
-          allCaterers.map((caterer) => {
-            return (
-              <div key={caterer.id}>
-                <Card className='mb-4' style={{ width: '18rem' }}>
-                  <Card.Img variant='top' src={caterer.photos[0]} />
-                  <Card.Body>
-                    <Card.Title>{caterer.name}</Card.Title>
-                    <Card.Text>
-                      {caterer.price ? caterer.price : 'No price available'}
-                    </Card.Text>
-                    <Card.Text>Overall Rating: {caterer.rating}</Card.Text>
-                    <Link to={`/singleCaterer/${caterer.id}`}>
-                      <Button
-                        variant='primary'
-                        name={caterer.id}
-                        onClick={(e) => {
-                          handleClick(e);
-                        }}
-                      >
-                        See More
-                      </Button>
-                    </Link>
-                  </Card.Body>
-                </Card>
-              </div>
-            );
-          })
-        ) : (
-          <p>no result</p>
-        )
+        allCaterers.map((caterer) => {
+          return (
+            <div key={caterer.id}>
+              <Card className='mb-4' style={{ width: '18rem' }}>
+                <Card.Img variant='top' src={caterer.photos[0]} />
+                <Card.Body>
+                  <Card.Title>{caterer.name}</Card.Title>
+                  <Card.Text>
+                    {caterer.price ? caterer.price : 'No price available'}
+                  </Card.Text>
+                  <Card.Text>Overall Rating: {caterer.rating}</Card.Text>
+                  <Link to={`/singleCaterer/${caterer.id}`}>
+                    <Button
+                      variant='primary'
+                      name={caterer.id}
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    >
+                      See More
+                    </Button>
+                  </Link>
+                </Card.Body>
+              </Card>
+            </div>
+          );
+        })
       ) : (
         <p>loading</p>
       )}
