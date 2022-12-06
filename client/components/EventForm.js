@@ -20,7 +20,7 @@ const EventForm = () => {
         </Form.Group>
         <Form.Group as={Col} className='my-3' controlId='formEventTime'>
           <Form.Label>Time</Form.Label>
-          <Form.Control type='time' timeFormat='hh:mm A' />
+          <Form.Control type='time' />
         </Form.Group>
       </Row>
       <Form.Group controlId='formEventVenue'>
