@@ -1,8 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { sendInitialQuery } from '../redux/startForm';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}));
 
 const StartForm = ({ getRecommendations }) => {
+  const classes = useStyles();
+
   window.localStorage.removeItem('price');
   window.localStorage.removeItem('term');
   return (
@@ -33,7 +47,9 @@ const StartForm = ({ getRecommendations }) => {
             placeholder='Enter location or zipcode'
           />
           <div>
-            <button type='submit'>Get Recommendations</button>
+            <Button variant='contained' type='submit' color='primary'>
+              Get Recommendations
+            </Button>
           </div>
         </form>
       </div>
