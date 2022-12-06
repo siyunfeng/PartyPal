@@ -18,15 +18,24 @@ function AllCaterers(props) {
     const termValue = window.localStorage.getItem('term');
     return termValue !== null ? JSON.parse(termValue) : '';
   });
+  const [isLoaded, setIsLoaded] = useState(false);
 
   window.localStorage.removeItem('pathVisiting');
 
   useEffect(() => {
     const { location } = props.startForm;
+    const fetchData = async () => {
+      await props.fetchAllCaterers({ location, term, price });
+    };
+    fetchData();
+    setTimeout(() => setIsLoaded(true), 3000);
     window.localStorage.setItem('price', JSON.stringify(price));
     window.localStorage.setItem('term', JSON.stringify(term));
-    return props.fetchAllCaterers({ location, term, price });
   }, [price, term]);
+
+  let allCaterers = props.caterers.filter((caterer) => {
+    return caterer.is_claimed === true && caterer.rating >= 3.5;
+  });
 
   const handleClick = (e) => {
     const yelpId = e.target.name;
@@ -68,12 +77,6 @@ function AllCaterers(props) {
     { value: 'all', label: 'All' },
   ];
 
-  // window.localStorage.setItem('userSelectedFilter', priceToSend);
-
-  let allCaterers = props.caterers.filter((caterer) => {
-    return caterer.is_claimed === true && caterer.rating >= 3.5;
-  });
-
   return (
     <>
       <FlexBoxForSearchResults>
@@ -92,48 +95,55 @@ function AllCaterers(props) {
             classNamePrefix='select'
             onChange={handlePriceSelect}
           />
+          </form>
+          <form
+          style={{ width: '150px' }}
+          onSubmit={handleCuisineSelect(cuisineOptions)}>
+          <Select
+               name='cuisine'
+            options={cuisineOptions}
+            className='basic-multi-select'
+            classNamePrefix='select'
+            onChange={handleCuisineSelect}
+          />
         </form>
-        <br></br>
-      </FlexBoxForSearchResults>
+             <br></br>
+           </FlexBoxForSearchResults>
       <br></br>
       <br></br>
       <FlexBoxForAllView>
-        {allCaterers?.length ? (
-          allCaterers.map((caterer) => {
-            return (
-              <div key={caterer.id}>
-                <Card className='mb-4' style={{ width: '25rem' }}>
-                  <Card.Img
-                    className='allViews'
-                    variant='top'
-                    src={caterer.photos[0]}
-                  />
-                  <Card.Body>
-                    <Card.Title>{caterer.name}</Card.Title>
-                    <Card.Text>
-                      {caterer.price ? caterer.price : 'No price available'}
-                    </Card.Text>
-                    <Card.Text>Overall Rating: {caterer.rating}</Card.Text>
-                    <Link to={`/singleCaterer/${caterer.id}`}>
-                      <Button
-                        variant='primary'
-                        name={caterer.id}
-                        onClick={(e) => {
-                          handleClick(e);
-                        }}
-                      >
-                        See More
-                      </Button>
-                    </Link>
-                  </Card.Body>
-                </Card>
-              </div>
-            );
-          })
-        ) : (
-          <p>no result</p>
-        )}
-      </FlexBoxForAllView>
+      {isLoaded ? (
+        allCaterers.map((caterer) => {
+          return (
+            <div key={caterer.id}>
+              <Card className='mb-4' style={{ width: '18rem' }}>
+                <Card.Img variant='top' src={caterer.photos[0]} />
+                <Card.Body>
+                  <Card.Title>{caterer.name}</Card.Title>
+                  <Card.Text>
+                    {caterer.price ? caterer.price : 'No price available'}
+                  </Card.Text>
+                  <Card.Text>Overall Rating: {caterer.rating}</Card.Text>
+                  <Link to={`/singleCaterer/${caterer.id}`}>
+                    <Button
+                      variant='primary'
+                      name={caterer.id}
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    >
+                      See More
+                    </Button>
+                  </Link>
+                </Card.Body>
+              </Card>
+            </div>
+          );
+        })
+      ) : (
+        <p>Loading</p>
+      )}
+       </FlexBoxForAllView>
     </>
   );
 }

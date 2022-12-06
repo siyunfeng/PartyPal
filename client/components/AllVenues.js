@@ -15,13 +15,18 @@ export const AllVenues = (props) => {
     return priceValue !== null ? JSON.parse(priceValue) : '';
   });
   const [hoursOfOperation, setHoursOfOperation] = useState('');
+  const [isLoaded, setIsLoaded] = useState(false);
 
   window.localStorage.removeItem('pathVisiting');
 
   useEffect(() => {
     const { location, service } = props.startForm;
+    const fetchData = async () => {
+      await props.getVenues({ location, service, price });
+    };
+    fetchData();
+    setTimeout(() => setIsLoaded(true), 3000);
     window.localStorage.setItem('price', JSON.stringify(price));
-    return props.getVenues({ location, service, price });
   }, [price, hoursOfOperation]);
 
   const handlePriceSelect = (priceOptions) => {
@@ -66,43 +71,44 @@ export const AllVenues = (props) => {
           />
         </form>
         <br></br>
-      </FlexBoxForSearchResults>
-      <br></br>
-      <br></br>
-      <FlexBoxForAllView>
-        {allVenues.map((venue) => {
-          return (
-            <div key={venue.id}>
-              <Card className='mb-4 ' style={{ width: '25rem' }}>
-                <Card.Img
-                  className='allViews'
-                  variant='top'
-                  src={venue.photos[0]}
-                />
-                <Card.Body>
-                  <Card.Title>
-                    {venue.name ? venue.name : 'No venue name available'}
-                  </Card.Title>
-                  <Card.Text>
-                    <strong>Address: </strong>
-                    {venue.location.address1
-                      ? venue.location.address1
-                      : 'No address available'}
-                  </Card.Text>
-                  <Card.Text>
-                    <strong>Price: </strong>
-                    {venue.price ? venue.price : 'Price not available'}
-                  </Card.Text>
-                  <Link to={`/singleVenue/${venue.id}`}>
-                    <Button variant='primary' name={venue.id}>
-                      See More
-                    </Button>
-                  </Link>
-                </Card.Body>
-              </Card>
-            </div>
-          );
-        })}
+         </FlexBoxForSearchResults>
+        <br></br>
+         <br></br>
+               <FlexBoxForAllView>
+        {isLoaded ? (
+          allVenues.map((venue) => {
+            return (
+              <div key={venue.id}>
+                <Card className='mb-4' style={{ width: '25rem' }}>
+                  <Card.Img variant='top' src={venue.photos[0]} />
+                  <Card.Body>
+                    <Card.Title>
+                      {venue.name ? venue.name : 'No venue name available'}
+                    </Card.Title>
+                    <Card.Text>
+                      <strong>Address: </strong>
+                      {venue.location.address1
+                        ? venue.location.address1
+                        : 'No address available'}
+                    </Card.Text>
+                    <Card.Text>
+                      <strong>Price: </strong>
+                      {venue.price ? venue.price : 'Price not available'}
+                    </Card.Text>
+                    <Link to={`/singleVenue/${venue.id}`}>
+                      <Button variant='primary' name={venue.id}>
+                        See More
+                      </Button>
+                    </Link>
+                  </Card.Body>
+                </Card>
+              </div>
+            );
+          })
+        ) : (
+          <p>Loading</p>
+        )}
+
       </FlexBoxForAllView>
     </div>
   );
