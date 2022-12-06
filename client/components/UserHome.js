@@ -5,6 +5,8 @@ import Button from 'react-bootstrap/Button';
 import { getEvents } from '../redux/events';
 import { getFavorites } from '../redux/favorites';
 import Card from 'react-bootstrap/Card';
+import { fetchSingleCaterer } from '../redux/singleCaterer';
+import { getSingleVenueThunk } from '../redux/singleVenue';
 
 const UserHome = (props) => {
   let { id, username, email } = props.user;
@@ -21,6 +23,16 @@ const UserHome = (props) => {
     events,
     favorites: { venues, caterers },
   } = props;
+
+  const handleCatererClick = (e) => {
+    const yelpId = e.target.name;
+    props.fetchSingleCaterer(yelpId);
+  };
+
+  const handleVenueClick = (e) => {
+    const yelpId = e.target.name;
+    props.getSingleVenueThunk(yelpId);
+  };
 
   return (
     <>
@@ -69,13 +81,25 @@ const UserHome = (props) => {
                 venues.map((venue, index) => {
                   return (
                     <Card key={index} style={{ width: '18rem' }}>
-                      <Card.Img variant='top' src={venue.image_url} />
+                      <Link to={`/singleVenue/${venue.yelp_reference_id}`}>
+                        <Card.Img
+                          name={venue.yelp_reference_id}
+                          onClick={handleVenueClick}
+                          variant='top'
+                          src={venue.image_url}
+                        />
+                      </Link>
                       <Card.Body>
-                        <Card.Title>
-                          {venue.name
-                            ? venue.name
-                            : 'venue name is not available'}
-                        </Card.Title>
+                        <Link
+                          to={`/singleVenue/${venue.yelp_reference_id}`}
+                          style={{ textDecoration: 'none' }}
+                        >
+                          <Card.Title>
+                            {venue.name
+                              ? venue.name
+                              : 'venue name is not available'}
+                          </Card.Title>
+                        </Link>
                         <Button variant='primary'>Delete</Button>
                       </Card.Body>
                     </Card>
@@ -106,13 +130,25 @@ const UserHome = (props) => {
                 caterers.map((caterer, index) => {
                   return (
                     <Card key={index} style={{ width: '18rem' }}>
-                      <Card.Img variant='top' src={caterer.image_url} />
+                      <Link to={`/singleCaterer/${caterer.yelp_reference_id}`}>
+                        <Card.Img
+                          name={caterer.yelp_reference_id}
+                          onClick={handleCatererClick}
+                          variant='top'
+                          src={caterer.image_url}
+                        />
+                      </Link>
                       <Card.Body>
-                        <Card.Title>
-                          {caterer.name
-                            ? caterer.name
-                            : 'caterer name is not available'}
-                        </Card.Title>
+                        <Link
+                          to={`/singleCaterer/${caterer.yelp_reference_id}`}
+                          style={{ textDecoration: 'none' }}
+                        >
+                          <Card.Title>
+                            {caterer.name
+                              ? caterer.name
+                              : 'caterer name is not available'}
+                          </Card.Title>
+                        </Link>
                         <Button variant='primary'>Delete</Button>
                       </Card.Body>
                     </Card>
@@ -161,6 +197,8 @@ const mapDispatch = (dispatch) => {
   return {
     getEvents: (userId) => dispatch(getEvents(userId)),
     getFavorites: (userId) => dispatch(getFavorites(userId)),
+    fetchSingleCaterer: (yelpId) => dispatch(fetchSingleCaterer(yelpId)),
+    getSingleVenueThunk: (yelpId) => dispatch(getSingleVenueThunk(yelpId)),
   };
 };
 
