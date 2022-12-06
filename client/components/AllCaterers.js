@@ -19,19 +19,24 @@ function AllCaterers(props) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   window.localStorage.removeItem('pathVisiting');
-  useEffect(() => {
-    console.log('======', isLoaded);
 
+  console.log('=1=====', isLoaded);
+
+  useEffect(() => {
     const { location } = props.startForm;
     const fetchData = async () => {
       await props.fetchAllCaterers({ location, term, price });
-      setIsLoaded(!isLoaded);
+      setIsLoaded(true);
     };
     fetchData();
-    console.log('======', isLoaded);
+    console.log('=2=====', isLoaded);
     window.localStorage.setItem('price', JSON.stringify(price));
     window.localStorage.setItem('term', JSON.stringify(term));
   }, [price, term]);
+
+  let allCaterers = props.caterers.filter((caterer) => {
+    return caterer.is_claimed === true && caterer.rating >= 3.5;
+  });
 
   const handleClick = (e) => {
     const yelpId = e.target.name;
@@ -72,10 +77,6 @@ function AllCaterers(props) {
     { value: 'Asian', label: 'Asian' },
     { value: 'all', label: 'All' },
   ];
-
-  let allCaterers = props.caterers.filter((caterer) => {
-    return caterer.is_claimed === true && caterer.rating >= 3.5;
-  });
 
   return (
     <>
