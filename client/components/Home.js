@@ -4,6 +4,7 @@ import ReviewsHome from './ReviewsHome';
 import CarouselHome from './CarouselHome';
 import FlexBox from './Styled-Components/FlexBox.styled';
 
+
 const Home = () => {
   window.localStorage.removeItem('price');
   window.localStorage.removeItem('term');
@@ -27,7 +28,6 @@ const Home = () => {
             </p>
             <br></br>
             <h2>Reviews</h2>
-            <ReviewsHome />
             <ReviewsHome />
           </FlexBox>
         </div>

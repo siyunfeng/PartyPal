@@ -1,11 +1,11 @@
 const venuesRouter = require('express').Router();
-
+// const YELP_TOKEN = require('../../secrets')
 const axios = require('axios');
 
 let TOKEN =
   'OfKrzkAMS0PZWEzC94IyenIjNfGwzbCIhqoFWHp45icVQmoRaZ7FJ9MoIgvzTwXWVHzhy_LATrP9lmlYv61ZA65r2a13aXrQsxK8t1pzoLOSsmRmsTd8PDioSk-KY3Yx';
 
-require('dotenv').config();
+// require('dotenv').config();
 
 // const TOKEN = process.env.IRAIS_YELP_TOKEN
 

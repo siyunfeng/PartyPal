@@ -6,6 +6,8 @@ import { fetchSingleCaterer } from '../redux/singleCaterer';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { default as Select } from 'react-select';
+import FlexBoxForSearchResults from './Styled-Components/FlexBoxForSearchResults.styled';
+import FlexBoxForAllView from './Styled-Components/FlexBoxForAllView.styled';
 
 function AllCaterers(props) {
   const [price, setPrice] = useState(() => {
@@ -74,69 +76,64 @@ function AllCaterers(props) {
 
   return (
     <>
-      <form
-        style={{ width: '150px' }}
-        onSubmit={handlePriceSelect(priceOptions)}
-      >
-        <Select
-          defaultValue={priceOptions[4]}
-          // isMulti
-          name="price"
-          options={priceOptions}
-          className="basic-multi-select"
-          classNamePrefix="select"
-          onChange={handlePriceSelect}
-        />
-      </form>
-      <div>
+      <FlexBoxForSearchResults>
+        <h1>Caterer search results for {props.startForm.location}: </h1>
+        <p>{allCaterers.length} caterers found</p>
         <form
           style={{ width: '150px' }}
-          onSubmit={handleCuisineSelect(cuisineOptions)}
+          onSubmit={handlePriceSelect(priceOptions)}
         >
           <Select
-            defaultValue={cuisineOptions[4]}
+            defaultValue={priceOptions[4]}
             // isMulti
-            name="cuisine"
-            options={cuisineOptions}
-            className="basic-multi-select"
-            classNamePrefix="select"
-            onChange={handleCuisineSelect}
+            name='price'
+            options={priceOptions}
+            className='basic-multi-select'
+            classNamePrefix='select'
+            onChange={handlePriceSelect}
           />
         </form>
-      </div>
-      <h1>Caterer search results for {props.startForm.location}: </h1>
-      <p>Results length: {allCaterers.length}</p>
-      {allCaterers?.length ? (
-        allCaterers.map((caterer) => {
-          return (
-            <div key={caterer.id}>
-              <Card className="mb-4" style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={caterer.photos[0]} />
-                <Card.Body>
-                  <Card.Title>{caterer.name}</Card.Title>
-                  <Card.Text>
-                    {caterer.price ? caterer.price : 'No price available'}
-                  </Card.Text>
-                  <Card.Text>Overall Rating: {caterer.rating}</Card.Text>
-                  <Link to={`/singleCaterer/${caterer.id}`}>
-                    <Button
-                      variant="primary"
-                      name={caterer.id}
-                      onClick={(e) => {
-                        handleClick(e);
-                      }}
-                    >
-                      See More
-                    </Button>
-                  </Link>
-                </Card.Body>
-              </Card>
-            </div>
-          );
-        })
-      ) : (
-        <p>no result</p>
-      )}
+        <br></br>
+      </FlexBoxForSearchResults>
+      <br></br>
+      <br></br>
+      <FlexBoxForAllView>
+        {allCaterers?.length ? (
+          allCaterers.map((caterer) => {
+            return (
+              <div key={caterer.id}>
+                <Card className='mb-4' style={{ width: '25rem' }}>
+                  <Card.Img
+                    className='allViews'
+                    variant='top'
+                    src={caterer.photos[0]}
+                  />
+                  <Card.Body>
+                    <Card.Title>{caterer.name}</Card.Title>
+                    <Card.Text>
+                      {caterer.price ? caterer.price : 'No price available'}
+                    </Card.Text>
+                    <Card.Text>Overall Rating: {caterer.rating}</Card.Text>
+                    <Link to={`/singleCaterer/${caterer.id}`}>
+                      <Button
+                        variant='primary'
+                        name={caterer.id}
+                        onClick={(e) => {
+                          handleClick(e);
+                        }}
+                      >
+                        See More
+                      </Button>
+                    </Link>
+                  </Card.Body>
+                </Card>
+              </div>
+            );
+          })
+        ) : (
+          <p>no result</p>
+        )}
+      </FlexBoxForAllView>
     </>
   );
 }
@@ -147,7 +144,7 @@ const mapState = (state) => ({
   startForm: state.startFormReducer,
 });
 
-const mapDispatch = (dispatch, {history}) => {
+const mapDispatch = (dispatch, { history }) => {
   return {
     fetchAllCaterers: ({ location, term, price }) => {
       dispatch(fetchAllCaterers({ location, term, price }, history));
