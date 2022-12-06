@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { default as Select } from 'react-select';
 import FlexBoxForAllView from './Styled-Components/FlexBoxForAllView.styled';
+import FlexBoxForSearchResults from './Styled-Components/FlexBoxForSearchResults.styled';
 
 export const AllVenues = (props) => {
   const [price, setPrice] = useState(() => {
@@ -47,9 +48,10 @@ export const AllVenues = (props) => {
 
   return (
     <div>
-      <FlexBoxForAllView>
+      <FlexBoxForSearchResults>
         <h1>Venue search results for {props.startForm.location}: </h1>
         <p>{allVenues.length} venues found</p>
+
         <form style={{ width: '100px' }} onSubmit={handlePriceSelect(price)}>
           <Select
             defaultValue={priceOptions[4]}
@@ -64,12 +66,19 @@ export const AllVenues = (props) => {
           />
         </form>
         <br></br>
-        <br></br>
+      </FlexBoxForSearchResults>
+      <br></br>
+      <br></br>
+      <FlexBoxForAllView>
         {allVenues.map((venue) => {
           return (
             <div key={venue.id}>
-              <Card className="mb-4" style={{ width: '25rem' }}>
-                <Card.Img variant="top" src={venue.photos[0]} />
+              <Card className='mb-4 ' style={{ width: '25rem' }}>
+                <Card.Img
+                  className='allViews'
+                  variant='top'
+                  src={venue.photos[0]}
+                />
                 <Card.Body>
                   <Card.Title>
                     {venue.name ? venue.name : 'No venue name available'}
@@ -85,7 +94,7 @@ export const AllVenues = (props) => {
                     {venue.price ? venue.price : 'Price not available'}
                   </Card.Text>
                   <Link to={`/singleVenue/${venue.id}`}>
-                    <Button variant="primary" name={venue.id}>
+                    <Button variant='primary' name={venue.id}>
                       See More
                     </Button>
                   </Link>
@@ -107,7 +116,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatch = (dispatch, {history}) => {
+const mapDispatch = (dispatch, { history }) => {
   return {
     getVenues: ({ location, service, price }) => {
       dispatch(getVenuesThunk({ location, service, price }, history));
