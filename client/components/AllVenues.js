@@ -80,21 +80,16 @@ export const AllVenues = (props) => {
             return (
               <div key={venue.id}>
                 <Card className='mb-4' style={{ width: '25rem' }}>
-                  <Card.Img variant='top' src={venue.photos[0]} />
+                  <Card.Img variant='top' src={venue.photos[0]} className='allViews'/>
                   <Card.Body>
                     <Card.Title>
                       {venue.name ? venue.name : 'No venue name available'}
                     </Card.Title>
                     <Card.Text>
-                      <strong>Address: </strong>
-                      {venue.location.address1
-                        ? venue.location.address1
-                        : 'No address available'}
-                    </Card.Text>
-                    <Card.Text>
                       <strong>Price: </strong>
                       {venue.price ? venue.price : 'Price not available'}
                     </Card.Text>
+                    <Card.Text>Rating: {caterer.rating}</Card.Text>
                     <Link to={`/singleVenue/${venue.id}`}>
                       <Button variant='primary' name={venue.id}>
                         See More

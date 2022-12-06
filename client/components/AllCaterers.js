@@ -117,13 +117,13 @@ function AllCaterers(props) {
           return (
             <div key={caterer.id}>
               <Card className='mb-4' style={{ width: '18rem' }}>
-                <Card.Img variant='top' src={caterer.photos[0]} />
+                <Card.Img variant='top' src={caterer.photos[0]} className='allViews' />
                 <Card.Body>
-                  <Card.Title>{caterer.name}</Card.Title>
+                  <Card.Title>{caterer.name ? caterer.name : 'No caterer name available'}</Card.Title>
                   <Card.Text>
                     {caterer.price ? caterer.price : 'No price available'}
                   </Card.Text>
-                  <Card.Text>Overall Rating: {caterer.rating}</Card.Text>
+                  <Card.Text>Rating: {caterer.rating}</Card.Text>
                   <Link to={`/singleCaterer/${caterer.id}`}>
                     <Button
                       variant='primary'
