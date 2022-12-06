@@ -102,7 +102,7 @@ function AllCaterers(props) {
           allCaterers.map((caterer) => {
             return (
               <div key={caterer.id}>
-                <Card className='mb-4' style={{ width: '18rem' }}>
+                <Card className='mb-4' style={{ width: '25rem' }}>
                   <Card.Img
                     className='allViews'
                     variant='top'
