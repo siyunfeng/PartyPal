@@ -1,41 +1,65 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { sendInitialQuery } from '../redux/startForm';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}));
 
 const StartForm = ({ getRecommendations }) => {
+  const classes = useStyles();
+
   window.localStorage.removeItem('price');
   window.localStorage.removeItem('term');
   return (
     <div>
-      {/* <Navbar /> */}
-      {/* Carousel */}
-      <div className="start-form">
+      <div
+        className='start-form'
+        style={{ width: '350px', textAlign: 'center' }}
+      >
         <div>
           <h3>What can we help you find?</h3>
         </div>
-        <form onSubmit={getRecommendations} name="start-form">
+        <form
+          className={classes.root}
+          noValidate
+          autoComplete='off'
+          onSubmit={getRecommendations}
+          name='start-form'
+        >
           <div>
-            <label htmlFor="serviceOptions">
+            <label htmlFor='serviceOptions'>
               Step 1. What service you need
             </label>
           </div>
-          <select id="serviceOption">
-            <option value="catering">Caterer</option>
-            <option value="venue">Venue</option>
+          <select id='serviceOption'>
+            <option value='catering'>Caterer</option>
+            <option value='venue'>Venue</option>
           </select>
           <div>
-            <label htmlFor="partyLocation">
+            <label htmlFor='partyLocation'>
               Step 2. Where will your party be held?
             </label>
           </div>
-          <input
-            type="text"
-            id="location"
-            name="location"
-            placeholder="Enter location or zipcode"
+          <TextField
+            htmlFor='location'
+            name='location'
+            label='Location or Zip-Code'
+            variant='outlined'
           />
+
           <div>
-            <button type="submit">Get Recommendations</button>
+            <Button variant='contained' type='submit' color='primary'>
+              Get Recommendations
+            </Button>
           </div>
         </form>
       </div>
