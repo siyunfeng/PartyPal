@@ -20,16 +20,13 @@ function AllCaterers(props) {
 
   window.localStorage.removeItem('pathVisiting');
 
-  console.log('=1=====', isLoaded);
-
   useEffect(() => {
     const { location } = props.startForm;
     const fetchData = async () => {
       await props.fetchAllCaterers({ location, term, price });
-      setIsLoaded(true);
     };
     fetchData();
-    console.log('=2=====', isLoaded);
+    setTimeout(() => setIsLoaded(true), 3000);
     window.localStorage.setItem('price', JSON.stringify(price));
     window.localStorage.setItem('term', JSON.stringify(term));
   }, [price, term]);
@@ -141,7 +138,7 @@ function AllCaterers(props) {
           );
         })
       ) : (
-        <p>loading</p>
+        <p>Loading</p>
       )}
     </>
   );
