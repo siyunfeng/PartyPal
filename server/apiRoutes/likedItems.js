@@ -1,10 +1,10 @@
-const saveLikedItemsRouter = require('express').Router();
+const likedItemsRouter = require('express').Router();
 const { requireToken } = require('./gateKeepingMiddleware');
 
 const { Favorite, User } = require('../db/index');
 
 // saving venue
-saveLikedItemsRouter.post(
+likedItemsRouter.post(
   '/venue/:yelpReferenceId',
   requireToken,
   async (req, res, next) => {
@@ -40,7 +40,7 @@ saveLikedItemsRouter.post(
 );
 
 //saving caterer
-saveLikedItemsRouter.post(
+likedItemsRouter.post(
   '/caterer/:yelpReferenceId',
   requireToken,
   async (req, res, next) => {
@@ -75,4 +75,47 @@ saveLikedItemsRouter.post(
   }
 );
 
-module.exports = saveLikedItemsRouter;
+// delete liked venue
+likedItemsRouter.delete(
+  '/deleteVenue/:yelpReferenceId',
+  async (req, res, next) => {
+    try {
+      // send token to backend as well so I can find user
+      const yelpId = req.params.yelpReferenceId;
+      const token = req.body.token;
+      const userToDeleteItemFrom = await User.findByToken(token);
+      const itemDeleted = await Favorite.findOne({
+        where: {
+          yelp_reference_id: yelpId,
+          userId: userToDeleteItemFrom.id,
+        },
+      });
+      res.send(itemDeleted).status(200);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+// delete caterer
+likedItemsRouter.delete(
+  '/deleteCaterer/:yelpReferenceId',
+  async (req, res, next) => {
+    try {
+      const yelpId = req.params.yelpReferenceId;
+      const token = req.body.token;
+      const userToDeleteItemFrom = await User.findByToken(token);
+      const itemDeleted = await Favorite.findOne({
+        where: {
+          yelp_reference_id: yelpId,
+          userId: userToDeleteItemFrom.id,
+        },
+      });
+      res.send(itemDeleted).status(200);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+module.exports = likedItemsRouter;

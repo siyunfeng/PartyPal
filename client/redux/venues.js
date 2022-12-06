@@ -13,12 +13,12 @@ export const getVenuesThunk = ({ location, service, price }, history) => {
   return async (dispatch) => {
     try {
       const userSearchInput = { location, service, price };
-      const { data } = await axios.post('/api/venues', userSearchInput)
-      console.log('error', data)
+      const { data } = await axios.post('/api/venues', userSearchInput);
       if (typeof data === 'string') {
-        console.log('in here')
-        window.alert('😭 No results, please try specifying a more exact location.')
-        history.push('/start')
+        window.alert(
+          '😭 No results, please try specifying a more exact location.'
+        );
+        history.push('/start');
         // dispatch(getVenuesCreator(data))
       }
       const businessArray = data.data.search.business;
