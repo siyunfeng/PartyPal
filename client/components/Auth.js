@@ -25,7 +25,7 @@ export const AuthForm = (props) => {
   if (displayName === 'Login') {
     const { name, handleLogin, error } = props;
     return (
-      <div>
+      <div style={{ width: '350px', textAlign: 'center' }}>
         <h2>Account Login</h2>
         <form
           className={classes.root}
@@ -60,7 +60,7 @@ export const AuthForm = (props) => {
     const { name, handleSignup, error } = props;
 
     return (
-      <div>
+      <div style={{ width: '550px', textAlign: 'center' }}>
         <h2>Create Account</h2>
         <form
           className={classes.root}
@@ -100,6 +100,7 @@ export const AuthForm = (props) => {
             name='email'
             label='Email'
             variant='outlined'
+            style={{ width: '500px' }}
           />
           <div>
             <Button variant='contained' type='submit' color='primary'>
