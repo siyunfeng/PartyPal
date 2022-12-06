@@ -46,7 +46,7 @@ const SingleCaterer = (props) => {
     if (loggedInUserToken) {
       const token = window.localStorage.getItem('token');
       const saving = await axios.post(
-        `/api/likedItems/caterer/${idToSave}`,
+        `/api/favorites/caterer/${idToSave}`,
         cateringInfo,
         {
           headers: {
