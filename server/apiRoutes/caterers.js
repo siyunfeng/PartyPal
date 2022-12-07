@@ -53,6 +53,10 @@ const userSearch = (userSearchInput, type) => {
           day
         }
       }
+      categories {
+        title
+        alias
+      }
       reviews {
         id
         text
@@ -108,7 +112,7 @@ caterersRouter.post('/', async (req, res, next) => {
 
     const data = await getCaterers(userSearchInput, queryType);
     if (data.errors) {
-      res.send(data.errors[0].message).status(404)
+      res.send(data.errors[0].message).status(404);
     } else {
       res.send(data).status(200);
     }
@@ -123,7 +127,7 @@ caterersRouter.post('/:id', async (req, res, next) => {
     // const yelpId = req.params.id;
     // getting yelpId off req.body - irais
     const yelpId = req.body.id;
-    //irais 
+    //irais
     const data = await getCaterers(yelpId, queryType);
     res.send(data).status(200);
   } catch (error) {

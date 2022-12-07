@@ -57,6 +57,10 @@ const userSearch = (queryType, userSearchInput) => {
         price
         photos
         url
+        categories {
+          title
+          alias
+        }
         hours {
           open {
             is_overnight
@@ -112,7 +116,7 @@ venuesRouter.post('/', async (req, res, next) => {
     const userSearchInput = req.body;
     const data = await getVenues(queryType, userSearchInput);
     if (data.errors) {
-      res.send(data.errors[0].message).status(404)
+      res.send(data.errors[0].message).status(404);
     } else {
       res.send(data).status(200);
     }
