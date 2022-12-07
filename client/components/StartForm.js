@@ -4,6 +4,10 @@ import { sendInitialQuery } from '../redux/startForm';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,11 +18,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const StartForm = ({ getRecommendations }) => {
+const StartForm = (props) => {
   const classes = useStyles();
+  const [serviceOptionValue, setServiceOptionValue] = useState('');
 
   window.localStorage.removeItem('price');
   window.localStorage.removeItem('term');
+
+  const getRecommendations = (event) => {
+    event.preventDefault();
+    const service = event.target.serviceOption.value;
+    const location = event.target.location.value;
+    const initialQuery = { service, location };
+    props.sendInitialQuery(initialQuery, history);
+  };
+
   return (
     <div
       style={{
@@ -38,7 +52,7 @@ const StartForm = ({ getRecommendations }) => {
           className={classes.root}
           noValidate
           autoComplete='off'
-          onSubmit={getRecommendations}
+          onSubmit={(event) => getRecommendations(event)}
           name='start-form'
         >
           <div>
@@ -46,17 +60,23 @@ const StartForm = ({ getRecommendations }) => {
               What service can we help you find?
             </label>
           </div>
-          <select id='serviceOption'>
-            <option value='catering'>Caterer</option>
-            <option value='venue'>Venue</option>
-          </select>
-          <div>
-            <label htmlFor='partyLocation'>
-              Where will your party be held?
-            </label>
-          </div>
+          <FormControl variant='outlined'>
+            <InputLabel>Service</InputLabel>
+            <Select
+              name='serviceOption'
+              onChange={(e) => setServiceOptionValue(e.target.value)}
+              value={serviceOptionValue}
+            >
+              <MenuItem value='catering'>Caterer</MenuItem>
+              <MenuItem value='venue'>Venue</MenuItem>
+            </Select>
+            <div>
+              <label htmlFor='partyLocation'>
+                Where will your party be held?
+              </label>
+            </div>
+          </FormControl>
           <TextField
-            htmlFor='location'
             name='location'
             label='Location or Zip-Code'
             variant='outlined'
@@ -79,13 +99,8 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch, { history }) => {
   return {
-    getRecommendations(event) {
-      event.preventDefault();
-      const service = document.getElementById('serviceOption').value;
-      const location = event.target.location.value;
-      const initialQuery = { service, location };
-      dispatch(sendInitialQuery(initialQuery, history));
-    },
+    sendInitialQuery: (initialQuery) =>
+      dispatch(sendInitialQuery(initialQuery, history)),
   };
 };
 

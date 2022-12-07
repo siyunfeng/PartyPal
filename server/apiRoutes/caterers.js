@@ -53,6 +53,10 @@ const userSearch = (userSearchInput, type) => {
           day
         }
       }
+      categories {
+        title
+        alias
+      }
       reviews {
         id
         text
@@ -69,22 +73,15 @@ const userSearch = (userSearchInput, type) => {
   }`;
   }
 };
-// const yelpAPIUrl = 'https://api.yelp.com/v3/graphql';
-// const client = new GraphQLClient(yelpAPIUrl, {
-//   headers: {
-//     'content-type': 'application/graphql',
-//     Authorization: `Bearer ${process.env.YELP_TOKEN}`,
-//   },
-// });
-const YELP_TOKEN =
-  'RanbOY5NRwsj61NTbTSYC5PusHxCsBee1r0iIBdwGueYurwZ_yIlZL1PD_H5zmaz59Uv8vQAE2rEQQY_wxUbHgjeCvXxfCwNhJS0UY6gDHzP6raJhQ9wGYnWnlN9Y3Yx';
+
+const TOKEN = process.env.CATERER_YELP_TOKEN
 const getCaterers = async (userSearchInput, queryType) => {
   const options = {
     method: 'POST',
     url: 'https://api.yelp.com/v3/graphql',
     headers: {
       'content-type': 'application/graphql',
-      Authorization: `Bearer ${YELP_TOKEN}`,
+      Authorization: `Bearer ${TOKEN}`,
     },
     data: userSearch(userSearchInput, queryType),
   };
@@ -108,7 +105,7 @@ caterersRouter.post('/', async (req, res, next) => {
 
     const data = await getCaterers(userSearchInput, queryType);
     if (data.errors) {
-      res.send(data.errors[0].message).status(404)
+      res.send(data.errors[0].message).status(404);
     } else {
       res.send(data).status(200);
     }
@@ -123,7 +120,7 @@ caterersRouter.post('/:id', async (req, res, next) => {
     // const yelpId = req.params.id;
     // getting yelpId off req.body - irais
     const yelpId = req.body.id;
-    //irais 
+    //irais
     const data = await getCaterers(yelpId, queryType);
     res.send(data).status(200);
   } catch (error) {

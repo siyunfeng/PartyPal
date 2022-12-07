@@ -109,6 +109,7 @@ const syncAndSeed = async () => {
         catering: 3,
         notes: '2023 New Year Party in California, hooray!',
       }),
+  
     ]);
 
     const [iraisv, yuri, siyun, jane] = await User.bulkCreate(users, {
@@ -180,6 +181,7 @@ const syncAndSeed = async () => {
     await events[6].setUser(iraisv);
     await events[7].setUser(jane);
     await events[8].setUser(yuri);
+
 
     await HappyPonyBakery.setUser(jane);
     await Ballroom.setUser(jane);
