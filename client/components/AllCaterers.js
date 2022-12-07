@@ -135,10 +135,13 @@ function AllCaterers(props) {
                         : 'No caterer name available'}
                     </Card.Title>
                     <Card.Text>
+                      <strong>Price: </strong>
                       {caterer.price ? caterer.price : 'No price available'}
                     </Card.Text>
                     <Box component='fieldset' mb={3} borderColor='transparent'>
-                      <Typography component='legend'>Ratings</Typography>
+                      <Typography component='legend'>
+                        <strong>Ratings</strong>
+                      </Typography>
                       <Rating
                         name='read-only'
                         precision={0.5}
