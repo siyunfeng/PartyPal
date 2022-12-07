@@ -8,6 +8,7 @@ import Card from 'react-bootstrap/Card';
 import { default as Select } from 'react-select';
 import FlexBoxForSearchResults from './Styled-Components/FlexBoxForSearchResults.styled';
 import FlexBoxForAllView from './Styled-Components/FlexBoxForAllView.styled';
+import LoadingState from './Spinner';
 
 function AllCaterers(props) {
   const [price, setPrice] = useState(() => {
@@ -141,7 +142,7 @@ function AllCaterers(props) {
           );
         })
       ) : (
-        <p>Loading</p>
+        <LoadingState />
       )}
        </FlexBoxForAllView>
     </>

@@ -11,9 +11,7 @@ const Home = () => {
 
   return (
     <div>
-      {/* <FlexBox>
-        <h1>Welcome to Party Pal!</h1>S
-      </FlexBox> */}
+      <br></br>
       <CarouselHome />
       <div>
         <div>

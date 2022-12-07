@@ -8,6 +8,7 @@ import Card from 'react-bootstrap/Card';
 import { default as Select } from 'react-select';
 import FlexBoxForAllView from './Styled-Components/FlexBoxForAllView.styled';
 import FlexBoxForSearchResults from './Styled-Components/FlexBoxForSearchResults.styled';
+import LoadingState from './Spinner';
 
 export const AllVenues = (props) => {
   const [price, setPrice] = useState(() => {
@@ -89,7 +90,7 @@ export const AllVenues = (props) => {
                       <strong>Price: </strong>
                       {venue.price ? venue.price : 'Price not available'}
                     </Card.Text>
-                    <Card.Text>Rating: {caterer.rating}</Card.Text>
+                    <Card.Text>Rating: {venue.rating}</Card.Text>
                     <Link to={`/singleVenue/${venue.id}`}>
                       <Button variant='primary' name={venue.id}>
                         See More
@@ -101,7 +102,7 @@ export const AllVenues = (props) => {
             );
           })
         ) : (
-          <p>Loading</p>
+          <LoadingState />
         )}
 
       </FlexBoxForAllView>
