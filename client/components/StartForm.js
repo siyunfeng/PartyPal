@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
 const StartForm = (props) => {
   const classes = useStyles();
+  const [serviceOptionValue, setServiceOptionValue] = useState('');
 
   window.localStorage.removeItem('price');
   window.localStorage.removeItem('term');
@@ -61,7 +62,11 @@ const StartForm = (props) => {
           </div>
           <FormControl variant='outlined'>
             <InputLabel>Service</InputLabel>
-            <Select name='serviceOption'>
+            <Select
+              name='serviceOption'
+              onChange={(e) => setServiceOptionValue(e.target.value)}
+              value={serviceOptionValue}
+            >
               <MenuItem value='catering'>Caterer</MenuItem>
               <MenuItem value='venue'>Venue</MenuItem>
             </Select>
@@ -72,7 +77,6 @@ const StartForm = (props) => {
             </div>
           </FormControl>
           <TextField
-            htmlFor='location'
             name='location'
             label='Location or Zip-Code'
             variant='outlined'
