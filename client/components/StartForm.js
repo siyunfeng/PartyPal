@@ -4,6 +4,10 @@ import { sendInitialQuery } from '../redux/startForm';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,15 +59,18 @@ const StartForm = (props) => {
               What service can we help you find?
             </label>
           </div>
-          <select id='serviceOption' name='serviceOption'>
-            <option value='catering'>Caterer</option>
-            <option value='venue'>Venue</option>
-          </select>
-          <div>
-            <label htmlFor='partyLocation'>
-              Where will your party be held?
-            </label>
-          </div>
+          <FormControl variant='outlined'>
+            <InputLabel>Service</InputLabel>
+            <Select name='serviceOption'>
+              <MenuItem value='catering'>Caterer</MenuItem>
+              <MenuItem value='venue'>Venue</MenuItem>
+            </Select>
+            <div>
+              <label htmlFor='partyLocation'>
+                Where will your party be held?
+              </label>
+            </div>
+          </FormControl>
           <TextField
             htmlFor='location'
             name='location'
