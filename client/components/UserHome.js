@@ -11,6 +11,7 @@ import {
 import Card from 'react-bootstrap/Card';
 import { fetchSingleCaterer } from '../redux/singleCaterer';
 import { getSingleVenueThunk } from '../redux/singleVenue';
+import UserHomeFlex from './Styled-Components/UserHomeFlex.styled';
 
 const UserHome = (props) => {
   let { id, username, email } = props.user;
@@ -89,45 +90,49 @@ const UserHome = (props) => {
           <div className='user-home-favorite'>
             <h4>Favorite</h4>
             <div className='each-favorite-venue-container'>
-              <h6>Venues</h6>
-              {venues?.length ? (
-                venues.map((venue, index) => {
-                  return (
-                    <Card key={index} style={{ width: '18rem' }}>
-                      <Link to={`/singleVenue/${venue.yelp_reference_id}`}>
-                        <Card.Img
-                          name={venue.yelp_reference_id}
-                          onClick={handleVenueClick}
-                          variant='top'
-                          src={venue.image_url}
-                        />
-                      </Link>
-                      <Card.Body>
-                        <Link
-                          to={`/singleVenue/${venue.yelp_reference_id}`}
-                          style={{ textDecoration: 'none' }}
-                        >
-                          <Card.Title>
-                            {venue.name
-                              ? venue.name
-                              : 'venue name is not available'}
-                          </Card.Title>
+              <UserHomeFlex>
+                <h6>Venues</h6>
+                {venues?.length ? (
+                  venues.map((venue, index) => {
+                    return (
+                      <Card key={index} style={{ width: '18rem' }}>
+                        <Link to={`/singleVenue/${venue.yelp_reference_id}`}>
+                          <Card.Img
+                            name={venue.yelp_reference_id}
+                            onClick={handleVenueClick}
+                            variant='top'
+                            src={venue.image_url}
+                            className='allViews'
+                          />
                         </Link>
-                        <Button
-                          onClick={() => handleDeleteVenue(venue.id)}
-                          variant='primary'
-                        >
-                          Delete
-                        </Button>
-                      </Card.Body>
-                    </Card>
-                  );
-                })
-              ) : (
-                <p>You did not save any venues in your favorite yet.</p>
-              )}
+                        <Card.Body>
+                          <Link
+                            to={`/singleVenue/${venue.yelp_reference_id}`}
+                            style={{ textDecoration: 'none' }}
+                          >
+                            <Card.Title>
+                              {venue.name
+                                ? venue.name
+                                : 'venue name is not available'}
+                            </Card.Title>
+                          </Link>
+                          <Button
+                            onClick={() => handleDeleteVenue(venue.id)}
+                            variant='primary'
+                          >
+                            Delete
+                          </Button>
+                        </Card.Body>
+                      </Card>
+                    );
+                  })
+                ) : (
+                  <p>You did not save any venues in your favorite yet.</p>
+                )}
+              </UserHomeFlex>
             </div>
             <div className='each-favorite-caterer-container'>
+              {/* <UserHomeFlex> */}
               <h6>Catering</h6>
               {caterers?.length ? (
                 caterers.map((caterer, index) => {
