@@ -9,6 +9,7 @@ import ModalSignUpandLogIn from './ModalSignUpAndLogin';
 import axios from 'axios';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import FlexBoxForSearchResults from './Styled-Components/FlexBoxForSearchResults.styled';
 
 const SingleCaterer = (props) => {
   const business = props?.caterer?.business;
@@ -82,11 +83,12 @@ const SingleCaterer = (props) => {
 
   return (
     <div>
-      <h1>{name}</h1>
+      <FlexBoxForSearchResults>
+        <h1>{name ? name : ''}</h1>
+      </FlexBoxForSearchResults>
       <Card className='text-center'>
         <Card.Header>Caterer</Card.Header>
         <Card.Body>
-          <Card.Title>{name}</Card.Title>
           <Card.Img
             className='img'
             variant='top'
@@ -128,6 +130,15 @@ const SingleCaterer = (props) => {
           <Card.Text>
             <strong>Reviews: </strong> {reviews}
           </Card.Text>
+
+          {liked ? (
+            <strong>
+              <p>Added to user dashboard!</p>
+            </strong>
+          ) : (
+            <p></p>
+          )}
+
           {window.localStorage.getItem('token') ? (
             <OverlayTrigger
               placement='top'

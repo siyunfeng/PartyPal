@@ -14,7 +14,6 @@ favoritesRouter.get('/:userId', requireToken, async (req, res, next) => {
       res.send('no favorite');
     }
   } catch (error) {
-    console.log(`api/favorites get('/:userId') ERROR:`, error);
     next(error);
   }
 });
@@ -63,9 +62,7 @@ favoritesRouter.post(
   async (req, res, next) => {
     try {
       const yelpReferenceId = req.params.yelpReferenceId;
-      console.log('yelpReferenceId', yelpReferenceId);
       const catererInfo = req.body;
-      console.log('catererInfo', catererInfo);
 
       const { token } = req.body;
 
