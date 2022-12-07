@@ -4,7 +4,6 @@ import ReviewsHome from './ReviewsHome';
 import CarouselHome from './CarouselHome';
 import FlexBox from './Styled-Components/FlexBox.styled';
 
-
 const Home = () => {
   window.localStorage.removeItem('price');
   window.localStorage.removeItem('term');
@@ -17,7 +16,7 @@ const Home = () => {
         <div>
           <FlexBox>
             <br></br>
-            <p>
+            <p style={{ textAlign: 'center' }}>
               <strong>
                 Have a party coming up? Need venue and catering recommendations
                 in your area? Click Start Planning to find recommendations in
