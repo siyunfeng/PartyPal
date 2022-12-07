@@ -9,7 +9,7 @@ import axios from 'axios';
 import ModalSignUpandLogIn from './ModalSignUpAndLogin';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
-import FlexBoxForSearchResults from './Styled-Components/FlexBoxForSearchResults.styled';
+import FlexBoxForSingleResults from './Styled-Components/FlexBoxForSearchResults.styled';
 import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
 import Alert from 'react-bootstrap/Alert';
@@ -87,10 +87,10 @@ const SingleVenue = (props) => {
 
   return (
     <div>
-      <FlexBoxForSearchResults>
+      <FlexBoxForSingleResults>
         <h1>{name ? name : ''}</h1>
-      </FlexBoxForSearchResults>
-      <Card className='text-center'>
+      </FlexBoxForSingleResults>
+      <Card className='text-center' style={{ width: '50em' }}>
         <Card.Header>Venue</Card.Header>
         <Card.Body>
           <Card.Img

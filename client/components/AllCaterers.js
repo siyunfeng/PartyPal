@@ -87,7 +87,11 @@ function AllCaterers(props) {
         <h1>Caterer search results for {props.startForm.location}: </h1>
         <p>{allCaterers.length} caterers found</p>
         <form
-          style={{ width: '150px' }}
+          style={{
+            width: '150px',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
           onSubmit={handlePriceSelect(priceOptions)}
         >
           <p>Filter by Price</p>
