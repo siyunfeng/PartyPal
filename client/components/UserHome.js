@@ -93,35 +93,34 @@ const UserHome = (props) => {
               {venues?.length ? (
                 venues.map((venue, index) => {
                   return (
-                      <Card key={index} style={{ width: '18rem' }}>
-                        <Link to={`/singleVenue/${venue.yelp_reference_id}`}>
-                          <Card.Img
-                            name={venue.yelp_reference_id}
-                            onClick={handleVenueClick}
-                            variant='top'
-                            src={venue.image_url}
-                          />
+                    <Card key={index} style={{ width: '18rem' }}>
+                      <Link to={`/singleVenue/${venue.yelp_reference_id}`}>
+                        <Card.Img
+                          name={venue.yelp_reference_id}
+                          onClick={handleVenueClick}
+                          variant='top'
+                          src={venue.image_url}
+                        />
+                      </Link>
+                      <Card.Body>
+                        <Link
+                          to={`/singleVenue/${venue.yelp_reference_id}`}
+                          style={{ textDecoration: 'none' }}
+                        >
+                          <Card.Title>
+                            {venue.name
+                              ? venue.name
+                              : 'venue name is not available'}
+                          </Card.Title>
                         </Link>
-                        <Card.Body>
-                          <Link
-                            to={`/singleVenue/${venue.yelp_reference_id}`}
-                            style={{ textDecoration: 'none' }}
-                          >
-                            <Card.Title>
-                              {venue.name
-                                ? venue.name
-                                : 'venue name is not available'}
-                            </Card.Title>
-                          </Link>
-                          <Button
-                            onClick={() => handleDeleteVenue(venue.id)}
-                            variant='primary'
-                          >
-                            Delete
-                          </Button>
-                        </Card.Body>
-                      </Card>
-                   
+                        <Button
+                          onClick={() => handleDeleteVenue(venue.id)}
+                          variant='primary'
+                        >
+                          Delete
+                        </Button>
+                      </Card.Body>
+                    </Card>
                   );
                 })
               ) : (
@@ -133,38 +132,34 @@ const UserHome = (props) => {
               {caterers?.length ? (
                 caterers.map((caterer, index) => {
                   return (
-                    <UserHome key={index}>
-                      <Card key={index} style={{ width: '18rem' }}>
+                    <Card key={index} style={{ width: '18rem' }}>
+                      <Link to={`/singleCaterer/${caterer.yelp_reference_id}`}>
+                        <Card.Img
+                          name={caterer.yelp_reference_id}
+                          onClick={handleCatererClick}
+                          variant='top'
+                          src={caterer.image_url}
+                        />
+                      </Link>
+                      <Card.Body>
                         <Link
                           to={`/singleCaterer/${caterer.yelp_reference_id}`}
+                          style={{ textDecoration: 'none' }}
                         >
-                          <Card.Img
-                            name={caterer.yelp_reference_id}
-                            onClick={handleCatererClick}
-                            variant='top'
-                            src={caterer.image_url}
-                          />
+                          <Card.Title>
+                            {caterer.name
+                              ? caterer.name
+                              : 'caterer name is not available'}
+                          </Card.Title>
                         </Link>
-                        <Card.Body>
-                          <Link
-                            to={`/singleCaterer/${caterer.yelp_reference_id}`}
-                            style={{ textDecoration: 'none' }}
-                          >
-                            <Card.Title>
-                              {caterer.name
-                                ? caterer.name
-                                : 'caterer name is not available'}
-                            </Card.Title>
-                          </Link>
-                          <Button
-                            onClick={() => handleDeleteCaterer(caterer.id)}
-                            variant='primary'
-                          >
-                            Delete
-                          </Button>
-                        </Card.Body>
-                      </Card>
-                    </UserHome>
+                        <Button
+                          onClick={() => handleDeleteCaterer(caterer.id)}
+                          variant='primary'
+                        >
+                          Delete
+                        </Button>
+                      </Card.Body>
+                    </Card>
                   );
                 })
               ) : (
