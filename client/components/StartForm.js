@@ -37,7 +37,7 @@ const StartForm = ({ getRecommendations }) => {
         >
           <div>
             <label htmlFor='serviceOptions'>
-              Step 1. What service you need
+              What service can we help you find?
             </label>
           </div>
           <select id='serviceOption'>
@@ -46,7 +46,7 @@ const StartForm = ({ getRecommendations }) => {
           </select>
           <div>
             <label htmlFor='partyLocation'>
-              Step 2. Where will your party be held?
+              Where will your party be held?
             </label>
           </div>
           <TextField
