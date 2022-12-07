@@ -1,13 +1,9 @@
 const venuesRouter = require('express').Router();
-// const YELP_TOKEN = require('../../secrets')
 const axios = require('axios');
-
-let TOKEN =
-  'OfKrzkAMS0PZWEzC94IyenIjNfGwzbCIhqoFWHp45icVQmoRaZ7FJ9MoIgvzTwXWVHzhy_LATrP9lmlYv61ZA65r2a13aXrQsxK8t1pzoLOSsmRmsTd8PDioSk-KY3Yx';
 
 // require('dotenv').config();
 
-// const TOKEN = process.env.IRAIS_YELP_TOKEN
+const TOKEN = process.env.YELP_TOKEN
 
 const userSearch = (queryType, userSearchInput) => {
   if (queryType === 'all') {
@@ -83,7 +79,6 @@ const userSearch = (queryType, userSearchInput) => {
   }
 };
 
-// g6QOBY2bmEw5CKfiZ43egQ
 const getVenues = async (queryType, userSearchInput) => {
   const options = {
     method: 'POST',
