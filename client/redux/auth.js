@@ -1,21 +1,12 @@
 import axios from 'axios';
+import history from '../history';
 
 const TOKEN = 'token';
 
-/**
- * ACTION TYPES
- */
-
 const SET_AUTH = 'SET_AUTH';
 
-/**
- * ACTION CREATORS
- */
 const setAuth = (auth) => ({ type: SET_AUTH, auth });
 
-/**
- * THUNK CREATORS
- */
 export const me = () => async (dispatch) => {
   const token = window.localStorage.getItem(TOKEN);
   if (token) {
@@ -62,16 +53,14 @@ export const authenticate =
 
 export const logout = () => {
   window.localStorage.removeItem(TOKEN);
-  // console.log('User is logging out');
+  history.push('/');
+  history.go(0);
   return {
     type: SET_AUTH,
     auth: {},
   };
 };
 
-/**
- * REDUCER
- */
 export default function reducer(state = {}, action) {
   switch (action.type) {
     case SET_AUTH:
