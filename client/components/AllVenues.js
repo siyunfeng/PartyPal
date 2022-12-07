@@ -97,12 +97,9 @@ export const AllVenues = (props) => {
                       <strong>Price: </strong>
                       {venue.price ? venue.price : 'Price not available'}
                     </Card.Text>
-
-                    <Card.Text>Rating: {venue.rating}</Card.Text>
-
-                    <Box component='fieldset' mb={3} borderColor='transparent'>
+                    <Box mb={3} borderColor='transparent'>
                       <Typography component='legend'>
-                        <strong>Ratings</strong>
+                        <strong>Ratings: {venue.rating}</strong>
                       </Typography>
                       <Rating
                         name='read-only'

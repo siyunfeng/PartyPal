@@ -119,39 +119,57 @@ function AllCaterers(props) {
       <br></br>
       <br></br>
       <FlexBoxForAllView>
-      {isLoaded ? (
-        allCaterers.map((caterer) => {
-          return (
-            <div key={caterer.id}>
-              <Card className='mb-4' style={{ width: '18rem' }}>
-                <Card.Img variant='top' src={caterer.photos[0]} className='allViews' />
-                <Card.Body>
-                  <Card.Title>{caterer.name ? caterer.name : 'No caterer name available'}</Card.Title>
-                  <Card.Text>
-                    {caterer.price ? caterer.price : 'No price available'}
-                  </Card.Text>
-                  <Card.Text>Rating: {caterer.rating}</Card.Text>
-                  <Link to={`/singleCaterer/${caterer.id}`}>
-                    <Button
-                      variant='primary'
-                      name={caterer.id}
-                      onClick={(e) => {
-                        handleClick(e);
-                      }}
-                    >
-                      See More
-                    </Button>
-                  </Link>
-                </Card.Body>
-              </Card>
-            </div>
-          );
-        })
-      ) : (
-        <LoadingState />
-      )}
-       </FlexBoxForAllView>
+        {isLoaded ? (
+          allCaterers.map((caterer) => {
+            return (
+              <div key={caterer.id}>
+                <Card className='mb-4' style={{ width: '18rem' }}>
+                  <Card.Img
+                    variant='top'
+                    src={caterer.photos[0]}
+                    className='allViews'
+                  />
+                  <Card.Body>
+                    <Card.Title>
+                      {caterer.name
+                        ? caterer.name
+                        : 'No caterer name available'}
+                    </Card.Title>
+                    <Card.Text>
+                      {caterer.price ? caterer.price : 'No price available'}
+                    </Card.Text>
+                    <Box mb={3} borderColor='transparent'>
+                      <Typography component='legend'>
+                        <strong>Ratings: {caterer.rating}</strong>
+                      </Typography>
+                      <Rating
+                        name='read-only'
+                        precision={0.5}
+                        value={caterer.rating}
+                        readOnly
+                      />
+                    </Box>
 
+                    <Link to={`/singleCaterer/${caterer.id}`}>
+                      <Button
+                        variant='primary'
+                        name={caterer.id}
+                        onClick={(e) => {
+                          handleClick(e);
+                        }}
+                      >
+                        See More
+                      </Button>
+                    </Link>
+                  </Card.Body>
+                </Card>
+              </div>
+            );
+          })
+        ) : (
+          <LoadingState />
+        )}
+      </FlexBoxForAllView>
     </>
   );
 }
