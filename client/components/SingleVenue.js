@@ -12,6 +12,8 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import FlexBoxForSearchResults from './Styled-Components/FlexBoxForSearchResults.styled';
 import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
+import Alert from 'react-bootstrap/Alert';
+
 
 const SingleVenue = (props) => {
   const business = props?.venue?.data?.business;
@@ -24,13 +26,6 @@ const SingleVenue = (props) => {
   }, []);
 
   if (!business) return null;
-
-  let counter = 0;
-
-  const reviews = business.reviews.map((review) => {
-    counter += 1;
-    return ` ${counter}.  ${review.text} `;
-  });
 
   const { name, rating, photos, phone, price, hours, categories, location } =
     business;
@@ -90,25 +85,20 @@ const SingleVenue = (props) => {
   return (
     <div>
       <FlexBoxForSearchResults>
-      <div className=' favoriteSelectionsCard'>
         <h1>{name ? name : ''}</h1>
-      </div>
       </FlexBoxForSearchResults>
-      <div className='favoriteSelectionsCard'>
-        <Card className='text-center'>
-          <Card.Header>Venue</Card.Header>
-
-          <Card.Body>
-            <Card.Img
-              className='img'
-              variant='top'
-              src={
-                photos.length
-                  ? photos
-                  : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAh8YVQhMCGhp1xDo9Pew7q0W4H1zLD-9wbA&usqp=CAU'
-              }
-            />
-            <br></br>
+      <Card className='text-center' style={{ width: '50em' }}>
+        <Card.Header>Venue</Card.Header>
+        <Card.Body>
+          <Card.Img
+            className='img'
+            variant='top'
+            src={
+              photos.length
+                ? photos
+                : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAh8YVQhMCGhp1xDo9Pew7q0W4H1zLD-9wbA&usqp=CAU'
+            }
+          />
             <Card.Text>
               <strong>Categories:</strong>
               {categories.map((category) => {
@@ -157,7 +147,7 @@ const SingleVenue = (props) => {
             <Card.Text>
               <div>
                 <Typography component='legend'>
-                  <strong>Ratings: </strong>
+                 <strong>Ratings: {rating}</strong>
                 </Typography>
                 <Rating
                   name='read-only'
@@ -167,9 +157,24 @@ const SingleVenue = (props) => {
                 />
               </div>
             </Card.Text>
-            <Card.Text>
-              <strong>Reviews:</strong>
-              {reviews ? reviews : 'No reviews available'}
+      <Card.Text>
+            <strong>Reviews: </strong>
+            <div>
+              {business.reviews.map((review) => {
+                return (
+                  <Alert key={review.id} variant='info'>
+                    <Rating
+                      name='read-only'
+                      precision={0.5}
+                      value={review.rating}
+                      readOnly
+                    />
+                    <hr />
+                    <p>{review.text}</p>
+                  </Alert>
+                );
+              })}
+            </div>
             </Card.Text>
             {liked ? (
               <strong>
