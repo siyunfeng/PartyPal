@@ -9,6 +9,9 @@ import { default as Select } from 'react-select';
 import FlexBoxForSearchResults from './Styled-Components/FlexBoxForSearchResults.styled';
 import FlexBoxForAllView from './Styled-Components/FlexBoxForAllView.styled';
 import LoadingState from './Spinner';
+import Rating from '@material-ui/lab/Rating';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 function AllCaterers(props) {
   const [price, setPrice] = useState(() => {
@@ -96,20 +99,23 @@ function AllCaterers(props) {
             classNamePrefix='select'
             onChange={handlePriceSelect}
           />
-          </form>
-          <form
+        </form>
+        <form
           style={{ width: '150px' }}
-          onSubmit={handleCuisineSelect(cuisineOptions)}>
+          onSubmit={handleCuisineSelect(cuisineOptions)}
+        >
           <Select
-               name='cuisine'
+            defaultValue={priceOptions[4]}
+            // isMulti
+            name='cuisine'
             options={cuisineOptions}
             className='basic-multi-select'
             classNamePrefix='select'
             onChange={handleCuisineSelect}
           />
         </form>
-             <br></br>
-           </FlexBoxForSearchResults>
+        <br></br>
+      </FlexBoxForSearchResults>
       <br></br>
       <br></br>
       <FlexBoxForAllView>
@@ -145,6 +151,7 @@ function AllCaterers(props) {
         <LoadingState />
       )}
        </FlexBoxForAllView>
+
     </>
   );
 }
