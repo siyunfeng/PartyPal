@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const UserHomeFlex = styled.div`
-   display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap
 `;
 export default UserHomeFlex;
