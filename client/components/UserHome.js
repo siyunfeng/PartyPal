@@ -93,7 +93,6 @@ const UserHome = (props) => {
               {venues?.length ? (
                 venues.map((venue, index) => {
                   return (
-                    <UserHomeFlex key={index}>
                       <Card key={index} style={{ width: '18rem' }}>
                         <Link to={`/singleVenue/${venue.yelp_reference_id}`}>
                           <Card.Img
@@ -122,7 +121,7 @@ const UserHome = (props) => {
                           </Button>
                         </Card.Body>
                       </Card>
-                    </UserHomeFlex>
+                   
                   );
                 })
               ) : (
