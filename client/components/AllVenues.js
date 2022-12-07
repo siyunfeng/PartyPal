@@ -62,6 +62,7 @@ export const AllVenues = (props) => {
         <p>{allVenues.length} venues found</p>
 
         <form style={{ width: '100px' }} onSubmit={handlePriceSelect(price)}>
+          <p>Filter by Price</p>
           <Select
             defaultValue={priceOptions[4]}
             // isMulti
@@ -97,12 +98,9 @@ export const AllVenues = (props) => {
                       <strong>Price: </strong>
                       {venue.price ? venue.price : 'Price not available'}
                     </Card.Text>
-
-                    <Card.Text>Rating: {venue.rating}</Card.Text>
-
-                    <Box component='fieldset' mb={3} borderColor='transparent'>
+                    <div>
                       <Typography component='legend'>
-                        <strong>Ratings</strong>
+                        <strong>Ratings: {venue.rating}</strong>
                       </Typography>
                       <Rating
                         name='read-only'
@@ -110,8 +108,7 @@ export const AllVenues = (props) => {
                         value={venue.rating}
                         readOnly
                       />
-                    </Box>
-
+                    </div>
                     <Link to={`/singleVenue/${venue.id}`}>
                       <Button variant='primary' name={venue.id}>
                         See More

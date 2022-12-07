@@ -16,7 +16,6 @@ import Box from '@material-ui/core/Box';
 
 const SingleVenue = (props) => {
   const business = props?.venue?.data?.business;
-  console.log(business);
   const [solidGreen, setSolidGreen] = useState(false);
   const [liked, setLiked] = useState(false);
 
@@ -34,7 +33,11 @@ const SingleVenue = (props) => {
     return ` ${counter}.  ${review.text} `;
   });
 
-  const { name, rating, photos, phone, price, hours } = business;
+  const { name, rating, photos, phone, price, hours, categories, location } =
+    business;
+  const address1 = location.address1;
+  const city = location.city;
+  const state = location.state;
 
   const urlVisiting = props.history.location.pathname;
 
@@ -102,12 +105,20 @@ const SingleVenue = (props) => {
                 : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAh8YVQhMCGhp1xDo9Pew7q0W4H1zLD-9wbA&usqp=CAU'
             }
           />
+          <br></br>
           <Card.Text>
-            <strong>Phone: </strong> {newPhone}
+            <strong>Categories:</strong>
+            {categories.map((category) => {
+              return ` ${category.title}`;
+            })}
           </Card.Text>
           <Card.Text>
-            <strong>Price: </strong>{' '}
-            {price ? price : 'No information available'}
+            <strong>Days Open: </strong>
+            {hours.length
+              ? business.hours[0].open.map((day) => {
+                  return ` ${findDayOfWeek(day.day)}, `;
+                })
+              : 'No information available'}
           </Card.Text>
           <Card.Text>
             <strong>Open: </strong>
@@ -122,17 +133,28 @@ const SingleVenue = (props) => {
               : 'No information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Days Open: </strong>
-            {hours.length
-              ? business.hours[0].open.map((day) => {
-                  return ` ${findDayOfWeek(day.day)}, `;
-                })
-              : 'No information available'}
+            <strong>Phone: </strong> {newPhone}
           </Card.Text>
           <Card.Text>
-            <Box component='fieldset' mb={3} borderColor='transparent'>
+            <strong>Price: </strong>{' '}
+            {price ? price : 'No information available'}
+          </Card.Text>
+          <Card.Text>
+            <strong>Street Address: </strong>
+            {address1 ? address1 : 'No information available'}
+          </Card.Text>
+          <Card.Text>
+            <strong>City: </strong>
+            {city ? city : 'No information available'}
+          </Card.Text>
+          <Card.Text>
+            <strong>State: </strong>
+            {state ? state : 'No information available'}
+          </Card.Text>
+          <Card.Text>
+            <div>
               <Typography component='legend'>
-                <strong>Ratings </strong>
+                <strong>Ratings: </strong>
               </Typography>
               <Rating
                 name='read-only'
@@ -140,19 +162,19 @@ const SingleVenue = (props) => {
                 value={rating}
                 readOnly
               />
-            </Box>
+            </div>
           </Card.Text>
           <Card.Text>
             <strong>Reviews:</strong>
             {reviews ? reviews : 'No reviews available'}
           </Card.Text>
-            {liked ? (
-              <strong>
-                <p>Added to user dashboard!</p>
-              </strong>
-            ) : (
-              <p></p>
-            )}
+          {liked ? (
+            <strong>
+              <p>Added to user dashboard!</p>
+            </strong>
+          ) : (
+            <p></p>
+          )}
           {window.localStorage.getItem('token') ? (
             <OverlayTrigger
               placement='top'

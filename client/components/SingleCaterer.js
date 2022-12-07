@@ -32,8 +32,11 @@ const SingleCaterer = (props) => {
     counter += 1;
     return ` ${counter}.  ${review.text} `;
   });
-  // got hours from here - Irais
-  const { name, rating, photos, phone, price, hours } = business;
+
+  const { name, rating, photos, phone, price, hours, categories, location } = business;
+  const address1 = location.address1;
+  const city = location.city;
+  const state = location.state;
 
   const urlVisiting = props.history.location.pathname;
 
@@ -102,10 +105,18 @@ const SingleCaterer = (props) => {
             }
           />
           <Card.Text>
-            <strong>Phone:</strong> {newPhone}
+            <strong>Categories:</strong>
+            {categories.map((category) => {
+              return ` ${category.title}`;
+            })}
           </Card.Text>
           <Card.Text>
-            <strong>Price:</strong> {price ? price : 'No information available'}
+            <strong>Days Open: </strong>{' '}
+            {hours.length
+              ? business.hours[0].open.map((day) => {
+                  return ` ${findDayOfWeek(day.day)}, `;
+                })
+              : 'No information available'}
           </Card.Text>
           <Card.Text>
             <strong>Open: </strong>{' '}
@@ -120,17 +131,27 @@ const SingleCaterer = (props) => {
               : 'No information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Days Open: </strong>{' '}
-            {hours.length
-              ? business.hours[0].open.map((day) => {
-                  return ` ${findDayOfWeek(day.day)}, `;
-                })
-              : 'No information available'}
+            <strong>Phone:</strong> {newPhone}
           </Card.Text>
           <Card.Text>
-            <Box component='fieldset' mb={3} borderColor='transparent'>
+            <strong>Price:</strong> {price ? price : 'No information available'}
+          </Card.Text>
+          <Card.Text>
+            <strong>Street Address: </strong>
+            {address1 ? address1 : 'No information available'}
+          </Card.Text>
+          <Card.Text>
+            <strong>City: </strong>
+            {city ? city : 'No information available'}
+          </Card.Text>
+          <Card.Text>
+            <strong>State: </strong>
+            {state ? state : 'No information available'}
+          </Card.Text>
+          <Card.Text>
+            <div>
               <Typography component='legend'>
-                <strong>Ratings </strong>
+                <strong>Ratings: </strong>
               </Typography>
               <Rating
                 name='read-only'
@@ -138,7 +159,7 @@ const SingleCaterer = (props) => {
                 value={rating}
                 readOnly
               />
-            </Box>
+            </div>
           </Card.Text>
           <Card.Text>
             <strong>Reviews: </strong> {reviews}
