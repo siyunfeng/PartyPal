@@ -1,12 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-const EventForm = () => {
+const EventForm = (props) => {
+  let { user, events, venues, caterers } = props;
+  console.log(
+    'before return --- user =',
+    user,
+    'events =',
+    events,
+    'venues =',
+    venues,
+    'caterers =',
+    caterers
+  );
+
+  useEffect(
+    () =>
+      console.log('inside useEffect venues =', venues, 'caterers =', caterers),
+    []
+  );
+
   return (
     <Form>
       <Form.Group className='my-3' controlId='formEventName'>
@@ -26,19 +45,33 @@ const EventForm = () => {
       <Form.Group controlId='formEventVenue'>
         <Form.Label>Venue</Form.Label>
         <Form.Select defaultValue=''>
-          <option>Option 1</option>
+          {venues?.length ? (
+            venues.map((venue, index) => (
+              <option key={index}>{venue.name}</option>
+            ))
+          ) : (
+            <option>Please add venues to your favorite</option>
+          )}
+          {/* <option>Option 1</option>
           <option>Option 2</option>
           <option>Option 3</option>
-          <option>Option 4</option>
+          <option>Option 4</option> */}
         </Form.Select>
       </Form.Group>
       <Form.Group controlId='formEventCaterer'>
         <Form.Label>Caterer</Form.Label>
         <Form.Select defaultValue=''>
-          <option>Option 1</option>
+          {caterers?.length ? (
+            caterers.map((caterer, index) => (
+              <option key={index}>{caterer.name}</option>
+            ))
+          ) : (
+            <option>Please add caterers to your favorite</option>
+          )}
+          {/* <option>Option 1</option>
           <option>Option 2</option>
           <option>Option 3</option>
-          <option>Option 4</option>
+          <option>Option 4</option> */}
         </Form.Select>
       </Form.Group>
       <FloatingLabel
@@ -69,4 +102,18 @@ const EventForm = () => {
   );
 };
 
-export default EventForm;
+const mapState = (state) => {
+  console.log('EventForm store state =', state);
+  return {
+    user: state.auth,
+    events: state.events,
+    venues: state.favorites.venues,
+    caterers: state.favorites.caterers,
+  };
+};
+
+const mapDispatch = (dispatch) => {
+  return {};
+};
+
+export default connect(mapState, mapDispatch)(EventForm);
