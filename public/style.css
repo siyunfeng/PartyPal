@@ -51,6 +51,11 @@ nav h1 {
   height: 300px
 }
 
+.singleViewImg {
+  width: 250px;
+  height: 500px
+}
+
 .favoriteSelectionsCard {
   width: auto;
   padding: 2rem;

@@ -64,7 +64,7 @@ const UserHome = (props) => {
           <br></br>
           <br></br>
           <div className='user-profile smallerUserHomeCards'>
-            <h4 style={{ marginLeft: '1rem' }}>Your Account Information</h4>
+            <h4 style={{ marginLeft: '1rem' }}>Account Information</h4>
 
             <div>
               <Card style={{ width: '25rem', marginLeft: '1rem' }}>
@@ -85,7 +85,7 @@ const UserHome = (props) => {
           <div></div>
           <div className='user-home-events'>
             <div className='user-home-favorite favoriteSelectionsCard'>
-              <h4 style={{ marginLeft: '1rem' }}>Your Liked Selections</h4>
+              <h4 style={{ marginLeft: '1rem' }}>Liked Selections</h4>
               <hr></hr>
               <br></br>
               <div className='each-favorite-venue-container '>
@@ -125,7 +125,7 @@ const UserHome = (props) => {
                             </Link>
                             <Button
                               onClick={() => handleDeleteVenue(venue.id)}
-                              variant='primary'
+                              variant='danger'
                             >
                               Delete
                             </Button>
@@ -179,7 +179,7 @@ const UserHome = (props) => {
                             </Link>
                             <Button
                               onClick={() => handleDeleteCaterer(caterer.id)}
-                              variant='primary'
+                              variant='danger'
                             >
                               Delete
                             </Button>
