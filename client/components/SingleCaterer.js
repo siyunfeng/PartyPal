@@ -12,7 +12,8 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import FlexBoxForSearchResults from './Styled-Components/FlexBoxForSearchResults.styled';
 import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+
+
 
 const SingleCaterer = (props) => {
   const business = props?.caterer?.business;
@@ -32,8 +33,11 @@ const SingleCaterer = (props) => {
     counter += 1;
     return ` ${counter}.  ${review.text} `;
   });
-  // got hours from here - Irais
-  const { name, rating, photos, phone, price, hours, categories } = business;
+
+  const { name, rating, photos, phone, price, hours, categories, location } = business;
+  const address1 = location.address1;
+  const city = location.city;
+  const state = location.state;
 
   const urlVisiting = props.history.location.pathname;
 
@@ -102,16 +106,18 @@ const SingleCaterer = (props) => {
             }
           />
           <Card.Text>
-            <strong>Phone:</strong> {newPhone}
-          </Card.Text>
-          <Card.Text>
-            <strong>Price:</strong> {price ? price : 'No information available'}
-          </Card.Text>
-          <Card.Text>
             <strong>Categories:</strong>
             {categories.map((category) => {
               return ` ${category.title}`;
             })}
+          </Card.Text>
+          <Card.Text>
+            <strong>Days Open: </strong>{' '}
+            {hours.length
+              ? business.hours[0].open.map((day) => {
+                  return ` ${findDayOfWeek(day.day)}, `;
+                })
+              : 'No information available'}
           </Card.Text>
           <Card.Text>
             <strong>Open: </strong>{' '}
@@ -126,12 +132,22 @@ const SingleCaterer = (props) => {
               : 'No information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Days Open: </strong>{' '}
-            {hours.length
-              ? business.hours[0].open.map((day) => {
-                  return ` ${findDayOfWeek(day.day)}, `;
-                })
-              : 'No information available'}
+            <strong>Phone:</strong> {newPhone}
+          </Card.Text>
+          <Card.Text>
+            <strong>Price:</strong> {price ? price : 'No information available'}
+          </Card.Text>
+          <Card.Text>
+            <strong>Street Address: </strong>
+            {address1 ? address1 : 'No information available'}
+          </Card.Text>
+          <Card.Text>
+            <strong>City: </strong>
+            {city ? city : 'No information available'}
+          </Card.Text>
+          <Card.Text>
+            <strong>State: </strong>
+            {state ? state : 'No information available'}
           </Card.Text>
           <Card.Text>
             <div>
