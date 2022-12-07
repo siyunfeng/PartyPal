@@ -98,7 +98,7 @@ export const AllVenues = (props) => {
                       <strong>Price: </strong>
                       {venue.price ? venue.price : 'Price not available'}
                     </Card.Text>
-                    <Box mb={3} borderColor='transparent'>
+                    <div>
                       <Typography component='legend'>
                         <strong>Ratings: {venue.rating}</strong>
                       </Typography>
@@ -108,8 +108,7 @@ export const AllVenues = (props) => {
                         value={venue.rating}
                         readOnly
                       />
-                    </Box>
-
+                    </div>
                     <Link to={`/singleVenue/${venue.id}`}>
                       <Button variant='primary' name={venue.id}>
                         See More
