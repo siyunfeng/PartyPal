@@ -33,7 +33,7 @@ const SingleCaterer = (props) => {
     return ` ${counter}.  ${review.text} `;
   });
   // got hours from here - Irais
-  const { name, rating, photos, phone, price, hours } = business;
+  const { name, rating, photos, phone, price, hours, categories } = business;
 
   const urlVisiting = props.history.location.pathname;
 
@@ -106,6 +106,12 @@ const SingleCaterer = (props) => {
           </Card.Text>
           <Card.Text>
             <strong>Price:</strong> {price ? price : 'No information available'}
+          </Card.Text>
+          <Card.Text>
+            <strong>Categories:</strong>
+            {categories.map((category) => {
+              return ` ${category.title}`;
+            })}
           </Card.Text>
           <Card.Text>
             <strong>Open: </strong>{' '}
