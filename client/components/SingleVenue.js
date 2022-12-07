@@ -9,10 +9,13 @@ import axios from 'axios';
 import ModalSignUpandLogIn from './ModalSignUpAndLogin';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import Rating from '@material-ui/lab/Rating';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 const SingleVenue = (props) => {
   const business = props?.venue?.data?.business;
-  console.log(business)
+  console.log(business);
   const [solidGreen, setSolidGreen] = useState(false);
   const [liked, setLiked] = useState(false);
 
@@ -125,8 +128,17 @@ const SingleVenue = (props) => {
               : 'No information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Overall rating: </strong>
-            {rating ? rating : 'No information available'}
+            <Box component='fieldset' mb={3} borderColor='transparent'>
+              <Typography component='legend'>
+                <strong>Ratings </strong>
+              </Typography>
+              <Rating
+                name='read-only'
+                precision={0.5}
+                value={rating}
+                readOnly
+              />
+            </Box>
           </Card.Text>
           <Card.Text>
             <strong>Reviews:</strong>
@@ -149,10 +161,10 @@ const SingleVenue = (props) => {
                   };
                   // adding here!
                   setSolidGreen(true);
-                  setLiked(true)
+                  setLiked(true);
                   saveLikedItem(e, venueInfo);
                 }}
-              > 
+              >
                 {liked ? 'Liked' : 'Like'}
               </Button>
             </OverlayTrigger>
