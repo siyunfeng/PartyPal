@@ -9,6 +9,9 @@ import ModalSignUpandLogIn from './ModalSignUpAndLogin';
 import axios from 'axios';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import Rating from '@material-ui/lab/Rating';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 const SingleCaterer = (props) => {
   const business = props?.caterer?.business;
@@ -123,7 +126,17 @@ const SingleCaterer = (props) => {
               : 'No information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Overall rating: </strong> {rating}
+            <Box component='fieldset' mb={3} borderColor='transparent'>
+              <Typography component='legend'>
+                <strong>Ratings </strong>
+              </Typography>
+              <Rating
+                name='read-only'
+                precision={0.5}
+                value={rating}
+                readOnly
+              />
+            </Box>
           </Card.Text>
           <Card.Text>
             <strong>Reviews: </strong> {reviews}
