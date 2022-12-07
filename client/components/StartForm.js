@@ -14,11 +14,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const StartForm = ({ getRecommendations }) => {
+const StartForm = (props) => {
   const classes = useStyles();
 
   window.localStorage.removeItem('price');
   window.localStorage.removeItem('term');
+
+  const getRecommendations = (event) => {
+    event.preventDefault();
+    const service = event.target.serviceOption.value;
+    const location = event.target.location.value;
+    const initialQuery = { service, location };
+    props.sendInitialQuery(initialQuery, history);
+  };
+
   return (
     <div
       style={{
@@ -38,7 +47,7 @@ const StartForm = ({ getRecommendations }) => {
           className={classes.root}
           noValidate
           autoComplete='off'
-          onSubmit={getRecommendations}
+          onSubmit={(event) => getRecommendations(event)}
           name='start-form'
         >
           <div>
@@ -46,7 +55,7 @@ const StartForm = ({ getRecommendations }) => {
               What service can we help you find?
             </label>
           </div>
-          <select id='serviceOption'>
+          <select id='serviceOption' name='serviceOption'>
             <option value='catering'>Caterer</option>
             <option value='venue'>Venue</option>
           </select>
@@ -79,13 +88,8 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch, { history }) => {
   return {
-    getRecommendations(event) {
-      event.preventDefault();
-      const service = document.getElementById('serviceOption').value;
-      const location = event.target.location.value;
-      const initialQuery = { service, location };
-      dispatch(sendInitialQuery(initialQuery, history));
-    },
+    sendInitialQuery: (initialQuery) =>
+      dispatch(sendInitialQuery(initialQuery, history)),
   };
 };
 
