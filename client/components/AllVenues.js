@@ -62,6 +62,7 @@ export const AllVenues = (props) => {
         <p>{allVenues.length} venues found</p>
 
         <form style={{ width: '100px' }} onSubmit={handlePriceSelect(price)}>
+          <p>Filter by Price</p>
           <Select
             defaultValue={priceOptions[4]}
             // isMulti

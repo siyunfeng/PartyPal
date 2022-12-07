@@ -90,6 +90,7 @@ function AllCaterers(props) {
           style={{ width: '150px' }}
           onSubmit={handlePriceSelect(priceOptions)}
         >
+          <p>Filter by Price</p>
           <Select
             defaultValue={priceOptions[4]}
             // isMulti
@@ -104,8 +105,10 @@ function AllCaterers(props) {
           style={{ width: '150px' }}
           onSubmit={handleCuisineSelect(cuisineOptions)}
         >
+          {' '}
+          <p>Filter by Cuisine</p>
           <Select
-            defaultValue={priceOptions[4]}
+            defaultValue={cuisineOptions[4]}
             // isMulti
             name='cuisine'
             options={cuisineOptions}
