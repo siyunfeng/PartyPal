@@ -20,13 +20,19 @@ const StartForm = ({ getRecommendations }) => {
   window.localStorage.removeItem('price');
   window.localStorage.removeItem('term');
   return (
-    <div>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <div
         className='start-form'
-        style={{ width: '350px', textAlign: 'center' }}
+        style={{ width: '350px', textAlign: 'center', alignItems: 'center' }}
       >
         <div>
-          <h3>What can we help you find?</h3>
+          <h3>Ready for a Party?</h3>
         </div>
         <form
           className={classes.root}
