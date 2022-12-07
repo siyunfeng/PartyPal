@@ -12,7 +12,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import FlexBoxForSearchResults from './Styled-Components/FlexBoxForSearchResults.styled';
 import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import Alert from 'react-bootstrap/Alert';
 
 const SingleVenue = (props) => {
   const business = props?.venue?.data?.business;
@@ -132,7 +132,7 @@ const SingleVenue = (props) => {
           <Card.Text>
             <div>
               <Typography component='legend'>
-                <strong>Ratings: </strong>
+                <strong>Ratings: {rating}</strong>
               </Typography>
               <Rating
                 name='read-only'
@@ -144,7 +144,22 @@ const SingleVenue = (props) => {
           </Card.Text>
           <Card.Text>
             <strong>Reviews:</strong>
-            {reviews ? reviews : 'No reviews available'}
+            <div>
+              {business.reviews.map((review) => {
+                return (
+                  <Alert key={review.id} variant='info'>
+                    <Rating
+                      name='read-only'
+                      precision={0.5}
+                      value={review.rating}
+                      readOnly
+                    />
+                    <hr />
+                    <p>{review.text}</p>
+                  </Alert>
+                );
+              })}
+            </div>
           </Card.Text>
           {liked ? (
             <strong>
