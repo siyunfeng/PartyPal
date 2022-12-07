@@ -130,9 +130,9 @@ const SingleVenue = (props) => {
               : 'No information available'}
           </Card.Text>
           <Card.Text>
-            <Box component='fieldset' mb={3} borderColor='transparent'>
+            <div>
               <Typography component='legend'>
-                <strong>Ratings </strong>
+                <strong>Ratings: </strong>
               </Typography>
               <Rating
                 name='read-only'
@@ -140,19 +140,19 @@ const SingleVenue = (props) => {
                 value={rating}
                 readOnly
               />
-            </Box>
+            </div>
           </Card.Text>
           <Card.Text>
             <strong>Reviews:</strong>
             {reviews ? reviews : 'No reviews available'}
           </Card.Text>
-            {liked ? (
-              <strong>
-                <p>Added to user dashboard!</p>
-              </strong>
-            ) : (
-              <p></p>
-            )}
+          {liked ? (
+            <strong>
+              <p>Added to user dashboard!</p>
+            </strong>
+          ) : (
+            <p></p>
+          )}
           {window.localStorage.getItem('token') ? (
             <OverlayTrigger
               placement='top'

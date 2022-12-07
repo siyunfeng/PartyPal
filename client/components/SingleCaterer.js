@@ -128,9 +128,9 @@ const SingleCaterer = (props) => {
               : 'No information available'}
           </Card.Text>
           <Card.Text>
-            <Box component='fieldset' mb={3} borderColor='transparent'>
+            <div>
               <Typography component='legend'>
-                <strong>Ratings </strong>
+                <strong>Ratings: </strong>
               </Typography>
               <Rating
                 name='read-only'
@@ -138,7 +138,7 @@ const SingleCaterer = (props) => {
                 value={rating}
                 readOnly
               />
-            </Box>
+            </div>
           </Card.Text>
           <Card.Text>
             <strong>Reviews: </strong> {reviews}

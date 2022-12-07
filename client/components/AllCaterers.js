@@ -141,7 +141,7 @@ function AllCaterers(props) {
                     <Card.Text>
                       {caterer.price ? caterer.price : 'No price available'}
                     </Card.Text>
-                    <Box mb={3} borderColor='transparent'>
+                    <div>
                       <Typography component='legend'>
                         <strong>Ratings: {caterer.rating}</strong>
                       </Typography>
@@ -151,7 +151,7 @@ function AllCaterers(props) {
                         value={caterer.rating}
                         readOnly
                       />
-                    </Box>
+                    </div>
 
                     <Link to={`/singleCaterer/${caterer.id}`}>
                       <Button
