@@ -16,7 +16,9 @@ import Box from '@material-ui/core/Box';
 
 const SingleVenue = (props) => {
   const business = props?.venue?.data?.business;
-  console.log(business);
+  console.log("streeet", business.location.address1);
+  console.log("City", business.location.city);
+  console.log("State", business.location.state);
   const [solidGreen, setSolidGreen] = useState(false);
   const [liked, setLiked] = useState(false);
 
