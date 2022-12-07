@@ -71,5 +71,15 @@ nav h1 {
   margin-left: 3rem;
 }
 
+h1, h2, h3, h4, h5, p, strong, button {
+  font-family: 'Fira Sans', sans-serif;
+}
+
+
+.btn-primary {
+  background-color: #F27A98;
+  border: none;
+  border-radius: 50px;
+}
 
 

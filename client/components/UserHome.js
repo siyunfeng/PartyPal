@@ -57,7 +57,7 @@ const UserHome = (props) => {
           <h1 style={{ marginLeft: '1rem' }}>Welcome back {username}!</h1>
           <br></br>
           <Link to='/start'>
-            <Button variant='success' style={{ marginLeft: '1rem' }}>
+            <Button variant='primary' style={{ marginLeft: '1rem' }}>
               Start Planning
             </Button>
           </Link>
