@@ -9,6 +9,7 @@ import axios from 'axios';
 import ModalSignUpandLogIn from './ModalSignUpAndLogin';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import FlexBoxForSearchResults from './Styled-Components/FlexBoxForSearchResults.styled';
 import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -86,11 +87,12 @@ const SingleVenue = (props) => {
 
   return (
     <div>
-      <h1>{name ? name : ''}</h1>
+      <FlexBoxForSearchResults>
+        <h1>{name ? name : ''}</h1>
+      </FlexBoxForSearchResults>
       <Card className='text-center'>
         <Card.Header>Venue</Card.Header>
         <Card.Body>
-          <Card.Title>{name ? name : 'No information available'}</Card.Title>
           <Card.Img
             className='img'
             variant='top'
@@ -144,6 +146,13 @@ const SingleVenue = (props) => {
             <strong>Reviews:</strong>
             {reviews ? reviews : 'No reviews available'}
           </Card.Text>
+            {liked ? (
+              <strong>
+                <p>Added to user dashboard!</p>
+              </strong>
+            ) : (
+              <p></p>
+            )}
           {window.localStorage.getItem('token') ? (
             <OverlayTrigger
               placement='top'
@@ -181,7 +190,6 @@ const SingleVenue = (props) => {
             <Button variant='outline-primary'>Go Back</Button>
           </Link>
         </Card.Body>
-        {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}
       </Card>
     </div>
   );

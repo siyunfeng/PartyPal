@@ -8,6 +8,7 @@ import Card from 'react-bootstrap/Card';
 import { default as Select } from 'react-select';
 import FlexBoxForAllView from './Styled-Components/FlexBoxForAllView.styled';
 import FlexBoxForSearchResults from './Styled-Components/FlexBoxForSearchResults.styled';
+import LoadingState from './Spinner';
 import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -96,6 +97,9 @@ export const AllVenues = (props) => {
                       <strong>Price: </strong>
                       {venue.price ? venue.price : 'Price not available'}
                     </Card.Text>
+
+                    <Card.Text>Rating: {venue.rating}</Card.Text>
+
                     <Box component='fieldset' mb={3} borderColor='transparent'>
                       <Typography component='legend'>
                         <strong>Ratings</strong>
@@ -107,6 +111,7 @@ export const AllVenues = (props) => {
                         readOnly
                       />
                     </Box>
+
                     <Link to={`/singleVenue/${venue.id}`}>
                       <Button variant='primary' name={venue.id}>
                         See More
@@ -118,7 +123,7 @@ export const AllVenues = (props) => {
             );
           })
         ) : (
-          <p>Loading</p>
+          <LoadingState />
         )}
       </FlexBoxForAllView>
     </div>

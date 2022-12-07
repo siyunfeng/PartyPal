@@ -11,7 +11,6 @@ let TOKEN =
 
 const userSearch = (queryType, userSearchInput) => {
   if (queryType === 'all') {
-    console.log(userSearchInput);
     return `{
       search(term: "${userSearchInput.service}", location: "${userSearchInput.location}", categories: "venues", price: "${userSearchInput.price}", limit: 50) {
         total
