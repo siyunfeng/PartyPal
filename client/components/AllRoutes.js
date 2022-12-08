@@ -13,6 +13,7 @@ import EventSummaryPopUp from './EventSummaryPopUp';
 import Navbar from './NavBar';
 import EventForm from './EventForm';
 import Button from 'react-bootstrap/Button';
+import EventFormMUI from './EventFormMUI';
 
 export const AllRoutes = () => {
   return (
@@ -32,6 +33,7 @@ export const AllRoutes = () => {
             <Route path='/start' component={StartForm} />
             <Route path='/account' component={UserHome} />
             <Route path='/new-event' component={EventForm} />
+            <Route path='/new-event-mui' component={EventFormMUI} />
           </Switch>
         </main>
       </div>

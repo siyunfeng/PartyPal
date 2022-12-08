@@ -66,7 +66,7 @@ const UserHome = (props) => {
             <div>
               <div>
                 <h4>Events</h4>
-                <Link to='/new-event'>
+                <Link to='/new-event-mui'>
                   <Button>Create Future Event</Button>
                 </Link>
               </div>

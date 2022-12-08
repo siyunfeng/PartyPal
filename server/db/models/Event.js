@@ -12,10 +12,16 @@ const Event = db.define('event', {
     type: DataTypes.STRING,
   },
   venue: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
+  },
+  venueYelpId: {
+    type: DataTypes.TEXT,
   },
   catering: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
+  },
+  cateringYelpId: {
+    type: DataTypes.TEXT,
   },
   notes: {
     type: DataTypes.TEXT,

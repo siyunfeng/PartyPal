@@ -36,6 +36,7 @@ eventsRouter.put('/:eventId', async (req, res, next) => {
 eventsRouter.post('/', async (req, res, next) => {
   try {
     const newEvent = await Event.create(req.body);
+    // console.log('INSIDE eventsRouter POST >>> newEvent =', newEvent);
     res.send(newEvent);
   } catch (error) {
     next(error);
