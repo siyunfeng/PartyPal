@@ -47,7 +47,6 @@ const UserHome = (props) => {
     deleteCatererLikedItem(favoriteId);
 
   const handleDeleteVenue = (favoriteId) => deleteVenueLikedItem(favoriteId);
-  let counter = 0;
 
   return (
     <>
@@ -216,27 +215,37 @@ const UserHome = (props) => {
                 My Events
               </h4>
               <br></br>
+              <div>
+                <Link to='/new-event-mui'>
+                  <Button style={{ marginLeft: '1rem' }}>
+                    Create Future Event
+                  </Button>
+                </Link>
+              </div>
+              <br></br>
               {events?.length ? (
                 events.map((event, index) => {
                   return (
                     <div className='user-home-upcomings' key={index}>
                       <Card style={{ width: '25rem', marginLeft: '1rem' }}>
                         <Card.Body>
-                          <Card.Title
-                            style={{ fontFamily: 'DM Serif Display' }}
-                          >
-                            {/* {(counter += 1)} */}
-                            <br></br>
-                            {event.name}
-                            <br></br>
+
+                          <Card.Title        style={{ fontFamily: 'DM Serif Display' }}>
+                            {event.name
+                              ? event.name
+                              : 'Event name is not available at this time'}
                           </Card.Title>
                           <Card.Text>
                             <strong>Date: </strong>
-                            {event.date}
+                            {event.date
+                              ? event.date
+                              : 'Event date is not available at this time'}
                           </Card.Text>
                           <Card.Text>
                             <strong>Time: </strong>
-                            {event.time}
+                            {event.time
+                              ? event.time
+                              : 'Event time is not available at this time'}
                           </Card.Text>
                         </Card.Body>
                       </Card>
@@ -257,6 +266,7 @@ const UserHome = (props) => {
                   </Link>
                 </div>
               </UserHomeFlex>
+
             </div>
           </div>
         </div>
