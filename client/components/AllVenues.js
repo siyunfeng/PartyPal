@@ -61,9 +61,15 @@ export const AllVenues = (props) => {
       <FlexBoxForSearchResults>
         <h1>Venue search results for {props.startForm.location}: </h1>
         <p>{allVenues.length} venues found</p>
-
-        <form style={{ width: '100px' }} onSubmit={handlePriceSelect(price)}>
-          <p>Filter by Price</p>
+        <form
+          style={{
+            width: '150px',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          onSubmit={handlePriceSelect(price)}
+        >
+          <label>Filter by Price</label>
           <Select
             defaultValue={priceOptions[4]}
             // isMulti
@@ -112,7 +118,11 @@ export const AllVenues = (props) => {
                     </div>
                     <br></br>
                     <Link to={`/singleVenue/${venue.id}`}>
-                      <Button variant='primary' name={venue.id} style={{fontFamily: 'Cardo'}}>
+                      <Button
+                        variant='primary'
+                        name={venue.id}
+                        style={{ fontFamily: 'Cardo' }}
+                      >
                         <strong>See more</strong>
                       </Button>
                     </Link>

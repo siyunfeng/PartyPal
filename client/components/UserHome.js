@@ -53,24 +53,28 @@ const UserHome = (props) => {
       {id ? (
         <div id='home-div'>
           <br></br>
-          <h1 style={{ marginLeft: '1rem' }}>Welcome back {username}!</h1>
+          <h1 style={{ marginLeft: '1rem' }}>Welcome {username}!</h1>
+
           <br></br>
-          <Link to='/start'>
+          <br></br>
+          <a href='#my-events'>
             <Button
               variant='primary'
               style={{ marginLeft: '1rem', fontFamily: 'Cardo' }}
             >
-              <strong>Start Planning</strong>
+              <strong>View My Events</strong>
             </Button>
-          </Link>
-          <br></br>
-          <br></br>
-          <a style={{textDecoration: 'none'}} href='#my-events'>
-            <Button>View My Events</Button>
           </a>
-
-          <a style={{textDecoration: 'none'}} href='#my-liked-list'>
-            <Button>View My Liked List</Button>
+          <a
+            style={{ textDecoration: 'none', fontFamily: 'Cardo' }}
+            href='#my-liked-list'
+          >
+            <Button
+              variant='primary'
+              style={{ marginLeft: '1rem', fontFamily: 'Cardo' }}
+            >
+              <strong>View My Liked List</strong>
+            </Button>
           </a>
 
           <div className='user-profile smallerUserHomeCards'>
@@ -229,8 +233,9 @@ const UserHome = (props) => {
                     <div className='user-home-upcomings' key={index}>
                       <Card style={{ width: '25rem', marginLeft: '1rem' }}>
                         <Card.Body>
-
-                          <Card.Title        style={{ fontFamily: 'DM Serif Display' }}>
+                          <Card.Title
+                            style={{ fontFamily: 'DM Serif Display' }}
+                          >
                             {event.name
                               ? event.name
                               : 'Event name is not available at this time'}
@@ -266,7 +271,6 @@ const UserHome = (props) => {
                   </Link>
                 </div>
               </UserHomeFlex>
-
             </div>
           </div>
         </div>

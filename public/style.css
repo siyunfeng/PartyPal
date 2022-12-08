@@ -92,24 +92,34 @@ nav h1 {
   margin-left: 3rem;
 }
 
-h1, h2, h3, h4, h5, strong, button {
+h1,
+h2,
+h3,
+h4,
+h5,
+strong,
+button {
   /* font-family: var(--DM-Serif-Display-Italic) */
-  font-family: var(--DM-Serif-Display)
+  font-family: var(--DM-Serif-Display);
 }
 
-p {
+p,
+label {
   font-family: var(--Cardo);
-  font-weight: bold
+  font-weight: bold;
 }
 
 .btn-primary {
-  background-color: #f27a98;
-  border: none;
-  border-radius: 50px;
+  background-color: #d562be !important;
+  border: none !important;
+}
+.btn-primary:hover {
+  background-color: #605399 !important;
+  color: white !important;
 }
 
 .button-divider {
-  width:5px;
-  height:auto;
-  display:inline-block;
+  width: 5px;
+  height: auto;
+  display: inline-block;
 }
