@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
     backgroundColor: '#D562BE',
+    color: '#fff',
     '&:hover': {
       backgroundColor: '#605399',
       color: '#fff',
@@ -113,9 +114,9 @@ const StartForm = (props) => {
               <Button
                 variant='contained'
                 type='submit'
-                color='primary'
-                className='single-venue-container'
-                style={{ fontFamily: 'Cardo', backgroundColor: '#D562BE' }}
+                // color='primary'
+                className={classes.submit}
+                style={{ fontFamily: 'Cardo' }}
               >
                 <strong>Get Recommendations</strong>
               </Button>
