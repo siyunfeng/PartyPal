@@ -4,7 +4,14 @@
 
 body,
 #home-div,
-nav {
+nav,
+.main,
+#app,
+.start-form-div,
+.all-venue-container,
+.all-caterer-container,
+.single-venue-container,
+.single-caterer-container {
   background-color: #f1cfbd;
 }
 
@@ -91,4 +98,8 @@ button {
   background-color: #f27a98;
   border: none;
   border-radius: 50px;
+}
+
+.button {
+  background-color: #f27a98;
 }

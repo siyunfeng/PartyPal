@@ -14,7 +14,6 @@ import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
 import Alert from 'react-bootstrap/Alert';
 
-
 const SingleCaterer = (props) => {
   const business = props?.caterer?.business;
   const [solidGreen, setSolidGreen] = useState(false);
@@ -27,11 +26,11 @@ const SingleCaterer = (props) => {
 
   if (!business) return null;
 
-  const { name, rating, photos, phone, price, hours, categories, location } = business;
+  const { name, rating, photos, phone, price, hours, categories, location } =
+    business;
   const address1 = location.address1;
   const city = location.city;
   const state = location.state;
-
 
   const urlVisiting = props.history.location.pathname;
 
@@ -83,7 +82,7 @@ const SingleCaterer = (props) => {
   }
 
   return (
-    <div>
+    <div className='single-caterer-container'>
       <FlexBoxForSearchResults>
         <h1>{name ? name : ''}</h1>
       </FlexBoxForSearchResults>

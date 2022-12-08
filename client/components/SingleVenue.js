@@ -82,7 +82,7 @@ const SingleVenue = (props) => {
   }
 
   return (
-    <div>
+    <div className='single-venue-container'>
       <FlexBoxForSearchResults>
         <h1>{name ? name : ''}</h1>
       </FlexBoxForSearchResults>

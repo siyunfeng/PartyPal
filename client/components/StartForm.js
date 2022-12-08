@@ -8,12 +8,34 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
+import Avatar from '@material-ui/core/Avatar';
+import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: '25ch',
+    margin: theme.spacing(4),
+    width: '50ch',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+    textAlign: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: '#6F2DBD',
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+    backgroundColor: '#6F2DBD',
+    '&:hover': {
+      backgroundColor: '#e64398',
+      color: '#6F2DBD',
     },
   },
 }));
@@ -34,32 +56,25 @@ const StartForm = (props) => {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <div
-        className='start-form'
-        style={{ width: '350px', textAlign: 'center', alignItems: 'center' }}
-      >
-        <div>
-          <h3>Ready for a Party?</h3>
-        </div>
+    <Container className='start-form-div' component='main' maxWidth='xs'>
+      <div className={classes.root}>
+        <Avatar className={classes.avatar}>
+          <SearchOutlinedIcon />
+        </Avatar>
+        <Typography component='h1' variant='h5'>
+          Ready to Party
+        </Typography>
         <form
-          className={classes.root}
+          className={classes.form}
           noValidate
           autoComplete='off'
           onSubmit={(event) => getRecommendations(event)}
           name='start-form'
         >
-          <div>
-            <label htmlFor='serviceOptions'>
-              What service can we help you find?
-            </label>
-          </div>
+          <Typography component='h5'>
+            What service can we help you find?
+          </Typography>
+          <br></br>
           <FormControl variant='outlined'>
             <InputLabel>Service</InputLabel>
             <Select
@@ -70,26 +85,30 @@ const StartForm = (props) => {
               <MenuItem value='catering'>Caterer</MenuItem>
               <MenuItem value='venue'>Venue</MenuItem>
             </Select>
+            <br></br>
+            <Typography component='h5'>
+              Where will your party be held?
+            </Typography>
+            <br></br>
+            <TextField
+              name='location'
+              label='Location or Zip-Code'
+              variant='outlined'
+            />
             <div>
-              <label htmlFor='partyLocation'>
-                Where will your party be held?
-              </label>
+              <Button
+                variant='contained'
+                type='submit'
+                color='primary'
+                className={classes.submit}
+              >
+                Get Recommendations
+              </Button>
             </div>
           </FormControl>
-          <TextField
-            name='location'
-            label='Location or Zip-Code'
-            variant='outlined'
-          />
-
-          <div>
-            <Button variant='contained' type='submit' color='primary'>
-              Get Recommendations
-            </Button>
-          </div>
         </form>
       </div>
-    </div>
+    </Container>
   );
 };
 

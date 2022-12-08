@@ -6,7 +6,6 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -34,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-
 
 export const AuthForm = (props) => {
   const classes = useStyles();
@@ -96,8 +94,7 @@ export const AuthForm = (props) => {
             {error && error.response && <div> {error.response.data} </div>}
           </form>
         </div>
-        <Box mt={8}>
-        </Box>
+        <Box mt={8}></Box>
       </Container>
     );
   }
@@ -192,8 +189,7 @@ export const AuthForm = (props) => {
             {error && error.response && <div> {error.response.data} </div>}
           </form>
         </div>
-        <Box mt={5}>
-        </Box>
+        <Box mt={5}></Box>
       </Container>
     );
   }
@@ -263,4 +259,3 @@ const mapDispatchSignup = (dispatch, { history }) => {
 
 export const Login = connect(mapStateLogin, mapDispatchLogin)(AuthForm);
 export const Signup = connect(mapStateSignup, mapDispatchSignup)(AuthForm);
-

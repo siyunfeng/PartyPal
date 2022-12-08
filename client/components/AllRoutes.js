@@ -18,7 +18,7 @@ export const AllRoutes = () => {
   return (
     <Router history={history}>
       <Navbar />
-      <main>
+      <main className='main'>
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/login' component={Login} />

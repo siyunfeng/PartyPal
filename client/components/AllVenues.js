@@ -56,7 +56,7 @@ export const AllVenues = (props) => {
   });
 
   return (
-    <div>
+    <div className='all-venue-container'>
       <FlexBoxForSearchResults>
         <h1>Venue search results for {props.startForm.location}: </h1>
         <p>{allVenues.length} venues found</p>
