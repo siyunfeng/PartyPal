@@ -230,9 +230,9 @@ const UserHome = (props) => {
               <br></br>
               <UserHomeFlex>
                 <div>
-                  <Link to='/new-event'>
-                    <Button>Create Future Event</Button>
-                  </Link>
+                   <Link to='/new-event-mui'>
+                  <Button>Create Future Event</Button>
+                </Link>
                 </div>
               </UserHomeFlex>
             </div>
