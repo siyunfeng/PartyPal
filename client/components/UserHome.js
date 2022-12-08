@@ -51,7 +51,7 @@ const UserHome = (props) => {
   return (
     <>
       {id ? (
-        <div>
+        <div id='home-div'>
           <br></br>
           <h1 style={{ marginLeft: '1rem' }}>Welcome back {username}!</h1>
           <br></br>

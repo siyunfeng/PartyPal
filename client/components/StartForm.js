@@ -8,12 +8,34 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
+import Avatar from '@material-ui/core/Avatar';
+import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: '25ch',
+    margin: theme.spacing(4),
+    width: '50ch',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+    textAlign: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: '#D562BE',
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+    backgroundColor: '#D562BE',
+    '&:hover': {
+      backgroundColor: '#605399',
+      color: '#fff',
     },
   },
 }));
@@ -34,13 +56,14 @@ const StartForm = (props) => {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <Container className='start-form-div' component='main' maxWidth='xs'>
+      <div className={classes.root}>
+        <Avatar className={classes.avatar}>
+          <SearchOutlinedIcon />
+        </Avatar>
+        <Typography component='h1' variant='h5'>
+          Ready to Party
+        </Typography>
       <div
         className='start-form'
         style={{ width: '350px', textAlign: 'center', alignItems: 'center' }}
@@ -53,7 +76,7 @@ const StartForm = (props) => {
           <h1>Ready for a Party?</h1>
         </div>
         <form
-          className={classes.root}
+          className={classes.form}
           noValidate
           autoComplete='off'
           onSubmit={(event) => getRecommendations(event)}
@@ -80,8 +103,7 @@ const StartForm = (props) => {
               <label style={{ fontFamily: 'Cardo' }} htmlFor='partyLocation'>
                 Where will your party be held?
               </label>
-            </div>
-            {/* <br></br> */}
+            </div>          
           </FormControl>
           <TextField
             style={{ fontFamily: 'Cardo' }}
@@ -96,6 +118,7 @@ const StartForm = (props) => {
               variant='contained'
               type='submit'
               color='primary'
+              className='single-venue-container'
               style={{ fontFamily: 'Cardo' }}
             >
               <strong>Get Recommendations</strong>
@@ -103,7 +126,7 @@ const StartForm = (props) => {
           </div>
         </form>
       </div>
-    </div>
+    </Container>
   );
 };
 

@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 function CarouselHome() {
   return (
     <div>
-      <Carousel>
+      <Carousel id='carousel'>
         <Carousel.Item>
           <img
             className='d-block w-100'

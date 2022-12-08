@@ -7,8 +7,16 @@
   --Cardo: 'Cardo', serif;
 }
 
-body {
-    background-color: white;
+body,
+#home-div,
+.main,
+#app,
+.start-form-div,
+.all-venue-container,
+.all-caterer-container,
+.single-venue-container,
+.single-caterer-container {
+  background-color: #f9f6f3;
 }
 
 .img {
@@ -24,7 +32,6 @@ nav {
   justify-content: center;
   background-color: #f1cfbd;
   font-family: var(--Cardo);
-
 }
 
 nav ul {
@@ -32,11 +39,10 @@ nav ul {
   margin-top: 1.2rem;
   flex-flow: row wrap;
   justify-content: space-evenly;
- 
 }
 
 nav h1 {
-  color: black
+  color: black;
 }
 
 .hr {
@@ -54,12 +60,12 @@ nav h1 {
 
 .allViews {
   width: 300px;
-  height: 300px
+  height: 300px;
 }
 
 .singleViewImg {
   width: 250px;
-  height: 500px
+  height: 500px;
 }
 
 .favoriteSelectionsCard {
@@ -96,9 +102,8 @@ p {
   font-weight: bold
 }
 
-
 .btn-primary {
-  background-color: #F27A98;
+  background-color: #f27a98;
   border: none;
   border-radius: 50px;
 }

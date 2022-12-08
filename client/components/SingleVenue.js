@@ -84,56 +84,9 @@ const SingleVenue = (props) => {
   }
 
   return (
-    <div>
+    <div className='single-venue-container'>
       <br></br>
       <br></br>
-      {/* <FlexBox>
-        {liked ? (
-          <strong>
-            <p>Added to user dashboard!</p>
-          </strong>
-        ) : (
-          ''
-        )}
-      </FlexBox>
-
-      <ButtonFlex>
-        {window.localStorage.getItem('token') ? (
-          <OverlayTrigger
-            placement='top'
-            delay={{ show: 250, hide: 400 }}
-            overlay={renderTooltip}
-          >
-            <Button
-              variant={solidGreen ? 'success' : 'outline-success'}
-              name={business.id}
-              onClick={(e) => {
-                const venueInfo = {
-                  name,
-                  category: 'venue',
-                  image_url: photos,
-                };
-                setSolidGreen(true);
-                setLiked(true);
-                saveLikedItem(e, venueInfo);
-              }}
-            >
-              {liked ? 'Liked' : 'Like'}
-            </Button>
-          </OverlayTrigger>
-        ) : (
-          <ModalSignUpandLogIn
-            id={business.id}
-            name={name}
-            category={'venue'}
-            image_url={photos}
-            urlVisted={urlVisiting}
-          />
-        )}
-        <Link to='/allVenues'>
-          <Button variant='outline-primary'>Go Back</Button>
-        </Link>
-      </ButtonFlex> */}
       <SingleView>
         <Card
           className='favoriteSelectionsCard'
