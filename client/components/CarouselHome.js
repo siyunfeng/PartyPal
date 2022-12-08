@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 function CarouselHome() {
   return (
     <div>
-      <Carousel>
+      <Carousel id='carousel'>
         <Carousel.Item>
           <img
             className='d-block w-100'
@@ -16,8 +16,12 @@ function CarouselHome() {
           <Carousel.Caption>
             <h1>Plan your party with PartyPal</h1>
             <Link to='/start'>
-              <Button className='mb-5' variant='primary'>
-                Start Planning
+              <Button
+                className='mb-5'
+                variant='primary'
+                style={{ fontFamily: 'Cardo' }}
+              >
+                <strong>Start Planning</strong>
               </Button>
             </Link>
           </Carousel.Caption>
@@ -31,8 +35,12 @@ function CarouselHome() {
           <Carousel.Caption>
             <h1>Plan your party with PartyPal</h1>
             <Link to='/start'>
-              <Button className='mb-5' variant='primary'>
-                Start Planning
+              <Button
+                className='mb-5'
+                variant='primary'
+                style={{ fontFamily: 'Cardo' }}
+              >
+                <strong>Start Planning</strong>
               </Button>
             </Link>
           </Carousel.Caption>
@@ -46,8 +54,12 @@ function CarouselHome() {
           <Carousel.Caption>
             <h1>Plan your party with PartyPal</h1>
             <Link to='/start'>
-              <Button className='mb-5' variant='primary'>
-                Start Planning
+              <Button
+                className='mb-5'
+                variant='primary'
+                style={{ fontFamily: 'Cardo' }}
+              >
+                <strong>Start Planning</strong>
               </Button>
             </Link>
           </Carousel.Caption>
@@ -62,8 +74,12 @@ function CarouselHome() {
           <Carousel.Caption>
             <h1>Plan your party with PartyPal</h1>
             <Link to='/start'>
-              <Button className='mb-5' variant='primary'>
-                Start Planning
+              <Button
+                className='mb-5'
+                variant='primary'
+                style={{ fontFamily: 'Cardo' }}
+              >
+                <strong>Start Planning</strong>
               </Button>
             </Link>
           </Carousel.Caption>
@@ -77,8 +93,12 @@ function CarouselHome() {
           <Carousel.Caption>
             <h1>Plan your party with PartyPal</h1>
             <Link to='/start'>
-              <Button className='mb-5' variant='primary'>
-                Start Planning
+              <Button
+                className='mb-5'
+                variant='primary'
+                style={{ fontFamily: 'Cardo' }}
+              >
+                <strong>Start Planning</strong>
               </Button>
             </Link>
           </Carousel.Caption>
@@ -92,8 +112,12 @@ function CarouselHome() {
           <Carousel.Caption>
             <h1>Plan your party with PartyPal</h1>
             <Link to='/start'>
-              <Button className='mb-5' variant='primary'>
-                Start Planning
+              <Button
+                className='mb-5'
+                variant='primary'
+                style={{ fontFamily: 'Cardo' }}
+              >
+                <strong>Start Planning</strong>
               </Button>
             </Link>
           </Carousel.Caption>

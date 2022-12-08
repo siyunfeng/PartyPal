@@ -56,7 +56,8 @@ export const AllVenues = (props) => {
   });
 
   return (
-    <div>
+    <div className='all-venue-container'>
+      <br></br>
       <FlexBoxForSearchResults>
         <h1>Venue search results for {props.startForm.location}: </h1>
         <p>{allVenues.length} venues found</p>
@@ -91,7 +92,7 @@ export const AllVenues = (props) => {
                     className='allViews'
                   />
                   <Card.Body>
-                    <Card.Title>
+                    <Card.Title style={{ fontFamily: 'DM Serif Display' }}>
                       {venue.name ? venue.name : 'No venue name available'}
                     </Card.Title>
                     <Card.Text>
@@ -109,9 +110,10 @@ export const AllVenues = (props) => {
                         readOnly
                       />
                     </div>
+                    <br></br>
                     <Link to={`/singleVenue/${venue.id}`}>
-                      <Button variant='primary' name={venue.id}>
-                        See More
+                      <Button variant='primary' name={venue.id} style={{fontFamily: 'Cardo'}}>
+                        <strong>See more</strong>
                       </Button>
                     </Link>
                   </Card.Body>

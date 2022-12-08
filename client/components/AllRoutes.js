@@ -18,25 +18,22 @@ import EventFormMUI from './EventFormMUI';
 export const AllRoutes = () => {
   return (
     <Router history={history}>
-      <div>
-        <Navbar />
-        <main>
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path='/login' component={Login} />
-            <Route path='/signup' component={Signup} />
-            <Route path='/allCaterers' component={AllCaterers} />
-            <Route path='/singleCaterer/:id' component={SingleCaterer} />
-            <Route path='/eventSummary' component={EventSummaryPopUp} />
-            <Route path='/allVenues' component={AllVenues} />
-            <Route path='/singleVenue/:id' component={SingleVenue} />
-            <Route path='/start' component={StartForm} />
-            <Route path='/account' component={UserHome} />
-            <Route path='/new-event' component={EventForm} />
-            <Route path='/new-event-mui' component={EventFormMUI} />
-          </Switch>
-        </main>
-      </div>
+      <Navbar />
+      <main className='main'>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route path='/login' component={Login} />
+          <Route path='/signup' component={Signup} />
+          <Route path='/allCaterers' component={AllCaterers} />
+          <Route path='/singleCaterer/:id' component={SingleCaterer} />
+          <Route path='/eventSummary' component={EventSummaryPopUp} />
+          <Route path='/allVenues' component={AllVenues} />
+          <Route path='/singleVenue/:id' component={SingleVenue} />
+          <Route path='/start' component={StartForm} />
+          <Route path='/account' component={UserHome} />
+          <Route path='/new-event' component={EventForm} />
+        </Switch>
+      </main>
     </Router>
   );
 };

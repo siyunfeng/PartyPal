@@ -51,17 +51,28 @@ const UserHome = (props) => {
   return (
     <>
       {id ? (
-        <div>
+        <div id='home-div'>
           <br></br>
           <h1 style={{ marginLeft: '1rem' }}>Welcome back {username}!</h1>
           <br></br>
           <Link to='/start'>
-            <Button variant='primary' style={{ marginLeft: '1rem' }}>
-              Start Planning
+            <Button
+              variant='primary'
+              style={{ marginLeft: '1rem', fontFamily: 'Cardo' }}
+            >
+              <strong>Start Planning</strong>
             </Button>
           </Link>
           <br></br>
           <br></br>
+          <a style={{textDecoration: 'none'}} href='#my-events'>
+            <Button>View My Events</Button>
+          </a>
+
+          <a style={{textDecoration: 'none'}} href='#my-liked-list'>
+            <Button>View My Liked List</Button>
+          </a>
+
           <div className='user-profile smallerUserHomeCards'>
             <h4 style={{ marginLeft: '1rem' }}>Account Information</h4>
 
@@ -84,7 +95,9 @@ const UserHome = (props) => {
           <div></div>
           <div className='user-home-events'>
             <div className='user-home-favorite favoriteSelectionsCard'>
-              <h4 style={{ marginLeft: '1rem' }}>Liked Selections</h4>
+              <h4 id='my-liked-list' style={{ marginLeft: '1rem' }}>
+                My Liked List
+              </h4>
               <hr></hr>
               <br></br>
               <div className='each-favorite-venue-container '>
@@ -116,7 +129,9 @@ const UserHome = (props) => {
                               to={`/singleVenue/${venue.yelp_reference_id}`}
                               style={{ textDecoration: 'none' }}
                             >
-                              <Card.Title>
+                              <Card.Title
+                                style={{ fontFamily: ' DM Serif Display' }}
+                              >
                                 {venue.name
                                   ? venue.name
                                   : 'venue name is not available'}
@@ -125,8 +140,9 @@ const UserHome = (props) => {
                             <Button
                               onClick={() => handleDeleteVenue(venue.id)}
                               variant='danger'
+                              style={{ fontFamily: 'Cardo' }}
                             >
-                              Delete
+                              <strong>Delete</strong>
                             </Button>
                           </Card.Body>
                         </Card>
@@ -170,7 +186,9 @@ const UserHome = (props) => {
                               to={`/singleCaterer/${caterer.yelp_reference_id}`}
                               style={{ textDecoration: 'none' }}
                             >
-                              <Card.Title>
+                              <Card.Title
+                                style={{ fontFamily: ' DM Serif Display}' }}
+                              >
                                 {caterer.name
                                   ? caterer.name
                                   : 'caterer name is not available'}
@@ -193,7 +211,9 @@ const UserHome = (props) => {
               </div>
             </div>
             <div className='smallerUserHomeCards'>
-              <h4 style={{ marginLeft: '1rem' }}>Your Events</h4>
+              <h4 id='my-events' style={{ marginLeft: '1rem' }}>
+                My Events
+              </h4>
               <br></br>
               <div>
                 <Link to='/new-event-mui'>
@@ -209,7 +229,8 @@ const UserHome = (props) => {
                     <div className='user-home-upcomings' key={index}>
                       <Card style={{ width: '25rem', marginLeft: '1rem' }}>
                         <Card.Body>
-                          <Card.Title>
+
+                          <Card.Title        style={{ fontFamily: 'DM Serif Display' }}>
                             {event.name
                               ? event.name
                               : 'Event name is not available at this time'}
@@ -235,13 +256,28 @@ const UserHome = (props) => {
               ) : (
                 <div>You have no upcoming events at this time.</div>
               )}
+              <br></br>
+              <UserHomeFlex>
+                <div>
+                  <Link to='/new-event-mui'>
+                    <Button style={{ fontFamily: 'Cardo' }}>
+                      <strong>Create Future Event</strong>
+                    </Button>
+                  </Link>
+                </div>
+              </UserHomeFlex>
+
             </div>
           </div>
         </div>
       ) : (
-        <h3>
-          Please <Link to='/login'>log in</Link> your account.
-        </h3>
+        <div>
+          <br></br>
+          <h3 style={{ fontFamily: 'DM Serif Display', marginLeft: '1rem' }}>
+            Please <Link to='/login'>log in</Link> to your account to view your
+            dashboard.
+          </h3>
+        </div>
       )}
     </>
   );

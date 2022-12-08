@@ -6,7 +6,6 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -35,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export const AuthForm = (props) => {
   const classes = useStyles();
   window.localStorage.removeItem('price');
@@ -52,7 +50,11 @@ export const AuthForm = (props) => {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component='h1' variant='h5'>
+          <Typography
+            component='h1'
+            variant='h5'
+            style={{ fontFamily: 'DM Serif Display' }}
+          >
             Account Log In
           </Typography>
           <form
@@ -62,6 +64,7 @@ export const AuthForm = (props) => {
             name={name}
           >
             <TextField
+              style={{ fontFamily: 'Cardo' }}
               variant='outlined'
               margin='normal'
               required
@@ -74,6 +77,7 @@ export const AuthForm = (props) => {
               autoFocus
             />
             <TextField
+              style={{ fontFamily: 'Cardo' }}
               variant='outlined'
               margin='normal'
               required
@@ -85,19 +89,19 @@ export const AuthForm = (props) => {
               autoComplete='current-password'
             />
             <Button
+              style={{ fontFamily: 'Cardo' }}
               type='submit'
               fullWidth
               variant='contained'
               color='primary'
               className={classes.submit}
             >
-              {displayName}
+              <strong>{displayName}</strong>
             </Button>
             {error && error.response && <div> {error.response.data} </div>}
           </form>
         </div>
-        <Box mt={8}>
-        </Box>
+        <Box mt={8}></Box>
       </Container>
     );
   }
@@ -111,7 +115,11 @@ export const AuthForm = (props) => {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component='h1' variant='h5'>
+          <Typography
+            component='h1'
+            variant='h5'
+            style={{ fontFamily: 'DM Serif Display' }}
+          >
             Create Account
           </Typography>
           <form
@@ -123,6 +131,7 @@ export const AuthForm = (props) => {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  style={{ fontFamily: 'Cardo' }}
                   autoComplete='fname'
                   name='firstName'
                   variant='outlined'
@@ -135,6 +144,7 @@ export const AuthForm = (props) => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  style={{ fontFamily: 'Cardo' }}
                   variant='outlined'
                   required
                   fullWidth
@@ -146,6 +156,7 @@ export const AuthForm = (props) => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  style={{ fontFamily: 'Cardo' }}
                   variant='outlined'
                   required
                   fullWidth
@@ -157,6 +168,7 @@ export const AuthForm = (props) => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  style={{ fontFamily: 'Cardo' }}
                   variant='outlined'
                   required
                   fullWidth
@@ -168,6 +180,7 @@ export const AuthForm = (props) => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  style={{ fontFamily: 'Cardo' }}
                   variant='outlined'
                   required
                   fullWidth
@@ -181,19 +194,19 @@ export const AuthForm = (props) => {
             </Grid>
 
             <Button
+              style={{ fontFamily: 'Cardo' }}
               type='submit'
               fullWidth
               variant='contained'
               color='primary'
               className={classes.submit}
             >
-              {displayName}
+              <strong>{displayName}</strong>
             </Button>
             {error && error.response && <div> {error.response.data} </div>}
           </form>
         </div>
-        <Box mt={5}>
-        </Box>
+        <Box mt={5}></Box>
       </Container>
     );
   }
@@ -263,4 +276,3 @@ const mapDispatchSignup = (dispatch, { history }) => {
 
 export const Login = connect(mapStateLogin, mapDispatchLogin)(AuthForm);
 export const Signup = connect(mapStateSignup, mapDispatchSignup)(AuthForm);
-

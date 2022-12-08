@@ -8,12 +8,34 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
+import Avatar from '@material-ui/core/Avatar';
+import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: '25ch',
+    margin: theme.spacing(4),
+    width: '50ch',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+    textAlign: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: '#D562BE',
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+    backgroundColor: '#D562BE',
+    '&:hover': {
+      backgroundColor: '#605399',
+      color: '#fff',
     },
   },
 }));
@@ -34,62 +56,74 @@ const StartForm = (props) => {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <div
-        className='start-form'
-        style={{ width: '350px', textAlign: 'center', alignItems: 'center' }}
-      >
-        <div>
-          <h3>Ready for a Party?</h3>
-        </div>
-        <form
-          className={classes.root}
-          noValidate
-          autoComplete='off'
-          onSubmit={(event) => getRecommendations(event)}
-          name='start-form'
+    <Container className='start-form-div' component='main' maxWidth='xs'>
+      <div className={classes.root}>
+        <Avatar className={classes.avatar}>
+          <SearchOutlinedIcon />
+        </Avatar>
+
+        <div
+          className='start-form'
+          style={{ width: '350px', textAlign: 'center', alignItems: 'center' }}
         >
+          <br></br>
           <div>
-            <label htmlFor='serviceOptions'>
-              What service can we help you find?
-            </label>
+            <h1>Ready for a Party?</h1>
           </div>
-          <FormControl variant='outlined'>
-            <InputLabel>Service</InputLabel>
-            <Select
-              name='serviceOption'
-              onChange={(e) => setServiceOptionValue(e.target.value)}
-              value={serviceOptionValue}
-            >
-              <MenuItem value='catering'>Caterer</MenuItem>
-              <MenuItem value='venue'>Venue</MenuItem>
-            </Select>
+          <form
+            className={classes.form}
+            noValidate
+            autoComplete='off'
+            onSubmit={(event) => getRecommendations(event)}
+            name='start-form'
+          >
             <div>
-              <label htmlFor='partyLocation'>
-                Where will your party be held?
+              <label style={{ fontFamily: 'Cardo' }} htmlFor='serviceOptions'>
+                What service can we help you find?
               </label>
             </div>
-          </FormControl>
-          <TextField
-            name='location'
-            label='Location or Zip-Code'
-            variant='outlined'
-          />
-
-          <div>
-            <Button variant='contained' type='submit' color='primary'>
-              Get Recommendations
-            </Button>
-          </div>
-        </form>
+            <br></br>
+            <FormControl variant='outlined'>
+              <InputLabel style={{ fontFamily: 'Cardo' }}>Service</InputLabel>
+              <Select
+                name='serviceOption'
+                onChange={(e) => setServiceOptionValue(e.target.value)}
+                value={serviceOptionValue}
+              >
+                <MenuItem value='catering'>Caterer</MenuItem>
+                <MenuItem value='venue'>Venue</MenuItem>
+              </Select>
+              <br></br>
+              <div>
+                <label style={{ fontFamily: 'Cardo' }} htmlFor='partyLocation'>
+                  Where will your party be held?
+                </label>
+              </div>
+              <br></br>
+            </FormControl>
+            <TextField
+              style={{ fontFamily: 'Cardo' }}
+              name='location'
+              label='Location or Zip-Code'
+              variant='outlined'
+            />
+            <br></br>
+            <br></br>
+            <div>
+              <Button
+                variant='contained'
+                type='submit'
+                color='primary'
+                className='single-venue-container'
+                style={{ fontFamily: 'Cardo', backgroundColor: '#D562BE' }}
+              >
+                <strong>Get Recommendations</strong>
+              </Button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

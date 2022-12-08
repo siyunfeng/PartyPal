@@ -16,17 +16,23 @@ const Navbar = ({ handleLogout, isLoggedIn }) => {
           {/* The navbar will show these links after you log in */}
           <li>
             <Link to='/start'>
-              <Button>Start Planning</Button>
+              <Button>
+                <strong>Start Planning</strong>
+              </Button>
             </Link>
           </li>
           <li>
             <Link to='/account'>
-              <Button>My Account</Button>
+              <Button>
+                <strong>My Account</strong>
+              </Button>
             </Link>
           </li>
           <li>
             <Link to='/'>
-              <Button onClick={handleLogout}>Logout</Button>
+              <Button onClick={handleLogout}>
+                <strong>Logout</strong>
+              </Button>
             </Link>
           </li>
         </ul>
@@ -35,17 +41,23 @@ const Navbar = ({ handleLogout, isLoggedIn }) => {
           {/* The navbar will show these links before you log in */}
           <li>
             <Link to='/start'>
-              <Button>Start Planning</Button>
+              <Button>
+                <strong>Start Planning</strong>
+              </Button>
             </Link>
           </li>
           <li>
             <Link to='/login'>
-              <Button>Login</Button>
+              <Button>
+                <strong>Login</strong>
+              </Button>
             </Link>
           </li>
           <li>
             <Link to='/signup'>
-              <Button>Sign Up</Button>
+              <Button>
+                <strong>Sign Up</strong>
+              </Button>
             </Link>
           </li>
         </ul>
