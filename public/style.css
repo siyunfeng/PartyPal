@@ -4,7 +4,6 @@
 
 body,
 #home-div,
-nav,
 .main,
 #app,
 .start-form-div,
@@ -12,7 +11,7 @@ nav,
 .all-caterer-container,
 .single-venue-container,
 .single-caterer-container {
-  background-color: #f1cfbd;
+  background-color: #f9f6f3;
 }
 
 .img {
@@ -27,6 +26,7 @@ nav {
   flex-flow: column wrap;
   justify-content: center;
   font-family: var(--sans);
+  background-color: #f1cfbd;
 }
 
 nav ul {

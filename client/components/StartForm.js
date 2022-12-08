@@ -28,14 +28,14 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: '#6F2DBD',
+    backgroundColor: '#D562BE',
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor: '#6F2DBD',
+    backgroundColor: '#D562BE',
     '&:hover': {
-      backgroundColor: '#e64398',
-      color: '#6F2DBD',
+      backgroundColor: '#605399',
+      color: '#fff',
     },
   },
 }));
