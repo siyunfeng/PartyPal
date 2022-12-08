@@ -50,7 +50,11 @@ export const AuthForm = (props) => {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component='h1' variant='h5'>
+          <Typography
+            component='h1'
+            variant='h5'
+            style={{ fontFamily: 'DM Serif Display' }}
+          >
             Account Log In
           </Typography>
           <form
@@ -60,6 +64,7 @@ export const AuthForm = (props) => {
             name={name}
           >
             <TextField
+              style={{ fontFamily: 'Cardo' }}
               variant='outlined'
               margin='normal'
               required
@@ -72,6 +77,7 @@ export const AuthForm = (props) => {
               autoFocus
             />
             <TextField
+              style={{ fontFamily: 'Cardo' }}
               variant='outlined'
               margin='normal'
               required
@@ -83,13 +89,14 @@ export const AuthForm = (props) => {
               autoComplete='current-password'
             />
             <Button
+              style={{ fontFamily: 'Cardo' }}
               type='submit'
               fullWidth
               variant='contained'
               color='primary'
               className={classes.submit}
             >
-              {displayName}
+              <strong>{displayName}</strong>
             </Button>
             {error && error.response && <div> {error.response.data} </div>}
           </form>
@@ -108,7 +115,11 @@ export const AuthForm = (props) => {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component='h1' variant='h5'>
+          <Typography
+            component='h1'
+            variant='h5'
+            style={{ fontFamily: 'DM Serif Display' }}
+          >
             Create Account
           </Typography>
           <form
@@ -120,6 +131,7 @@ export const AuthForm = (props) => {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  style={{ fontFamily: 'Cardo' }}
                   autoComplete='fname'
                   name='firstName'
                   variant='outlined'
@@ -132,6 +144,7 @@ export const AuthForm = (props) => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  style={{ fontFamily: 'Cardo' }}
                   variant='outlined'
                   required
                   fullWidth
@@ -143,6 +156,7 @@ export const AuthForm = (props) => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  style={{ fontFamily: 'Cardo' }}
                   variant='outlined'
                   required
                   fullWidth
@@ -154,6 +168,7 @@ export const AuthForm = (props) => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  style={{ fontFamily: 'Cardo' }}
                   variant='outlined'
                   required
                   fullWidth
@@ -165,6 +180,7 @@ export const AuthForm = (props) => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  style={{ fontFamily: 'Cardo' }}
                   variant='outlined'
                   required
                   fullWidth
@@ -178,13 +194,14 @@ export const AuthForm = (props) => {
             </Grid>
 
             <Button
+              style={{ fontFamily: 'Cardo' }}
               type='submit'
               fullWidth
               variant='contained'
               color='primary'
               className={classes.submit}
             >
-              {displayName}
+              <strong>{displayName}</strong>
             </Button>
             {error && error.response && <div> {error.response.data} </div>}
           </form>

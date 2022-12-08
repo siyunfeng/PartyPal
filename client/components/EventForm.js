@@ -20,14 +20,18 @@ const EventForm = (props) => {
     caterers
   );
 
-  useEffect(
-    () =>
-      console.log('inside useEffect venues =', venues, 'caterers =', caterers),
-    []
-  );
+  const createEvent = (event) => {
+    event.preventDefault();
+    const eventName = event.target.eventName.value;
+    const eventDate = event.target.eventDate.value;
+    const eventTime = event.target.eventTime.value;
+    const eventVenue = event.target.eventVenue.value;
+    const eventCaterer = event.target.eventCaterer.value;
+    const eventNote = event.target.eventNote.value;
+  };
 
   return (
-    <Form>
+    <Form onSubmit={createEvent}>
       <Form.Group className='my-3' controlId='formEventName'>
         <Form.Label>Event Name</Form.Label>
         <Form.Control type='text' />
@@ -52,10 +56,6 @@ const EventForm = (props) => {
           ) : (
             <option>Please add venues to your favorite</option>
           )}
-          {/* <option>Option 1</option>
-          <option>Option 2</option>
-          <option>Option 3</option>
-          <option>Option 4</option> */}
         </Form.Select>
       </Form.Group>
       <Form.Group controlId='formEventCaterer'>
@@ -68,10 +68,6 @@ const EventForm = (props) => {
           ) : (
             <option>Please add caterers to your favorite</option>
           )}
-          {/* <option>Option 1</option>
-          <option>Option 2</option>
-          <option>Option 3</option>
-          <option>Option 4</option> */}
         </Form.Select>
       </Form.Group>
       <FloatingLabel
@@ -89,14 +85,14 @@ const EventForm = (props) => {
       <Form.Group className='my-3' controlId='formBasicCheckbox'>
         <Form.Check
           type='checkbox'
-          label='Please confirm the event details before submitting.'
+          label='* Please confirm the event details before submitting.'
         />
       </Form.Group>
       {/* <Form.Text className='text-muted'>
         Please confirm the event details before submitting.
       </Form.Text> */}
       <Button variant='primary' type='submit'>
-        Submit
+        Create Event
       </Button>
     </Form>
   );

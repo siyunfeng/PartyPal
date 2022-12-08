@@ -16,7 +16,7 @@ const ModalSignUpandLogIn = (props) => {
 
   return (
     <>
-      <Button variant='outline-success' onClick={handleShow}>
+      <Button  style={{ fontFamily: 'Cardo' }} variant='outline-success' onClick={handleShow}>
         Like
       </Button>{' '}
       <Modal
@@ -25,10 +25,10 @@ const ModalSignUpandLogIn = (props) => {
         backdrop='static'
         keyboard={false}
       >
-        <Modal.Header closeButton>
+        <Modal.Header style={{ fontFamily: 'DM Serif Display' }} closeButton>
           <Modal.Title>Log In or Sign Up</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{ fontFamily: 'Cardo' }}>
           Please log in or sign up to like this selection.
         </Modal.Body>
         <Modal.Footer>
@@ -38,8 +38,12 @@ const ModalSignUpandLogIn = (props) => {
               state: { prevPath: location.pathname },
             }}
           >
-            <Button variant='primary' onClick={handleClose}>
-              Sign up
+            <Button
+              variant='primary'
+              onClick={handleClose}
+              style={{ fontFamily: 'Cardo' }}
+            >
+              <strong>Sign up</strong>
             </Button>{' '}
           </Link>
           <Link
@@ -48,7 +52,9 @@ const ModalSignUpandLogIn = (props) => {
               state: { prevPath: location.pathname },
             }}
           >
-            <Button variant='success'>Log in</Button>{' '}
+            <Button variant='success' style={{ fontFamily: 'Cardo' }}>
+              <strong>Log in</strong>
+            </Button>{' '}
           </Link>
         </Modal.Footer>
       </Modal>

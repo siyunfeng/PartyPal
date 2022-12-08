@@ -64,6 +64,17 @@ const StartForm = (props) => {
         <Typography component='h1' variant='h5'>
           Ready to Party
         </Typography>
+      <div
+        className='start-form'
+        style={{ width: '350px', textAlign: 'center', alignItems: 'center' }}
+      >
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <div>
+          <h1>Ready for a Party?</h1>
+        </div>
         <form
           className={classes.form}
           noValidate
@@ -71,12 +82,14 @@ const StartForm = (props) => {
           onSubmit={(event) => getRecommendations(event)}
           name='start-form'
         >
-          <Typography component='h5'>
-            What service can we help you find?
-          </Typography>
+          <div>
+            <label style={{ fontFamily: 'Cardo' }} htmlFor='serviceOptions'>
+              What service can we help you find?
+            </label>
+          </div>
           <br></br>
           <FormControl variant='outlined'>
-            <InputLabel>Service</InputLabel>
+            <InputLabel style={{ fontFamily: 'Cardo' }}>Service</InputLabel>
             <Select
               name='serviceOption'
               onChange={(e) => setServiceOptionValue(e.target.value)}
@@ -86,26 +99,31 @@ const StartForm = (props) => {
               <MenuItem value='venue'>Venue</MenuItem>
             </Select>
             <br></br>
-            <Typography component='h5'>
-              Where will your party be held?
-            </Typography>
-            <br></br>
-            <TextField
-              name='location'
-              label='Location or Zip-Code'
-              variant='outlined'
-            />
             <div>
-              <Button
-                variant='contained'
-                type='submit'
-                color='primary'
-                className={classes.submit}
-              >
-                Get Recommendations
-              </Button>
-            </div>
+              <label style={{ fontFamily: 'Cardo' }} htmlFor='partyLocation'>
+                Where will your party be held?
+              </label>
+            </div>          
           </FormControl>
+          <TextField
+            style={{ fontFamily: 'Cardo' }}
+            name='location'
+            label='Location or Zip-Code'
+            variant='outlined'
+          />
+          <br></br>
+          <br></br>
+          <div>
+            <Button
+              variant='contained'
+              type='submit'
+              color='primary'
+              className='single-venue-container'
+              style={{ fontFamily: 'Cardo' }}
+            >
+              <strong>Get Recommendations</strong>
+            </Button>
+          </div>
         </form>
       </div>
     </Container>
