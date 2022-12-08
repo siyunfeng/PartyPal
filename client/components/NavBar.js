@@ -15,8 +15,8 @@ const Navbar = ({ handleLogout, isLoggedIn }) => {
         <ul style={{ listStyle: 'none', textDecoration: 'none' }}>
           {/* The navbar will show these links after you log in */}
           <li>
-            <Link to='/'>
-              <Button>Home</Button>
+            <Link to='/start'>
+              <Button>Start Planning</Button>
             </Link>
           </li>
           <li>
@@ -34,8 +34,8 @@ const Navbar = ({ handleLogout, isLoggedIn }) => {
         <ul style={{ listStyle: 'none', textDecoration: 'none' }}>
           {/* The navbar will show these links before you log in */}
           <li>
-            <Link to='/'>
-              <Button>Home</Button>
+            <Link to='/start'>
+              <Button>Start Planning</Button>
             </Link>
           </li>
           <li>

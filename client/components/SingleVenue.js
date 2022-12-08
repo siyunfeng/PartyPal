@@ -12,11 +12,10 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import FlexBoxForSearchResults from './Styled-Components/FlexBoxForSearchResults.styled';
 import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import Alert from 'react-bootstrap/Alert';
 
 const SingleVenue = (props) => {
   const business = props?.venue?.data?.business;
-  console.log(business);
   const [solidGreen, setSolidGreen] = useState(false);
   const [liked, setLiked] = useState(false);
 
@@ -27,14 +26,11 @@ const SingleVenue = (props) => {
 
   if (!business) return null;
 
-  let counter = 0;
-
-  const reviews = business.reviews.map((review) => {
-    counter += 1;
-    return ` ${counter}.  ${review.text} `;
-  });
-
-  const { name, rating, photos, phone, price, hours, categories } = business;
+  const { name, rating, photos, phone, price, hours, categories, location } =
+    business;
+  const address1 = location.address1;
+  const city = location.city;
+  const state = location.state;
 
   const urlVisiting = props.history.location.pathname;
 
@@ -90,7 +86,7 @@ const SingleVenue = (props) => {
       <FlexBoxForSearchResults>
         <h1>{name ? name : ''}</h1>
       </FlexBoxForSearchResults>
-      <Card className='text-center'>
+      <Card className='text-center' style={{ width: '50em' }}>
         <Card.Header>Venue</Card.Header>
         <Card.Body>
           <Card.Img
@@ -103,17 +99,18 @@ const SingleVenue = (props) => {
             }
           />
           <Card.Text>
-            <strong>Phone: </strong> {newPhone}
-          </Card.Text>
-          <Card.Text>
-            <strong>Price: </strong>{' '}
-            {price ? price : 'No information available'}
-          </Card.Text>
-          <Card.Text>
             <strong>Categories:</strong>
             {categories.map((category) => {
               return ` ${category.title}`;
             })}
+          </Card.Text>
+          <Card.Text>
+            <strong>Days Open: </strong>
+            {hours.length
+              ? business.hours[0].open.map((day) => {
+                  return ` ${findDayOfWeek(day.day)}, `;
+                })
+              : 'No information available'}
           </Card.Text>
           <Card.Text>
             <strong>Open: </strong>
@@ -128,17 +125,28 @@ const SingleVenue = (props) => {
               : 'No information available'}
           </Card.Text>
           <Card.Text>
-            <strong>Days Open: </strong>
-            {hours.length
-              ? business.hours[0].open.map((day) => {
-                  return ` ${findDayOfWeek(day.day)}, `;
-                })
-              : 'No information available'}
+            <strong>Phone: </strong> {newPhone}
+          </Card.Text>
+          <Card.Text>
+            <strong>Price: </strong>{' '}
+            {price ? price : 'No information available'}
+          </Card.Text>
+          <Card.Text>
+            <strong>Street Address: </strong>
+            {address1 ? address1 : 'No information available'}
+          </Card.Text>
+          <Card.Text>
+            <strong>City: </strong>
+            {city ? city : 'No information available'}
+          </Card.Text>
+          <Card.Text>
+            <strong>State: </strong>
+            {state ? state : 'No information available'}
           </Card.Text>
           <Card.Text>
             <div>
               <Typography component='legend'>
-                <strong>Ratings: </strong>
+                <strong>Ratings: {rating}</strong>
               </Typography>
               <Rating
                 name='read-only'
@@ -149,8 +157,23 @@ const SingleVenue = (props) => {
             </div>
           </Card.Text>
           <Card.Text>
-            <strong>Reviews:</strong>
-            {reviews ? reviews : 'No reviews available'}
+            <strong>Reviews: </strong>
+            <div>
+              {business.reviews.map((review) => {
+                return (
+                  <Alert key={review.id} variant='info'>
+                    <Rating
+                      name='read-only'
+                      precision={0.5}
+                      value={review.rating}
+                      readOnly
+                    />
+                    <hr />
+                    <p>{review.text}</p>
+                  </Alert>
+                );
+              })}
+            </div>
           </Card.Text>
           {liked ? (
             <strong>
