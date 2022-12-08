@@ -61,70 +61,67 @@ const StartForm = (props) => {
         <Avatar className={classes.avatar}>
           <SearchOutlinedIcon />
         </Avatar>
-        <Typography component='h1' variant='h5'>
-          Ready to Party
-        </Typography>
-      <div
-        className='start-form'
-        style={{ width: '350px', textAlign: 'center', alignItems: 'center' }}
-      >
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <div>
-          <h1>Ready for a Party?</h1>
-        </div>
-        <form
-          className={classes.form}
-          noValidate
-          autoComplete='off'
-          onSubmit={(event) => getRecommendations(event)}
-          name='start-form'
+
+        <div
+          className='start-form'
+          style={{ width: '350px', textAlign: 'center', alignItems: 'center' }}
         >
-          <div>
-            <label style={{ fontFamily: 'Cardo' }} htmlFor='serviceOptions'>
-              What service can we help you find?
-            </label>
-          </div>
           <br></br>
-          <FormControl variant='outlined'>
-            <InputLabel style={{ fontFamily: 'Cardo' }}>Service</InputLabel>
-            <Select
-              name='serviceOption'
-              onChange={(e) => setServiceOptionValue(e.target.value)}
-              value={serviceOptionValue}
-            >
-              <MenuItem value='catering'>Caterer</MenuItem>
-              <MenuItem value='venue'>Venue</MenuItem>
-            </Select>
+          <div>
+            <h1>Ready for a Party?</h1>
+          </div>
+          <form
+            className={classes.form}
+            noValidate
+            autoComplete='off'
+            onSubmit={(event) => getRecommendations(event)}
+            name='start-form'
+          >
+            <div>
+              <label style={{ fontFamily: 'Cardo' }} htmlFor='serviceOptions'>
+                What service can we help you find?
+              </label>
+            </div>
+            <br></br>
+            <FormControl variant='outlined'>
+              <InputLabel style={{ fontFamily: 'Cardo' }}>Service</InputLabel>
+              <Select
+                name='serviceOption'
+                onChange={(e) => setServiceOptionValue(e.target.value)}
+                value={serviceOptionValue}
+              >
+                <MenuItem value='catering'>Caterer</MenuItem>
+                <MenuItem value='venue'>Venue</MenuItem>
+              </Select>
+              <br></br>
+              <div>
+                <label style={{ fontFamily: 'Cardo' }} htmlFor='partyLocation'>
+                  Where will your party be held?
+                </label>
+              </div>
+              <br></br>
+            </FormControl>
+            <TextField
+              style={{ fontFamily: 'Cardo' }}
+              name='location'
+              label='Location or Zip-Code'
+              variant='outlined'
+            />
+            <br></br>
             <br></br>
             <div>
-              <label style={{ fontFamily: 'Cardo' }} htmlFor='partyLocation'>
-                Where will your party be held?
-              </label>
-            </div>          
-          </FormControl>
-          <TextField
-            style={{ fontFamily: 'Cardo' }}
-            name='location'
-            label='Location or Zip-Code'
-            variant='outlined'
-          />
-          <br></br>
-          <br></br>
-          <div>
-            <Button
-              variant='contained'
-              type='submit'
-              color='primary'
-              className='single-venue-container'
-              style={{ fontFamily: 'Cardo' }}
-            >
-              <strong>Get Recommendations</strong>
-            </Button>
-          </div>
-        </form>
+              <Button
+                variant='contained'
+                type='submit'
+                color='primary'
+                className='single-venue-container'
+                style={{ fontFamily: 'Cardo', backgroundColor: '#D562BE' }}
+              >
+                <strong>Get Recommendations</strong>
+              </Button>
+            </div>
+          </form>
+        </div>
       </div>
     </Container>
   );
