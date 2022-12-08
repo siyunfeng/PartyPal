@@ -17,6 +17,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { createNewEvent } from '../redux/events';
+import FlexBox from './Styled-Components/FlexBox.styled';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -80,8 +81,14 @@ const EventFormMUI = (props) => {
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
       <div className={classes.paper}>
-        <Typography component='h1' variant='h5'>
-          Create New Event
+        <img src='/images/party-hat-3-64.png' width='100px'></img>
+        <br></br>
+        <Typography
+          component='h1'
+          variant='h5'
+          style={{ fontFamily: 'DM Serif Display' }}
+        >
+          <strong>Create New Event</strong>
         </Typography>
         <form
           className={classes.form}
@@ -154,15 +161,16 @@ const EventFormMUI = (props) => {
             type='text'
             id='event-note'
           />
-
-          <Button
-            type='submit'
-            variant='contained'
-            color='primary'
-            className={classes.submit}
-          >
-            Create Event
-          </Button>
+          <FlexBox>
+            <Button
+              type='submit'
+              variant='contained'
+              color='primary'
+              className={classes.submit}
+            >
+              <strong style={{ fontFamily: 'Cardo' }}>Create Event</strong>
+            </Button>
+          </FlexBox>
         </form>
       </div>
       <Box mt={8}></Box>

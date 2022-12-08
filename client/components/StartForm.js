@@ -45,8 +45,12 @@ const StartForm = (props) => {
         className='start-form'
         style={{ width: '350px', textAlign: 'center', alignItems: 'center' }}
       >
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
         <div>
-          <h3>Ready for a Party?</h3>
+          <h1>Ready for a Party?</h1>
         </div>
         <form
           className={classes.root}
@@ -56,12 +60,13 @@ const StartForm = (props) => {
           name='start-form'
         >
           <div>
-            <label htmlFor='serviceOptions'>
+            <label style={{ fontFamily: 'Cardo' }} htmlFor='serviceOptions'>
               What service can we help you find?
             </label>
           </div>
+          <br></br>
           <FormControl variant='outlined'>
-            <InputLabel>Service</InputLabel>
+            <InputLabel style={{ fontFamily: 'Cardo' }}>Service</InputLabel>
             <Select
               name='serviceOption'
               onChange={(e) => setServiceOptionValue(e.target.value)}
@@ -70,21 +75,30 @@ const StartForm = (props) => {
               <MenuItem value='catering'>Caterer</MenuItem>
               <MenuItem value='venue'>Venue</MenuItem>
             </Select>
+            <br></br>
             <div>
-              <label htmlFor='partyLocation'>
+              <label style={{ fontFamily: 'Cardo' }} htmlFor='partyLocation'>
                 Where will your party be held?
               </label>
             </div>
+            {/* <br></br> */}
           </FormControl>
           <TextField
+            style={{ fontFamily: 'Cardo' }}
             name='location'
             label='Location or Zip-Code'
             variant='outlined'
           />
-
+          <br></br>
+          <br></br>
           <div>
-            <Button variant='contained' type='submit' color='primary'>
-              Get Recommendations
+            <Button
+              variant='contained'
+              type='submit'
+              color='primary'
+              style={{ fontFamily: 'Cardo' }}
+            >
+              <strong>Get Recommendations</strong>
             </Button>
           </div>
         </form>

@@ -8,7 +8,7 @@ function ReviewsHome() {
       id: 1,
       name: 'Carla Morrison',
       review:
-        "I used PartyPal to plan my daughter's quineanera a few months ago. I really liked that I could browse all the different catering and venues all in one place. ",
+        "I used PartyPal to plan my daughter's quinceanera a few months ago. I really liked that I could browse all the different catering and venues all in one place. ",
       ratings: 5,
     },
     {
@@ -28,7 +28,7 @@ function ReviewsHome() {
       id: 4,
       name: 'Ashin Chen',
       review:
-        "Planned my son's graduation party using the app. Would recommend it!",
+        "I planned my son's graduation party using the app. Would recommend it!",
       ratings: 5,
     },
   ];
@@ -37,14 +37,20 @@ function ReviewsHome() {
     <div>
       {reviews.map((review) => {
         return (
-          <Alert key={review.id} variant='info'>
+          <Alert
+            key={review.id}
+            variant='info'
+            style={{ width: ' 700px', height: '150px' }}
+          >
             <Rating
               name='read-only'
               precision={0.5}
               value={review.ratings}
               readOnly
             />
-            <Alert.Heading>{review.name}</Alert.Heading>
+            <Alert.Heading style={{ fontFamily: 'DM Serif Display' }}>
+              {review.name}
+            </Alert.Heading>
             <p>{review.review}</p>
             <hr />
           </Alert>
