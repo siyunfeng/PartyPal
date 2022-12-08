@@ -13,7 +13,6 @@ import EventSummaryPopUp from './EventSummaryPopUp';
 import Navbar from './NavBar';
 import EventForm from './EventForm';
 import Button from 'react-bootstrap/Button';
-import EventFormMUI from './EventFormMUI';
 
 export const AllRoutes = () => {
   return (
