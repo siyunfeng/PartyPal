@@ -9,7 +9,7 @@ const Home = () => {
   window.localStorage.removeItem('term');
 
   return (
-    <div>
+    <div id='home-div'>
       <br></br>
       <CarouselHome />
       <div>
