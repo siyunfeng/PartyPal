@@ -17,6 +17,13 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { createNewEvent } from '../redux/events';
+import Grid from '@material-ui/core/Grid';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -30,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%',
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -44,6 +51,13 @@ const EventFormMUI = (props) => {
 
   const [venueOption, setVenueOption] = useState('');
   const [catererOption, setCatererOption] = useState('');
+  const [selectedDate, setSelectedDate] = useState(
+    new Date('2014-08-18T21:11:54')
+  );
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
 
   const createEvent = (event) => {
     event.preventDefault();
@@ -99,6 +113,23 @@ const EventFormMUI = (props) => {
             fullWidth
             id='event-name'
           />
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Grid container justifyContent='space-around'>
+              <KeyboardDatePicker
+                disableToolbar
+                variant='inline'
+                format='MM/dd/yyyy'
+                margin='normal'
+                id='date-picker-inline'
+                label='Date picker inline'
+                value={selectedDate}
+                onChange={handleDateChange}
+                KeyboardButtonProps={{
+                  'aria-label': 'change date',
+                }}
+              />
+            </Grid>
+          </MuiPickersUtilsProvider>
           <FormControl variant='outlined' fullWidth margin='normal'>
             <InputLabel>Venue</InputLabel>
             <Select
