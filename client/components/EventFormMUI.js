@@ -53,8 +53,6 @@ const EventFormMUI = (props) => {
     const userId = user.id;
     const eventName = event.target.eventName.value;
     const eventNote = event.target.eventNote.value;
-    const eventDate = event.target.eventDate.value;
-    const eventTime = event.target.eventTime.value;
 
     const newEventInput = {
       userId,
