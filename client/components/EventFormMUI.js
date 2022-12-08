@@ -17,13 +17,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { createNewEvent } from '../redux/events';
-import Grid from '@material-ui/core/Grid';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -51,42 +44,27 @@ const EventFormMUI = (props) => {
 
   const [venueOption, setVenueOption] = useState('');
   const [catererOption, setCatererOption] = useState('');
-  const [selectedDate, setSelectedDate] = useState(
-    new Date('2014-08-18T21:11:54')
-  );
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
+  const [dateOption, setDateOption] = useState('');
+  const [timeOption, setTimeOption] = useState('');
 
   const createEvent = (event) => {
     event.preventDefault();
-    const userId = user.id; // works
-    const eventName = event.target.eventName.value; // works
-    const eventNote = event.target.eventNote.value; // works
-    // console.log('user id =', user.id); // works
-    // console.log('eventName =', eventName); // works
-    // console.log('eventNote =', eventNote); // works
-    // console.log('venueOption', venueOption); // works, the venue object user selected
-    // console.log('catererOption', catererOption); // works, the caterer object user selected
-    const eventVenue = event.target.eventVenue.value; // return [object object], not passing this
-    const eventCaterer = event.target.eventCaterer.value; // return [object object], not passing this
-    // console.log('venue name =', eventVenue); // [object, object]
-    // console.log('caterer name =', eventCaterer); // [object, object]
+    const userId = user.id;
+    const eventName = event.target.eventName.value;
+    const eventNote = event.target.eventNote.value;
+    const eventDate = event.target.eventDate.value;
+    const eventTime = event.target.eventTime.value;
 
-    // need to work on data and time:
-    // const eventDate = event.target.eventDate.value;
-    // const eventTime = event.target.eventTime.value;
-
-    // put all the input inside an object, pass the object by createNewEvent()
     const newEventInput = {
       userId,
       eventName,
       eventNote,
       venueOption,
       catererOption,
+      dateOption,
+      timeOption,
     };
-    // call createNewEvent()
+
     createNewEvent(newEventInput);
   };
 
@@ -113,31 +91,34 @@ const EventFormMUI = (props) => {
             fullWidth
             id='event-name'
           />
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Grid container justifyContent='space-around'>
-              <KeyboardDatePicker
-                disableToolbar
-                variant='inline'
-                format='MM/dd/yyyy'
-                margin='normal'
-                id='date-picker-inline'
-                label='Date picker inline'
-                value={selectedDate}
-                onChange={handleDateChange}
-                KeyboardButtonProps={{
-                  'aria-label': 'change date',
-                }}
-              />
-            </Grid>
-          </MuiPickersUtilsProvider>
+          <div className='eventFormDateTime'>
+            <input
+              type='date'
+              className='eventFormDate'
+              id='event-form-date'
+              name='eventDate'
+              min='2022-10-01'
+              max='2099-12-31'
+              value={dateOption}
+              onChange={(event) => setDateOption(event.target.value)}
+            />
+            <input
+              type='time'
+              className='eventFormTime'
+              id='event-form-time'
+              name='eventTime'
+              min='00:00'
+              max='23:59'
+              value={timeOption}
+              onChange={(event) => setTimeOption(event.target.value)}
+              required //not sure if we need it
+            />
+          </div>
           <FormControl variant='outlined' fullWidth margin='normal'>
             <InputLabel>Venue</InputLabel>
             <Select
               name='eventVenue'
-              onChange={(event) => {
-                console.log('eventVenue =', event.target.value);
-                setVenueOption(event.target.value);
-              }}
+              onChange={(event) => setVenueOption(event.target.value)}
               value={venueOption}
             >
               {venues?.length ? (
@@ -148,7 +129,7 @@ const EventFormMUI = (props) => {
                 ))
               ) : (
                 <MenuItem value={`no venue`}>
-                  Please add venue to your favorite
+                  Please add venue to your liked list
                 </MenuItem>
               )}
             </Select>
@@ -157,10 +138,7 @@ const EventFormMUI = (props) => {
             <InputLabel>Caterer</InputLabel>
             <Select
               name='eventCaterer'
-              onChange={(event) => {
-                console.log('eventCaterer =', event.target.value);
-                setCatererOption(event.target.value);
-              }}
+              onChange={(event) => setCatererOption(event.target.value)}
               value={catererOption}
             >
               {caterers?.length ? (
@@ -171,7 +149,7 @@ const EventFormMUI = (props) => {
                 ))
               ) : (
                 <MenuItem value={`no caterer`}>
-                  Please add caterer to your favorite
+                  Please add caterer to your liked list
                 </MenuItem>
               )}
             </Select>

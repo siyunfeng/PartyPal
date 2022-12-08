@@ -88,3 +88,15 @@ h1, h2, h3, h4, h5, p, strong, button {
 }
 
 
+.eventFormDateTime {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px auto;
+}
+
+.eventFormDate, .eventFormTime{
+  height: 59px;
+  width: 48%;
+  font: inherit;
+}
