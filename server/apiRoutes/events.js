@@ -3,12 +3,10 @@ const { Event } = require('../db');
 const { requireToken, isAdmin } = require('./gateKeepingMiddleware');
 
 // GET user's events
-// NEED TO PUT IT BACK TO ROUTER requireToken
 eventsRouter.get('/:userId', requireToken, async (req, res, next) => {
   try {
     const { userId } = req.params;
     const userEvent = await Event.findAll({ where: { userId: userId } });
-    // console.log('userEvent =', userEvent);
     if (userEvent) {
       res.send(userEvent);
     } else {
@@ -36,7 +34,6 @@ eventsRouter.put('/:eventId', async (req, res, next) => {
 eventsRouter.post('/', async (req, res, next) => {
   try {
     const newEvent = await Event.create(req.body);
-    // console.log('INSIDE eventsRouter POST >>> newEvent =', newEvent);
     res.send(newEvent);
   } catch (error) {
     next(error);

@@ -108,6 +108,19 @@ p {
   border-radius: 50px;
 }
 
+.eventFormDateTime {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px auto;
+}
+
+.eventFormDate, .eventFormTime{
+  height: 59px;
+  width: 48%;
+  font: inherit;
+}
+
 .button-divider {
   width:5px;
   height:auto;
