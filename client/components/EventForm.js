@@ -102,7 +102,6 @@ const EventForm = (props) => {
             fullWidth
             required
             onChange={(event) => setEventNameValue(event.target.value)}
-            error={eventNameError}
           />
           <div className='eventFormDateTime'>
             <input
