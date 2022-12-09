@@ -32,7 +32,6 @@ app.use((error, req, res, next) => {
     .send(error.message || 'Internal Server error');
 });
 
-// syncAndSeed();
 
 const port = process.env.PORT || 3019;
 

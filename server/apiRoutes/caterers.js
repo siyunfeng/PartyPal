@@ -90,7 +90,6 @@ const getCaterers = async (userSearchInput, queryType) => {
     .then(function (response) {
       const res = response.data;
       return res;
-      // console.log(res.data.search.business); // Response received from the API
     })
 
     .catch(function (error) {
@@ -117,56 +116,12 @@ caterersRouter.post('/', async (req, res, next) => {
 caterersRouter.post('/:id', async (req, res, next) => {
   try {
     const queryType = 'single';
-    // const yelpId = req.params.id;
-    // getting yelpId off req.body - irais
     const yelpId = req.body.id;
-    //irais
     const data = await getCaterers(yelpId, queryType);
     res.send(data).status(200);
   } catch (error) {
     next(error);
   }
 });
-
-// caterersRouter.post('/', async (req, res, next) => {
-//   try {
-//     // users will select the params
-//     const term = 'restaurant mexican';
-//     const location = '11209';
-//     const variables = { term, location };
-//     const query = `{
-//         query search($term: String!, $location: String!){
-//         search(
-//             term: $term,
-//             location: $location,
-//           ) {
-//            total
-//            business {
-//              name
-//              phone
-//              price
-//              photos
-//              url
-//              reviews {
-//                id
-//                text
-//                rating
-//              }
-//              location {
-//                address1
-//                city
-//                state
-//                country
-//              }
-//              rating
-//            }
-//          }
-//        }}`;
-//     const data = await client.request(query, variables);
-//     console.log(res.json(data));
-//   } catch (error) {
-//     throw error;
-//   }
-// });
 
 module.exports = { caterersRouter };

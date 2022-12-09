@@ -44,20 +44,16 @@ const User = db.define('user', {
 });
 
 User.prototype.correctPassword = async function (candidatePwd) {
-  //we need to compare the plain version to an encrypted version of the password
   return await bcrypt.compare(candidatePwd, this.password);
 };
 
 User.prototype.generateToken = function () {
-  // chaned process.env.JWT to SECRET
   const token = jwt.sign({ id: this.id }, process.env.JWT);
-  console.log('tojken ', token)
   return token;
 };
 
 User.authenticate = async function ({ username, password }) {
   const user = await this.findOne({ where: { username } });
-  console.log('User reached authenticate');
   if (!user || !(await user.correctPassword(password))) {
     const error = Error('Incorrect username/password');
     error.status = 401;
@@ -68,8 +64,6 @@ User.authenticate = async function ({ username, password }) {
 
 User.findByToken = async function (token) {
   try {
-    console.log('secret', process.env.JWT)
-    console.log('token', token)
     const { id } = jwt.verify(token, process.env.JWT);
     const user = User.findByPk(id);
     if (!user) {
@@ -80,13 +74,11 @@ User.findByToken = async function (token) {
     const error = Error('bad token');
     const message = Error(ex);
     error.status = 401;
-    // throw error;
     throw message;
   }
 };
 
 const hashPassword = async (user) => {
-  //in case the password has been changed, we want to encrypt it with bcrypt
   if (user.changed('password')) {
     const hashedPassword = await bcrypt.hash(user.password, SALT_ROUNDS);
     user.password = hashedPassword;

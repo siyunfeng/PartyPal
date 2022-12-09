@@ -98,7 +98,6 @@ function AllCaterers(props) {
           <label>Filter by Price</label>
           <Select
             defaultValue={priceOptions[4]}
-            // isMulti
             name='price'
             options={priceOptions}
             className='basic-multi-select'
@@ -114,7 +113,6 @@ function AllCaterers(props) {
           <label>Filter by Cuisine</label>
           <Select
             defaultValue={cuisineOptions[4]}
-            // isMulti
             name='cuisine'
             options={cuisineOptions}
             className='basic-multi-select'

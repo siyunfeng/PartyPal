@@ -19,7 +19,6 @@ export const getVenuesThunk = ({ location, service, price }, history) => {
           '😭 No results, please try specifying a more exact location.'
         );
         history.push('/start');
-        // dispatch(getVenuesCreator(data))
       }
       const businessArray = data.data.search.business;
       dispatch(getVenuesCreator(businessArray));

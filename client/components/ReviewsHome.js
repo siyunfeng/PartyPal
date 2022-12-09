@@ -15,7 +15,7 @@ function ReviewsHome() {
       id: 2,
       name: 'Yuri Valenzuela',
       review:
-        'I found a great venue in Palm Springs within my price range and a was able to look for great caterers in my area',
+        'I found a great venue in Palm Springs within my price range and a was able to look for great caterers in my area.',
       ratings: 4.5,
     },
     {

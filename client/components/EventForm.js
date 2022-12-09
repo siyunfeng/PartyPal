@@ -15,7 +15,6 @@ import FlexBox from './Styled-Components/FlexBox.styled';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import PopUpDiv from './Styled-Components/FlexBox.styled';
-import EventPopUpLeftTextAlign from './Styled-Components/EventPopUp.styled';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -124,7 +123,7 @@ const EventForm = (props) => {
               max='23:59'
               value={timeOption}
               onChange={(event) => setTimeOption(event.target.value)}
-              required
+              required 
             />
           </div>
           <FormControl variant='outlined' fullWidth margin='normal'>

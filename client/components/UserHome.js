@@ -57,7 +57,7 @@ const UserHome = (props) => {
 
   const handleDeleteEvent = (eventId) => deleteEvent(eventId);
 
-  // const handleEditEvent = (eventId) => editEvent(eventId);
+
 
   return (
     <>
@@ -264,7 +264,6 @@ const UserHome = (props) => {
                               : 'Event time is not available at this time'}
                           </Card.Text>
                           <Button
-                          // onClick={() => handleEditEvent(event.id)}
                           >
                             <PencilSquare />
                           </Button>
@@ -320,7 +319,6 @@ const mapDispatch = (dispatch) => {
     deleteCatererLikedItem: (favoriteId) =>
       dispatch(deleteCatererLikedItem(favoriteId)),
     deleteEvent: (eventId) => dispatch(deleteEvent(eventId)),
-    // editEvent: (eventId) => dispatch(editEvent(eventId)),
   };
 };
 

@@ -58,7 +58,7 @@ favoritesRouter.post(
 // POST /api/favorite/venue/:yelpReferenceId (save/like venue in favorite)
 favoritesRouter.post(
   '/caterer/:yelpReferenceId',
-  // requireToken,
+  requireToken,
   async (req, res, next) => {
     try {
       const yelp_reference_id = req.params.yelpReferenceId
@@ -81,7 +81,6 @@ favoritesRouter.post(
         const savedItem = await Favorite.create({
           name: catererInfo.name,
           category: catererInfo.category,
-          // yelp_reference_id: catererInfo.id,
           yelp_reference_id: yelp_reference_id,
           image_url: catererInfo.image_url[0],
           userId: userToAddLikedItemTo.id,

@@ -36,7 +36,6 @@ export const getFavorites = (userId) => {
           authorization: token,
         },
       });
-      // favorites is an array with rows that match user id
       const favoriteVenues = favorites.filter(
         (favorite) => favorite.category === 'venue'
       );

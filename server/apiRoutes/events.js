@@ -13,7 +13,6 @@ eventsRouter.get('/:userId', requireToken, async (req, res, next) => {
       res.send('no event');
     }
   } catch (error) {
-    console.log(`api/events get('/:userId') ERROR:`, error);
     next(error);
   }
 });
@@ -30,7 +29,6 @@ eventsRouter.put('/:eventId', requireToken, async (req, res, next) => {
 });
 
 // create an event as a logged in user
-// add middleware
 eventsRouter.post('/', requireToken, async (req, res, next) => {
   try {
     const newEvent = await Event.create(req.body);

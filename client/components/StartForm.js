@@ -121,7 +121,6 @@ const StartForm = (props) => {
               <Button
                 variant='contained'
                 type='submit'
-                // color='primary'
                 className={classes.submit}
 
                 >

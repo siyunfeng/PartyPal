@@ -10,114 +10,119 @@ import { connect } from 'react-redux';
 
 function ResponsiveNavBar({ handleLogout, isLoggedIn }) {
   return (
-    <NavBarFlex>
-    <Navbar
-      bg='light'
-      expand='lg'
- 
-    >
+    <Navbar expand='lg' className='bg-pretty'>
       <Container>
-        {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
         <Link to='/' style={{ textDecoration: 'none' }}>
           <img style={{ width: '8rem' }} src='/images/logo-PartyPal.png' />
         </Link>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
-        <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav className='me-auto'>
+        <Navbar.Collapse id='basic-navbar-nav' className='pink'>
+          <Nav className='me-auto' style={{ width: '100%' }}>
             {isLoggedIn ? (
-              <ul style={{ listStyle: 'none', textDecoration: 'none' }}>
-                {/* The navbar will show these links after you log in */}
-                {/* <li> */}
-                <Nav.Link className='responsiveNavLinks' href='/start'>
-                  <Button>
-                    <strong>Start Planning</strong>
-                  </Button>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                  width: '100%',
+                }}
+              >
+                <Nav.Link
+                  className='responsiveNavLinks '
+                  style={{
+                    color: '#605399',
+                    fontFamily: 'DM Serif Display',
+                    fontWeight: 'bold',
+                    fontSize: '20px',
+                    padding: '1rem'
+                  }}
+                  href='/start'
+                >
+                  Start Planning
                 </Nav.Link>
-                {/* <Link to='/start'>
-              <Button>
-                <strong>Start Planning</strong>
-              </Button>
-            </Link> */}
-                {/* </li> */}
-                {/* <li>
-            <Link to='/account'> */}
-                <Nav.Link  className='responsiveNavLinks' href='/account'>
-                  <Button>
-                    <strong>My Account</strong>
-                  </Button>
+
+                <Nav.Link
+                  style={{
+                    color: '#605399',
+                    fontFamily: 'DM Serif Display',
+                    fontWeight: 'bold',
+                    fontSize: '20px',
+                    padding: '1rem'
+                  }}
+                  className='responsiveNavLinks '
+                  href='/account'
+                >
+                  My Account
                 </Nav.Link>
-                {/* </Link> */}
-                {/* </li> */}
-                {/* <li>
-            <Link to='/'> */}
-                <Nav.Link className='responsiveNavLinks' href='/logout'>
-                  <Button onClick={handleLogout}>
-                    <strong>Logout</strong>
-                  </Button>
+                <Nav.Link
+                  className='responsiveNavLinks'
+                  href='/logout'
+                  onClick={handleLogout}
+                  style={{
+                    color: '#605399',
+                    fontFamily: 'DM Serif Display',
+                    fontWeight: 'bold',
+                    fontSize: '20px',
+                    padding: '1rem'
+                  }}
+                >
+                  Logout
                 </Nav.Link>
-                {/* <Button onClick={handleLogout}>
-                <strong>Logout</strong>
-              </Button>
-            </Link>
-          </li> */}
-              </ul>
+              </div>
             ) : (
-              <ul style={{ listStyle: 'none', textDecoration: 'none' }}>
-                {/* The navbar will show these links before you log in */}
-                {/* <li> */}
-                <Nav.Link className='responsiveNavLinks' href='/start'>
-                  <Button>
-                    <strong>Start Planning</strong>
-                  </Button>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                  width: '100%',
+                }}
+              >
+                <Nav.Link
+                  style={{
+                    color: '#605399',
+                    fontFamily: 'DM Serif Display',
+                    fontWeight: 'bold',
+                    fontSize: '20px',
+                    padding: '1rem'
+                  }}
+                  className='responsiveNavLinks '
+                  href='/start'
+                >
+                  Start Planning
                 </Nav.Link>
-                {/* <Link to='/start'>
-              <Button>
-                <strong>Start Planning</strong>
-              </Button>
-            </Link>
-          </li> */}
-                <Nav.Link className='responsiveNavLinks' href='/login'>
-                  <Button>
-                    <strong>Log in</strong>
-                  </Button>
+
+                <Nav.Link
+                  style={{
+                    color: '#605399',
+                    fontFamily: 'DM Serif Display',
+                    fontWeight: 'bold',
+                    fontSize: '20px',
+                    padding: '1rem'
+                  }}
+                  className='responsiveNavLinks'
+                  href='/login'
+                >
+                  Log in
                 </Nav.Link>
-                {/* <li>
-            <Link to='/login'>
-              <Button>
-                <strong>Log in</strong>
-              </Button>
-            </Link>
-          </li> */}
-                <Nav.Link  className='responsiveNavLinks' href='/signup'>
-                  <Button>
-                    <strong>Sign up</strong>
-                  </Button>
+
+                <Nav.Link
+                  style={{
+                    color: '#605399',
+                    fontFamily: 'DM Serif Display',
+                    fontWeight: 'bold',
+                    fontSize: '20px',
+                    padding: '1rem'
+                  }}
+                  className='responsiveNavLinks'
+                  href='/signup'
+                >
+                  Sign up
                 </Nav.Link>
-                {/* <li>
-            <Link to='/signup'>
-              <Button>
-                <strong>Sign Up</strong>
-              </Button>
-            </Link>
-          </li> */}
-              </ul>
+              </div>
             )}
-            {/* <Nav.Link href="/home">Home</Nav.Link>
-            <Nav.Link href="/login">Log in</Nav.Link>
-            <Nav.Link href="/signup">Sign up</Nav.Link>
-            <Nav.Link href="/start">Start Planning</Nav.Link> */}
-            <NavDropdown title='Dropdown' id='basic-nav-dropdown'>
-              <NavDropdown.Item href='/'>Home</NavDropdown.Item>
-              <NavDropdown.Item href='/login'>Log in</NavDropdown.Item>
-              <NavDropdown.Item href='/signup'>Sign up</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href='/start'>Start Planning</NavDropdown.Item>
-            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
-    </NavBarFlex>
   );
 }
 
@@ -134,4 +139,3 @@ const mapDispatch = (dispatch) => {
 };
 
 export default connect(mapState, mapDispatch)(ResponsiveNavBar);
-
