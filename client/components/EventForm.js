@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -18,6 +16,9 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { createNewEvent } from '../redux/events';
 import FlexBox from './Styled-Components/FlexBox.styled';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import PopUpDiv from './Styled-Components/FlexBox.styled';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -47,6 +48,9 @@ const EventForm = (props) => {
   const [catererOption, setCatererOption] = useState('');
   const [dateOption, setDateOption] = useState('');
   const [timeOption, setTimeOption] = useState('');
+  const [eventNameOption, setEventNameOption] = useState('');
+  const [noteOption, setNoteOption] = useState('');
+  const [lgShow, setLgShow] = useState(false);
 
   const createEvent = (event) => {
     event.preventDefault();
@@ -65,13 +69,16 @@ const EventForm = (props) => {
     };
 
     createNewEvent(newEventInput);
+    setEventNameOption(eventName);
+    setNoteOption(eventNote);
+    setLgShow(true);
   };
 
   return (
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
       <div className={classes.paper}>
-        <img src='/images/party-hat-3-64.png' width='100px'></img>
+        <img src='/images/party-hat-3-64.png' width='40px'></img>
         <br></br>
         <Typography
           component='h1'
@@ -89,12 +96,12 @@ const EventForm = (props) => {
         >
           <TextField
             name='eventName'
+            id='event-name'
             label='Event Name'
             variant='outlined'
             margin='normal'
-            required
             fullWidth
-            id='event-name'
+            required
           />
           <div className='eventFormDateTime'>
             <input
@@ -106,6 +113,7 @@ const EventForm = (props) => {
               max='2099-12-31'
               value={dateOption}
               onChange={(event) => setDateOption(event.target.value)}
+              required
             />
             <input
               type='time'
@@ -120,11 +128,12 @@ const EventForm = (props) => {
             />
           </div>
           <FormControl variant='outlined' fullWidth margin='normal'>
-            <InputLabel>Venue</InputLabel>
+            <InputLabel>Please select venue from your liked list</InputLabel>
             <Select
               name='eventVenue'
               onChange={(event) => setVenueOption(event.target.value)}
               value={venueOption}
+              required
             >
               {venues?.length ? (
                 venues.map((venue, index) => (
@@ -134,17 +143,19 @@ const EventForm = (props) => {
                 ))
               ) : (
                 <MenuItem value={`no venue`}>
-                  Please add venue to your liked list
+                  No venue in your list, click on 'Start Planning' to like some
+                  venues
                 </MenuItem>
               )}
             </Select>
           </FormControl>
           <FormControl variant='outlined' fullWidth margin='normal'>
-            <InputLabel>Caterer</InputLabel>
+            <InputLabel>Please select caterer from your liked list</InputLabel>
             <Select
               name='eventCaterer'
               onChange={(event) => setCatererOption(event.target.value)}
               value={catererOption}
+              required
             >
               {caterers?.length ? (
                 caterers.map((caterer, index) => (
@@ -154,25 +165,27 @@ const EventForm = (props) => {
                 ))
               ) : (
                 <MenuItem value={`no caterer`}>
-                  Please add caterer to your liked list
+                  No caterer in your list, click on 'Start Planning' to like
+                  some caterers
                 </MenuItem>
               )}
             </Select>
           </FormControl>
           <TextField
+            id='event-note'
+            name='eventNote'
+            type='text'
+            label='Note'
             variant='outlined'
             margin='normal'
             fullWidth
-            name='eventNote'
-            label='Note'
-            type='text'
-            id='event-note'
           />
           <FlexBox>
             <Button
+              id='btn-submit-new-event'
               type='submit'
               variant='contained'
-              color='primary'
+              // color='primary'
               className={classes.submit}
             >
               <strong style={{ fontFamily: 'Cardo' }}>Create Event</strong>
@@ -180,7 +193,56 @@ const EventForm = (props) => {
           </FlexBox>
         </form>
       </div>
-      <Box mt={8}></Box>
+      <Modal
+        size='lg'
+        show={lgShow}
+        onHide={() => setLgShow(false)}
+        aria-labelledby='example-modal-sizes-title-lg'
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id='example-modal-sizes-title-lg'>
+            <h3>You created a new event! 🎉</h3>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <PopUpDiv className='new-event-popup'>
+            <p>
+              <strong>Event: </strong>
+              {eventNameOption
+                ? eventNameOption
+                : 'You did not provide the event name'}
+            </p>
+            <p>
+              <strong>Date: </strong>
+              {dateOption ? dateOption : 'You did not select the date yet.'}
+            </p>
+            <p>
+              <strong>Time: </strong>
+              {timeOption ? timeOption : 'You did not select the time yet.'}
+            </p>
+            <p>
+              <strong>Venue: </strong>
+              {venueOption.name
+                ? venueOption.name
+                : 'You did not select any venues yet.'}
+            </p>
+            <p>
+              <strong>Caterer: </strong>
+              {catererOption.name
+                ? catererOption.name
+                : 'You did not select any caterers yet.'}
+            </p>
+            <p>
+              <strong>Note: </strong>
+              {noteOption ? noteOption : 'You did not leave any notes.'}
+            </p>
+            <p>We hope you have a great event!</p>
+            <Link to='/account'>
+              <Button className='btn-back-to-my-acc'>Back to My Account</Button>
+            </Link>
+          </PopUpDiv>
+        </Modal.Body>
+      </Modal>
     </Container>
   );
 };

@@ -16,19 +16,18 @@ import FlexBox from './Styled-Components/FlexBox.styled';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: theme.spacing(4),
     width: '50ch',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%',
     marginTop: theme.spacing(3),
     textAlign: 'center',
   },
   avatar: {
-    margin: theme.spacing(1),
+    marginTop: theme.spacing(8),
     backgroundColor: '#D562BE',
   },
   submit: {
@@ -39,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: '#605399',
       color: '#fff',
     },
+  },
+  input: {
+    fontFamily: 'Cardo',
+    fontSize: 19,
   },
 }));
 
@@ -58,75 +61,69 @@ const StartForm = (props) => {
   };
 
   return (
-    <Container className='start-form-div' component='main' maxWidth='xs'>
-      {/* added this */}
-      <FlexBox>
-        <div className={classes.root}>
-          <Avatar className={classes.avatar}>
-            <SearchOutlinedIcon />
-          </Avatar>
 
-          <div
-            className='start-form'
-            style={{
-              width: '350px',
-              textAlign: 'center',
-              alignItems: 'center',
-            }}
+    <Container className={classes.root} component='main' maxWidth='xs'>
+      <FlexBox>
+      <div className={classes.root}>
+        <Avatar className={classes.avatar}>
+          <SearchOutlinedIcon />
+        </Avatar>
+        <div
+          className='start-form'
+          style={{ width: '350px', textAlign: 'center', alignItems: 'center' }}
+        >
+          <br></br>
+          <div>
+            <h1>Ready for a Party?</h1>
+          </div>
+          <form
+            className={classes.form}
+            noValidate
+            autoComplete='off'
+            onSubmit={(event) => getRecommendations(event)}
+            name='start-form'
           >
             <br></br>
-            <div>
-              <h1>Ready for a Party?</h1>
-            </div>
-            <form
-              className={classes.form}
-              noValidate
-              autoComplete='off'
-              onSubmit={(event) => getRecommendations(event)}
-              name='start-form'
-            >
               <div>
-                <label style={{ fontFamily: 'Cardo' }} htmlFor='serviceOptions'>
-                  What service can we help you find?
+              <label className={classes.input} htmlFor='serviceOptions'>
+                What service can we help you find?
+              </label>
+            </div>
+            <br></br>
+            <FormControl variant='outlined' fullWidth>
+              <InputLabel>Please select caterer or venue</InputLabel>
+              <Select
+                name='serviceOption'
+                onChange={(e) => setServiceOptionValue(e.target.value)}
+                value={serviceOptionValue}
+              >
+                <MenuItem value='catering'>Caterer</MenuItem>
+                <MenuItem value='venue'>Venue</MenuItem>
+              </Select>
+              <br></br>
+              <div>
+                <label className={classes.input} htmlFor='partyLocation'>
+                  Where will your party be held?
                 </label>
               </div>
               <br></br>
-              <FormControl variant='outlined'>
-                <InputLabel style={{ fontFamily: 'Cardo' }}>Service</InputLabel>
-                <Select
-                  name='serviceOption'
-                  onChange={(e) => setServiceOptionValue(e.target.value)}
-                  value={serviceOptionValue}
-                >
-                  <MenuItem value='catering'>Caterer</MenuItem>
-                  <MenuItem value='venue'>Venue</MenuItem>
-                </Select>
-                <br></br>
-                <div>
-                  <label
-                    style={{ fontFamily: 'Cardo' }}
-                    htmlFor='partyLocation'
-                  >
-                    Where will your party be held?
-                  </label>
-                </div>
-                <br></br>
-              </FormControl>
-              <TextField
-                style={{ fontFamily: 'Cardo' }}
-                name='location'
-                label='Location or Zip-Code'
-                variant='outlined'
-              />
+            </FormControl>
+            <TextField
+              className={classes.input}
+              name='location'
+              label='Please enter city or zip code'
+              fullWidth
+              variant='outlined'
+            />
+            <br></br>
               <br></br>
-              <br></br>
-              <div>
-                <Button
-                  variant='contained'
-                  type='submit'
-                  // color='primary'
-                  className={classes.submit}
-                  style={{ fontFamily: 'Cardo' }}
+            <div>
+              <Button
+                variant='contained'
+                type='submit'
+                // color='primary'
+                className={classes.submit}
+
                 >
                   <strong>Get Recommendations</strong>
                 </Button>
@@ -134,7 +131,6 @@ const StartForm = (props) => {
             </form>
           </div>
         </div>
-        {/* added this! */}
       </FlexBox>
     </Container>
   );
