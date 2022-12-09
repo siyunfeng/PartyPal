@@ -1,4 +1,5 @@
 const eventsRouter = require('express').Router();
+const { ContactlessOutlined } = require('@material-ui/icons');
 const { Event } = require('../db');
 const { requireToken, isAdmin } = require('./gateKeepingMiddleware');
 
@@ -14,6 +15,16 @@ eventsRouter.get('/:userId', requireToken, async (req, res, next) => {
     }
   } catch (error) {
     console.log(`api/events get('/:userId') ERROR:`, error);
+    next(error);
+  }
+});
+
+// get single event detail
+eventsRouter.get('/single/:eventId', requireToken, async (req, res, next) => {
+  try {
+    const singleEvent = await Event.findByPk(req.params.eventId);
+    res.send(singleEvent);
+  } catch (error) {
     next(error);
   }
 });

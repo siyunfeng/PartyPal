@@ -4,10 +4,12 @@ const TOKEN = 'token';
 const GET_EVENTS = 'GET_EVENTS';
 const CREATE_NEW_EVENT = 'CREATE_NEW_EVENT';
 const DELETE_EVENT = 'DELETE_EVENT';
+const EDIT_EVENT = 'EDIT_EVENT';
 
 const _getEvents = (events) => ({ type: GET_EVENTS, events });
 const _createNewEvent = (event) => ({ type: CREATE_NEW_EVENT, event });
 const _deleteEvent = (event) => ({ type: DELETE_EVENT, event });
+const _editEvent = (event) => ({ type: EDIT_EVENT, event });
 
 export const getEvents = (userId) => {
   return async (dispatch) => {
@@ -84,6 +86,40 @@ export const deleteEvent = (eventId) => {
   };
 };
 
+export const editEvent = (eventInfo) => {
+  return async (dispatch) => {
+    try {
+      const token = window.localStorage.getItem(TOKEN);
+      if (token) {
+        console.log('i made it in thunk', eventInfo.eventId, eventInfo);
+        const eventInfoToSend = {
+          name: eventInfo.eventNameOption,
+          venue: eventInfo.venueOption.name,
+          venueYelpId: eventInfo.venueOption.yelp_reference_id,
+          catering: eventInfo.catererOption.name,
+          cateringYelpId: eventInfo.catererOption.yelp_reference_id,
+          notes: eventInfo.noteOption,
+          date: eventInfo.dateOption,
+          time: eventInfo.timeOption,
+        };
+        console.log('this is right?', eventInfoToSend);
+        const { data } = await axios.put(
+          `/api/events/${eventInfo.eventId}`,
+          eventInfoToSend,
+          {
+            headers: {
+              authorization: token,
+            },
+          }
+        );
+        dispatch(_editEvent(data));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
 const events = (state = [], action) => {
   switch (action.type) {
     case GET_EVENTS:
@@ -92,6 +128,8 @@ const events = (state = [], action) => {
       return [...state, action.event];
     case DELETE_EVENT:
       return state.filter((event) => event.id !== action.event.id);
+    case EDIT_EVENT:
+      return action.event;
     default:
       return state;
   }

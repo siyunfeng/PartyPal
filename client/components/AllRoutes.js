@@ -8,11 +8,11 @@ import SingleVenue from './SingleVenue';
 import SingleCaterer from './SingleCaterer';
 import StartForm from './StartForm';
 import UserHome from './UserHome';
+import EventEditForm from './EventEditForm';
 import Home from './Home';
 import EventSummaryPopUp from './EventSummaryPopUp';
 import Navbar from './NavBar';
 import EventForm from './EventForm';
-import Button from 'react-bootstrap/Button';
 
 export const AllRoutes = () => {
   return (
@@ -31,6 +31,7 @@ export const AllRoutes = () => {
           <Route path='/start' component={StartForm} />
           <Route path='/account' component={UserHome} />
           <Route path='/new-event' component={EventForm} />
+          <Route path='/editEvent/:id' component={EventEditForm} />
         </Switch>
       </main>
     </Router>

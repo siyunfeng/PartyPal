@@ -14,6 +14,7 @@ import { getSingleVenueThunk } from '../redux/singleVenue';
 import UserHomeFlex from './Styled-Components/UserHomeFlex.styled';
 import { Trash, PencilSquare } from 'react-bootstrap-icons';
 import { convert, findDayOfWeek } from '../../helperFunctions';
+import { getSingleEvent } from '../redux/singleEvent';
 
 const UserHome = (props) => {
   let { id, username, email } = props.user;
@@ -27,6 +28,7 @@ const UserHome = (props) => {
     deleteCatererLikedItem,
     deleteVenueLikedItem,
     deleteEvent,
+    getSingleEvent,
   } = props;
 
   useEffect(() => {
@@ -52,8 +54,6 @@ const UserHome = (props) => {
   const handleDeleteVenue = (favoriteId) => deleteVenueLikedItem(favoriteId);
 
   const handleDeleteEvent = (eventId) => deleteEvent(eventId);
-
-  // const handleEditEvent = (eventId) => editEvent(eventId);
 
   return (
     <>
@@ -259,11 +259,15 @@ const UserHome = (props) => {
                               ? convert(event.time)
                               : 'Event time is not available at this time'}
                           </Card.Text>
-                          <Button
-                          // onClick={() => handleEditEvent(event.id)}
+                          <Link
+                            to={`/editEvent/${event.id}`}
+                            value={event.id}
+                            onClick={() => getSingleEvent(event.id)}
                           >
-                            <PencilSquare />
-                          </Button>
+                            <Button>
+                              <PencilSquare />
+                            </Button>
+                          </Link>
                           <Button
                             onClick={() => handleDeleteEvent(event.id)}
                             variant='danger'
@@ -315,7 +319,7 @@ const mapDispatch = (dispatch) => {
     deleteCatererLikedItem: (favoriteId) =>
       dispatch(deleteCatererLikedItem(favoriteId)),
     deleteEvent: (eventId) => dispatch(deleteEvent(eventId)),
-    // editEvent: (eventId) => dispatch(editEvent(eventId)),
+    getSingleEvent: (eventId) => dispatch(getSingleEvent(eventId)),
   };
 };
 

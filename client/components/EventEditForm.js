@@ -10,11 +10,11 @@ import Container from '@material-ui/core/Container';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import { createNewEvent } from '../redux/events';
+import { editEvent } from '../redux/events';
+import { getSingleEvent } from '../redux/singleEvent';
 import FlexBox from './Styled-Components/FlexBox.styled';
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import PopUpDiv from './Styled-Components/FlexBox.styled';
+import { ContactlessOutlined } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,38 +36,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const EventForm = (props) => {
+const EventEditForm = (props) => {
   const classes = useStyles();
-  let { user, events, venues, caterers, createNewEvent } = props;
+  let { venues, caterers, editEvent, singleEvent } = props;
 
   const [venueOption, setVenueOption] = useState('');
   const [catererOption, setCatererOption] = useState('');
-  const [dateOption, setDateOption] = useState('');
-  const [timeOption, setTimeOption] = useState('');
-  const [eventNameOption, setEventNameOption] = useState('');
-  const [noteOption, setNoteOption] = useState('');
-  const [lgShow, setLgShow] = useState(false);
+  const [dateOption, setDateOption] = useState(singleEvent.date);
+  const [timeOption, setTimeOption] = useState(singleEvent.time);
+  const [eventNameOption, setEventNameOption] = useState(singleEvent.name);
+  const [noteOption, setNoteOption] = useState(singleEvent.notes);
+  const [eventId, setEventId] = useState(props.match.params.id);
 
-  const createEvent = (event) => {
+  useEffect(() => {
+    console.log('inside', eventNameOption, singleEvent.name);
+  }, [eventId, eventNameOption]);
+
+  const handleEditEvent = (event) => {
     event.preventDefault();
-    const userId = user.id;
-    const eventName = event.target.eventName.value;
-    const eventNote = event.target.eventNote.value;
-
-    const newEventInput = {
-      userId,
-      eventName,
-      eventNote,
+    const eventInfo = {
+      eventId,
+      eventNameOption,
+      noteOption,
       venueOption,
       catererOption,
       dateOption,
       timeOption,
     };
-
-    createNewEvent(newEventInput);
-    setEventNameOption(eventName);
-    setNoteOption(eventNote);
-    setLgShow(true);
+    editEvent(eventInfo);
   };
 
   return (
@@ -81,23 +77,25 @@ const EventForm = (props) => {
           variant='h5'
           style={{ fontFamily: 'DM Serif Display' }}
         >
-          <strong>Create New Event</strong>
+          <strong>Edit My Event</strong>
         </Typography>
         <form
           className={classes.form}
           name='eventForm'
           noValidate
           autoComplete='off'
-          onSubmit={(event) => createEvent(event)}
+          onSubmit={(event) => handleEditEvent(event)}
         >
           <TextField
             name='eventName'
             id='event-name'
             label='Event Name'
+            value={eventNameOption}
             variant='outlined'
             margin='normal'
             fullWidth
             required
+            onChange={(event) => setEventNameOption(event.target.value)}
           />
           <div className='eventFormDateTime'>
             <input
@@ -173,8 +171,10 @@ const EventForm = (props) => {
             type='text'
             label='Note'
             variant='outlined'
+            value={noteOption}
             margin='normal'
             fullWidth
+            onChange={(event) => setNoteOption(event.target.value)}
           />
           <FlexBox>
             <Button
@@ -184,69 +184,18 @@ const EventForm = (props) => {
               // color='primary'
               className={classes.submit}
             >
-              <strong style={{ fontFamily: 'Cardo' }}>Create Event</strong>
+              <strong style={{ fontFamily: 'Cardo' }}>Submit Changes</strong>
             </Button>
           </FlexBox>
         </form>
       </div>
-      <Modal
-        size='lg'
-        show={lgShow}
-        onHide={() => setLgShow(false)}
-        aria-labelledby='example-modal-sizes-title-lg'
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id='example-modal-sizes-title-lg'>
-            <h3>You created a new event! 🎉</h3>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <PopUpDiv className='new-event-popup'>
-            <p>
-              <strong>Event: </strong>
-              {eventNameOption
-                ? eventNameOption
-                : 'You did not provide the event name'}
-            </p>
-            <p>
-              <strong>Date: </strong>
-              {dateOption ? dateOption : 'You did not select the date yet.'}
-            </p>
-            <p>
-              <strong>Time: </strong>
-              {timeOption ? timeOption : 'You did not select the time yet.'}
-            </p>
-            <p>
-              <strong>Venue: </strong>
-              {venueOption.name
-                ? venueOption.name
-                : 'You did not select any venues yet.'}
-            </p>
-            <p>
-              <strong>Caterer: </strong>
-              {catererOption.name
-                ? catererOption.name
-                : 'You did not select any caterers yet.'}
-            </p>
-            <p>
-              <strong>Note: </strong>
-              {noteOption ? noteOption : 'You did not leave any notes.'}
-            </p>
-            <p>We hope you have a great event!</p>
-            <Link to='/account'>
-              <Button className='btn-back-to-my-acc'>Back to My Account</Button>
-            </Link>
-          </PopUpDiv>
-        </Modal.Body>
-      </Modal>
     </Container>
   );
 };
 
 const mapState = (state) => {
   return {
-    user: state.auth,
-    events: state.events,
+    singleEvent: state.singleEvent,
     venues: state.favorites.venues,
     caterers: state.favorites.caterers,
   };
@@ -254,8 +203,13 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    createNewEvent: (newEventInput) => dispatch(createNewEvent(newEventInput)),
+    getSingleEvent: (eventId) => {
+      dispatch(getSingleEvent(eventId));
+    },
+    editEvent: (eventInfo) => {
+      dispatch(editEvent(eventInfo));
+    },
   };
 };
 
-export default connect(mapState, mapDispatch)(EventForm);
+export default connect(mapState, mapDispatch)(EventEditForm);
