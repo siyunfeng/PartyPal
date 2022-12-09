@@ -87,11 +87,8 @@ const SingleVenue = (props) => {
     <div className='single-venue-container'>
       <br></br>
       <br></br>
-      <SingleView data-testid="poop">
-        <Card
-          className='favoriteSelectionsCard'
-          
-        >
+      <SingleView data-testid='poop'>
+        <Card className='favoriteSelectionsCard'>
           <ButtonFlex>
             <h1>{name ? name : ''}</h1>
           </ButtonFlex>
@@ -101,7 +98,6 @@ const SingleVenue = (props) => {
               <Card.Img
                 className='img single-img'
                 variant='top'
-      
                 src={
                   photos.length
                     ? photos
@@ -114,7 +110,7 @@ const SingleVenue = (props) => {
         <br></br>
 
         <br></br>
-        {/* seperate */}
+
         <Card className='favoriteSelectionsCard' style={{ padding: '2rem' }}>
           <h4>Venue Details</h4>
           <hr></hr>
@@ -226,23 +222,16 @@ const SingleVenue = (props) => {
       </SingleView>
 
       <br></br>
-      {/* seperate */}
+
       <FlexBox>
-        <Card
-          className='favoriteSelectionsCard'
-          style={{ width: '900px', height: '800px' }}
-        >
+        <Card className='favoriteSelectionsCard'>
           <h4>Ratings</h4>
           <hr></hr>
           <FlexBox>
             <div>
               {business.reviews.map((review) => {
                 return (
-                  <Alert
-                    key={review.id}
-                    variant='info'
-                    style={{ width: ' 700px', height: '140px' }}
-                  >
+                  <Alert key={review.id} variant='info'>
                     <Rating
                       name='read-only'
                       precision={0.5}

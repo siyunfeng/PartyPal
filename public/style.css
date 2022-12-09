@@ -138,17 +138,6 @@ label {
 }
 
 
-/* [class*="col-"] {
-  float: left;
-  padding: 15px;
-} 
-
- @media only screen and (max-width: 768px) {
-  [class*="col-"] {
-    width: 100%;
-  }
-} */
-
 
 .single-img {
     max-width: 100%;

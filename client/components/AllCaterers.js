@@ -83,7 +83,7 @@ function AllCaterers(props) {
 
   return (
     <div className='all-caterer-container'>
-       <br></br>
+      <br></br>
       <FlexBoxForSearchResults>
         <h1>Caterer search results for {props.startForm.location}: </h1>
         <p>{allCaterers.length} caterers found</p>
@@ -167,7 +167,7 @@ function AllCaterers(props) {
                           handleClick(e);
                         }}
                       >
-                             <strong>See more</strong>
+                        <strong>See more</strong>
                       </Button>
                     </Link>
                   </Card.Body>

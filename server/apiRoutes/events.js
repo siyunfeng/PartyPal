@@ -33,7 +33,6 @@ eventsRouter.put('/:eventId', requireToken, async (req, res, next) => {
 // add middleware
 eventsRouter.post('/', requireToken, async (req, res, next) => {
   try {
-    console.log('MADE IT TO POST')
     const newEvent = await Event.create(req.body);
     res.send(newEvent);
   } catch (error) {

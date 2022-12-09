@@ -40,7 +40,6 @@ function ReviewsHome() {
           <Alert
             key={review.id}
             variant='info'
-            style={{ width: ' 700px', height: '150px' }}
           >
             <Rating
               name='read-only'

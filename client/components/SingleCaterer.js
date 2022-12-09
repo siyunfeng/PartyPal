@@ -226,38 +226,31 @@ const SingleCaterer = (props) => {
       <br></br>
       {/* seperate */}
 
-        <FlexBox>
-          <Card
-            className='favoriteSelectionsCard'
-            // style={{ width: '900%', height: '800%' }}
-          >
-            <h4>Ratings</h4>
-            <hr></hr>
-            <FlexBox>
-              <div>
-                {business.reviews.map((review) => {
-                  return (
-                    <Alert
-                      key={review.id}
-                      variant='info'
-                      // style={{ width: ' 700%', height: '140%' }}
-                    >
-                      <Rating
-                        name='read-only'
-                        precision={0.5}
-                        value={review.rating}
-                        readOnly
-                      />
-                      <hr />
-                      <p>{review.text}</p>
-                    </Alert>
-                  );
-                })}
-              </div>
-            </FlexBox>
-          </Card>
-        </FlexBox>
-  
+      <FlexBox>
+        <Card className='favoriteSelectionsCard'>
+          <h4>Ratings</h4>
+          <hr></hr>
+          <FlexBox>
+            <div>
+              {business.reviews.map((review) => {
+                return (
+                  <Alert key={review.id} variant='info'>
+                    <Rating
+                      name='read-only'
+                      precision={0.5}
+                      value={review.rating}
+                      readOnly
+                    />
+                    <hr />
+                    <p>{review.text}</p>
+                  </Alert>
+                );
+              })}
+            </div>
+          </FlexBox>
+        </Card>
+      </FlexBox>
+
       <br></br>
     </div>
   );
