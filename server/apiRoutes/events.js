@@ -19,7 +19,7 @@ eventsRouter.get('/:userId', requireToken, async (req, res, next) => {
 });
 
 // edit event detail
-eventsRouter.put('/:eventId', async (req, res, next) => {
+eventsRouter.put('/:eventId', requireToken, async (req, res, next) => {
   try {
     const eventToUpdate = await Event.findByPk(req.params.eventId);
     eventToUpdate.update(req.body);
@@ -31,7 +31,7 @@ eventsRouter.put('/:eventId', async (req, res, next) => {
 
 // create an event as a logged in user
 // add middleware
-eventsRouter.post('/', async (req, res, next) => {
+eventsRouter.post('/', requireToken, async (req, res, next) => {
   try {
     const newEvent = await Event.create(req.body);
     res.send(newEvent);
@@ -41,7 +41,7 @@ eventsRouter.post('/', async (req, res, next) => {
 });
 
 // delete an event as a logged in user
-eventsRouter.delete('/:eventId', async (req, res, next) => {
+eventsRouter.delete('/:eventId', requireToken, async (req, res, next) => {
   try {
     const eventToDelete = await Event.findByPk(req.params.eventId);
     await eventToDelete.destroy();

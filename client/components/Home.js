@@ -28,7 +28,9 @@ const Home = () => {
             <br></br>
             <h2>Reviews</h2>
             <br></br>
-            <ReviewsHome />
+            <FlexBox>
+              <ReviewsHome />
+            </FlexBox>
           </FlexBox>
         </div>
       </div>

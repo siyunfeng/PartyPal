@@ -12,6 +12,7 @@ import Avatar from '@material-ui/core/Avatar';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import FlexBox from './Styled-Components/FlexBox.styled';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,7 +61,9 @@ const StartForm = (props) => {
   };
 
   return (
+
     <Container className={classes.root} component='main' maxWidth='xs'>
+      <FlexBox>
       <div className={classes.root}>
         <Avatar className={classes.avatar}>
           <SearchOutlinedIcon />
@@ -80,7 +83,8 @@ const StartForm = (props) => {
             onSubmit={(event) => getRecommendations(event)}
             name='start-form'
           >
-            <div>
+            <br></br>
+              <div>
               <label className={classes.input} htmlFor='serviceOptions'>
                 What service can we help you find?
               </label>
@@ -111,20 +115,23 @@ const StartForm = (props) => {
               fullWidth
               variant='outlined'
             />
+            <br></br>
+              <br></br>
             <div>
               <Button
                 variant='contained'
                 type='submit'
                 // color='primary'
                 className={classes.submit}
-                style={{ fontFamily: 'Cardo' }}
-              >
-                <strong>Get Recommendations</strong>
-              </Button>
-            </div>
-          </form>
+
+                >
+                  <strong>Get Recommendations</strong>
+                </Button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
+      </FlexBox>
     </Container>
   );
 };

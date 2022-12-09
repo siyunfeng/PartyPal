@@ -87,11 +87,8 @@ const SingleVenue = (props) => {
     <div className='single-venue-container'>
       <br></br>
       <br></br>
-      <SingleView>
-        <Card
-          className='favoriteSelectionsCard'
-          // style={{ width: '600px', height: '700px' }}
-        >
+      <SingleView data-testid='poop'>
+        <Card className='favoriteSelectionsCard'>
           <ButtonFlex>
             <h1>{name ? name : ''}</h1>
           </ButtonFlex>
@@ -99,10 +96,8 @@ const SingleVenue = (props) => {
           <Card.Body>
             <ButtonFlex>
               <Card.Img
-                className='img'
+                className='img single-img'
                 variant='top'
-                style={{ width: 450, height: 500 }}
-                // style={{ width: '600px', height: '700px' }}
                 src={
                   photos.length
                     ? photos
@@ -115,7 +110,7 @@ const SingleVenue = (props) => {
         <br></br>
 
         <br></br>
-        {/* seperate */}
+
         <Card className='favoriteSelectionsCard' style={{ padding: '2rem' }}>
           <h4>Venue Details</h4>
           <hr></hr>
@@ -204,7 +199,7 @@ const SingleVenue = (props) => {
                     saveLikedItem(e, venueInfo);
                   }}
                 >
-                  {liked ? 'Liked' : 'Like'}
+                  <strong>{liked ? 'Liked' : 'Like'}</strong>
                 </Button>
               </OverlayTrigger>
             ) : (
@@ -219,7 +214,7 @@ const SingleVenue = (props) => {
             <div className='button-divider'></div>
             <Link to='/allVenues'>
               <Button style={{ fontFamily: 'Cardo' }} variant='outline-primary'>
-                Go Back
+                <strong>Go Back</strong>
               </Button>
             </Link>
           </ButtonFlex>
@@ -227,23 +222,16 @@ const SingleVenue = (props) => {
       </SingleView>
 
       <br></br>
-      {/* seperate */}
+
       <FlexBox>
-        <Card
-          className='favoriteSelectionsCard'
-          style={{ width: '900px', height: '800px' }}
-        >
+        <Card className='favoriteSelectionsCard'>
           <h4>Ratings</h4>
           <hr></hr>
           <FlexBox>
             <div>
               {business.reviews.map((review) => {
                 return (
-                  <Alert
-                    key={review.id}
-                    variant='info'
-                    style={{ width: ' 700px', height: '140px' }}
-                  >
+                  <Alert key={review.id} variant='info'>
                     <Rating
                       name='read-only'
                       precision={0.5}

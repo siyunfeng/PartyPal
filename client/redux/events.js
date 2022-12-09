@@ -28,6 +28,7 @@ export const getEvents = (userId) => {
 
 export const createNewEvent = (newEventInput) => {
   return async (dispatch) => {
+    const token = window.localStorage.getItem(TOKEN);
     try {
       const {
         userId,
@@ -39,18 +40,26 @@ export const createNewEvent = (newEventInput) => {
         timeOption,
       } = newEventInput;
 
-      const { data: newEvent } = await axios.post('/api/events', {
-        userId: userId,
-        name: eventName,
-        venue: venueOption.name,
-        venueYelpId: venueOption.yelp_reference_id,
-        catering: catererOption.name,
-        cateringYelpId: catererOption.yelp_reference_id,
-        notes: eventNote,
-        date: dateOption,
-        time: timeOption,
-        // NOTE: not sure if we should pass req.headers.authorization instead because we need to put requireToken to protect the route
-      });
+      const { data: newEvent } = await axios.post(
+        '/api/events',
+        {
+          userId: userId,
+          name: eventName,
+          venue: venueOption.name,
+          venueYelpId: venueOption.yelp_reference_id,
+          catering: catererOption.name,
+          cateringYelpId: catererOption.yelp_reference_id,
+          notes: eventNote,
+          date: dateOption,
+          time: timeOption,
+          // NOTE: not sure if we should pass req.headers.authorization instead because we need to put requireToken to protect the route
+        },
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
       dispatch(_createNewEvent(newEvent));
     } catch (error) {
       console.error('redux/events.js createNewEvent error >>>>', error);

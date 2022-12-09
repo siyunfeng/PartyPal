@@ -227,8 +227,8 @@ const UserHome = (props) => {
               <br></br>
               <div>
                 <Link to='/new-event'>
-                  <Button style={{ marginLeft: '1rem' }}>
-                    Create Future Event
+                  <Button style={{ marginLeft: '1rem', fontFamily: 'Cardo' }}>
+                    <strong>Create Future Event</strong>
                   </Button>
                 </Link>
               </div>
