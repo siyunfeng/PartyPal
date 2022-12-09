@@ -143,7 +143,7 @@ const EventForm = (props) => {
                   </MenuItem>
                 ))
               ) : (
-                <MenuItem value={`no venue`}>
+                <MenuItem value={'no venue'}>
                   No venue in your list, click on 'Start Planning' to like some
                   venues
                 </MenuItem>
@@ -165,7 +165,7 @@ const EventForm = (props) => {
                   </MenuItem>
                 ))
               ) : (
-                <MenuItem value={`no caterer`}>
+                <MenuItem value={'no caterer'}>
                   No caterer in your list, click on 'Start Planning' to like
                   some caterers
                 </MenuItem>
@@ -183,6 +183,7 @@ const EventForm = (props) => {
           />
           <FlexBox>
             <Button
+              // disabled={!isValidForm} // validationChanges
               id='btn-submit-new-event'
               type='submit'
               variant='contained'
@@ -209,49 +210,46 @@ const EventForm = (props) => {
         </Modal.Header>
         <Modal.Body>
           <PopUpDiv className='new-event-popup'>
-          
-              <p>
-                <strong>Event: </strong>
-                {eventNameOption
-                  ? eventNameOption
-                  : 'You did not provide the event name'}
-              </p>
-              <p>
-                <strong>Date: </strong>
-                {dateOption ? dateOption : 'You did not select the date yet.'}
-              </p>
-              <p>
-                <strong>Time: </strong>
-                {timeOption ? timeOption : 'You did not select the time yet.'}
-              </p>
-              <p>
-                <strong>Venue: </strong>
-                {venueOption.name
-                  ? venueOption.name
-                  : 'You did not select any venues yet.'}
-              </p>
-              <p>
-                <strong>Caterer: </strong>
-                {catererOption.name
-                  ? catererOption.name
-                  : 'You did not select any caterers yet.'}
-              </p>
-              <p>
-                <strong>Note: </strong>
-                {noteOption ? noteOption : 'You did not leave any notes.'}
-              </p>
-              <br></br>
-              <p>We hope you have a great event!</p>
-              <Link to='/account'>
-                <Button
-                  className='btn-back-to-my-acc'
-                  style={{ fontFamily: 'Cardo' }}
-                >
-                  {' '}
-                  <strong style={{ color: 'white' }}>Back to My Account</strong>
-                </Button>
-              </Link>
-
+            <p>
+              <strong>Event: </strong>
+              {eventNameOption
+                ? eventNameOption
+                : 'You did not provide the event name'}
+            </p>
+            <p>
+              <strong>Date: </strong>
+              {dateOption ? dateOption : 'You did not select the date yet.'}
+            </p>
+            <p>
+              <strong>Time: </strong>
+              {timeOption ? timeOption : 'You did not select the time yet.'}
+            </p>
+            <p>
+              <strong>Venue: </strong>
+              {venueOption.name
+                ? venueOption.name
+                : 'You did not select any venues yet.'}
+            </p>
+            <p>
+              <strong>Caterer: </strong>
+              {catererOption.name
+                ? catererOption.name
+                : 'You did not select any caterers yet.'}
+            </p>
+            <p>
+              <strong>Note: </strong>
+              {noteOption ? noteOption : 'You did not leave any notes.'}
+            </p>
+            <br></br>
+            <p>We hope you have a great event!</p>
+            <Link to='/account'>
+              <Button
+                className='btn-back-to-my-acc'
+                style={{ fontFamily: 'Cardo' }}
+              >
+                <strong style={{ color: 'white' }}>Back to My Account</strong>
+              </Button>
+            </Link>
           </PopUpDiv>
         </Modal.Body>
       </Modal>
