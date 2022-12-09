@@ -24,7 +24,7 @@ favoritesRouter.post(
   requireToken,
   async (req, res, next) => {
     try {
-      const yelpReferenceId = req.params.yelpReferenceId;
+      const yelp_Reference_Id = req.params.yelpReferenceId;
       const venueInfo = req.body;
       const { token } = req.body;
 
@@ -32,7 +32,7 @@ favoritesRouter.post(
 
       const existingFavorite = await Favorite.findOne({
         where: {
-          yelp_reference_id: yelpReferenceId,
+          yelp_reference_id: yelp_Reference_Id,
           userId: userToAddLikedItemTo.id,
         },
       });
@@ -43,7 +43,7 @@ favoritesRouter.post(
         const savedItem = await Favorite.create({
           name: venueInfo.name,
           category: venueInfo.category,
-          yelp_reference_id: yelpReferenceId,
+          yelp_reference_id: yelp_Reference_Id,
           image_url: venueInfo.image_url[0],
           userId: userToAddLikedItemTo.id,
         });
@@ -58,10 +58,11 @@ favoritesRouter.post(
 // POST /api/favorite/venue/:yelpReferenceId (save/like venue in favorite)
 favoritesRouter.post(
   '/caterer/:yelpReferenceId',
-  requireToken,
+  // requireToken,
   async (req, res, next) => {
     try {
-      const yelpReferenceId = req.params.yelpReferenceId;
+      const yelp_reference_id = req.params.yelpReferenceId
+
       const catererInfo = req.body;
 
       const { token } = req.body;
@@ -70,7 +71,7 @@ favoritesRouter.post(
 
       const existingFavorite = await Favorite.findOne({
         where: {
-          yelp_reference_id: yelpReferenceId,
+          yelp_reference_id: yelp_reference_id,
           userId: userToAddLikedItemTo.id,
         },
       });
@@ -80,7 +81,8 @@ favoritesRouter.post(
         const savedItem = await Favorite.create({
           name: catererInfo.name,
           category: catererInfo.category,
-          yelp_reference_id: yelpReferenceId,
+          // yelp_reference_id: catererInfo.id,
+          yelp_reference_id: yelp_reference_id,
           image_url: catererInfo.image_url[0],
           userId: userToAddLikedItemTo.id,
         });
