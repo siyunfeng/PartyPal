@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
-import Checkbox from '@material-ui/core/Checkbox';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -49,30 +45,32 @@ const EventForm = (props) => {
   const [catererOption, setCatererOption] = useState('');
   const [dateOption, setDateOption] = useState('');
   const [timeOption, setTimeOption] = useState('');
-  const [eventNameOption, setEventNameOption] = useState('');
+  const [eventNameValue, setEventNameValue] = useState('');
   const [noteOption, setNoteOption] = useState('');
   const [lgShow, setLgShow] = useState(false);
+  const [invalidShow, setInvalidShow] = useState(false);
 
   const createEvent = (event) => {
     event.preventDefault();
     const userId = user.id;
-    const eventName = event.target.eventName.value;
-    const eventNote = event.target.eventNote.value;
+    const eventName = eventNameValue;
+    const eventNote = noteOption;
 
-    const newEventInput = {
-      userId,
-      eventName,
-      eventNote,
-      venueOption,
-      catererOption,
-      dateOption,
-      timeOption,
-    };
-
-    createNewEvent(newEventInput);
-    setEventNameOption(eventName);
-    setNoteOption(eventNote);
-    setLgShow(true);
+    if (eventName && venueOption && catererOption && dateOption && timeOption) {
+      const newEventInput = {
+        userId,
+        eventName,
+        eventNote,
+        venueOption,
+        catererOption,
+        dateOption,
+        timeOption,
+      };
+      createNewEvent(newEventInput);
+      setLgShow(true);
+    } else {
+      setInvalidShow(true);
+    }
   };
 
   return (
@@ -103,6 +101,8 @@ const EventForm = (props) => {
             margin='normal'
             fullWidth
             required
+            onChange={(event) => setEventNameValue(event.target.value)}
+            error={eventNameError}
           />
           <div className='eventFormDateTime'>
             <input
@@ -125,7 +125,7 @@ const EventForm = (props) => {
               max='23:59'
               value={timeOption}
               onChange={(event) => setTimeOption(event.target.value)}
-              required //not sure if we need it
+              required
             />
           </div>
           <FormControl variant='outlined' fullWidth margin='normal'>
@@ -180,15 +180,15 @@ const EventForm = (props) => {
             variant='outlined'
             margin='normal'
             fullWidth
+            onChange={(event) => setNoteOption(event.target.value)}
           />
           <FlexBox>
             <Button
-              // disabled={!isValidForm} // validationChanges
               id='btn-submit-new-event'
               type='submit'
               variant='contained'
-              // color='primary'
               className={classes.submit}
+              // color='primary'
             >
               <strong style={{ color: 'white', fontFamily: 'Cardo' }}>
                 Create Event
@@ -205,15 +205,15 @@ const EventForm = (props) => {
       >
         <Modal.Header closeButton>
           <Modal.Title id='example-modal-sizes-title-lg'>
-            <h3>You created a new event! 🎉</h3>
+            <h4>🥳 You created a new event!</h4>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <PopUpDiv className='new-event-popup'>
             <p>
               <strong>Event: </strong>
-              {eventNameOption
-                ? eventNameOption
+              {eventNameValue
+                ? eventNameValue
                 : 'You did not provide the event name'}
             </p>
             <p>
@@ -250,6 +250,19 @@ const EventForm = (props) => {
                 <strong style={{ color: 'white' }}>Back to My Account</strong>
               </Button>
             </Link>
+          </PopUpDiv>
+        </Modal.Body>
+      </Modal>
+      <Modal show={invalidShow} onHide={() => setInvalidShow(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            <h5>💔 Invalid Input 💔</h5>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <PopUpDiv>
+            Please enter valid event name and select valid date, time, venue and
+            caterer for your event before submit.
           </PopUpDiv>
         </Modal.Body>
       </Modal>
