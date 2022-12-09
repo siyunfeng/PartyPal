@@ -83,6 +83,7 @@ function AllCaterers(props) {
 
   return (
     <div className='all-caterer-container'>
+       <br></br>
       <FlexBoxForSearchResults>
         <h1>Caterer search results for {props.startForm.location}: </h1>
         <p>{allCaterers.length} caterers found</p>
@@ -137,7 +138,7 @@ function AllCaterers(props) {
                     className='allViews'
                   />
                   <Card.Body>
-                    <Card.Title>
+                    <Card.Title style={{ fontFamily: 'DM Serif Display' }}>
                       {caterer.name
                         ? caterer.name
                         : 'No caterer name available'}
@@ -160,12 +161,13 @@ function AllCaterers(props) {
                     <Link to={`/singleCaterer/${caterer.id}`}>
                       <Button
                         variant='primary'
+                        style={{ fontFamily: 'Cardo' }}
                         name={caterer.id}
                         onClick={(e) => {
                           handleClick(e);
                         }}
                       >
-                        See More
+                             <strong>See more</strong>
                       </Button>
                     </Link>
                   </Card.Body>

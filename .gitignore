@@ -3,4 +3,3 @@ bundle.js
 bundle.js.map
 .env
 package-lock.json
-secrets.js

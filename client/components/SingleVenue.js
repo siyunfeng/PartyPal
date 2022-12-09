@@ -87,10 +87,10 @@ const SingleVenue = (props) => {
     <div className='single-venue-container'>
       <br></br>
       <br></br>
-      <SingleView>
+      <SingleView data-testid="poop">
         <Card
           className='favoriteSelectionsCard'
-          // style={{ width: '600px', height: '700px' }}
+          
         >
           <ButtonFlex>
             <h1>{name ? name : ''}</h1>
@@ -99,10 +99,9 @@ const SingleVenue = (props) => {
           <Card.Body>
             <ButtonFlex>
               <Card.Img
-                className='img'
+                className='img single-img'
                 variant='top'
-                style={{ width: 450, height: 500 }}
-                // style={{ width: '600px', height: '700px' }}
+      
                 src={
                   photos.length
                     ? photos
@@ -204,7 +203,7 @@ const SingleVenue = (props) => {
                     saveLikedItem(e, venueInfo);
                   }}
                 >
-                  {liked ? 'Liked' : 'Like'}
+                  <strong>{liked ? 'Liked' : 'Like'}</strong>
                 </Button>
               </OverlayTrigger>
             ) : (
@@ -219,7 +218,7 @@ const SingleVenue = (props) => {
             <div className='button-divider'></div>
             <Link to='/allVenues'>
               <Button style={{ fontFamily: 'Cardo' }} variant='outline-primary'>
-                Go Back
+                <strong>Go Back</strong>
               </Button>
             </Link>
           </ButtonFlex>

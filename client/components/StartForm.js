@@ -12,6 +12,7 @@ import Avatar from '@material-ui/core/Avatar';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import FlexBox from './Styled-Components/FlexBox.styled';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,72 +59,83 @@ const StartForm = (props) => {
 
   return (
     <Container className='start-form-div' component='main' maxWidth='xs'>
-      <div className={classes.root}>
-        <Avatar className={classes.avatar}>
-          <SearchOutlinedIcon />
-        </Avatar>
+      {/* added this */}
+      <FlexBox>
+        <div className={classes.root}>
+          <Avatar className={classes.avatar}>
+            <SearchOutlinedIcon />
+          </Avatar>
 
-        <div
-          className='start-form'
-          style={{ width: '350px', textAlign: 'center', alignItems: 'center' }}
-        >
-          <br></br>
-          <div>
-            <h1>Ready for a Party?</h1>
-          </div>
-          <form
-            className={classes.form}
-            noValidate
-            autoComplete='off'
-            onSubmit={(event) => getRecommendations(event)}
-            name='start-form'
+          <div
+            className='start-form'
+            style={{
+              width: '350px',
+              textAlign: 'center',
+              alignItems: 'center',
+            }}
           >
-            <div>
-              <label style={{ fontFamily: 'Cardo' }} htmlFor='serviceOptions'>
-                What service can we help you find?
-              </label>
-            </div>
             <br></br>
-            <FormControl variant='outlined'>
-              <InputLabel style={{ fontFamily: 'Cardo' }}>Service</InputLabel>
-              <Select
-                name='serviceOption'
-                onChange={(e) => setServiceOptionValue(e.target.value)}
-                value={serviceOptionValue}
-              >
-                <MenuItem value='catering'>Caterer</MenuItem>
-                <MenuItem value='venue'>Venue</MenuItem>
-              </Select>
-              <br></br>
+            <div>
+              <h1>Ready for a Party?</h1>
+            </div>
+            <form
+              className={classes.form}
+              noValidate
+              autoComplete='off'
+              onSubmit={(event) => getRecommendations(event)}
+              name='start-form'
+            >
               <div>
-                <label style={{ fontFamily: 'Cardo' }} htmlFor='partyLocation'>
-                  Where will your party be held?
+                <label style={{ fontFamily: 'Cardo' }} htmlFor='serviceOptions'>
+                  What service can we help you find?
                 </label>
               </div>
               <br></br>
-            </FormControl>
-            <TextField
-              style={{ fontFamily: 'Cardo' }}
-              name='location'
-              label='Location or Zip-Code'
-              variant='outlined'
-            />
-            <br></br>
-            <br></br>
-            <div>
-              <Button
-                variant='contained'
-                type='submit'
-                // color='primary'
-                className={classes.submit}
+              <FormControl variant='outlined'>
+                <InputLabel style={{ fontFamily: 'Cardo' }}>Service</InputLabel>
+                <Select
+                  name='serviceOption'
+                  onChange={(e) => setServiceOptionValue(e.target.value)}
+                  value={serviceOptionValue}
+                >
+                  <MenuItem value='catering'>Caterer</MenuItem>
+                  <MenuItem value='venue'>Venue</MenuItem>
+                </Select>
+                <br></br>
+                <div>
+                  <label
+                    style={{ fontFamily: 'Cardo' }}
+                    htmlFor='partyLocation'
+                  >
+                    Where will your party be held?
+                  </label>
+                </div>
+                <br></br>
+              </FormControl>
+              <TextField
                 style={{ fontFamily: 'Cardo' }}
-              >
-                <strong>Get Recommendations</strong>
-              </Button>
-            </div>
-          </form>
+                name='location'
+                label='Location or Zip-Code'
+                variant='outlined'
+              />
+              <br></br>
+              <br></br>
+              <div>
+                <Button
+                  variant='contained'
+                  type='submit'
+                  // color='primary'
+                  className={classes.submit}
+                  style={{ fontFamily: 'Cardo' }}
+                >
+                  <strong>Get Recommendations</strong>
+                </Button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
+        {/* added this! */}
+      </FlexBox>
     </Container>
   );
 };
