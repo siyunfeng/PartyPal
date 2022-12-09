@@ -20,7 +20,6 @@ const reducer = combineReducers({
   singleCaterer,
   events,
   favorites,
-  // other subreducers
 });
 
 const store = createStore(
@@ -29,7 +28,6 @@ const store = createStore(
 );
 
 export default store;
-// export all reducers below:
 export * from './auth';
 export * from './venues';
 export * from './singleVenue';

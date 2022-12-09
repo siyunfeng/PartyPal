@@ -72,7 +72,6 @@ export const AllVenues = (props) => {
           <label>Filter by Price</label>
           <Select
             defaultValue={priceOptions[4]}
-            // isMulti
             name='price'
             options={priceOptions}
             menuPlacement='auto'

@@ -10,14 +10,13 @@ import StartForm from './StartForm';
 import UserHome from './UserHome';
 import Home from './Home';
 import EventSummaryPopUp from './EventSummaryPopUp';
-import Navbar from './NavBar';
 import EventForm from './EventForm';
-import Button from 'react-bootstrap/Button';
+import ResponsiveNav from './ResponsiveNav';
 
 export const AllRoutes = () => {
   return (
     <Router history={history}>
-      <Navbar />
+      <ResponsiveNav />
       <main className='main'>
         <Switch>
           <Route exact path='/' component={Home} />

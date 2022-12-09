@@ -3,7 +3,6 @@ const { db, User, Favorite, Event } = require('./server/db/');
 const syncAndSeed = async () => {
   try {
     await db.authenticate();
-    // this erases users everytime database starts over - DELETE BEFORE DEPLOYING
     await db.sync({ force: true });
     const users = [
       {

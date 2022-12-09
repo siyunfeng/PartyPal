@@ -19,7 +19,6 @@ import FlexBox from './Styled-Components/FlexBox.styled';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import PopUpDiv from './Styled-Components/FlexBox.styled';
-import EventPopUpLeftTextAlign from './Styled-Components/EventPopUp.styled';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -125,7 +124,7 @@ const EventForm = (props) => {
               max='23:59'
               value={timeOption}
               onChange={(event) => setTimeOption(event.target.value)}
-              required //not sure if we need it
+              required 
             />
           </div>
           <FormControl variant='outlined' fullWidth margin='normal'>
@@ -186,7 +185,6 @@ const EventForm = (props) => {
               id='btn-submit-new-event'
               type='submit'
               variant='contained'
-              // color='primary'
               className={classes.submit}
             >
               <strong style={{ color: 'white', fontFamily: 'Cardo' }}>

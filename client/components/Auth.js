@@ -76,7 +76,6 @@ export const AuthForm = (props) => {
               required
               fullWidth
               id='email'
-              // htmlFor="username"
               label='Username'
               name='username'
               autoComplete='username'
