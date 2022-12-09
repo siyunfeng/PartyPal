@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
@@ -18,6 +17,9 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { createNewEvent } from '../redux/events';
 import FlexBox from './Styled-Components/FlexBox.styled';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import PopUpDiv from './Styled-Components/FlexBox.styled';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -47,6 +49,9 @@ const EventForm = (props) => {
   const [catererOption, setCatererOption] = useState('');
   const [dateOption, setDateOption] = useState('');
   const [timeOption, setTimeOption] = useState('');
+  const [eventNameOption, setEventNameOption] = useState('');
+  const [noteOption, setNoteOption] = useState('');
+  const [lgShow, setLgShow] = useState(false);
 
   const createEvent = (event) => {
     event.preventDefault();
@@ -65,13 +70,16 @@ const EventForm = (props) => {
     };
 
     createNewEvent(newEventInput);
+    setEventNameOption(eventName);
+    setNoteOption(eventNote);
+    setLgShow(true);
   };
 
   return (
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
       <div className={classes.paper}>
-        <img src='/images/party-hat-3-64.png' width='100px'></img>
+        <img src='/images/party-hat-3-64.png' width='40px'></img>
         <br></br>
         <Typography
           component='h1'
@@ -170,6 +178,7 @@ const EventForm = (props) => {
           />
           <FlexBox>
             <Button
+              id='btn-submit-new-event'
               type='submit'
               variant='contained'
               color='primary'
@@ -180,7 +189,56 @@ const EventForm = (props) => {
           </FlexBox>
         </form>
       </div>
-      <Box mt={8}></Box>
+      <Modal
+        size='lg'
+        show={lgShow}
+        onHide={() => setLgShow(false)}
+        aria-labelledby='example-modal-sizes-title-lg'
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id='example-modal-sizes-title-lg'>
+            <h3>You created a new event! 🎉</h3>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <PopUpDiv className='new-event-popup'>
+            <p>
+              <strong>Event: </strong>
+              {eventNameOption
+                ? eventNameOption
+                : 'You did not provide the event name'}
+            </p>
+            <p>
+              <strong>Date: </strong>
+              {dateOption ? dateOption : 'You did not select the date yet.'}
+            </p>
+            <p>
+              <strong>Time: </strong>
+              {timeOption ? timeOption : 'You did not select the time yet.'}
+            </p>
+            <p>
+              <strong>Venue: </strong>
+              {venueOption.name
+                ? venueOption.name
+                : 'You did not select any venues yet.'}
+            </p>
+            <p>
+              <strong>Caterer: </strong>
+              {catererOption.name
+                ? catererOption.name
+                : 'You did not select any caterers yet.'}
+            </p>
+            <p>
+              <strong>Notes: </strong>
+              {noteOption ? noteOption : 'You did not leave any notes.'}
+            </p>
+            <p>We hope you have a great event!</p>
+            <Link to='/account'>
+              <Button className='btn-back-to-my-acc'>Back to My Account</Button>
+            </Link>
+          </PopUpDiv>
+        </Modal.Body>
+      </Modal>
     </Container>
   );
 };
