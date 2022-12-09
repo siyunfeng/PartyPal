@@ -264,6 +264,7 @@ const UserHome = (props) => {
                           >
                             <PencilSquare />
                           </Button>
+                          <div className='button-divider'></div>
                           <Button
                             onClick={() => handleDeleteEvent(event.id)}
                             variant='danger'

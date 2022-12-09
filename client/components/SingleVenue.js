@@ -13,7 +13,7 @@ import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
 import Alert from 'react-bootstrap/Alert';
 import SingleView from './Styled-Components/SingleView.styled';
-import ButtonFlex from './ButtonFlex.styled';
+import ButtonFlex from './Styled-Components/ButtonFlex.styled';
 import FlexBox from './Styled-Components/FlexBox.styled';
 
 const SingleVenue = (props) => {
@@ -28,7 +28,7 @@ const SingleVenue = (props) => {
 
   if (!business) return null;
 
-  const { name, rating, photos, phone, price, hours, categories, location } =
+  const { name, rating, photos, phone, price, hours, categories, location, id } =
     business;
   const address1 = location.address1;
   const city = location.city;
@@ -40,8 +40,10 @@ const SingleVenue = (props) => {
     window.localStorage.setItem('pathVisiting', urlVisiting);
   }
 
+
   const saveLikedItem = async (e, venueInfo) => {
-    const idToSave = e.target.name;
+    const idToSave = venueInfo.id;
+  
     const loggedInUserToken = window.localStorage.getItem('token');
 
     venueInfo.token = loggedInUserToken;
@@ -186,11 +188,11 @@ const SingleVenue = (props) => {
               >
                 <Button
                   variant={solidGreen ? 'success' : 'outline-success'}
-                  name={business.id}
                   style={{ fontFamily: 'Cardo' }}
                   onClick={(e) => {
                     const venueInfo = {
                       name,
+                      id, 
                       category: 'venue',
                       image_url: photos,
                     };
