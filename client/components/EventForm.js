@@ -19,6 +19,7 @@ import FlexBox from './Styled-Components/FlexBox.styled';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import PopUpDiv from './Styled-Components/FlexBox.styled';
+import EventPopUpLeftTextAlign from './Styled-Components/EventPopUp.styled';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -188,7 +189,9 @@ const EventForm = (props) => {
               // color='primary'
               className={classes.submit}
             >
-              <strong style={{ fontFamily: 'Cardo' }}>Create Event</strong>
+              <strong style={{ color: 'white', fontFamily: 'Cardo' }}>
+                Create Event
+              </strong>
             </Button>
           </FlexBox>
         </form>
@@ -206,40 +209,49 @@ const EventForm = (props) => {
         </Modal.Header>
         <Modal.Body>
           <PopUpDiv className='new-event-popup'>
-            <p>
-              <strong>Event: </strong>
-              {eventNameOption
-                ? eventNameOption
-                : 'You did not provide the event name'}
-            </p>
-            <p>
-              <strong>Date: </strong>
-              {dateOption ? dateOption : 'You did not select the date yet.'}
-            </p>
-            <p>
-              <strong>Time: </strong>
-              {timeOption ? timeOption : 'You did not select the time yet.'}
-            </p>
-            <p>
-              <strong>Venue: </strong>
-              {venueOption.name
-                ? venueOption.name
-                : 'You did not select any venues yet.'}
-            </p>
-            <p>
-              <strong>Caterer: </strong>
-              {catererOption.name
-                ? catererOption.name
-                : 'You did not select any caterers yet.'}
-            </p>
-            <p>
-              <strong>Note: </strong>
-              {noteOption ? noteOption : 'You did not leave any notes.'}
-            </p>
-            <p>We hope you have a great event!</p>
-            <Link to='/account'>
-              <Button className='btn-back-to-my-acc'>Back to My Account</Button>
-            </Link>
+          
+              <p>
+                <strong>Event: </strong>
+                {eventNameOption
+                  ? eventNameOption
+                  : 'You did not provide the event name'}
+              </p>
+              <p>
+                <strong>Date: </strong>
+                {dateOption ? dateOption : 'You did not select the date yet.'}
+              </p>
+              <p>
+                <strong>Time: </strong>
+                {timeOption ? timeOption : 'You did not select the time yet.'}
+              </p>
+              <p>
+                <strong>Venue: </strong>
+                {venueOption.name
+                  ? venueOption.name
+                  : 'You did not select any venues yet.'}
+              </p>
+              <p>
+                <strong>Caterer: </strong>
+                {catererOption.name
+                  ? catererOption.name
+                  : 'You did not select any caterers yet.'}
+              </p>
+              <p>
+                <strong>Note: </strong>
+                {noteOption ? noteOption : 'You did not leave any notes.'}
+              </p>
+              <br></br>
+              <p>We hope you have a great event!</p>
+              <Link to='/account'>
+                <Button
+                  className='btn-back-to-my-acc'
+                  style={{ fontFamily: 'Cardo' }}
+                >
+                  {' '}
+                  <strong style={{ color: 'white' }}>Back to My Account</strong>
+                </Button>
+              </Link>
+
           </PopUpDiv>
         </Modal.Body>
       </Modal>

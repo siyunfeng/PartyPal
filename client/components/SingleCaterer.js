@@ -14,7 +14,7 @@ import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
 import Alert from 'react-bootstrap/Alert';
 import SingleView from './Styled-Components/SingleView.styled';
-import ButtonFlex from './ButtonFlex.styled';
+import ButtonFlex from './Styled-Components/ButtonFlex.styled';
 import FlexBox from './Styled-Components/FlexBox.styled';
 
 const SingleCaterer = (props) => {
@@ -29,11 +29,12 @@ const SingleCaterer = (props) => {
 
   if (!business) return null;
 
-  const { name, rating, photos, phone, price, hours, categories, location } =
+  const { name, rating, photos, phone, price, hours, categories, location, id } =
     business;
   const address1 = location.address1;
   const city = location.city;
   const state = location.state;
+
 
   const urlVisiting = props.history.location.pathname;
 
@@ -42,7 +43,8 @@ const SingleCaterer = (props) => {
   }
 
   const saveLikedItem = async (e, cateringInfo) => {
-    const idToSave = e.target.name;
+    const idToSave = cateringInfo.id
+
     const loggedInUserToken = window.localStorage.getItem('token');
 
     cateringInfo.token = loggedInUserToken;
@@ -91,7 +93,6 @@ const SingleCaterer = (props) => {
       <SingleView>
         <Card
           className='favoriteSelectionsCard'
-          // style={{ width: '600px', height: '700px' }}
         >
           <ButtonFlex>
             <h1>{name ? name : ''}</h1>
@@ -189,17 +190,19 @@ const SingleCaterer = (props) => {
               >
                 <Button
                   variant={solidGreen ? 'success' : 'outline-success'}
-                  name={business.id}
+                
                   style={{ fontFamily: 'Cardo' }}
+                
                   onClick={(e) => {
-                    const venueInfo = {
+                    const catererInfo = {
                       name,
-                      category: 'venue',
+                      id,
+                      category: 'caterer',
                       image_url: photos,
                     };
                     setSolidGreen(true);
                     setLiked(true);
-                    saveLikedItem(e, venueInfo);
+                    saveLikedItem(e, catererInfo);
                   }}
                 >
                   <strong>{liked ? 'Liked' : 'Like'}</strong>
@@ -209,13 +212,13 @@ const SingleCaterer = (props) => {
               <ModalSignUpandLogIn
                 id={business.id}
                 name={name}
-                category={'venue'}
+                category={'caterer'}
                 image_url={photos}
                 urlVisted={urlVisiting}
               />
             )}
             <div className='button-divider'></div>
-            <Link to='/allVenues'>
+            <Link to='/allCaterers'>
               <Button style={{ fontFamily: 'Cardo' }} variant='outline-primary'>
                 <strong>Go Back</strong>
               </Button>
