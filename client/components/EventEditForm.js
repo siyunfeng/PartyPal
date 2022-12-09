@@ -14,7 +14,7 @@ import { editEvent } from '../redux/events';
 import { getSingleEvent } from '../redux/singleEvent';
 import FlexBox from './Styled-Components/FlexBox.styled';
 import Button from 'react-bootstrap/Button';
-import { ContactlessOutlined } from '@material-ui/icons';
+import { ContactlessOutlined, ContactsOutlined } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -40,17 +40,25 @@ const EventEditForm = (props) => {
   const classes = useStyles();
   let { venues, caterers, editEvent, singleEvent } = props;
 
-  const [venueOption, setVenueOption] = useState('');
-  const [catererOption, setCatererOption] = useState('');
-  const [dateOption, setDateOption] = useState(singleEvent.date);
-  const [timeOption, setTimeOption] = useState(singleEvent.time);
-  const [eventNameOption, setEventNameOption] = useState(singleEvent.name);
-  const [noteOption, setNoteOption] = useState(singleEvent.notes);
-  const [eventId, setEventId] = useState(props.match.params.id);
+  const [venueOption, setVenueOption] = useState(singleEvent.venue || '');
+  const [catererOption, setCatererOption] = useState(singleEvent.catering);
+  const [dateOption, setDateOption] = useState(singleEvent.date || '');
+  const [timeOption, setTimeOption] = useState(singleEvent.time || '');
+  const [eventNameOption, setEventNameOption] = useState(
+    singleEvent.name || ''
+  );
+  const [noteOption, setNoteOption] = useState(singleEvent.notes || '');
+  const [eventId, setEventId] = useState(props.match.params.id || 0);
 
   useEffect(() => {
-    console.log('inside', eventNameOption, singleEvent.name);
-  }, [eventId, eventNameOption]);
+    getSingleEvent(props.match.params.id);
+    setEventNameOption(singleEvent.name);
+    setDateOption(singleEvent.date);
+    setTimeOption(singleEvent.time);
+    setVenueOption(singleEvent.venue);
+    setCatererOption(singleEvent.catering);
+    setNoteOption(singleEvent.notes);
+  }, [props]);
 
   const handleEditEvent = (event) => {
     event.preventDefault();
@@ -94,7 +102,6 @@ const EventEditForm = (props) => {
             variant='outlined'
             margin='normal'
             fullWidth
-            required
             onChange={(event) => setEventNameOption(event.target.value)}
           />
           <div className='eventFormDateTime'>

@@ -262,7 +262,9 @@ const UserHome = (props) => {
                           <Link
                             to={`/editEvent/${event.id}`}
                             value={event.id}
-                            onClick={() => getSingleEvent(event.id)}
+                            onClick={() => {
+                              getSingleEvent(event.id);
+                            }}
                           >
                             <Button>
                               <PencilSquare />
