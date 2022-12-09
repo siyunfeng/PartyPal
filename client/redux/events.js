@@ -61,7 +61,6 @@ export const createNewEvent = (newEventInput) => {
 export const deleteEvent = (eventId) => {
   return async (dispatch) => {
     try {
-      console.log('hi');
       const token = window.localStorage.getItem(TOKEN);
       const { data: event } = await axios.delete(`/api/events/${eventId}`, {
         headers: {

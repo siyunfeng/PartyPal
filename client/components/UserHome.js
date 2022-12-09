@@ -12,6 +12,7 @@ import Card from 'react-bootstrap/Card';
 import { fetchSingleCaterer } from '../redux/singleCaterer';
 import { getSingleVenueThunk } from '../redux/singleVenue';
 import UserHomeFlex from './Styled-Components/UserHomeFlex.styled';
+import { Trash } from 'react-bootstrap-icons';
 
 const UserHome = (props) => {
   let { id, username, email } = props.user;
@@ -149,7 +150,7 @@ const UserHome = (props) => {
                               variant='danger'
                               style={{ fontFamily: 'Cardo' }}
                             >
-                              <strong>Delete</strong>
+                              <Trash />
                             </Button>
                           </Card.Body>
                         </Card>
@@ -205,7 +206,7 @@ const UserHome = (props) => {
                               onClick={() => handleDeleteCaterer(caterer.id)}
                               variant='danger'
                             >
-                              Delete
+                              <Trash />
                             </Button>
                           </Card.Body>
                         </Card>
@@ -256,10 +257,10 @@ const UserHome = (props) => {
                               : 'Event time is not available at this time'}
                           </Card.Text>
                           <Button
-                            style={{ marginLeft: '1rem' }}
                             onClick={() => handleDeleteEvent(event.id)}
+                            variant='danger'
                           >
-                            Delete Event
+                            <Trash />
                           </Button>
                         </Card.Body>
                       </Card>
