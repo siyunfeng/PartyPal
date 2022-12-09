@@ -29,6 +29,10 @@ const UserHome = (props) => {
     deleteEvent,
   } = props;
 
+  if (events) {
+    events.sort((a, b) => new Date(b.date) - new Date(a.date)).reverse();
+  }
+
   useEffect(() => {
     if (id) {
       getEvents(id);
