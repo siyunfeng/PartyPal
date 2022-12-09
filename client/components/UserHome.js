@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
-import { getEvents } from '../redux/events';
+import { getEvents, deleteEvent } from '../redux/events';
 import {
   deleteCatererLikedItem,
   deleteVenueLikedItem,
@@ -12,6 +12,7 @@ import Card from 'react-bootstrap/Card';
 import { fetchSingleCaterer } from '../redux/singleCaterer';
 import { getSingleVenueThunk } from '../redux/singleVenue';
 import UserHomeFlex from './Styled-Components/UserHomeFlex.styled';
+import { Trash, PencilSquare } from 'react-bootstrap-icons';
 
 const UserHome = (props) => {
   let { id, username, email } = props.user;
@@ -24,6 +25,7 @@ const UserHome = (props) => {
     getSingleVenueThunk,
     deleteCatererLikedItem,
     deleteVenueLikedItem,
+    deleteEvent,
   } = props;
 
   useEffect(() => {
@@ -47,6 +49,10 @@ const UserHome = (props) => {
     deleteCatererLikedItem(favoriteId);
 
   const handleDeleteVenue = (favoriteId) => deleteVenueLikedItem(favoriteId);
+
+  const handleDeleteEvent = (eventId) => deleteEvent(eventId);
+
+  // const handleEditEvent = (eventId) => editEvent(eventId);
 
   return (
     <>
@@ -146,7 +152,7 @@ const UserHome = (props) => {
                               variant='danger'
                               style={{ fontFamily: 'Cardo' }}
                             >
-                              <strong>Delete</strong>
+                              <Trash />
                             </Button>
                           </Card.Body>
                         </Card>
@@ -202,7 +208,7 @@ const UserHome = (props) => {
                               onClick={() => handleDeleteCaterer(caterer.id)}
                               variant='danger'
                             >
-                              Delete
+                              <Trash />
                             </Button>
                           </Card.Body>
                         </Card>
@@ -252,6 +258,17 @@ const UserHome = (props) => {
                               ? event.time
                               : 'Event time is not available at this time'}
                           </Card.Text>
+                          <Button
+                          // onClick={() => handleEditEvent(event.id)}
+                          >
+                            <PencilSquare />
+                          </Button>
+                          <Button
+                            onClick={() => handleDeleteEvent(event.id)}
+                            variant='danger'
+                          >
+                            <Trash />
+                          </Button>
                         </Card.Body>
                       </Card>
                       <br></br>
@@ -296,6 +313,8 @@ const mapDispatch = (dispatch) => {
       dispatch(deleteVenueLikedItem(favoriteId)),
     deleteCatererLikedItem: (favoriteId) =>
       dispatch(deleteCatererLikedItem(favoriteId)),
+    deleteEvent: (eventId) => dispatch(deleteEvent(eventId)),
+    // editEvent: (eventId) => dispatch(editEvent(eventId)),
   };
 };
 
