@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
-import { getEvents } from '../redux/events';
+import { getEvents, deleteEvent } from '../redux/events';
 import {
   deleteCatererLikedItem,
   deleteVenueLikedItem,
@@ -24,6 +24,7 @@ const UserHome = (props) => {
     getSingleVenueThunk,
     deleteCatererLikedItem,
     deleteVenueLikedItem,
+    deleteEvent,
   } = props;
 
   useEffect(() => {
@@ -47,6 +48,8 @@ const UserHome = (props) => {
     deleteCatererLikedItem(favoriteId);
 
   const handleDeleteVenue = (favoriteId) => deleteVenueLikedItem(favoriteId);
+
+  const handleDeleteEvent = (eventId) => deleteEvent(eventId);
 
   return (
     <>
@@ -252,6 +255,12 @@ const UserHome = (props) => {
                               ? event.time
                               : 'Event time is not available at this time'}
                           </Card.Text>
+                          <Button
+                            style={{ marginLeft: '1rem' }}
+                            onClick={() => handleDeleteEvent(event.id)}
+                          >
+                            Delete Event
+                          </Button>
                         </Card.Body>
                       </Card>
                       <br></br>
@@ -296,6 +305,7 @@ const mapDispatch = (dispatch) => {
       dispatch(deleteVenueLikedItem(favoriteId)),
     deleteCatererLikedItem: (favoriteId) =>
       dispatch(deleteCatererLikedItem(favoriteId)),
+    deleteEvent: (eventId) => dispatch(deleteEvent(eventId)),
   };
 };
 

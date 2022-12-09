@@ -3,9 +3,11 @@ const TOKEN = 'token';
 
 const GET_EVENTS = 'GET_EVENTS';
 const CREATE_NEW_EVENT = 'CREATE_NEW_EVENT';
+const DELETE_EVENT = 'DELETE_EVENT';
 
 const _getEvents = (events) => ({ type: GET_EVENTS, events });
 const _createNewEvent = (event) => ({ type: CREATE_NEW_EVENT, event });
+const _deleteEvent = (event) => ({ type: DELETE_EVENT, event });
 
 export const getEvents = (userId) => {
   return async (dispatch) => {
@@ -56,12 +58,32 @@ export const createNewEvent = (newEventInput) => {
   };
 };
 
+export const deleteEvent = (eventId) => {
+  return async (dispatch) => {
+    try {
+      console.log('hi');
+      const token = window.localStorage.getItem(TOKEN);
+      const { data: event } = await axios.delete(`/api/events/${eventId}`, {
+        headers: {
+          authorization: token,
+        },
+      });
+      dispatch(_deleteEvent(event));
+    } catch (error) {
+      console.error('redux/events.js deleteEvent error >>>>', error);
+      // throw error;
+    }
+  };
+};
+
 const events = (state = [], action) => {
   switch (action.type) {
     case GET_EVENTS:
       return action.events;
     case CREATE_NEW_EVENT:
       return [...state, action.event];
+    case DELETE_EVENT:
+      return state.filter((event) => event.id !== action.event.id);
     default:
       return state;
   }
