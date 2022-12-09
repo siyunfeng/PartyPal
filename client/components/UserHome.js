@@ -29,6 +29,17 @@ const UserHome = (props) => {
     deleteEvent,
   } = props;
 
+  // if (events) {
+  //   events.sort((a, b) => new Date(b.date) - new Date(a.date));
+  //   console.log('sorted events >>>', events);
+  //   let upcomingEvents = events.filter(
+  //     (event) => new Date(event.date) > new Date()
+  //   );
+  //   console.log('upcomingEvents >>>', upcomingEvents);
+  //   let latestEvents = events.slice(0, 3);
+  //   console.log('latestEvents =', latestEvents);
+  // }
+
   useEffect(() => {
     if (id) {
       getEvents(id);
