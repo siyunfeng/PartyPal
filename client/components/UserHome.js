@@ -13,6 +13,7 @@ import { fetchSingleCaterer } from '../redux/singleCaterer';
 import { getSingleVenueThunk } from '../redux/singleVenue';
 import UserHomeFlex from './Styled-Components/UserHomeFlex.styled';
 import { Trash, PencilSquare } from 'react-bootstrap-icons';
+import { convert, findDayOfWeek } from '../../helperFunctions';
 
 const UserHome = (props) => {
   let { id, username, email } = props.user;
@@ -255,7 +256,7 @@ const UserHome = (props) => {
                           <Card.Text>
                             <strong>Time: </strong>
                             {event.time
-                              ? event.time
+                              ? convert(event.time)
                               : 'Event time is not available at this time'}
                           </Card.Text>
                           <Button
