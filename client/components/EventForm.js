@@ -8,7 +8,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -97,12 +96,12 @@ const EventForm = (props) => {
         >
           <TextField
             name='eventName'
+            id='event-name'
             label='Event Name'
             variant='outlined'
             margin='normal'
-            required
             fullWidth
-            id='event-name'
+            required
           />
           <div className='eventFormDateTime'>
             <input
@@ -114,6 +113,7 @@ const EventForm = (props) => {
               max='2099-12-31'
               value={dateOption}
               onChange={(event) => setDateOption(event.target.value)}
+              required
             />
             <input
               type='time'
@@ -128,11 +128,12 @@ const EventForm = (props) => {
             />
           </div>
           <FormControl variant='outlined' fullWidth margin='normal'>
-            <InputLabel>Venue</InputLabel>
+            <InputLabel>Please select venue from your liked list</InputLabel>
             <Select
               name='eventVenue'
               onChange={(event) => setVenueOption(event.target.value)}
               value={venueOption}
+              required
             >
               {venues?.length ? (
                 venues.map((venue, index) => (
@@ -142,17 +143,19 @@ const EventForm = (props) => {
                 ))
               ) : (
                 <MenuItem value={`no venue`}>
-                  Please add venue to your liked list
+                  No venue in your list, click on 'Start Planning' to like some
+                  venues
                 </MenuItem>
               )}
             </Select>
           </FormControl>
           <FormControl variant='outlined' fullWidth margin='normal'>
-            <InputLabel>Caterer</InputLabel>
+            <InputLabel>Please select caterer from your liked list</InputLabel>
             <Select
               name='eventCaterer'
               onChange={(event) => setCatererOption(event.target.value)}
               value={catererOption}
+              required
             >
               {caterers?.length ? (
                 caterers.map((caterer, index) => (
@@ -162,26 +165,27 @@ const EventForm = (props) => {
                 ))
               ) : (
                 <MenuItem value={`no caterer`}>
-                  Please add caterer to your liked list
+                  No caterer in your list, click on 'Start Planning' to like
+                  some caterers
                 </MenuItem>
               )}
             </Select>
           </FormControl>
           <TextField
+            id='event-note'
+            name='eventNote'
+            type='text'
+            label='Note'
             variant='outlined'
             margin='normal'
             fullWidth
-            name='eventNote'
-            label='Note'
-            type='text'
-            id='event-note'
           />
           <FlexBox>
             <Button
               id='btn-submit-new-event'
               type='submit'
               variant='contained'
-              color='primary'
+              // color='primary'
               className={classes.submit}
             >
               <strong style={{ fontFamily: 'Cardo' }}>Create Event</strong>
@@ -229,7 +233,7 @@ const EventForm = (props) => {
                 : 'You did not select any caterers yet.'}
             </p>
             <p>
-              <strong>Notes: </strong>
+              <strong>Note: </strong>
               {noteOption ? noteOption : 'You did not leave any notes.'}
             </p>
             <p>We hope you have a great event!</p>
