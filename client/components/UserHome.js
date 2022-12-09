@@ -12,7 +12,7 @@ import Card from 'react-bootstrap/Card';
 import { fetchSingleCaterer } from '../redux/singleCaterer';
 import { getSingleVenueThunk } from '../redux/singleVenue';
 import UserHomeFlex from './Styled-Components/UserHomeFlex.styled';
-import { Trash } from 'react-bootstrap-icons';
+import { Trash, PencilSquare } from 'react-bootstrap-icons';
 
 const UserHome = (props) => {
   let { id, username, email } = props.user;
@@ -51,6 +51,8 @@ const UserHome = (props) => {
   const handleDeleteVenue = (favoriteId) => deleteVenueLikedItem(favoriteId);
 
   const handleDeleteEvent = (eventId) => deleteEvent(eventId);
+
+  // const handleEditEvent = (eventId) => editEvent(eventId);
 
   return (
     <>
@@ -257,6 +259,11 @@ const UserHome = (props) => {
                               : 'Event time is not available at this time'}
                           </Card.Text>
                           <Button
+                          // onClick={() => handleEditEvent(event.id)}
+                          >
+                            <PencilSquare />
+                          </Button>
+                          <Button
                             onClick={() => handleDeleteEvent(event.id)}
                             variant='danger'
                           >
@@ -307,6 +314,7 @@ const mapDispatch = (dispatch) => {
     deleteCatererLikedItem: (favoriteId) =>
       dispatch(deleteCatererLikedItem(favoriteId)),
     deleteEvent: (eventId) => dispatch(deleteEvent(eventId)),
+    // editEvent: (eventId) => dispatch(editEvent(eventId)),
   };
 };
 
