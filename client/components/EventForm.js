@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
-import Checkbox from '@material-ui/core/Checkbox';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -48,30 +44,32 @@ const EventForm = (props) => {
   const [catererOption, setCatererOption] = useState('');
   const [dateOption, setDateOption] = useState('');
   const [timeOption, setTimeOption] = useState('');
-  const [eventNameOption, setEventNameOption] = useState('');
+  const [eventNameValue, setEventNameValue] = useState('');
   const [noteOption, setNoteOption] = useState('');
   const [lgShow, setLgShow] = useState(false);
+  const [invalidShow, setInvalidShow] = useState(false);
 
   const createEvent = (event) => {
     event.preventDefault();
     const userId = user.id;
-    const eventName = event.target.eventName.value;
-    const eventNote = event.target.eventNote.value;
+    const eventName = eventNameValue;
+    const eventNote = noteOption;
 
-    const newEventInput = {
-      userId,
-      eventName,
-      eventNote,
-      venueOption,
-      catererOption,
-      dateOption,
-      timeOption,
-    };
-
-    createNewEvent(newEventInput);
-    setEventNameOption(eventName);
-    setNoteOption(eventNote);
-    setLgShow(true);
+    if (eventName && venueOption && catererOption && dateOption && timeOption) {
+      const newEventInput = {
+        userId,
+        eventName,
+        eventNote,
+        venueOption,
+        catererOption,
+        dateOption,
+        timeOption,
+      };
+      createNewEvent(newEventInput);
+      setLgShow(true);
+    } else {
+      setInvalidShow(true);
+    }
   };
 
   return (
@@ -102,6 +100,7 @@ const EventForm = (props) => {
             margin='normal'
             fullWidth
             required
+            onChange={(event) => setEventNameValue(event.target.value)}
           />
           <div className='eventFormDateTime'>
             <input
@@ -142,7 +141,7 @@ const EventForm = (props) => {
                   </MenuItem>
                 ))
               ) : (
-                <MenuItem value={`no venue`}>
+                <MenuItem value={'no venue'}>
                   No venue in your list, click on 'Start Planning' to like some
                   venues
                 </MenuItem>
@@ -164,7 +163,7 @@ const EventForm = (props) => {
                   </MenuItem>
                 ))
               ) : (
-                <MenuItem value={`no caterer`}>
+                <MenuItem value={'no caterer'}>
                   No caterer in your list, click on 'Start Planning' to like
                   some caterers
                 </MenuItem>
@@ -179,6 +178,7 @@ const EventForm = (props) => {
             variant='outlined'
             margin='normal'
             fullWidth
+            onChange={(event) => setNoteOption(event.target.value)}
           />
           <FlexBox>
             <Button
@@ -186,6 +186,7 @@ const EventForm = (props) => {
               type='submit'
               variant='contained'
               className={classes.submit}
+              // color='primary'
             >
               <strong style={{ color: 'white', fontFamily: 'Cardo' }}>
                 Create Event
@@ -202,54 +203,64 @@ const EventForm = (props) => {
       >
         <Modal.Header closeButton>
           <Modal.Title id='example-modal-sizes-title-lg'>
-            <h3>You created a new event! 🎉</h3>
+            <h4>🥳 You created a new event!</h4>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <PopUpDiv className='new-event-popup'>
-          
-              <p>
-                <strong>Event: </strong>
-                {eventNameOption
-                  ? eventNameOption
-                  : 'You did not provide the event name'}
-              </p>
-              <p>
-                <strong>Date: </strong>
-                {dateOption ? dateOption : 'You did not select the date yet.'}
-              </p>
-              <p>
-                <strong>Time: </strong>
-                {timeOption ? timeOption : 'You did not select the time yet.'}
-              </p>
-              <p>
-                <strong>Venue: </strong>
-                {venueOption.name
-                  ? venueOption.name
-                  : 'You did not select any venues yet.'}
-              </p>
-              <p>
-                <strong>Caterer: </strong>
-                {catererOption.name
-                  ? catererOption.name
-                  : 'You did not select any caterers yet.'}
-              </p>
-              <p>
-                <strong>Note: </strong>
-                {noteOption ? noteOption : 'You did not leave any notes.'}
-              </p>
-              <br></br>
-              <p>We hope you have a great event!</p>
-              <Link to='/account'>
-                <Button
-                  className='btn-back-to-my-acc'
-                  style={{ fontFamily: 'Cardo' }}
-                >
-                  {' '}
-                  <strong style={{ color: 'white' }}>Back to My Account</strong>
-                </Button>
-              </Link>
-
+            <p>
+              <strong>Event: </strong>
+              {eventNameValue
+                ? eventNameValue
+                : 'You did not provide the event name'}
+            </p>
+            <p>
+              <strong>Date: </strong>
+              {dateOption ? dateOption : 'You did not select the date yet.'}
+            </p>
+            <p>
+              <strong>Time: </strong>
+              {timeOption ? timeOption : 'You did not select the time yet.'}
+            </p>
+            <p>
+              <strong>Venue: </strong>
+              {venueOption.name
+                ? venueOption.name
+                : 'You did not select any venues yet.'}
+            </p>
+            <p>
+              <strong>Caterer: </strong>
+              {catererOption.name
+                ? catererOption.name
+                : 'You did not select any caterers yet.'}
+            </p>
+            <p>
+              <strong>Note: </strong>
+              {noteOption ? noteOption : 'You did not leave any notes.'}
+            </p>
+            <br></br>
+            <p>We hope you have a great event!</p>
+            <Link to='/account'>
+              <Button
+                className='btn-back-to-my-acc'
+                style={{ fontFamily: 'Cardo' }}
+              >
+                <strong style={{ color: 'white' }}>Back to My Account</strong>
+              </Button>
+            </Link>
+          </PopUpDiv>
+        </Modal.Body>
+      </Modal>
+      <Modal show={invalidShow} onHide={() => setInvalidShow(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            <h5>💔 Invalid Input 💔</h5>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <PopUpDiv>
+            Please enter valid event name and select valid date, time, venue and
+            caterer for your event before submit.
           </PopUpDiv>
         </Modal.Body>
       </Modal>

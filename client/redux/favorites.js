@@ -36,7 +36,6 @@ export const getFavorites = (userId) => {
           authorization: token,
         },
       });
-
       const favoriteVenues = favorites.filter(
         (favorite) => favorite.category === 'venue'
       );
