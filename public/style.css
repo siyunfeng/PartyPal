@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Alegreya&family=Forum&family=Goblin+One&family=Gotu&family=Limelight&display=swap');
 
 :root {
   --fira-sans: 'Fira Sans', sans-serif;
   /* --DM-Serif-Display-Italic: 'DM Serif Display', 'serif'; */
   --DM-Serif-Display: 'DM Serif Display', 'serif';
   --Cardo: 'Cardo', serif;
+  --Abril-Fatface: 'Abril Fatface', sans-serif;
 }
 
 body,
@@ -109,11 +111,12 @@ label {
   font-weight: bold;
 }
 
-.btn-primary {
+.btn-primary, #btn-submit-new-event {
   background-color: #d562be !important;
   border: none !important;
+  font-family: 'Abril Fatface';
 }
-.btn-primary:hover {
+.btn-primary:hover, #btn-submit-new-event:hover {
   background-color: #605399 !important;
   color: white !important;
 }
