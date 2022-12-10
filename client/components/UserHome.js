@@ -57,15 +57,12 @@ const UserHome = (props) => {
 
   const handleDeleteEvent = (eventId) => deleteEvent(eventId);
 
-
-
   return (
     <>
       {id ? (
         <div id='home-div'>
           <br></br>
           <h1 style={{ marginLeft: '1rem' }}>Welcome {username}!</h1>
-
           <br></br>
           <br></br>
           <a href='#my-events'>
@@ -87,25 +84,27 @@ const UserHome = (props) => {
               <strong>View My Liked List</strong>
             </Button>
           </a>
-
           <div className='user-profile smallerUserHomeCards'>
             <h4 style={{ marginLeft: '1rem' }}>Account Information</h4>
-
-            <div>
-              <Card style={{ width: '25rem', marginLeft: '1rem' }}>
-                <Card.Body>
-                  <Card.Text>
-                    <strong>Username: </strong>
-                    {username}
-                  </Card.Text>
-                  <Card.Text>
-                    <strong>Email: </strong> {email}
-                  </Card.Text>
-                </Card.Body>
-              </Card>
+            <hr></hr>
+            <div style={{ marginLeft: '1rem' }}>
+              {/* <Card style={{ width: '25rem', marginLeft: '1rem' }}> */}
+              {/* <Card.Body>
+                  <Card.Text> */}
+              <div>
+                <strong>Username: </strong>
+                {username}
+              </div>
+              {/* </Card.Text>
+                  <Card.Text> */}
+              <div>
+                <strong>Email: </strong> {email}
+              </div>
+              {/* </Card.Text> */}
+              {/* </Card.Body> */}
+              {/* </Card> */}
             </div>
           </div>
-
           <br></br>
           <div></div>
           <div className='user-home-events'>
@@ -137,6 +136,7 @@ const UserHome = (props) => {
                               variant='top'
                               src={venue.image_url}
                               className='allViews'
+                              style={{ objectFit: 'cover' }}
                             />
                           </Link>
                           <Card.Body>
@@ -202,7 +202,7 @@ const UserHome = (props) => {
                               style={{ textDecoration: 'none' }}
                             >
                               <Card.Title
-                                style={{ fontFamily: ' DM Serif Display}' }}
+                                style={{ fontFamily: ' DM Serif Display' }}
                               >
                                 {caterer.name
                                   ? caterer.name
@@ -263,8 +263,7 @@ const UserHome = (props) => {
                               ? convert(event.time)
                               : 'Event time is not available at this time'}
                           </Card.Text>
-                          <Button
-                          >
+                          <Button>
                             <PencilSquare />
                           </Button>
                           <div className='button-divider'></div>

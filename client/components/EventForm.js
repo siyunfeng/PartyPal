@@ -15,6 +15,7 @@ import FlexBox from './Styled-Components/FlexBox.styled';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import PopUpDiv from './Styled-Components/FlexBox.styled';
+import { convert } from '../../helperFunctions';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -123,7 +124,7 @@ const EventForm = (props) => {
               max='23:59'
               value={timeOption}
               onChange={(event) => setTimeOption(event.target.value)}
-              required 
+              required
             />
           </div>
           <FormControl variant='outlined' fullWidth margin='normal'>
@@ -201,7 +202,7 @@ const EventForm = (props) => {
         onHide={() => setLgShow(false)}
         aria-labelledby='example-modal-sizes-title-lg'
       >
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title id='example-modal-sizes-title-lg'>
             <h4>🥳 You created a new event!</h4>
           </Modal.Title>
@@ -220,7 +221,9 @@ const EventForm = (props) => {
             </p>
             <p>
               <strong>Time: </strong>
-              {timeOption ? timeOption : 'You did not select the time yet.'}
+              {timeOption
+                ? convert(timeOption)
+                : 'You did not select the time yet.'}
             </p>
             <p>
               <strong>Venue: </strong>
@@ -239,7 +242,8 @@ const EventForm = (props) => {
               {noteOption ? noteOption : 'You did not leave any notes.'}
             </p>
             <br></br>
-            <p>We hope you have a great event!</p>
+            <p>✨ We hope you have a great event! ✨</p>
+            <br></br>
             <Link to='/account'>
               <Button
                 className='btn-back-to-my-acc'

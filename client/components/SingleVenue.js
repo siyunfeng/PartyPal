@@ -28,8 +28,17 @@ const SingleVenue = (props) => {
 
   if (!business) return null;
 
-  const { name, rating, photos, phone, price, hours, categories, location, id } =
-    business;
+  const {
+    name,
+    rating,
+    photos,
+    phone,
+    price,
+    hours,
+    categories,
+    location,
+    id,
+  } = business;
   const address1 = location.address1;
   const city = location.city;
   const state = location.state;
@@ -40,10 +49,9 @@ const SingleVenue = (props) => {
     window.localStorage.setItem('pathVisiting', urlVisiting);
   }
 
-
   const saveLikedItem = async (e, venueInfo) => {
     const idToSave = venueInfo.id;
-  
+
     const loggedInUserToken = window.localStorage.getItem('token');
 
     venueInfo.token = loggedInUserToken;
@@ -157,17 +165,10 @@ const SingleVenue = (props) => {
             {price ? price : 'No information available'}
           </Card.Text>
           <Card.Text>
-            <div>
-              <Typography component='legend'>
-                <strong>Ratings: {rating}</strong>
-              </Typography>
-              <Rating
-                name='read-only'
-                precision={0.5}
-                value={rating}
-                readOnly
-              />
-            </div>
+            <Typography component='legend'>
+              <strong>Ratings: {rating}</strong>
+            </Typography>
+            <Rating name='read-only' precision={0.5} value={rating} readOnly />
           </Card.Text>
           <FlexBox>
             {liked ? (
@@ -188,11 +189,11 @@ const SingleVenue = (props) => {
               >
                 <Button
                   variant={solidGreen ? 'success' : 'outline-success'}
-                  style={{ fontFamily: 'Cardo'}}
+                  style={{ fontFamily: 'Cardo' }}
                   onClick={(e) => {
                     const venueInfo = {
                       name,
-                      id, 
+                      id,
                       category: 'venue',
                       image_url: photos,
                     };
@@ -201,7 +202,7 @@ const SingleVenue = (props) => {
                     saveLikedItem(e, venueInfo);
                   }}
                 >
-                 {liked ? 'Liked' : 'Like'}
+                  {liked ? 'Liked' : 'Like'}
                 </Button>
               </OverlayTrigger>
             ) : (
