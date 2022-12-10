@@ -59,28 +59,32 @@ export const AllVenues = (props) => {
     <div className='all-venue-container'>
       <br></br>
       <FlexBoxForSearchResults>
-        <h1>Venue search results for {props.startForm.location}: </h1>
+        <h4>Venue search results for {props.startForm.location}: </h4>
         <p>{allVenues.length} venues found</p>
-        <form
-          style={{
-            width: '150px',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-          onSubmit={handlePriceSelect(price)}
-        >
-          <label>Filter by Price</label>
-          <Select
-            defaultValue={priceOptions[4]}
-            name='price'
-            options={priceOptions}
-            menuPlacement='auto'
-            menuPosition='fixed'
-            className='basic-multi-select'
-            classNamePrefix='select'
-            onChange={handlePriceSelect}
-          />
-        </form>
+        <div className='cateres-filter-container'>
+          <div>
+            <form
+              style={{
+                width: '150px',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+              onSubmit={handlePriceSelect(price)}
+            >
+              <label>Filter by Price</label>
+              <Select
+                defaultValue={priceOptions[4]}
+                name='price'
+                options={priceOptions}
+                menuPlacement='auto'
+                menuPosition='fixed'
+                className='basic-multi-select'
+                classNamePrefix='select'
+                onChange={handlePriceSelect}
+              />
+            </form>
+          </div>
+        </div>
         <br></br>
       </FlexBoxForSearchResults>
       <br></br>
