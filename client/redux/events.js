@@ -125,7 +125,7 @@ const events = (state = [], action) => {
     case DELETE_EVENT:
       return state.filter((event) => event.id !== action.event.id);
     case EDIT_EVENT:
-      return action.event;
+      return [...state, action.event];
     default:
       return state;
   }

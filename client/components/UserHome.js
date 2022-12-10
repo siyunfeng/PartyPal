@@ -31,6 +31,7 @@ const UserHome = (props) => {
     getSingleEvent,
   } = props;
 
+  console.log('this is events', events);
   if (events) {
     events.sort((a, b) => new Date(b.date) - new Date(a.date)).reverse();
   }
@@ -272,10 +273,10 @@ const UserHome = (props) => {
                               getSingleEvent(event.id);
                             }}
                           >
-                           <Button>
-                            <PencilSquare />
-                          </Button>
-                          <div className='button-divider'></div>
+                            <Button>
+                              <PencilSquare />
+                            </Button>
+                            <div className='button-divider'></div>
                           </Link>
                           <Button
                             onClick={() => handleDeleteEvent(event.id)}
