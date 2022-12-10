@@ -1,5 +1,4 @@
 const eventsRouter = require('express').Router();
-const { ContactlessOutlined } = require('@material-ui/icons');
 const { Event } = require('../db');
 const { requireToken, isAdmin } = require('./gateKeepingMiddleware');
 
