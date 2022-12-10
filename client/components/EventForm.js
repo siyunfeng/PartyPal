@@ -143,8 +143,7 @@ const EventForm = (props) => {
                 ))
               ) : (
                 <MenuItem value={'no venue'}>
-                  No venue in your list, click on 'Start Planning' to like some
-                  venues
+                  No venue in your liked list, leave it blank
                 </MenuItem>
               )}
             </Select>
@@ -165,8 +164,7 @@ const EventForm = (props) => {
                 ))
               ) : (
                 <MenuItem value={'no caterer'}>
-                  No caterer in your list, click on 'Start Planning' to like
-                  some caterers
+                  No venue in your liked list, I will decide later
                 </MenuItem>
               )}
             </Select>
@@ -178,9 +176,12 @@ const EventForm = (props) => {
             label='Note'
             variant='outlined'
             margin='normal'
+            minRows={4}
+            multiline
             fullWidth
             onChange={(event) => setNoteOption(event.target.value)}
           />
+
           <FlexBox>
             <Button
               id='btn-submit-new-event'
