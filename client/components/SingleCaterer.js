@@ -164,12 +164,10 @@ const SingleCaterer = (props) => {
             {price ? price : 'No information available'}
           </Card.Text>
           <Card.Text>
-            {/* <div> */}
             <Typography component='legend'>
               <strong>Ratings: {rating}</strong>
             </Typography>
             <Rating name='read-only' precision={0.5} value={rating} readOnly />
-            {/* </div> */}
           </Card.Text>
           <FlexBox>
             {liked ? (
