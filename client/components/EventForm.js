@@ -202,7 +202,7 @@ const EventForm = (props) => {
         onHide={() => setLgShow(false)}
         aria-labelledby='example-modal-sizes-title-lg'
       >
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title id='example-modal-sizes-title-lg'>
             <h4>🥳 You created a new event!</h4>
           </Modal.Title>
