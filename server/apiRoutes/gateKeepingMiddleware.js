@@ -1,4 +1,3 @@
-// store all of our functions that will act as middleware between our request and response
 const { User } = require('../db/models/User');
 
 const requireToken = async (req, res, next) => {

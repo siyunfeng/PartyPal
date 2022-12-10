@@ -15,6 +15,7 @@ import FlexBox from './Styled-Components/FlexBox.styled';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import PopUpDiv from './Styled-Components/FlexBox.styled';
+import { convert } from '../../helperFunctions';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -44,30 +45,32 @@ const EventForm = (props) => {
   const [catererOption, setCatererOption] = useState('');
   const [dateOption, setDateOption] = useState('');
   const [timeOption, setTimeOption] = useState('');
-  const [eventNameOption, setEventNameOption] = useState('');
+  const [eventNameValue, setEventNameValue] = useState('');
   const [noteOption, setNoteOption] = useState('');
   const [lgShow, setLgShow] = useState(false);
+  const [invalidShow, setInvalidShow] = useState(false);
 
   const createEvent = (event) => {
     event.preventDefault();
     const userId = user.id;
-    const eventName = event.target.eventName.value;
-    const eventNote = event.target.eventNote.value;
+    const eventName = eventNameValue;
+    const eventNote = noteOption;
 
-    const newEventInput = {
-      userId,
-      eventName,
-      eventNote,
-      venueOption,
-      catererOption,
-      dateOption,
-      timeOption,
-    };
-
-    createNewEvent(newEventInput);
-    setEventNameOption(eventName);
-    setNoteOption(eventNote);
-    setLgShow(true);
+    if (eventName && venueOption && catererOption && dateOption && timeOption) {
+      const newEventInput = {
+        userId,
+        eventName,
+        eventNote,
+        venueOption,
+        catererOption,
+        dateOption,
+        timeOption,
+      };
+      createNewEvent(newEventInput);
+      setLgShow(true);
+    } else {
+      setInvalidShow(true);
+    }
   };
 
   return (
@@ -98,6 +101,7 @@ const EventForm = (props) => {
             margin='normal'
             fullWidth
             required
+            onChange={(event) => setEventNameValue(event.target.value)}
           />
           <div className='eventFormDateTime'>
             <input
@@ -120,7 +124,7 @@ const EventForm = (props) => {
               max='23:59'
               value={timeOption}
               onChange={(event) => setTimeOption(event.target.value)}
-              required //not sure if we need it
+              required
             />
           </div>
           <FormControl variant='outlined' fullWidth margin='normal'>
@@ -138,7 +142,7 @@ const EventForm = (props) => {
                   </MenuItem>
                 ))
               ) : (
-                <MenuItem value={`no venue`}>
+                <MenuItem value={'no venue'}>
                   No venue in your list, click on 'Start Planning' to like some
                   venues
                 </MenuItem>
@@ -160,7 +164,7 @@ const EventForm = (props) => {
                   </MenuItem>
                 ))
               ) : (
-                <MenuItem value={`no caterer`}>
+                <MenuItem value={'no caterer'}>
                   No caterer in your list, click on 'Start Planning' to like
                   some caterers
                 </MenuItem>
@@ -175,16 +179,19 @@ const EventForm = (props) => {
             variant='outlined'
             margin='normal'
             fullWidth
+            onChange={(event) => setNoteOption(event.target.value)}
           />
           <FlexBox>
             <Button
               id='btn-submit-new-event'
               type='submit'
               variant='contained'
-              // color='primary'
               className={classes.submit}
+              // color='primary'
             >
-              <strong style={{ fontFamily: 'Cardo' }}>Create Event</strong>
+              <strong style={{ color: 'white', fontFamily: 'Cardo' }}>
+                Create Event
+              </strong>
             </Button>
           </FlexBox>
         </form>
@@ -195,17 +202,17 @@ const EventForm = (props) => {
         onHide={() => setLgShow(false)}
         aria-labelledby='example-modal-sizes-title-lg'
       >
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title id='example-modal-sizes-title-lg'>
-            <h3>You created a new event! 🎉</h3>
+            <h4>🥳 You created a new event!</h4>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <PopUpDiv className='new-event-popup'>
             <p>
               <strong>Event: </strong>
-              {eventNameOption
-                ? eventNameOption
+              {eventNameValue
+                ? eventNameValue
                 : 'You did not provide the event name'}
             </p>
             <p>
@@ -214,7 +221,9 @@ const EventForm = (props) => {
             </p>
             <p>
               <strong>Time: </strong>
-              {timeOption ? timeOption : 'You did not select the time yet.'}
+              {timeOption
+                ? convert(timeOption)
+                : 'You did not select the time yet.'}
             </p>
             <p>
               <strong>Venue: </strong>
@@ -232,10 +241,30 @@ const EventForm = (props) => {
               <strong>Note: </strong>
               {noteOption ? noteOption : 'You did not leave any notes.'}
             </p>
-            <p>We hope you have a great event!</p>
+            <br></br>
+            <p>✨ We hope you have a great event! ✨</p>
+            <br></br>
             <Link to='/account'>
-              <Button className='btn-back-to-my-acc'>Back to My Account</Button>
+              <Button
+                className='btn-back-to-my-acc'
+                style={{ fontFamily: 'Cardo' }}
+              >
+                <strong style={{ color: 'white' }}>Back to My Account</strong>
+              </Button>
             </Link>
+          </PopUpDiv>
+        </Modal.Body>
+      </Modal>
+      <Modal show={invalidShow} onHide={() => setInvalidShow(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            <h5>💔 Invalid Input 💔</h5>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <PopUpDiv>
+            Please enter valid event name and select valid date, time, venue and
+            caterer for your event before submit.
           </PopUpDiv>
         </Modal.Body>
       </Modal>

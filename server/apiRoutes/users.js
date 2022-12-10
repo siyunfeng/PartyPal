@@ -5,8 +5,6 @@ const { requireToken, isAdmin } = require('./gateKeepingMiddleware');
 
 // GET user's info
 userRouter.get('/', requireToken, async (req, res, next) => {
-  // before running route run this gatekeeping middleware
-  // if we make it passed that middleware we have a user
   try {
     const { username, password } = req.body;
     const existingUser = await User.findOne({
