@@ -164,7 +164,7 @@ const EventForm = (props) => {
                 ))
               ) : (
                 <MenuItem value={'no caterer'}>
-                  No venue in your liked list, I will decide later
+                  No caterer in your liked list, leave it blank
                 </MenuItem>
               )}
             </Select>
