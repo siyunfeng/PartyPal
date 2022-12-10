@@ -111,12 +111,14 @@ label {
   font-weight: bold;
 }
 
-.btn-primary, #btn-submit-new-event {
+.btn-primary,
+#btn-submit-new-event {
   background-color: #d562be !important;
   border: none !important;
   font-family: 'Abril Fatface';
 }
-.btn-primary:hover, #btn-submit-new-event:hover {
+.btn-primary:hover,
+#btn-submit-new-event:hover {
   background-color: #605399 !important;
   color: white !important;
 }
@@ -128,7 +130,8 @@ label {
   margin: 5px auto;
 }
 
-.eventFormDate, .eventFormTime{
+.eventFormDate,
+.eventFormTime {
   height: 59px;
   width: 48%;
   font: inherit;
@@ -140,9 +143,13 @@ label {
   display: inline-block;
 }
 
-
-
 .single-img {
-    max-width: 100%;
-    max-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+input {
+  background-color: transparent;
+  border: 1px solid #bfbdbb;
+  border-radius: 5px;
 }

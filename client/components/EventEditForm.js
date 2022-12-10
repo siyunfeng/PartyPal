@@ -33,6 +33,12 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: '#D562BE',
+    color: '#fff',
+    '&:hover': {
+      backgroundColor: '#605399',
+      color: '#fff',
+    },
   },
 }));
 
@@ -134,7 +140,10 @@ const EventEditForm = (props) => {
               required //not sure if we need it
             />
           </div>
-          <p>Current Venue: {oldVenue}</p>
+          <div>
+            <strong>Current Venue:</strong>{' '}
+            {oldVenue ? oldVenue : 'You did not select any venues yet.'}
+          </div>
           <FormControl variant='outlined' fullWidth margin='normal'>
             <InputLabel>Please select venue from your liked list</InputLabel>
             <Select
@@ -157,7 +166,10 @@ const EventEditForm = (props) => {
               )}
             </Select>
           </FormControl>
-          <p>Current Caterer: {oldCaterer}</p>
+          <div>
+            <strong>Current Caterer:</strong>{' '}
+            {oldCaterer ? oldCaterer : 'You did not select any caterers yet.'}
+          </div>
           <FormControl variant='outlined' fullWidth margin='normal'>
             <InputLabel>Please select caterer from your liked list</InputLabel>
             <Select
@@ -193,7 +205,7 @@ const EventEditForm = (props) => {
           />
           <FlexBox>
             <Button
-              id='btn-submit-new-event'
+              id='btn-edit-new-event'
               type='submit'
               variant='contained'
               // color='primary'
