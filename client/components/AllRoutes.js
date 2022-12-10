@@ -11,13 +11,13 @@ import UserHome from './UserHome';
 import EventEditForm from './EventEditForm';
 import Home from './Home';
 import EventSummaryPopUp from './EventSummaryPopUp';
-import Navbar from './NavBar';
 import EventForm from './EventForm';
+import ResponsiveNav from './ResponsiveNav';
 
 export const AllRoutes = () => {
   return (
     <Router history={history}>
-      <Navbar />
+      <ResponsiveNav />
       <main className='main'>
         <Switch>
           <Route exact path='/' component={Home} />

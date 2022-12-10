@@ -17,16 +17,18 @@ const Home = () => {
           <FlexBox>
             <br></br>
             <br></br>
-            <h2 style={{ textAlign: 'center' }}>
+
+            <h3 style={{ textAlign: 'center', margin: '1rem 8rem' }}>
               <strong>
                 Have a party coming up? Need venue and catering recommendations
                 in your area? Click Start Planning to find recommendations in
                 your area.
               </strong>
-            </h2>
+            </h3>
+
             <br></br>
             <br></br>
-            <h2>Reviews</h2>
+            <h3>Reviews</h3>
             <br></br>
             <FlexBox>
               <ReviewsHome />

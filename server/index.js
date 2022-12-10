@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const { syncAndSeed } = require('../seed');
 
 const morgan = require('morgan');
 app.use(morgan('dev'));
@@ -10,8 +11,6 @@ app.use(express.static(path.join(__dirname, '../public')));
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-const { syncAndSeed } = require('../seed');
 
 app.use('/api', require('./apiRoutes'));
 app.use('/auth', require('./apiRoutes/auth'));
@@ -31,8 +30,6 @@ app.use((error, req, res, next) => {
     .status(error.status || 500)
     .send(error.message || 'Internal Server error');
 });
-
-// syncAndSeed();
 
 const port = process.env.PORT || 3019;
 

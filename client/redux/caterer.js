@@ -17,7 +17,6 @@ export const fetchAllCaterers = ({ location, term, price }, history) => {
       if (typeof data === 'string') {
         window.alert('😭 No results, please try specifying a more exact location.')
         history.push('/start')
-        // dispatch(getVenuesCreator(data))
       }
       const businessArray = data.data.search.business;
       dispatch(setCaterers(businessArray));

@@ -85,43 +85,46 @@ function AllCaterers(props) {
     <div className='all-caterer-container'>
       <br></br>
       <FlexBoxForSearchResults>
-        <h1>Caterer search results for {props.startForm.location}: </h1>
+        <h4>Caterer search results for {props.startForm.location}: </h4>
         <p>{allCaterers.length} caterers found</p>
-        <form
-          style={{
-            width: '150px',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-          onSubmit={handlePriceSelect(priceOptions)}
-        >
-          <label>Filter by Price</label>
-          <Select
-            defaultValue={priceOptions[4]}
-            // isMulti
-            name='price'
-            options={priceOptions}
-            className='basic-multi-select'
-            classNamePrefix='select'
-            onChange={handlePriceSelect}
-          />
-        </form>
-        <form
-          style={{ width: '150px' }}
-          onSubmit={handleCuisineSelect(cuisineOptions)}
-        >
-          {' '}
-          <label>Filter by Cuisine</label>
-          <Select
-            defaultValue={cuisineOptions[4]}
-            // isMulti
-            name='cuisine'
-            options={cuisineOptions}
-            className='basic-multi-select'
-            classNamePrefix='select'
-            onChange={handleCuisineSelect}
-          />
-        </form>
+        <div className='cateres-filter-container'>
+          <div>
+            <form
+              style={{
+                width: '150px',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+              onSubmit={handlePriceSelect(priceOptions)}
+            >
+              <label>Filter by Price</label>
+              <Select
+                defaultValue={priceOptions[4]}
+                name='price'
+                options={priceOptions}
+                className='basic-multi-select'
+                classNamePrefix='select'
+                onChange={handlePriceSelect}
+              />
+            </form>
+          </div>
+          <div>
+            <form
+              style={{ width: '150px' }}
+              onSubmit={handleCuisineSelect(cuisineOptions)}
+            >
+              <label>Filter by Cuisine</label>
+              <Select
+                defaultValue={cuisineOptions[4]}
+                name='cuisine'
+                options={cuisineOptions}
+                className='basic-multi-select'
+                classNamePrefix='select'
+                onChange={handleCuisineSelect}
+              />
+            </form>
+          </div>
+        </div>
         <br></br>
       </FlexBoxForSearchResults>
       <br></br>

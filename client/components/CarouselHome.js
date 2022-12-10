@@ -14,7 +14,7 @@ function CarouselHome() {
             alt='First slide'
           />
           <Carousel.Caption>
-            <h1>Plan your party with PartyPal</h1>
+            <h1 className='carousel-caption'>Plan your party with PartyPal</h1>
             <Link to='/start'>
               <Button
                 className='mb-5'
@@ -33,7 +33,7 @@ function CarouselHome() {
             alt='Second slide'
           />
           <Carousel.Caption>
-            <h1>Plan your party with PartyPal</h1>
+            <h1 className='carousel-caption'>Plan your party with PartyPal</h1>
             <Link to='/start'>
               <Button
                 className='mb-5'
@@ -52,7 +52,7 @@ function CarouselHome() {
             alt='Third slide'
           />
           <Carousel.Caption>
-            <h1>Plan your party with PartyPal</h1>
+            <h1 className='carousel-caption'>Plan your party with PartyPal</h1>
             <Link to='/start'>
               <Button
                 className='mb-5'
@@ -72,7 +72,7 @@ function CarouselHome() {
           />
 
           <Carousel.Caption>
-            <h1>Plan your party with PartyPal</h1>
+            <h1 className='carousel-caption'>Plan your party with PartyPal</h1>
             <Link to='/start'>
               <Button
                 className='mb-5'
@@ -91,7 +91,7 @@ function CarouselHome() {
             alt='Fifth slide'
           />
           <Carousel.Caption>
-            <h1>Plan your party with PartyPal</h1>
+            <h1 className='carousel-caption'>Plan your party with PartyPal</h1>
             <Link to='/start'>
               <Button
                 className='mb-5'
@@ -110,7 +110,7 @@ function CarouselHome() {
             alt='Sixth slide'
           />
           <Carousel.Caption>
-            <h1>Plan your party with PartyPal</h1>
+            <h1 className='carousel-caption'>Plan your party with PartyPal</h1>
             <Link to='/start'>
               <Button
                 className='mb-5'

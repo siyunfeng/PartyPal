@@ -1,7 +1,7 @@
 const venuesRouter = require('express').Router();
 const axios = require('axios');
 
-// require('dotenv').config();
+require('dotenv').config();
 
 const TOKEN = process.env.VENUES_YELP_TOKEN
 

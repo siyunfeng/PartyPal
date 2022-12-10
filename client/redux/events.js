@@ -23,7 +23,6 @@ export const getEvents = (userId) => {
       dispatch(_getEvents(events));
     } catch (error) {
       console.error('redux/events.js getEvents error >>>>', error);
-      // throw error;
     }
   };
 };
@@ -54,7 +53,6 @@ export const createNewEvent = (newEventInput) => {
           notes: eventNote,
           date: dateOption,
           time: timeOption,
-          // NOTE: not sure if we should pass req.headers.authorization instead because we need to put requireToken to protect the route
         },
         {
           headers: {
@@ -81,7 +79,6 @@ export const deleteEvent = (eventId) => {
       dispatch(_deleteEvent(event));
     } catch (error) {
       console.error('redux/events.js deleteEvent error >>>>', error);
-      // throw error;
     }
   };
 };
