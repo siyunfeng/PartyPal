@@ -41,7 +41,9 @@ const EventEditForm = (props) => {
   let { venues, caterers, editEvent, singleEvent } = props;
 
   const [venueOption, setVenueOption] = useState(singleEvent.venue || '');
-  const [catererOption, setCatererOption] = useState(singleEvent.catering);
+  const [catererOption, setCatererOption] = useState(
+    singleEvent.catering || ''
+  );
   const [dateOption, setDateOption] = useState(singleEvent.date || '');
   const [timeOption, setTimeOption] = useState(singleEvent.time || '');
   const [eventNameOption, setEventNameOption] = useState(
@@ -55,13 +57,14 @@ const EventEditForm = (props) => {
     setEventNameOption(singleEvent.name);
     setDateOption(singleEvent.date);
     setTimeOption(singleEvent.time);
-    setVenueOption(singleEvent.venue);
+    setVenueOption(singleEvent.catering);
     setCatererOption(singleEvent.catering);
     setNoteOption(singleEvent.notes);
   }, [props]);
 
   const handleEditEvent = (event) => {
     event.preventDefault();
+    console.log('i am here');
     const eventInfo = {
       eventId,
       eventNameOption,
@@ -73,6 +76,9 @@ const EventEditForm = (props) => {
     };
     editEvent(eventInfo);
   };
+
+  const oldVenue = singleEvent.venue;
+  const oldCaterer = singleEvent.catering;
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -128,6 +134,7 @@ const EventEditForm = (props) => {
               required //not sure if we need it
             />
           </div>
+          <p>Current Venue: {oldVenue}</p>
           <FormControl variant='outlined' fullWidth margin='normal'>
             <InputLabel>Please select venue from your liked list</InputLabel>
             <Select
@@ -150,6 +157,7 @@ const EventEditForm = (props) => {
               )}
             </Select>
           </FormControl>
+          <p>Current Caterer: {oldCaterer}</p>
           <FormControl variant='outlined' fullWidth margin='normal'>
             <InputLabel>Please select caterer from your liked list</InputLabel>
             <Select
@@ -208,13 +216,13 @@ const mapState = (state) => {
   };
 };
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, { history }) => {
   return {
     getSingleEvent: (eventId) => {
       dispatch(getSingleEvent(eventId));
     },
     editEvent: (eventInfo) => {
-      dispatch(editEvent(eventInfo));
+      dispatch(editEvent(eventInfo, history));
     },
   };
 };

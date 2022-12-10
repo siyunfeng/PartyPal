@@ -86,12 +86,11 @@ export const deleteEvent = (eventId) => {
   };
 };
 
-export const editEvent = (eventInfo) => {
+export const editEvent = (eventInfo, history) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem(TOKEN);
       if (token) {
-        console.log('i made it in thunk', eventInfo.eventId, eventInfo);
         const eventInfoToSend = {
           name: eventInfo.eventNameOption,
           venue: eventInfo.venueOption.name,
@@ -102,7 +101,6 @@ export const editEvent = (eventInfo) => {
           date: eventInfo.dateOption,
           time: eventInfo.timeOption,
         };
-        console.log('this is right?', eventInfoToSend);
         const { data } = await axios.put(
           `/api/events/${eventInfo.eventId}`,
           eventInfoToSend,
@@ -113,6 +111,7 @@ export const editEvent = (eventInfo) => {
           }
         );
         dispatch(_editEvent(data));
+        history.push('/account');
       }
     } catch (error) {
       console.error(error);
