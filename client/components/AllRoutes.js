@@ -8,6 +8,7 @@ import SingleVenue from './SingleVenue';
 import SingleCaterer from './SingleCaterer';
 import StartForm from './StartForm';
 import UserHome from './UserHome';
+import EventEditForm from './EventEditForm';
 import Home from './Home';
 import EventSummaryPopUp from './EventSummaryPopUp';
 import EventForm from './EventForm';
@@ -30,6 +31,7 @@ export const AllRoutes = () => {
           <Route path='/start' component={StartForm} />
           <Route path='/account' component={UserHome} />
           <Route path='/new-event' component={EventForm} />
+          <Route path='/editEvent/:id' component={EventEditForm} />
         </Switch>
       </main>
     </Router>

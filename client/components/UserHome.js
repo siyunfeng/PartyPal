@@ -14,6 +14,7 @@ import { getSingleVenueThunk } from '../redux/singleVenue';
 import UserHomeFlex from './Styled-Components/UserHomeFlex.styled';
 import { Trash, PencilSquare } from 'react-bootstrap-icons';
 import { convert, findDayOfWeek } from '../../helperFunctions';
+import { getSingleEvent } from '../redux/singleEvent';
 
 const UserHome = (props) => {
   let { id, username, email } = props.user;
@@ -27,6 +28,7 @@ const UserHome = (props) => {
     deleteCatererLikedItem,
     deleteVenueLikedItem,
     deleteEvent,
+    getSingleEvent,
   } = props;
 
   if (events) {
@@ -263,10 +265,18 @@ const UserHome = (props) => {
                               ? convert(event.time)
                               : 'Event time is not available at this time'}
                           </Card.Text>
-                          <Button>
+                          <Link
+                            to={`/editEvent/${event.id}`}
+                            value={event.id}
+                            onClick={() => {
+                              getSingleEvent(event.id);
+                            }}
+                          >
+                           <Button>
                             <PencilSquare />
                           </Button>
                           <div className='button-divider'></div>
+                          </Link>
                           <Button
                             onClick={() => handleDeleteEvent(event.id)}
                             variant='danger'
@@ -318,6 +328,7 @@ const mapDispatch = (dispatch) => {
     deleteCatererLikedItem: (favoriteId) =>
       dispatch(deleteCatererLikedItem(favoriteId)),
     deleteEvent: (eventId) => dispatch(deleteEvent(eventId)),
+    getSingleEvent: (eventId) => dispatch(getSingleEvent(eventId)),
   };
 };
 

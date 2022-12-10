@@ -17,6 +17,16 @@ eventsRouter.get('/:userId', requireToken, async (req, res, next) => {
   }
 });
 
+// get single event detail
+eventsRouter.get('/single/:eventId', requireToken, async (req, res, next) => {
+  try {
+    const singleEvent = await Event.findByPk(req.params.eventId);
+    res.send(singleEvent);
+  } catch (error) {
+    next(error);
+  }
+});
+
 // edit event detail
 eventsRouter.put('/:eventId', requireToken, async (req, res, next) => {
   try {
