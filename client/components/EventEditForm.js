@@ -10,12 +10,11 @@ import Container from '@material-ui/core/Container';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import { createNewEvent } from '../redux/events';
+import { editEvent } from '../redux/events';
+import { getSingleEvent } from '../redux/singleEvent';
 import FlexBox from './Styled-Components/FlexBox.styled';
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import PopUpDiv from './Styled-Components/FlexBox.styled';
-import { convert } from '../../helperFunctions';
+import { ContactlessOutlined, ContactsOutlined } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -34,44 +33,57 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: '#D562BE',
+    color: '#fff',
+    '&:hover': {
+      backgroundColor: '#605399',
+      color: '#fff',
+    },
   },
 }));
 
-const EventForm = (props) => {
+const EventEditForm = (props) => {
   const classes = useStyles();
-  let { user, events, venues, caterers, createNewEvent } = props;
+  let { venues, caterers, editEvent, singleEvent } = props;
 
-  const [venueOption, setVenueOption] = useState('');
-  const [catererOption, setCatererOption] = useState('');
-  const [dateOption, setDateOption] = useState('');
-  const [timeOption, setTimeOption] = useState('');
-  const [eventNameValue, setEventNameValue] = useState('');
-  const [noteOption, setNoteOption] = useState('');
-  const [lgShow, setLgShow] = useState(false);
-  const [invalidShow, setInvalidShow] = useState(false);
+  const [venueOption, setVenueOption] = useState(singleEvent.venue || '');
+  const [catererOption, setCatererOption] = useState(
+    singleEvent.catering || ''
+  );
+  const [dateOption, setDateOption] = useState(singleEvent.date || '');
+  const [timeOption, setTimeOption] = useState(singleEvent.time || '');
+  const [eventNameOption, setEventNameOption] = useState(
+    singleEvent.name || ''
+  );
+  const [noteOption, setNoteOption] = useState(singleEvent.notes || '');
+  const [eventId, setEventId] = useState(props.match.params.id || 0);
 
-  const createEvent = (event) => {
+  useEffect(() => {
+    getSingleEvent(props.match.params.id);
+    setEventNameOption(singleEvent.name);
+    setDateOption(singleEvent.date);
+    setTimeOption(singleEvent.time);
+    setVenueOption(singleEvent.catering);
+    setCatererOption(singleEvent.catering);
+    setNoteOption(singleEvent.notes);
+  }, [props]);
+
+  const handleEditEvent = (event) => {
     event.preventDefault();
-    const userId = user.id;
-    const eventName = eventNameValue;
-    const eventNote = noteOption;
-
-    if (eventName && venueOption && catererOption && dateOption && timeOption) {
-      const newEventInput = {
-        userId,
-        eventName,
-        eventNote,
-        venueOption,
-        catererOption,
-        dateOption,
-        timeOption,
-      };
-      createNewEvent(newEventInput);
-      setLgShow(true);
-    } else {
-      setInvalidShow(true);
-    }
+    const eventInfo = {
+      eventId,
+      eventNameOption,
+      noteOption,
+      venueOption,
+      catererOption,
+      dateOption,
+      timeOption,
+    };
+    editEvent(eventInfo);
   };
+
+  const oldVenue = singleEvent.venue;
+  const oldCaterer = singleEvent.catering;
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -82,26 +94,26 @@ const EventForm = (props) => {
         <Typography
           component='h1'
           variant='h5'
-          className='DM-Serif-display-font'
+          style={{ fontFamily: 'DM Serif Display' }}
         >
-          <strong>Create New Event</strong>
+          <strong>Edit My Event</strong>
         </Typography>
         <form
           className={classes.form}
           name='eventForm'
           noValidate
           autoComplete='off'
-          onSubmit={(event) => createEvent(event)}
+          onSubmit={(event) => handleEditEvent(event)}
         >
           <TextField
             name='eventName'
             id='event-name'
             label='Event Name'
+            value={eventNameOption}
             variant='outlined'
             margin='normal'
             fullWidth
-            required
-            onChange={(event) => setEventNameValue(event.target.value)}
+            onChange={(event) => setEventNameOption(event.target.value)}
           />
           <div className='eventFormDateTime'>
             <input
@@ -124,8 +136,12 @@ const EventForm = (props) => {
               max='23:59'
               value={timeOption}
               onChange={(event) => setTimeOption(event.target.value)}
-              required
+              required //not sure if we need it
             />
+          </div>
+          <div>
+            <strong>Current Venue:</strong>{' '}
+            {oldVenue ? oldVenue : 'You did not select any venues yet.'}
           </div>
           <FormControl variant='outlined' fullWidth margin='normal'>
             <InputLabel>Please select venue from your liked list</InputLabel>
@@ -142,12 +158,17 @@ const EventForm = (props) => {
                   </MenuItem>
                 ))
               ) : (
-                <MenuItem value={'no venue'}>
-                  No venue in your liked list, leave it blank
+                <MenuItem value={`no venue`}>
+                  No venue in your list, click on 'Start Planning' to like some
+                  venues
                 </MenuItem>
               )}
             </Select>
           </FormControl>
+          <div>
+            <strong>Current Caterer:</strong>{' '}
+            {oldCaterer ? oldCaterer : 'You did not select any caterers yet.'}
+          </div>
           <FormControl variant='outlined' fullWidth margin='normal'>
             <InputLabel>Please select caterer from your liked list</InputLabel>
             <Select
@@ -163,8 +184,9 @@ const EventForm = (props) => {
                   </MenuItem>
                 ))
               ) : (
-                <MenuItem value={'no caterer'}>
-                  No caterer in your liked list, leave it blank
+                <MenuItem value={`no caterer`}>
+                  No caterer in your list, click on 'Start Planning' to like
+                  some caterers
                 </MenuItem>
               )}
             </Select>
@@ -175,116 +197,47 @@ const EventForm = (props) => {
             type='text'
             label='Note'
             variant='outlined'
+            value={noteOption}
             margin='normal'
             minRows={4}
             multiline
             fullWidth
             onChange={(event) => setNoteOption(event.target.value)}
           />
-
           <FlexBox>
             <Button
-              id='btn-submit-new-event'
+              id='btn-edit-new-event'
               type='submit'
               variant='contained'
-              className={classes.submit}
               // color='primary'
+              className={classes.submit}
             >
-              <strong className='white-buttons-and-cardo'>
-                Create Event
-              </strong>
+              <strong style={{ fontFamily: 'Cardo' }}>Submit Changes</strong>
             </Button>
           </FlexBox>
         </form>
       </div>
-      <Modal
-        size='lg'
-        show={lgShow}
-        onHide={() => setLgShow(false)}
-        aria-labelledby='example-modal-sizes-title-lg'
-      >
-        <Modal.Header>
-          <Modal.Title id='example-modal-sizes-title-lg'>
-            <h4>🥳 You created a new event!</h4>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <PopUpDiv className='new-event-popup'>
-            <p>
-              <strong>Event: </strong>
-              {eventNameValue
-                ? eventNameValue
-                : 'You did not provide the event name'}
-            </p>
-            <p>
-              <strong>Date: </strong>
-              {dateOption ? dateOption : 'You did not select the date yet.'}
-            </p>
-            <p>
-              <strong>Time: </strong>
-              {timeOption
-                ? convert(timeOption)
-                : 'You did not select the time yet.'}
-            </p>
-            <p>
-              <strong>Venue: </strong>
-              {venueOption.name
-                ? venueOption.name
-                : 'You did not select any venues yet.'}
-            </p>
-            <p>
-              <strong>Caterer: </strong>
-              {catererOption.name
-                ? catererOption.name
-                : 'You did not select any caterers yet.'}
-            </p>
-            <p>
-              <strong>Note: </strong>
-              {noteOption ? noteOption : 'You did not leave any notes.'}
-            </p>
-            <br></br>
-            <p>✨ We hope you have a great event! ✨</p>
-            <br></br>
-            <Link to='/account'>
-              <Button
-                className='btn-back-to-my-acc cardo-font'
-              >
-                <strong className='white-buttons-and-cardo '>Back to My Account</strong>
-              </Button>
-            </Link>
-          </PopUpDiv>
-        </Modal.Body>
-      </Modal>
-      <Modal show={invalidShow} onHide={() => setInvalidShow(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>
-            <h5>💔 Invalid Input 💔</h5>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <PopUpDiv>
-            Please enter valid event name and select valid date, time, venue and
-            caterer for your event before submit.
-          </PopUpDiv>
-        </Modal.Body>
-      </Modal>
     </Container>
   );
 };
 
 const mapState = (state) => {
   return {
-    user: state.auth,
-    events: state.events,
+    singleEvent: state.singleEvent,
     venues: state.favorites.venues,
     caterers: state.favorites.caterers,
   };
 };
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, { history }) => {
   return {
-    createNewEvent: (newEventInput) => dispatch(createNewEvent(newEventInput)),
+    getSingleEvent: (eventId) => {
+      dispatch(getSingleEvent(eventId));
+    },
+    editEvent: (eventInfo) => {
+      dispatch(editEvent(eventInfo, history));
+    },
   };
 };
 
-export default connect(mapState, mapDispatch)(EventForm);
+export default connect(mapState, mapDispatch)(EventEditForm);

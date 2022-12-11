@@ -29,12 +29,20 @@ const SingleCaterer = (props) => {
 
   if (!business) return null;
 
-  const { name, rating, photos, phone, price, hours, categories, location, id } =
-    business;
+  const {
+    name,
+    rating,
+    photos,
+    phone,
+    price,
+    hours,
+    categories,
+    location,
+    id,
+  } = business;
   const address1 = location.address1;
   const city = location.city;
   const state = location.state;
-
 
   const urlVisiting = props.history.location.pathname;
 
@@ -43,7 +51,7 @@ const SingleCaterer = (props) => {
   }
 
   const saveLikedItem = async (e, cateringInfo) => {
-    const idToSave = cateringInfo.id
+    const idToSave = cateringInfo.id;
 
     const loggedInUserToken = window.localStorage.getItem('token');
 
@@ -91,9 +99,7 @@ const SingleCaterer = (props) => {
       <br></br>
       <br></br>
       <SingleView>
-        <Card
-          className='favoriteSelectionsCard'
-        >
+        <Card className='favoriteSelectionsCard'>
           <ButtonFlex>
             <h1>{name ? name : ''}</h1>
           </ButtonFlex>
@@ -157,17 +163,10 @@ const SingleCaterer = (props) => {
             {price ? price : 'No information available'}
           </Card.Text>
           <Card.Text>
-            <div>
-              <Typography component='legend'>
-                <strong>Ratings: {rating}</strong>
-              </Typography>
-              <Rating
-                name='read-only'
-                precision={0.5}
-                value={rating}
-                readOnly
-              />
-            </div>
+            <Typography component='legend'>
+              <strong>Ratings: {rating}</strong>
+            </Typography>
+            <Rating name='read-only' precision={0.5} value={rating} readOnly />
           </Card.Text>
           <FlexBox>
             {liked ? (
@@ -189,7 +188,6 @@ const SingleCaterer = (props) => {
                 <Button
                   variant={solidGreen ? 'success' : 'outline-success'}
                   className='cardo-font'
-                
                   onClick={(e) => {
                     const catererInfo = {
                       name,
@@ -202,7 +200,7 @@ const SingleCaterer = (props) => {
                     saveLikedItem(e, catererInfo);
                   }}
                 >
-               {liked ? 'Liked' : 'Like'}
+                  {liked ? 'Liked' : 'Like'}
                 </Button>
               </OverlayTrigger>
             ) : (
@@ -271,4 +269,3 @@ const mapDispatch = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatch)(SingleCaterer);
-

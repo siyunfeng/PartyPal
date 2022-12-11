@@ -61,7 +61,6 @@ const StartForm = (props) => {
   };
 
   return (
-
     <Container className={classes.root} component='main' maxWidth='xs'>
       <FlexBox>
       <div className={classes.root}>
@@ -83,45 +82,55 @@ const StartForm = (props) => {
             name='start-form'
           >
             <br></br>
-              <div>
-              <label className={classes.input} htmlFor='serviceOptions'>
-                What service can we help you find?
-              </label>
+            <div>
+              <h1>Ready for a Party?</h1>
             </div>
-            <br></br>
-            <FormControl variant='outlined' fullWidth>
-              <InputLabel>Please select caterer or venue</InputLabel>
-              <Select
-                name='serviceOption'
-                onChange={(e) => setServiceOptionValue(e.target.value)}
-                value={serviceOptionValue}
-              >
-                <MenuItem value='catering'>Caterer</MenuItem>
-                <MenuItem value='venue'>Venue</MenuItem>
-              </Select>
+            <form
+              className={classes.form}
+              noValidate
+              autoComplete='off'
+              onSubmit={(event) => getRecommendations(event)}
+              name='start-form'
+            >
               <br></br>
               <div>
-                <label className={classes.input} htmlFor='partyLocation'>
-                  Where will your party be held?
+                <label className={classes.input} htmlFor='serviceOptions'>
+                  What service can we help you find?
                 </label>
               </div>
               <br></br>
-            </FormControl>
-            <TextField
-              className={classes.input}
-              name='location'
-              label='Please enter city or zip code'
-              fullWidth
-              variant='outlined'
-            />
-            <br></br>
+              <FormControl variant='outlined' fullWidth>
+                <InputLabel>Please select caterer or venue</InputLabel>
+                <Select
+                  name='serviceOption'
+                  onChange={(e) => setServiceOptionValue(e.target.value)}
+                  value={serviceOptionValue}
+                >
+                  <MenuItem value='catering'>Caterer</MenuItem>
+                  <MenuItem value='venue'>Venue</MenuItem>
+                </Select>
+                <br></br>
+                <div>
+                  <label className={classes.input} htmlFor='partyLocation'>
+                    Where will your party be held?
+                  </label>
+                </div>
+                <br></br>
+              </FormControl>
+              <TextField
+                className={classes.input}
+                name='location'
+                label='Please enter city or zip code'
+                fullWidth
+                variant='outlined'
+              />
               <br></br>
-            <div>
-              <Button
-                variant='contained'
-                type='submit'
-                className={classes.submit}
-
+              <br></br>
+              <div>
+                <Button
+                  variant='contained'
+                  type='submit'
+                  className={classes.submit}
                 >
                   <strong>Get Recommendations</strong>
                 </Button>

@@ -67,7 +67,6 @@ function CarouselHome() {
             src='/images/caterer-photo-2.jpg'
             alt='Fourth slide'
           />
-
           <Carousel.Caption>
             <h1 className='home-outline'>Plan your party with PartyPal</h1>
             <Link to='/start'>

@@ -16,8 +16,7 @@ const Home = () => {
         <div>
           <FlexBox>
             <br></br>
-            <br></br>
-            
+            <br></br>          
               <h2 className='home-tagline'>
                 <strong>
                   Have a party coming up? Need venue and catering
@@ -25,10 +24,9 @@ const Home = () => {
                   recommendations in your area.
                 </strong>
               </h2>
-           
             <br></br>
             <br></br>
-            <h2>Reviews</h2>
+            <h3>Reviews</h3>
             <br></br>
             <FlexBox>
               <ReviewsHome />

@@ -15,6 +15,7 @@ import UserHomeFlex from './Styled-Components/UserHomeFlex.styled';
 import { Trash, PencilSquare } from 'react-bootstrap-icons';
 import { convert, findDayOfWeek } from '../../helperFunctions';
 import FlexBox from './Styled-Components/FlexBox.styled';
+import { getSingleEvent } from '../redux/singleEvent';
 
 const UserHome = (props) => {
   let { id, username, email } = props.user;
@@ -28,8 +29,10 @@ const UserHome = (props) => {
     deleteCatererLikedItem,
     deleteVenueLikedItem,
     deleteEvent,
+    getSingleEvent,
   } = props;
 
+  console.log('this is events', events);
   if (events) {
     events.sort((a, b) => new Date(b.date) - new Date(a.date)).reverse();
   }
@@ -64,7 +67,6 @@ const UserHome = (props) => {
         <div id='home-div'>
           <br></br>
           <h1 className='welcome-div'>Welcome {username}!</h1>
-
           <br></br>
           <br></br>
           <a href='#my-events'>
@@ -77,10 +79,8 @@ const UserHome = (props) => {
               <strong>View My Liked List</strong>
             </Button>
           </a>
-
           <div className='user-profile smallerUserHomeCards'>
             <h4 className='welcome-div'>Account Information</h4>
-
             <div>
               <Card className='account-info'>
                 <Card.Body>
@@ -95,7 +95,6 @@ const UserHome = (props) => {
               </Card>
             </div>
           </div>
-
           <br></br>
           <div></div>
           <div className='user-home-events'>
@@ -120,6 +119,7 @@ const UserHome = (props) => {
                               variant='top'
                               src={venue.image_url}
                               className='allViews'
+                              style={{ objectFit: 'cover' }}
                             />
                           </Link>
                           <Card.Body>
@@ -175,7 +175,7 @@ const UserHome = (props) => {
                               to={`/singleCaterer/${caterer.yelp_reference_id}`}
                               className='text-decoration'
                             >
-                              <Card.Title className='DM-Serif-display-font '>
+                              <Card.Title className='DM-Serif-display-font'>
                                 {caterer.name
                                   ? caterer.name
                                   : 'caterer name is not available'}
@@ -233,10 +233,18 @@ const UserHome = (props) => {
                               ? convert(event.time)
                               : 'Event time is not available at this time'}
                           </Card.Text>
-                          <Button>
-                            <PencilSquare />
-                          </Button>
-                          <div className='button-divider'></div>
+                          <Link
+                            to={`/editEvent/${event.id}`}
+                            value={event.id}
+                            onClick={() => {
+                              getSingleEvent(event.id);
+                            }}
+                          >
+                            <Button>
+                              <PencilSquare />
+                            </Button>
+                            <div className='button-divider'></div>
+                          </Link>
                           <Button
                             onClick={() => handleDeleteEvent(event.id)}
                             variant='danger'
@@ -292,6 +300,7 @@ const mapDispatch = (dispatch) => {
     deleteCatererLikedItem: (favoriteId) =>
       dispatch(deleteCatererLikedItem(favoriteId)),
     deleteEvent: (eventId) => dispatch(deleteEvent(eventId)),
+    getSingleEvent: (eventId) => dispatch(getSingleEvent(eventId)),
   };
 };
 

@@ -10,6 +10,7 @@ import singleVenue from './singleVenue';
 import startFormReducer from './startForm';
 import events from './events';
 import favorites from './favorites';
+import singleEvent from './singleEvent';
 
 const reducer = combineReducers({
   auth,
@@ -20,6 +21,7 @@ const reducer = combineReducers({
   singleCaterer,
   events,
   favorites,
+  singleEvent,
 });
 
 const store = createStore(

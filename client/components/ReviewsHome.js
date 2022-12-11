@@ -34,13 +34,10 @@ function ReviewsHome() {
   ];
 
   return (
-    <div>
+    <div style={{ margin: 'auto 2em' }}>
       {reviews.map((review) => {
         return (
-          <Alert
-            key={review.id}
-            variant='info'
-          >
+          <Alert key={review.id} variant='info'>
             <Rating
               name='read-only'
               precision={0.5}
