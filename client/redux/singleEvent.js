@@ -8,7 +8,6 @@ const _getSingleEvent = (event) => ({ type: GET_SINGLE_EVENT, event });
 export const getSingleEvent = (eventId) => {
   return async (dispatch) => {
     try {
-      console.log('what is eventId', eventId);
       const token = window.localStorage.getItem(TOKEN);
       const { data: event } = await axios.get(`/api/events/single/${eventId}`, {
         headers: {

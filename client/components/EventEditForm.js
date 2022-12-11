@@ -136,7 +136,7 @@ const EventEditForm = (props) => {
               max='23:59'
               value={timeOption}
               onChange={(event) => setTimeOption(event.target.value)}
-              required //not sure if we need it
+              required
             />
           </div>
           <div>
@@ -209,7 +209,6 @@ const EventEditForm = (props) => {
               id='btn-edit-new-event'
               type='submit'
               variant='contained'
-              // color='primary'
               className={classes.submit}
             >
               <strong style={{ fontFamily: 'Cardo' }}>Submit Changes</strong>

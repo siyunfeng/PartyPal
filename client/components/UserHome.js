@@ -32,7 +32,6 @@ const UserHome = (props) => {
     getSingleEvent,
   } = props;
 
-  console.log('this is events', events);
   if (events) {
     events.sort((a, b) => new Date(b.date) - new Date(a.date)).reverse();
   }
@@ -260,7 +259,9 @@ const UserHome = (props) => {
               ) : (
                 <FlexBox>
                   <div>
-                    <strong className='cardo-font'>You have no upcoming events at this time.</strong>
+                    <strong className='cardo-font'>
+                      You have no upcoming events at this time.
+                    </strong>
                   </div>
                 </FlexBox>
               )}

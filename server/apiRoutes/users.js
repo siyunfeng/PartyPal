@@ -20,7 +20,6 @@ userRouter.get('/', requireToken, async (req, res, next) => {
   }
 });
 
-
 // POST create new user
 userRouter.post('/', requireToken, async (req, res, next) => {
   try {
@@ -42,7 +41,6 @@ userRouter.post('/', requireToken, async (req, res, next) => {
 userRouter.put('/:userId', requireToken, async (req, res, next) => {
   try {
     const { password } = req.body;
-    /* only allow user to update their password and email? (because username & name should not be changed?) */
     const existingUser = await User.findByPk(req.params.userId);
     let updateInfo;
     if (password) {
@@ -56,7 +54,7 @@ userRouter.put('/:userId', requireToken, async (req, res, next) => {
   }
 });
 
-// DELETE (QUESTION: only admin can delete user or user can cancel their account?)
+// DELETE
 userRouter.delete('/:userId', requireToken, isAdmin, async (req, res, next) => {
   try {
     const deleteUser = await User.destroy(req.params.userId);

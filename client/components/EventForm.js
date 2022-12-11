@@ -188,11 +188,8 @@ const EventForm = (props) => {
               type='submit'
               variant='contained'
               className={classes.submit}
-              // color='primary'
             >
-              <strong className='white-buttons-and-cardo'>
-                Create Event
-              </strong>
+              <strong className='white-buttons-and-cardo'>Create Event</strong>
             </Button>
           </FlexBox>
         </form>
@@ -246,10 +243,10 @@ const EventForm = (props) => {
             <p>✨ We hope you have a great event! ✨</p>
             <br></br>
             <Link to='/account'>
-              <Button
-                className='btn-back-to-my-acc cardo-font'
-              >
-                <strong className='white-buttons-and-cardo '>Back to My Account</strong>
+              <Button className='btn-back-to-my-acc cardo-font'>
+                <strong className='white-buttons-and-cardo '>
+                  Back to My Account
+                </strong>
               </Button>
             </Link>
           </PopUpDiv>

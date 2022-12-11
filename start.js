@@ -1,6 +1,5 @@
-const {db} = require("./server/db/database");
-const app = require("./server/index.js");
-console.log("db", db)
+const { db } = require('./server/db/database');
+const app = require('./server/index.js');
 
 const port = process.env.PORT || 3019;
 
