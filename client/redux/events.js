@@ -90,10 +90,10 @@ export const editEvent = (eventInfo, history) => {
       if (token) {
         const eventInfoToSend = {
           name: eventInfo.eventNameOption,
-          venue: eventInfo.venueOption.name,
-          venueYelpId: eventInfo.venueOption.yelp_reference_id,
-          catering: eventInfo.catererOption.name,
-          cateringYelpId: eventInfo.catererOption.yelp_reference_id,
+          venue: eventInfo.venueOption?.name,
+          venueYelpId: eventInfo.venueOption?.yelp_reference_id,
+          catering: eventInfo.catererOption?.name,
+          cateringYelpId: eventInfo.catererOption?.yelp_reference_id,
           notes: eventInfo.noteOption,
           date: eventInfo.dateOption,
           time: eventInfo.timeOption,
