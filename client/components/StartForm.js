@@ -63,24 +63,11 @@ const StartForm = (props) => {
   return (
     <Container className={classes.root} component='main' maxWidth='xs'>
       <FlexBox>
-      <div className={classes.root}>
-        <Avatar className={classes.avatar}>
-          <SearchOutlinedIcon />
-        </Avatar>
-        <div
-          className='start-form-center'
-        >
-          <br></br>
-          <div>
-            <h1>Ready for a Party?</h1>
-          </div>
-          <form
-            className={classes.form}
-            noValidate
-            autoComplete='off'
-            onSubmit={(event) => getRecommendations(event)}
-            name='start-form'
-          >
+        <div className={classes.root}>
+          <Avatar className={classes.avatar}>
+            <SearchOutlinedIcon />
+          </Avatar>
+          <div className='start-form-center'>
             <br></br>
             <div>
               <h1>Ready for a Party?</h1>
