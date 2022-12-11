@@ -17,7 +17,9 @@ import { connect } from 'react-redux';
 import { me } from '../redux/auth';
 
 export const AllRoutes = (props) => {
-  useEffect(() => props.isLoggedInUser(), []);
+  useEffect(() => {
+    props.isLoggedInUser();
+  }, []);
 
   const { isLoggedIn } = props;
   return (
