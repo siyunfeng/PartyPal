@@ -62,7 +62,9 @@ nav h1 {
 }
 
 .allViews {
-  width: 285px;
+  /* width: 285px;
+   */
+   width: 18rem;
   height: 250px;
 }
 
@@ -153,7 +155,6 @@ input {
   background-color: #f1cfbd;
 }
 
-
 .home-outline {
   text-shadow:  -1px 1px 2px #605399,
   1px 2px 6px #605399,
@@ -189,8 +190,8 @@ input {
 }
 
 .single-img {
-  width: 450;
-  height: 500;
+  width: 450px;
+  height: 500px;
 }
 
 .home-tagline {
@@ -219,23 +220,13 @@ input {
   align-items: center;
 }
 
-.welcome-div {
-  margin-left: 1rem;
-}
-
 .text-decoration {
   text-decoration: none;
 }
 
 .account-info {
   width: 25rem;
-  margin-left: 1rem;
-}
-
-.liked-items {
-  width: 18rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin: 0 0 1rem 1rem;
 }
 
 .height {
@@ -253,4 +244,50 @@ input {
   margin-bottom: 2em;
   font-weight: 700;
   text-shadow: black 1px 0 5px;
+}
+
+/* User Home */
+.welcome-div {
+  font-family: var(--Abril-Fatface);
+  margin-left: 1rem;
+}
+
+.welcome-top {
+  margin-left: 3rem;
+}
+
+.each-favorite-venue-container, .each-favorite-caterer-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  margin: 1rem;
+}
+
+.liked-items {
+  width: 18rem;
+  margin: 1rem;
+}
+
+.liked-items-img {
+  object-fit: cover;
+  width: 18rem;
+  height: 18rem;
+}
+
+/* Footer */
+.footer-height {
+  height: 2rem;
+}
+
+.footer-distance {
+  height: 4rem;
+}
+
+.overflow-wrap {
+  word-wrap: break-word;
+}
+
+/* All Results Page */
+.all-results-card {
+  width: 18rem;
 }

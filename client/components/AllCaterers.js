@@ -134,7 +134,7 @@ function AllCaterers(props) {
           allCaterers.map((caterer) => {
             return (
               <div key={caterer.id}>
-                <Card className='mb-4'>
+                <Card className='mb-4 all-results-card'>
                   <Card.Img
                     variant='top'
                     src={caterer.photos[0]}
