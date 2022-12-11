@@ -19,54 +19,50 @@ function ResponsiveNavBar({ handleLogout, isLoggedIn }) {
         <Navbar.Collapse id='basic-navbar-nav' className='pink'>
           <Nav className='me-auto responsive-nav'>
             {isLoggedIn ? (
-              <div
-              className='nav-flex'
-              >
-                <Nav.Link
-                  className='responsiveNavLinks nav-links '
-                  href='/start'
+              <div className='nav-flex'>
+                <Link
+                  className='responsiveNavLinks nav-links text-decoration'
+                  to='/start'
                 >
                   Start Planning
-                </Nav.Link>
+                </Link>
 
-                <Nav.Link
-                  className='responsiveNavLinks nav-links '
-                  href='/account'
+                <Link
+                  className='responsiveNavLinks nav-links text-decoration'
+                  to='/account'
                 >
                   My Account
-                </Nav.Link>
-                <Nav.Link
-                  className='responsiveNavLinks nav-links'
-                  href='/logout'
+                </Link>
+                <Link
+                  className='responsiveNavLinks nav-links text-decoration'
+                  to='/'
                   onClick={handleLogout}
                 >
                   Logout
-                </Nav.Link>
+                </Link>
               </div>
             ) : (
-              <div
-              className='nav-flex'
-              >
-                <Nav.Link
-                  className='responsiveNavLinks nav-links '
-                  href='/start'
+              <div className='nav-flex'>
+                <Link
+                  className='responsiveNavLinks nav-links text-decoration'
+                  to='/start'
                 >
                   Start Planning
-                </Nav.Link>
+                </Link>
 
-                <Nav.Link
-                  className='responsiveNavLinks nav-links'
-                  href='/login'
+                <Link
+                  className='responsiveNavLinks nav-links text-decoration'
+                  to='/login'
                 >
                   Log in
-                </Nav.Link>
+                </Link>
 
-                <Nav.Link
-                  className='responsiveNavLinks nav-links'
-                  href='/signup'
+                <Link
+                  className='responsiveNavLinks nav-links text-decoration'
+                  to='/signup'
                 >
                   Sign up
-                </Nav.Link>
+                </Link>
               </div>
             )}
           </Nav>

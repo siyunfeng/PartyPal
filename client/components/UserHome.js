@@ -215,7 +215,7 @@ const UserHome = (props) => {
                 events.map((event, index) => {
                   return (
                     <div className='user-home-upcomings' key={index}>
-                      <Card className='account-info'>
+                      <Card className='event-details'>
                         <Card.Body>
                           <Card.Title className='DM-Serif-display-font'>
                             {event.name

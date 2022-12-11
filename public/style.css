@@ -283,6 +283,12 @@ input {
   justify-content: space-between;
 }
 
+.event-details {
+  width: 40rem;
+  margin: 0 0 1rem 1rem;
+  font-size: large;
+}
+
 /* Footer */
 .footer-height {
   height: 2rem;
