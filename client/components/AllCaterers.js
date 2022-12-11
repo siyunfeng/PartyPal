@@ -134,11 +134,11 @@ function AllCaterers(props) {
           allCaterers.map((caterer) => {
             return (
               <div key={caterer.id}>
-                <Card className='mb-4'>
+                <Card className='mb-4 all-results-card'>
                   <Card.Img
                     variant='top'
                     src={caterer.photos[0]}
-                    className='allViews'
+                    className='all-results-img'
                   />
                   <Card.Body>
                     <Card.Title className='DM-Serif-display-font'>

@@ -93,14 +93,14 @@ export const AllVenues = (props) => {
           allVenues.map((venue) => {
             return (
               <div key={venue.id}>
-                <Card className='mb-4'>
+                <Card className='mb-4 all-results-card'>
                   <Card.Img
                     variant='top'
                     src={venue.photos[0]}
-                    className='allViews'
+                    className='all-results-img'
                   />
                   <Card.Body>
-                    <Card.Title className='DM-Serif-display-font'>
+                    <Card.Title className='DM-Serif-display-font overflow-wrap'>
                       {venue.name ? venue.name : 'No venue name available'}
                     </Card.Title>
                     <Card.Text>

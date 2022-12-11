@@ -15,6 +15,7 @@ import EventForm from './EventForm';
 import ResponsiveNav from './ResponsiveNav';
 import { connect } from 'react-redux';
 import { me } from '../redux/auth';
+import { Footer } from './Footer';
 
 export const AllRoutes = (props) => {
   useEffect(() => {
@@ -51,6 +52,8 @@ export const AllRoutes = (props) => {
           </Switch>
         )}
       </main>
+      <div className='footer-height'></div>
+      <Footer />
     </Router>
   );
 };

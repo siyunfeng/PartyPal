@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=DM+Serif+Display&display=swap');
 @import 'bootstrap/dist/css/bootstrap.min.css';
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Alegreya&family=Chonburi&family=Forum&family=Goblin+One&family=Gotu&family=Limelight&family=Monoton&family=Stardos+Stencil:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Alegreya&family=Chonburi&family=Cormorant+Garamond&family=Forum&family=Goblin+One&family=Gotu&family=Limelight&family=Monoton&family=Stardos+Stencil:wght@700&display=swap');
 
 :root {
   --fira-sans: 'Fira Sans', sans-serif;
@@ -61,11 +61,6 @@ nav h1 {
   background-color: green;
 }
 
-.allViews {
-  width: 285px;
-  height: 250px;
-}
-
 .favoriteSelectionsCard {
   width: auto;
   padding: 2rem;
@@ -74,16 +69,6 @@ nav h1 {
   margin-right: 3rem;
   margin-left: 3rem;
   padding: 2rem
-}
-
-.smallerUserHomeCards {
-  width: auto;
-  padding: 2rem;
-  border-radius: 5px;
-  box-shadow: 2px 1px 20px #f1cfbd;
-  margin-top: 3rem;
-  margin-right: 3rem;
-  margin-left: 3rem;
 }
 
 h1,
@@ -134,11 +119,6 @@ label {
   display: inline-block;
 }
 
-.single-img {
-  max-width: 100%;
-  max-height: 100%;
-}
-
 input {
   background-color: transparent;
   border: 1px solid #bfbdbb;
@@ -152,7 +132,6 @@ input {
 .pink {
   background-color: #f1cfbd;
 }
-
 
 .home-outline {
   text-shadow:  -1px 1px 2px #605399,
@@ -184,13 +163,18 @@ input {
   font-family: var(--Cardo);
 }
 
+.fatface-font {
+  font-family: var(--Abril-Fatface);
+}
+
 .card-width-all-views {
   width: 25rem;
 }
 
 .single-img {
-  width: 450;
-  height: 500;
+  width: 450px;
+  height: 500px;
+  object-fit: contain;
 }
 
 .home-tagline {
@@ -200,7 +184,7 @@ input {
 
 .white-buttons-and-cardo {
   color: white;
-   font-family: var(--Cardo)
+  font-family: var(--Cardo)
 }
 
 .nav-flex {
@@ -219,23 +203,8 @@ input {
   align-items: center;
 }
 
-.welcome-div {
-  margin-left: 1rem;
-}
-
 .text-decoration {
   text-decoration: none;
-}
-
-.account-info {
-  width: 25rem;
-  margin-left: 1rem;
-}
-
-.liked-items {
-  width: 18rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
 }
 
 .height {
@@ -253,4 +222,101 @@ input {
   margin-bottom: 2em;
   font-weight: 700;
   text-shadow: black 1px 0 5px;
+}
+
+/* User Home */
+.welcome-div {
+  font-family: var(--Abril-Fatface);
+  margin-left: 1rem;
+}
+
+.welcome-top {
+  margin-left: 3rem;
+}
+
+.smallerUserHomeCards {
+  width: auto;
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 2px 1px 20px #f1cfbd;
+  margin-top: 3rem;
+  margin-right: 3rem;
+  margin-left: 3rem;
+}
+
+.account-info {
+  width: 25rem;
+  margin: 0 0 1rem 1rem;
+  font-size: large;
+}
+
+.each-favorite-venue-container, .each-favorite-caterer-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  margin: 1rem;
+}
+
+.liked-items {
+  width: 10rem;
+  margin: 1rem;
+  transition: transform 300ms, box-shadow 300ms;
+}
+
+.liked-items:hover {
+  transform: scale(1.075);
+}
+
+.liked-items-img {
+  object-fit: cover;
+  width: 10rem;
+  height: 10rem;
+}
+
+.liked-items-title {
+  font-family: var(--Cardo);
+  font-size: medium;
+}
+
+.btn-event-edit-delete {
+  display: flex;
+  justify-content: space-between;
+}
+
+.event-details {
+  width: 40rem;
+  margin: 0 0 1rem 1rem;
+  font-size: large;
+}
+
+/* Footer */
+.footer-height {
+  height: 2rem;
+}
+
+.footer-distance {
+  height: 4rem;
+}
+
+.overflow-wrap {
+  word-wrap: break-word;
+}
+
+/* All Results Page */
+.all-results-card {
+  width: 18rem;
+  margin: 1.5rem 1rem;
+  box-shadow: 8px 8px 8px #f1cfbd;
+  transition: transform 300ms, box-shadow 300ms;
+}
+
+.all-results-card:hover {
+  transform: scale(1.075);
+  box-shadow: 8px 8px 8px #f1cfbd;
+}
+
+.all-results-img {
+  width: 18rem;
+  height: 18rem;
+  object-fit: cover;
 }
