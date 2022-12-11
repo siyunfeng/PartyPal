@@ -44,7 +44,7 @@ function ReviewsHome() {
               value={review.ratings}
               readOnly
             />
-            <Alert.Heading style={{ fontFamily: 'DM Serif Display' }}>
+            <Alert.Heading className='DM-Serif-display-font'>
               {review.name}
             </Alert.Heading>
             <p>{review.review}</p>

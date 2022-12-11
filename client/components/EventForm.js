@@ -82,7 +82,7 @@ const EventForm = (props) => {
         <Typography
           component='h1'
           variant='h5'
-          style={{ fontFamily: 'DM Serif Display' }}
+          className='DM-Serif-display-font'
         >
           <strong>Create New Event</strong>
         </Typography>
@@ -190,7 +190,7 @@ const EventForm = (props) => {
               className={classes.submit}
               // color='primary'
             >
-              <strong style={{ color: 'white', fontFamily: 'Cardo' }}>
+              <strong className='white-buttons-and-cardo'>
                 Create Event
               </strong>
             </Button>
@@ -247,10 +247,9 @@ const EventForm = (props) => {
             <br></br>
             <Link to='/account'>
               <Button
-                className='btn-back-to-my-acc'
-                style={{ fontFamily: 'Cardo' }}
+                className='btn-back-to-my-acc cardo-font'
               >
-                <strong style={{ color: 'white' }}>Back to My Account</strong>
+                <strong className='white-buttons-and-cardo '>Back to My Account</strong>
               </Button>
             </Link>
           </PopUpDiv>

@@ -134,14 +134,14 @@ function AllCaterers(props) {
           allCaterers.map((caterer) => {
             return (
               <div key={caterer.id}>
-                <Card className='mb-4' style={{ width: '18rem' }}>
+                <Card className='mb-4'>
                   <Card.Img
                     variant='top'
                     src={caterer.photos[0]}
                     className='allViews'
                   />
                   <Card.Body>
-                    <Card.Title style={{ fontFamily: 'DM Serif Display' }}>
+                    <Card.Title className='DM-Serif-display-font'>
                       {caterer.name
                         ? caterer.name
                         : 'No caterer name available'}
@@ -164,7 +164,7 @@ function AllCaterers(props) {
                     <Link to={`/singleCaterer/${caterer.id}`}>
                       <Button
                         variant='primary'
-                        style={{ fontFamily: 'Cardo' }}
+                        className='cardo-font'
                         name={caterer.id}
                         onClick={(e) => {
                           handleClick(e);
@@ -179,7 +179,9 @@ function AllCaterers(props) {
             );
           })
         ) : (
-          <LoadingState />
+          <div className='height'>
+            <LoadingState />
+          </div>
         )}
       </FlexBoxForAllView>
     </div>

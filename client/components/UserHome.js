@@ -14,6 +14,7 @@ import { getSingleVenueThunk } from '../redux/singleVenue';
 import UserHomeFlex from './Styled-Components/UserHomeFlex.styled';
 import { Trash, PencilSquare } from 'react-bootstrap-icons';
 import { convert, findDayOfWeek } from '../../helperFunctions';
+import FlexBox from './Styled-Components/FlexBox.styled';
 import { getSingleEvent } from '../redux/singleEvent';
 
 const UserHome = (props) => {
@@ -65,73 +66,52 @@ const UserHome = (props) => {
       {id ? (
         <div id='home-div'>
           <br></br>
-          <h1 style={{ marginLeft: '1rem' }}>Welcome {username}!</h1>
+          <h1 className='welcome-div'>Welcome {username}!</h1>
           <br></br>
           <br></br>
           <a href='#my-events'>
-            <Button
-              variant='primary'
-              style={{ marginLeft: '1rem', fontFamily: 'Cardo' }}
-            >
+            <Button variant='primary' className='welcome-div cardo-font '>
               <strong>View My Events</strong>
             </Button>
           </a>
-          <a
-            style={{ textDecoration: 'none', fontFamily: 'Cardo' }}
-            href='#my-liked-list'
-          >
-            <Button
-              variant='primary'
-              style={{ marginLeft: '1rem', fontFamily: 'Cardo' }}
-            >
+          <a className='cardo-font text-decoration' href='#my-liked-list'>
+            <Button variant='primary' className='welcome-div cardo-font'>
               <strong>View My Liked List</strong>
             </Button>
           </a>
           <div className='user-profile smallerUserHomeCards'>
-            <h4 style={{ marginLeft: '1rem' }}>Account Information</h4>
-            <hr></hr>
-            <div style={{ marginLeft: '1rem' }}>
-              {/* <Card style={{ width: '25rem', marginLeft: '1rem' }}> */}
-              {/* <Card.Body>
-                  <Card.Text> */}
-              <div>
-                <strong>Username: </strong>
-                {username}
-              </div>
-              {/* </Card.Text>
-                  <Card.Text> */}
-              <div>
-                <strong>Email: </strong> {email}
-              </div>
-              {/* </Card.Text> */}
-              {/* </Card.Body> */}
-              {/* </Card> */}
+            <h4 className='welcome-div'>Account Information</h4>
+            <div>
+              <Card className='account-info'>
+                <Card.Body>
+                  <Card.Text>
+                    <strong>Username: </strong>
+                    {username}
+                  </Card.Text>
+                  <Card.Text>
+                    <strong>Email: </strong> {email}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
             </div>
           </div>
           <br></br>
           <div></div>
           <div className='user-home-events'>
             <div className='user-home-favorite favoriteSelectionsCard'>
-              <h4 id='my-liked-list' style={{ marginLeft: '1rem' }}>
+              <h4 id='my-liked-list' className='welcome-div'>
                 My Liked List
               </h4>
               <hr></hr>
               <br></br>
               <div className='each-favorite-venue-container '>
-                <h5 style={{ marginLeft: '1rem' }}>Venues</h5>
+                <h5 className='welcome-div'>Venues</h5>
                 <hr></hr>
                 <UserHomeFlex>
                   {venues?.length ? (
                     venues.map((venue, index) => {
                       return (
-                        <Card
-                          key={index}
-                          style={{
-                            width: '18rem',
-                            marginTop: '2rem',
-                            marginBottom: '2rem',
-                          }}
-                        >
+                        <Card key={index} className='liked-items'>
                           <Link to={`/singleVenue/${venue.yelp_reference_id}`}>
                             <Card.Img
                               name={venue.yelp_reference_id}
@@ -145,11 +125,9 @@ const UserHome = (props) => {
                           <Card.Body>
                             <Link
                               to={`/singleVenue/${venue.yelp_reference_id}`}
-                              style={{ textDecoration: 'none' }}
+                              className='text-decoration'
                             >
-                              <Card.Title
-                                style={{ fontFamily: ' DM Serif Display' }}
-                              >
+                              <Card.Title className='DM-Serif-display-font'>
                                 {venue.name
                                   ? venue.name
                                   : 'venue name is not available'}
@@ -158,7 +136,7 @@ const UserHome = (props) => {
                             <Button
                               onClick={() => handleDeleteVenue(venue.id)}
                               variant='danger'
-                              style={{ fontFamily: 'Cardo' }}
+                              className='cardo-font'
                             >
                               <Trash />
                             </Button>
@@ -174,20 +152,13 @@ const UserHome = (props) => {
                 <br></br>
               </div>
               <div className='each-favorite-caterer-container'>
-                <h5 style={{ marginLeft: '1rem' }}>Catering</h5>
+                <h5 className='welcome-div'>Catering</h5>
                 <hr></hr>
                 <UserHomeFlex>
                   {caterers?.length ? (
                     caterers.map((caterer, index) => {
                       return (
-                        <Card
-                          key={index}
-                          style={{
-                            width: '18rem',
-                            marginTop: '2rem',
-                            marginBottom: '2rem',
-                          }}
-                        >
+                        <Card key={index} className='liked-items'>
                           <Link
                             to={`/singleCaterer/${caterer.yelp_reference_id}`}
                           >
@@ -202,11 +173,9 @@ const UserHome = (props) => {
                           <Card.Body>
                             <Link
                               to={`/singleCaterer/${caterer.yelp_reference_id}`}
-                              style={{ textDecoration: 'none' }}
+                              className='text-decoration'
                             >
-                              <Card.Title
-                                style={{ fontFamily: ' DM Serif Display' }}
-                              >
+                              <Card.Title className='DM-Serif-display-font'>
                                 {caterer.name
                                   ? caterer.name
                                   : 'caterer name is not available'}
@@ -229,13 +198,13 @@ const UserHome = (props) => {
               </div>
             </div>
             <div className='smallerUserHomeCards'>
-              <h4 id='my-events' style={{ marginLeft: '1rem' }}>
+              <h4 id='my-events' className='welcome-div'>
                 My Events
               </h4>
               <br></br>
               <div>
                 <Link to='/new-event'>
-                  <Button style={{ marginLeft: '1rem', fontFamily: 'Cardo' }}>
+                  <Button className='welcome-div cardo-font'>
                     <strong>Create Future Event</strong>
                   </Button>
                 </Link>
@@ -245,11 +214,9 @@ const UserHome = (props) => {
                 events.map((event, index) => {
                   return (
                     <div className='user-home-upcomings' key={index}>
-                      <Card style={{ width: '25rem', marginLeft: '1rem' }}>
+                      <Card className='account-info'>
                         <Card.Body>
-                          <Card.Title
-                            style={{ fontFamily: 'DM Serif Display' }}
-                          >
+                          <Card.Title className='DM-Serif-display-font'>
                             {event.name
                               ? event.name
                               : 'Event name is not available at this time'}
@@ -291,7 +258,11 @@ const UserHome = (props) => {
                   );
                 })
               ) : (
-                <div>You have no upcoming events at this time.</div>
+                <FlexBox>
+                  <div>
+                    <strong className='cardo-font'>You have no upcoming events at this time.</strong>
+                  </div>
+                </FlexBox>
               )}
               <br></br>
             </div>
@@ -300,7 +271,7 @@ const UserHome = (props) => {
       ) : (
         <div>
           <br></br>
-          <h3 style={{ fontFamily: 'DM Serif Display', marginLeft: '1rem' }}>
+          <h3 className='welcome-div DM-Serif-display-font'>
             Please <Link to='/login'>log in</Link> to your account to view your
             dashboard.
           </h3>

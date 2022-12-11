@@ -109,7 +109,6 @@ const SingleCaterer = (props) => {
               <Card.Img
                 className='img single-img'
                 variant='top'
-                style={{ width: 450, height: 500 }}
                 src={
                   photos.length
                     ? photos
@@ -120,7 +119,7 @@ const SingleCaterer = (props) => {
           </Card.Body>
         </Card>
         <br></br>
-        <Card className='favoriteSelectionsCard' style={{ padding: '2rem' }}>
+        <Card className='favoriteSelectionsCard'>
           <h4>Caterer Details</h4>
           <hr></hr>
           <br></br>
@@ -188,7 +187,7 @@ const SingleCaterer = (props) => {
               >
                 <Button
                   variant={solidGreen ? 'success' : 'outline-success'}
-                  style={{ fontFamily: 'Cardo' }}
+                  className='cardo-font'
                   onClick={(e) => {
                     const catererInfo = {
                       name,
@@ -215,8 +214,8 @@ const SingleCaterer = (props) => {
             )}
             <div className='button-divider'></div>
             <Link to='/allCaterers'>
-              <Button style={{ fontFamily: 'Cardo' }} variant='outline-primary'>
-                Go Back
+              <Button className='cardo-font' variant='outline-primary'>
+               Go Back
               </Button>
             </Link>
           </ButtonFlex>
