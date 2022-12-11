@@ -138,7 +138,7 @@ function AllCaterers(props) {
                   <Card.Img
                     variant='top'
                     src={caterer.photos[0]}
-                    className='allViews'
+                    className='all-results-img'
                   />
                   <Card.Body>
                     <Card.Title className='DM-Serif-display-font'>

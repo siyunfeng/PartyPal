@@ -65,11 +65,11 @@ const UserHome = (props) => {
       {id ? (
         <div id='home-div'>
           <br></br>
-          <h1 className='welcome-top'>Welcome {username}!</h1>
+          <h1 className='welcome-top fatface-font'>Welcome {username}!</h1>
           <br></br>
           <br></br>
           <a href='#my-events'>
-            <Button variant='primary' className='welcome-top cardo-font '>
+            <Button variant='primary' className='welcome-top cardo-font'>
               <strong>View My Events</strong>
             </Button>
           </a>
@@ -108,8 +108,8 @@ const UserHome = (props) => {
                   {venues?.length ? (
                     venues.map((venue, index) => {
                       return (
-                        <div key={index}>
-                          <Card className='liked-items'>
+                        <div key={index} className='liked-items'>
+                          <Card>
                             <Link
                               to={`/singleVenue/${venue.yelp_reference_id}`}
                             >
@@ -119,7 +119,6 @@ const UserHome = (props) => {
                                 variant='top'
                                 src={venue.image_url}
                                 className='liked-items-img'
-                                style={{ objectFit: 'cover' }}
                               />
                             </Link>
                             <Card.Body>
@@ -127,7 +126,7 @@ const UserHome = (props) => {
                                 to={`/singleVenue/${venue.yelp_reference_id}`}
                                 className='text-decoration'
                               >
-                                <Card.Title className='DM-Serif-display-font'>
+                                <Card.Title className='liked-items-title'>
                                   {venue.name
                                     ? venue.name
                                     : 'venue name is not available'}
@@ -150,7 +149,6 @@ const UserHome = (props) => {
                   )}
                 </div>
                 <br></br>
-                <br></br>
               </div>
               <div>
                 <h5 className='welcome-div'>Catering</h5>
@@ -159,8 +157,8 @@ const UserHome = (props) => {
                   {caterers?.length ? (
                     caterers.map((caterer, index) => {
                       return (
-                        <div key={index}>
-                          <Card className='liked-items'>
+                        <div key={index} className='liked-items'>
+                          <Card>
                             <Link
                               to={`/singleCaterer/${caterer.yelp_reference_id}`}
                             >
@@ -177,7 +175,7 @@ const UserHome = (props) => {
                                 to={`/singleCaterer/${caterer.yelp_reference_id}`}
                                 className='text-decoration'
                               >
-                                <Card.Title className='DM-Serif-display-font'>
+                                <Card.Title className='liked-items-title'>
                                   {caterer.name
                                     ? caterer.name
                                     : 'caterer name is not available'}
@@ -224,6 +222,7 @@ const UserHome = (props) => {
                               ? event.name
                               : 'Event name is not available at this time'}
                           </Card.Title>
+                          <hr></hr>
                           <Card.Text>
                             <strong>Date: </strong>
                             {event.date
@@ -236,24 +235,55 @@ const UserHome = (props) => {
                               ? convert(event.time)
                               : 'Event time is not available at this time'}
                           </Card.Text>
-                          <Link
-                            to={`/editEvent/${event.id}`}
-                            value={event.id}
-                            onClick={() => {
-                              getSingleEvent(event.id);
-                            }}
-                          >
-                            <Button>
-                              <PencilSquare />
-                            </Button>
-                            <div className='button-divider'></div>
-                          </Link>
-                          <Button
-                            onClick={() => handleDeleteEvent(event.id)}
-                            variant='danger'
-                          >
-                            <Trash />
-                          </Button>
+                          <Card.Text>
+                            <strong>Venue: </strong>
+                            {event.venue ? (
+                              <Link
+                                to={`/singleVenue/${event.venueYelpId}`}
+                                className='text-decoration'
+                              >
+                                {event.venue}
+                              </Link>
+                            ) : (
+                              'You did not choose your venue yet'
+                            )}
+                          </Card.Text>
+                          <Card.Text>
+                            <strong>Caterer: </strong>
+                            {event.catering ? (
+                              <Link
+                                to={`/singleCaterer/${event.cateringYelpId}`}
+                                className='text-decoration'
+                              >
+                                {event.catering}
+                              </Link>
+                            ) : (
+                              'You did not choose your caterer yet'
+                            )}
+                          </Card.Text>
+                          <div className='btn-event-edit-delete'>
+                            <div>
+                              <Link
+                                to={`/editEvent/${event.id}`}
+                                value={event.id}
+                                onClick={() => {
+                                  getSingleEvent(event.id);
+                                }}
+                              >
+                                <Button>
+                                  <PencilSquare />
+                                </Button>
+                              </Link>
+                            </div>
+                            <div>
+                              <Button
+                                onClick={() => handleDeleteEvent(event.id)}
+                                variant='danger'
+                              >
+                                <Trash />
+                              </Button>
+                            </div>
+                          </div>
                         </Card.Body>
                       </Card>
                       <br></br>

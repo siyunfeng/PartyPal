@@ -97,7 +97,7 @@ export const AllVenues = (props) => {
                   <Card.Img
                     variant='top'
                     src={venue.photos[0]}
-                    className='allViews'
+                    className='all-results-img'
                   />
                   <Card.Body>
                     <Card.Title className='DM-Serif-display-font overflow-wrap'>
