@@ -11,6 +11,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -101,6 +102,7 @@ export const AuthForm = (props) => {
             >
               <strong>{displayName}</strong>
             </Button>
+            <Link to='/signup' className='cardo-font'>Don't have an account?</Link>
             {error && error.response && <div> {error.response.data} </div>}
           </form>
         </div>
@@ -206,6 +208,7 @@ export const AuthForm = (props) => {
             >
               <strong>{displayName}</strong>
             </Button>
+            <Link to='/login' className='cardo-font'>Already have an account?</Link>
             {error && error.response && <div> {error.response.data} </div>}
           </form>
         </div>

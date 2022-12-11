@@ -161,7 +161,7 @@ input {
   -1px -1px 0 #605399;
 }
 
-.footer-design {
+#footer-design {
   background-color: #f1cfbd;
   padding: 1em;
   font-family: var(--DM-Serif-Display);

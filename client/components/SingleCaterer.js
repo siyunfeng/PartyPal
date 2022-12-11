@@ -73,7 +73,7 @@ const SingleCaterer = (props) => {
 
   const renderTooltip = (props) => (
     <Tooltip id='button-tooltip' {...props}>
-      Like to save to user dashboard
+      Like to save to your account
     </Tooltip>
   );
 
@@ -171,7 +171,7 @@ const SingleCaterer = (props) => {
           <FlexBox>
             {liked ? (
               <strong>
-                <p>Added to your user dashboard!</p>
+                <p>Added to your account!</p>
               </strong>
             ) : (
               ''
