@@ -14,12 +14,11 @@ function CarouselHome() {
             alt='First slide'
           />
           <Carousel.Caption>
-            <h1>Plan your party with PartyPal</h1>
+            <h1 className='home-outline'>Plan your party with PartyPal</h1>
             <Link to='/start'>
               <Button
-                className='mb-5'
+                className='mb-5 cardo-font'
                 variant='primary'
-                style={{ fontFamily: 'Cardo' }}
               >
                 <strong>Start Planning</strong>
               </Button>
@@ -33,12 +32,11 @@ function CarouselHome() {
             alt='Second slide'
           />
           <Carousel.Caption>
-            <h1>Plan your party with PartyPal</h1>
+            <h1 className='home-outline'>Plan your party with PartyPal</h1>
             <Link to='/start'>
               <Button
-                className='mb-5'
+                className='mb-5 cardo-font'
                 variant='primary'
-                style={{ fontFamily: 'Cardo' }}
               >
                 <strong>Start Planning</strong>
               </Button>
@@ -52,12 +50,11 @@ function CarouselHome() {
             alt='Third slide'
           />
           <Carousel.Caption>
-            <h1>Plan your party with PartyPal</h1>
+            <h1 className='home-outline'>Plan your party with PartyPal</h1>
             <Link to='/start'>
               <Button
-                className='mb-5'
+                className='mb-5 cardo-font'
                 variant='primary'
-                style={{ fontFamily: 'Cardo' }}
               >
                 <strong>Start Planning</strong>
               </Button>
@@ -72,12 +69,11 @@ function CarouselHome() {
           />
 
           <Carousel.Caption>
-            <h1>Plan your party with PartyPal</h1>
+            <h1 className='home-outline'>Plan your party with PartyPal</h1>
             <Link to='/start'>
               <Button
-                className='mb-5'
+                className='mb-5 cardo-font'
                 variant='primary'
-                style={{ fontFamily: 'Cardo' }}
               >
                 <strong>Start Planning</strong>
               </Button>
@@ -91,12 +87,11 @@ function CarouselHome() {
             alt='Fifth slide'
           />
           <Carousel.Caption>
-            <h1>Plan your party with PartyPal</h1>
+            <h1 className='home-outline'>Plan your party with PartyPal</h1>
             <Link to='/start'>
               <Button
-                className='mb-5'
+                className='mb-5 cardo-font'
                 variant='primary'
-                style={{ fontFamily: 'Cardo' }}
               >
                 <strong>Start Planning</strong>
               </Button>
@@ -110,12 +105,11 @@ function CarouselHome() {
             alt='Sixth slide'
           />
           <Carousel.Caption>
-            <h1>Plan your party with PartyPal</h1>
+            <h1 className='home-outline'>Plan your party with PartyPal</h1>
             <Link to='/start'>
               <Button
-                className='mb-5'
+                className='mb-5 cardo-font'
                 variant='primary'
-                style={{ fontFamily: 'Cardo' }}
               >
                 <strong>Start Planning</strong>
               </Button>

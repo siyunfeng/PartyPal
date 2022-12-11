@@ -18,7 +18,7 @@ const Home = () => {
             <br></br>
             <br></br>
             
-              <h2 style={{ textAlign: 'center', margin: '1rem' }}>
+              <h2 className='home-tagline'>
                 <strong>
                   Have a party coming up? Need venue and catering
                   recommendations in your area? Click Start Planning to find

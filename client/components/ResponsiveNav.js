@@ -17,102 +17,52 @@ function ResponsiveNavBar({ handleLogout, isLoggedIn }) {
         </Link>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav' className='pink'>
-          <Nav className='me-auto' style={{ width: '100%' }}>
+          <Nav className='me-auto responsive-nav'>
             {isLoggedIn ? (
               <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'flex-end',
-                  width: '100%',
-                }}
+              className='nav-flex'
               >
                 <Nav.Link
-                  className='responsiveNavLinks '
-                  style={{
-                    color: '#605399',
-                    fontFamily: 'DM Serif Display',
-                    fontWeight: 'bold',
-                    fontSize: '20px',
-                    padding: '1rem'
-                  }}
+                  className='responsiveNavLinks nav-links '
                   href='/start'
                 >
                   Start Planning
                 </Nav.Link>
 
                 <Nav.Link
-                  style={{
-                    color: '#605399',
-                    fontFamily: 'DM Serif Display',
-                    fontWeight: 'bold',
-                    fontSize: '20px',
-                    padding: '1rem'
-                  }}
-                  className='responsiveNavLinks '
+                  className='responsiveNavLinks nav-links '
                   href='/account'
                 >
                   My Account
                 </Nav.Link>
                 <Nav.Link
-                  className='responsiveNavLinks'
+                  className='responsiveNavLinks nav-links'
                   href='/logout'
                   onClick={handleLogout}
-                  style={{
-                    color: '#605399',
-                    fontFamily: 'DM Serif Display',
-                    fontWeight: 'bold',
-                    fontSize: '20px',
-                    padding: '1rem'
-                  }}
                 >
                   Logout
                 </Nav.Link>
               </div>
             ) : (
               <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'flex-end',
-                  width: '100%',
-                }}
+              className='nav-flex'
               >
                 <Nav.Link
-                  style={{
-                    color: '#605399',
-                    fontFamily: 'DM Serif Display',
-                    fontWeight: 'bold',
-                    fontSize: '20px',
-                    padding: '1rem'
-                  }}
-                  className='responsiveNavLinks '
+                  className='responsiveNavLinks nav-links '
                   href='/start'
                 >
                   Start Planning
                 </Nav.Link>
 
                 <Nav.Link
-                  style={{
-                    color: '#605399',
-                    fontFamily: 'DM Serif Display',
-                    fontWeight: 'bold',
-                    fontSize: '20px',
-                    padding: '1rem'
-                  }}
-                  className='responsiveNavLinks'
+                  className='responsiveNavLinks nav-links'
                   href='/login'
                 >
                   Log in
                 </Nav.Link>
 
                 <Nav.Link
-                  style={{
-                    color: '#605399',
-                    fontFamily: 'DM Serif Display',
-                    fontWeight: 'bold',
-                    fontSize: '20px',
-                    padding: '1rem'
-                  }}
-                  className='responsiveNavLinks'
+                  className='responsiveNavLinks nav-links'
                   href='/signup'
                 >
                   Sign up

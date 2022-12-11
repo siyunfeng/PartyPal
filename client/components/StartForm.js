@@ -69,8 +69,7 @@ const StartForm = (props) => {
           <SearchOutlinedIcon />
         </Avatar>
         <div
-          className='start-form'
-          style={{ width: '350px', textAlign: 'center', alignItems: 'center' }}
+          className='start-form-center'
         >
           <br></br>
           <div>

@@ -113,7 +113,7 @@ const SingleVenue = (props) => {
 
         <br></br>
 
-        <Card className='favoriteSelectionsCard' style={{ padding: '2rem' }}>
+        <Card className='favoriteSelectionsCard'>
           <h4>Venue Details</h4>
           <hr></hr>
           <br></br>
@@ -188,7 +188,7 @@ const SingleVenue = (props) => {
               >
                 <Button
                   variant={solidGreen ? 'success' : 'outline-success'}
-                  style={{ fontFamily: 'Cardo'}}
+                  className='cardo-font '
                   onClick={(e) => {
                     const venueInfo = {
                       name,
@@ -215,7 +215,7 @@ const SingleVenue = (props) => {
             )}
             <div className='button-divider'></div>
             <Link to='/allVenues'>
-              <Button style={{ fontFamily: 'Cardo' }} variant='outline-primary'>
+              <Button className='cardo-font' variant='outline-primary'>
                 Go Back
               </Button>
             </Link>

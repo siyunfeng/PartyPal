@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=DM+Serif+Display&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Alegreya&family=Forum&family=Goblin+One&family=Gotu&family=Limelight&display=swap');
+@import 'bootstrap/dist/css/bootstrap.min.css';
 
 :root {
   --fira-sans: 'Fira Sans', sans-serif;
@@ -61,33 +62,24 @@ nav h1 {
 }
 
 .allViews {
-  width: 300px;
-  height: 300px;
-}
-
-.singleViewImg {
-  width: 250px;
-  height: 500px;
+  width: 285px;
+  height: 250px;
 }
 
 .favoriteSelectionsCard {
   width: auto;
   padding: 2rem;
-  /* border-radius: 5px;
-  box-shadow: 2px 1px 20px rgb(203, 203, 203); */
-  /* box-shadow: 2px 1px 20px rgb(224, 149, 229); */
   box-shadow: 2px 1px 20px #f1cfbd;
   margin-top: 3rem;
   margin-right: 3rem;
   margin-left: 3rem;
+  padding: 2rem
 }
 
 .smallerUserHomeCards {
   width: auto;
   padding: 2rem;
   border-radius: 5px;
-  /* box-shadow: 0px 1px 20px rgb(170, 58, 179); */
-  /* box-shadow: 2px 1px 20px rgb(203, 203, 203); */
   box-shadow: 2px 1px 20px #f1cfbd;
   margin-top: 3rem;
   margin-right: 3rem;
@@ -101,7 +93,6 @@ h4,
 h5,
 strong,
 button {
-  /* font-family: var(--DM-Serif-Display-Italic) */
   font-family: var(--DM-Serif-Display);
 }
 
@@ -140,10 +131,6 @@ label {
   display: inline-block;
 }
 
-.single-img {
-    max-width: 100%;
-    max-height: 100%;
-}
 
 .bg-pretty {
   background-color: #f1cfbd;
@@ -153,8 +140,91 @@ label {
   background-color: #f1cfbd;
 }
 
-.new-nav-flex {
+
+.home-outline {
+  text-shadow:  -1px 1px 2px #605399,
+  1px 2px 6px #605399,
+  1px -1px 0 #605399,
+  -1px -1px 0 #605399;
+}
+
+.footer-design {
+  background-color: #f1cfbd;
+  padding: 1em;
+  font-family: var(--DM-Serif-Display);
+  text-align: center;
+}
+
+.nav-links {
+  color: #605399;
+  font-family: var(--DM-Serif-Display);
+  font-weight: bold;
+  font-size: large;
+  padding: 1rem
+}
+
+.DM-Serif-display-font {
+  font-family: var(--DM-Serif-Display);
+}
+
+.cardo-font {
+  font-family: var(--Cardo);
+}
+
+.card-width-all-views {
+  width: 25rem;
+}
+
+.single-img {
+  width: 450;
+  height: 500;
+}
+
+.home-tagline {
+  text-align: center;
+  margin: 1rem
+}
+
+.white-buttons-and-cardo {
+  color: white;
+   font-family: var(--Cardo)
+}
+
+.nav-flex {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.responsive-nav {
+  width: 100%
+}
+
+.start-form-center {
+  width: 350px;
+  text-align: center;
+  align-items: center;
+}
+
+.welcome-div {
+  margin-left: 1rem;
+}
+
+.text-decoration {
+  text-decoration: none;
+}
+
+.account-info {
+  width: 25rem;
+  margin-left: 1rem;
+}
+
+.liked-items {
+  width: 18rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.height {
+  height: 12rem;
 }

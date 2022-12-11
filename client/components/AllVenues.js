@@ -11,7 +11,6 @@ import FlexBoxForSearchResults from './Styled-Components/FlexBoxForSearchResults
 import LoadingState from './Spinner';
 import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 
 export const AllVenues = (props) => {
   const [price, setPrice] = useState(() => {
@@ -90,14 +89,14 @@ export const AllVenues = (props) => {
           allVenues.map((venue) => {
             return (
               <div key={venue.id}>
-                <Card className='mb-4' style={{ width: '25rem' }}>
+                <Card className='mb-4'>
                   <Card.Img
                     variant='top'
                     src={venue.photos[0]}
-                    className='allViews single-img'
+                    className='allViews'
                   />
                   <Card.Body>
-                    <Card.Title style={{ fontFamily: 'DM Serif Display' }}>
+                    <Card.Title className='DM-Serif-display-font'>
                       {venue.name ? venue.name : 'No venue name available'}
                     </Card.Title>
                     <Card.Text>
@@ -120,7 +119,7 @@ export const AllVenues = (props) => {
                       <Button
                         variant='primary'
                         name={venue.id}
-                        style={{ fontFamily: 'Cardo' }}
+                        className='cardo-font'
                       >
                         <strong>See more</strong>
                       </Button>
@@ -131,7 +130,9 @@ export const AllVenues = (props) => {
             );
           })
         ) : (
-          <LoadingState />
+          <div className='height'>
+            <LoadingState />
+          </div>
         )}
       </FlexBoxForAllView>
     </div>
