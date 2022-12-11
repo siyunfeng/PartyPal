@@ -70,7 +70,6 @@ const EventEditForm = (props) => {
 
   const handleEditEvent = (event) => {
     event.preventDefault();
-    console.log('i am here');
     const eventInfo = {
       eventId,
       eventNameOption,
@@ -200,6 +199,8 @@ const EventEditForm = (props) => {
             variant='outlined'
             value={noteOption}
             margin='normal'
+            minRows={4}
+            multiline
             fullWidth
             onChange={(event) => setNoteOption(event.target.value)}
           />
