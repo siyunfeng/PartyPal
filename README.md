@@ -30,9 +30,8 @@ Sync and seed the database by running npm run seed. Running `npm run start:dev`
 
 
 - Integrate Google maps and pin results with each search
-- Integrate Sign In with Google
 - Include additional categories such as photo booth, florist, music...etc.
-- Generate event invites to send to guests
+- Generate custom e-invitations to send guests and track an RSVP list
 
 ## Team
 
