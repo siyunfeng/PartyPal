@@ -1,4 +1,4 @@
-![](public/images/README banner.png)
+![](public/images/README%20banner.png)
 
 # PartyPal
 
