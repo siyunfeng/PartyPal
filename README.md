@@ -1,4 +1,4 @@
-![](public/images/apple-touch-icon.png)
+![](public/images/README%20banner.png)
 
 # PartyPal
 
