@@ -17,7 +17,21 @@ PartyPal is an application where you can find a curated list of highly rated cat
 ## Technologies
 
 
-This project was built with PostgreSQL database, Express for backend routing, and Node.js server.
+This project was built with: 
+- React
+- Redux
+- PostgreSQL
+- Sequelize
+- GraphQL
+- Express
+- Node.js
+
+- Material-UI
+- React-BootStrap
+- Styled-Components
+
+- Moment.js
+
 
 [YelpAPI](https://docs.developer.yelp.com/)
 
