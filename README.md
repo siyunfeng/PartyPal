@@ -1,3 +1,5 @@
+![](public/images/apple-touch-icon.png)
+
 # PartyPal
 
 [Visit PartyPal Here](https://partypal.onrender.com/)
