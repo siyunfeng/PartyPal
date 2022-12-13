@@ -8,6 +8,12 @@
 
 PartyPal is an application where you can find a curated list of highly rated caterer and venue recommendations based on location for your next party!
 
+## Team
+
+- [Siyun Feng](https://www.linkedin.com/in/siyunfeng/)
+- [Irais Valenzuela](https://www.linkedin.com/in/irais-valenzuela/)
+- [Jane Yeh](https://www.linkedin.com/in/jane-yeh/)
+
 ## Technologies
 
 
@@ -34,9 +40,4 @@ Sync and seed the database by running npm run seed. Running `npm run start:dev`
 - Include additional categories such as photo booth, florist, music...etc.
 - Generate custom e-invitations to send guests and track an RSVP list
 
-## Team
-
-- [Siyun Feng](https://www.linkedin.com/in/siyunfeng/)
-- [Irais Valenzuela](https://www.linkedin.com/in/irais-valenzuela/)
-- [Jane Yeh](https://www.linkedin.com/in/jane-yeh/)
 
