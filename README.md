@@ -3,6 +3,7 @@
 # PartyPal
 
 [Visit PartyPal Here](https://partypal.onrender.com/)
+
 [Video Demo Here](https://youtu.be/XSrBzZxs0Gs)
 
 ---
